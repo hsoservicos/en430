@@ -188,14 +188,14 @@ try {
         // ── 404 ──
         default:
             http_response_code(404);
-            view('index', ['erro404' => true]);
+            view('erro', ['codigo' => 404]);
             break;
     }
 } catch (Exception $e) {
     if (DEBUG) {
-        die("Erro: " . $e->getMessage());
+        die("Erro: " . htmlspecialchars($e->getMessage()));
     }
-    flash('erro', '❌ Erro interno do servidor. Tente novamente.');
-    redirect('painel');
+    http_response_code(500);
+    view('erro', ['codigo' => 500]);
 }
 

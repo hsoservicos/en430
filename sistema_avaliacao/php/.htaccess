@@ -1,5 +1,60 @@
 RewriteEngine On
 
+# ─── SEGURANÇA ────────────────────────────────────────────
+# Bloquear acesso a arquivos sensíveis
+<FilesMatch "\.(db|sqlite|log|env|md|json|lock)$">
+  Require all denied
+</FilesMatch>
+
+# Bloquear acesso a arquivos ocultos (começam com .)
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+# Proteger diretórios do sistema
+<IfModule mod_autoindex.c>
+  Options -Indexes
+</IfModule>
+
+# Headers de segurança
+<IfModule mod_headers.c>
+  # CSP (Content Security Policy)
+  # Nota: Remova 'unsafe-inline' se migrar para scripts/styles totalmente externos
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'"
+  
+  # HSTS (forçar HTTPS) — descomentar quando HTTPS estiver configurado
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  
+  # X-Frame-Options (prevenir clickjacking)
+  Header always set X-Frame-Options "DENY"
+  
+  # X-Content-Type-Options (prevenir MIME sniffing)
+  Header always set X-Content-Type-Options "nosniff"
+  
+  # Referrer-Policy
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  
+  # Permissions-Policy
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# Cache de assets estáticos (1 ano)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# Compressão Gzip
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json
+</IfModule>
+
+# ─── ROTEAMENTO ───────────────────────────────────────────
 # Permitir acesso direto a assets existentes
 RewriteCond %{REQUEST_URI} ^/php/assets/ [OR]
 RewriteCond %{REQUEST_URI} ^/php/scripts/
