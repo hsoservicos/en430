@@ -48,6 +48,33 @@ class FrontControllerTest extends PHPUnit\Framework\TestCase
     }
 
     /**
+     * Configura ambiente para POST, iniciando sessão manualmente
+     * para que o CSRF token sobreviva ao initSession() interno.
+     */
+    private function setUpPostEnvironment(string $route, array $post, string $csrfToken = 'test_csrf_token'): void
+    {
+        $_GET = ['url' => $route];
+        $_POST = array_merge(['csrf_token' => $csrfToken], $post);
+        $_SERVER = [
+            'REQUEST_METHOD' => 'POST',
+            'SCRIPT_NAME' => '/index.php',
+            'SERVER_PROTOCOL' => 'HTTP/1.1',
+            'HTTP_HOST' => '127.0.0.1',
+            'SERVER_NAME' => '127.0.0.1',
+            'SERVER_PORT' => '80',
+            'REQUEST_URI' => '/' . $route,
+            'QUERY_STRING' => '',
+        ];
+
+        // Iniciar sessão manualmente para preservar $_SESSION
+        // antes do include, evitando que initSession() a resete
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        $_SESSION['csrf_token'] = $csrfToken;
+    }
+
+    /**
      * Inclui o index.php com output buffering e retorna o HTML capturado
      */
     private function captureIndexOutput(): string
@@ -175,5 +202,117 @@ class FrontControllerTest extends PHPUnit\Framework\TestCase
         $output = $this->captureIndexOutput();
 
         $this->assertStringContainsString('Sistema de Avaliação', $output);
+    }
+
+    // ═══════════════════════════════════════════════════════
+    // ROTAS POST (sem acesso a BD)
+    // ═══════════════════════════════════════════════════════
+
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function testPostAdminLoginSenhaErrada(): void
+    {
+        $this->setUpPostEnvironment('admin-login', [
+            'senha_admin' => 'senha_errada',
+        ]);
+        $output = $this->captureIndexOutput();
+
+        // Deve renderizar a view de login admin com mensagem de erro
+        $this->assertStringContainsString('Acesso Administrativo', $output);
+        $this->assertStringContainsString('incorreta', $output);
+    }
+
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function testPostCadastroNomeVazio(): void
+    {
+        $this->setUpPostEnvironment('cadastro', [
+            'nome' => '',
+            'email' => 'teste@teste.com',
+            'senha' => '1234',
+            'confirmar_senha' => '1234',
+        ]);
+        $output = $this->captureIndexOutput();
+
+        // Deve renderizar o cadastro com mensagem de erro
+        $this->assertStringContainsString('Cadastro', $output);
+        $this->assertStringContainsString('obrigatório', $output);
+    }
+
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function testPostCadastroEmailInvalido(): void
+    {
+        $this->setUpPostEnvironment('cadastro', [
+            'nome' => 'Teste',
+            'email' => 'email-invalido',
+            'senha' => '1234',
+            'confirmar_senha' => '1234',
+        ]);
+        $output = $this->captureIndexOutput();
+
+        $this->assertStringContainsString('Cadastro', $output);
+        $this->assertStringContainsString('Email inválido', $output);
+    }
+
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function testPostCadastroSenhaCurta(): void
+    {
+        $this->setUpPostEnvironment('cadastro', [
+            'nome' => 'Teste',
+            'email' => 'teste@teste.com',
+            'senha' => '12',
+            'confirmar_senha' => '12',
+        ]);
+        $output = $this->captureIndexOutput();
+
+        $this->assertStringContainsString('Senha deve ter', $output);
+    }
+
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function testPostCadastroSenhasDiferentes(): void
+    {
+        $this->setUpPostEnvironment('cadastro', [
+            'nome' => 'Teste',
+            'email' => 'teste@teste.com',
+            'senha' => '1234',
+            'confirmar_senha' => '4321',
+        ]);
+        $output = $this->captureIndexOutput();
+
+        $this->assertStringContainsString('não conferem', $output);
+    }
+
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function testPostCadastroMultiplosErros(): void
+    {
+        // Nome vazio + email inválido = múltiplos erros
+        $this->setUpPostEnvironment('cadastro', [
+            'nome' => '',
+            'email' => 'invalido',
+            'senha' => '12',
+            'confirmar_senha' => '34',
+        ]);
+        $output = $this->captureIndexOutput();
+
+        $this->assertStringContainsString('obrigatório', $output);
+        $this->assertStringContainsString('Email inválido', $output);
+        $this->assertStringContainsString('mínimo', $output);
+        $this->assertStringContainsString('não conferem', $output);
     }
 }
