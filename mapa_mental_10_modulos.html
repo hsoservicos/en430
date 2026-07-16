@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa Mental - Introdução à Enfermagem (10 Módulos)</title>
+<style>
+  @page { margin: 0.5cm; size: A4 landscape; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .mindmap {
+    width: 100%;
+    max-width: 1400px;
+    position: relative;
+    padding: 20px;
+  }
+
+  /* ===== TITLE SECTION ===== */
+  .title-section {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  .title-section h1 {
+    font-size: 1.5em;
+    font-weight: 800;
+    color: #0a3d62;
+    letter-spacing: -0.5px;
+  }
+  .title-section .sub {
+    font-size: 0.78em;
+    color: #888;
+    margin-top: 3px;
+  }
+
+  /* ===== CENTRAL NODE ===== */
+  .central-node {
+    width: 180px;
+    height: 180px;
+    background: linear-gradient(135deg, #0a3d62, #1e6f9e);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 30px;
+    box-shadow: 0 6px 25px rgba(10,61,98,0.3);
+    position: relative;
+    z-index: 10;
+  }
+  .central-node .inner {
+    text-align: center;
+    color: #fff;
+  }
+  .central-node .inner .icon {
+    font-size: 1.8em;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .central-node .inner .title {
+    font-size: 0.85em;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .central-node .inner .sub {
+    font-size: 0.6em;
+    opacity: 0.8;
+    margin-top: 2px;
+  }
+
+  /* ===== MODULES GRID ===== */
+  .modules-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 10px;
+  }
+  .modules-container .module-card:nth-child(9),
+  .modules-container .module-card:nth-child(10) {
+    grid-column: span 2;
+  }
+
+  /* ===== MODULE CARD ===== */
+  .module-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.07);
+    overflow: hidden;
+    border: 2px solid #e0e0e0;
+    transition: transform 0.2s;
+    position: relative;
+  }
+  .module-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+  }
+
+  .module-card .top-bar {
+    height: 5px;
+  }
+
+  .module-card .card-head {
+    padding: 10px 14px 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .module-card .card-head .num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75em;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .module-card .card-head .mod-title {
+    font-size: 0.82em;
+    font-weight: 700;
+    color: #1a1a2e;
+    line-height: 1.25;
+  }
+  .module-card .card-head .mod-icon {
+    font-size: 1.4em;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .module-card .card-body {
+    padding: 6px 14px 12px;
+  }
+
+  .module-card .key-points {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .module-card .key-points .kp {
+    font-size: 0.68em;
+    color: #444;
+    padding: 3px 8px;
+    background: #f8fafc;
+    border-radius: 5px;
+    border-left: 3px solid;
+    line-height: 1.3;
+  }
+  .module-card .key-points .kp strong {
+    font-weight: 700;
+  }
+
+  .module-card .mnem {
+    margin-top: 6px;
+    padding: 4px 8px;
+    background: #f3e5f5;
+    border-radius: 6px;
+    font-size: 0.64em;
+    color: #6a1b9a;
+    border: 1px solid #e1bee7;
+    text-align: center;
+  }
+
+  /* Connector lines: removed for cleaner layout */
+
+  /* ===== COLOR SCHEMES ===== */
+  .m1  { border-color: #e65100; }
+  .m1 .top-bar  { background: linear-gradient(90deg, #e65100, #ff9800); }
+  .m1 .num  { background: linear-gradient(135deg, #e65100, #ff9800); }
+  .m1 .kp  { border-left-color: #e65100; }
+
+  .m2  { border-color: #0d47a1; }
+  .m2 .top-bar  { background: linear-gradient(90deg, #0d47a1, #2196f3); }
+  .m2 .num  { background: linear-gradient(135deg, #0d47a1, #2196f3); }
+  .m2 .kp  { border-left-color: #0d47a1; }
+
+  .m3  { border-color: #2e7d32; }
+  .m3 .top-bar  { background: linear-gradient(90deg, #2e7d32, #4caf50); }
+  .m3 .num  { background: linear-gradient(135deg, #2e7d32, #4caf50); }
+  .m3 .kp  { border-left-color: #2e7d32; }
+
+  .m4  { border-color: #c62828; }
+  .m4 .top-bar  { background: linear-gradient(90deg, #c62828, #ef5350); }
+  .m4 .num  { background: linear-gradient(135deg, #c62828, #ef5350); }
+  .m4 .kp  { border-left-color: #c62828; }
+
+  .m5  { border-color: #6a1b9a; }
+  .m5 .top-bar  { background: linear-gradient(90deg, #6a1b9a, #ab47bc); }
+  .m5 .num  { background: linear-gradient(135deg, #6a1b9a, #ab47bc); }
+  .m5 .kp  { border-left-color: #6a1b9a; }
+
+  .m6  { border-color: #00838f; }
+  .m6 .top-bar  { background: linear-gradient(90deg, #00838f, #26c6da); }
+  .m6 .num  { background: linear-gradient(135deg, #00838f, #26c6da); }
+  .m6 .kp  { border-left-color: #00838f; }
+
+  .m7  { border-color: #4e342e; }
+  .m7 .top-bar  { background: linear-gradient(90deg, #4e342e, #8d6e63); }
+  .m7 .num  { background: linear-gradient(135deg, #4e342e, #8d6e63); }
+  .m7 .kp  { border-left-color: #4e342e; }
+
+  .m8  { border-color: #1565c0; }
+  .m8 .top-bar  { background: linear-gradient(90deg, #1565c0, #42a5f5); }
+  .m8 .num  { background: linear-gradient(135deg, #1565c0, #42a5f5); }
+  .m8 .kp  { border-left-color: #1565c0; }
+
+  .m9  { border-color: #e67e22; }
+  .m9 .top-bar  { background: linear-gradient(90deg, #e67e22, #f39c12); }
+  .m9 .num  { background: linear-gradient(135deg, #e67e22, #f39c12); }
+  .m9 .kp  { border-left-color: #e67e22; }
+
+  .m10 { border-color: #37474f; }
+  .m10 .top-bar  { background: linear-gradient(90deg, #37474f, #78909c); }
+  .m10 .num  { background: linear-gradient(135deg, #37474f, #78909c); }
+  .m10 .kp  { border-left-color: #37474f; }
+
+  /* ===== CONNECTING LINES ===== */
+  /* Lines SVG removed */
+
+  /* ===== LEGEND ===== */
+  .legend-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 22px;
+    padding: 10px 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+    border: 1px solid #e0e0e0;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.7em;
+    color: #555;
+  }
+  .legend-item .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ===== RING CONNECTION ===== */
+  .ring-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media print {
+    body { background: #fff; padding: 10px; }
+    .mindmap { max-width: 100%; }
+    .module-card { break-inside: avoid; box-shadow: none; }
+    .central-node { box-shadow: 0 3px 10px rgba(0,0,0,0.1); }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .modules-container { grid-template-columns: repeat(2, 1fr); }
+    .modules-container .module-card:nth-child(9),
+    .modules-container .module-card:nth-child(10) { grid-column: span 2; }
+  }
+  @media screen and (max-width: 600px) {
+    .modules-container { grid-template-columns: 1fr; }
+    .central-node { width: 120px; height: 120px; }
+  }
+  .nav-index {
+    background: linear-gradient(135deg, #0a3d62, #1e6f9e);
+    padding: 10px 18px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .nav-index a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85em;
+    font-weight: 600;
+  }
+  .nav-index a:hover { text-decoration: underline; opacity: 0.85; }
+  @media print { .nav-index { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="mindmap">
+
+<div class="nav-index">
+  <a href="index_estudos.html">← 📋 Voltar à Central de Estudos</a>
+</div>
+
+  <!-- TITLE -->
+  <div class="title-section">
+    <h1>🧠 Mapa Mental — Introdução à Enfermagem</h1>
+    <div class="sub">EN_430 • Curso de Enfermagem (EAD/Subsequente) • 10 Módulos Essenciais</div>
+  </div>
+
+  <!-- CENTRAL NODE -->
+  <div class="central-node">
+    <div class="inner">
+      <span class="icon">📚</span>
+      <span class="title">Introdução à<br>Enfermagem</span>
+      <span class="sub">EN_430 • 120h</span>
+    </div>
+  </div>
+
+  <!-- ===== 5-COLUMN GRID ===== -->
+  <div class="modules-container">
+
+    <!-- ===== MÓDULO 1 ===== -->
+    <div class="module-card m1">
+      <div class="top-bar"></div>
+      <div class="card-head">
+        <span class="num">1</span>
+        <span class="mod-title">Teoria das Necessidades Básicas</span>
+        <span class="mod-icon">🧩</span>
+      </div>
+      <div class="card-body">
+        <div class="key-points">
+          <div class="kp"><strong>Psicobiológicas:</strong> oxigenação, nutrição, eliminação, sono, locomoção, cuidado corporal</div>
+          <div class="kp"><strong>Psicossociais:</strong> comunicação, interação, autoestima, lazer, segurança emocional</div>
+          <div class="kp"><strong>Psicoespirituais:</strong> crenças, valores, religiosidade, transcendência, esperança</div>
+        </div>
+        <div class="mnem">🧠 Baseada em Maslow</div>
+      </div>
+    </div>
+
+    <!-- ===== MÓDULO 2 ===== -->
+    <div class="module-card m2">
+      <div class="top-bar"></div>
+      <div class="card-head">
+        <span class="num">2</span>
+        <span class="mod-title">SAE — Sistematização da Assistência</span>
+        <span class="mod-icon">🔄</span>
+      </div>
+      <div class="card-body">
+        <div class="key-points">
+          <div class="kp"><strong>Etapas:</strong> <strong>H</strong>istórico → <strong>D</strong>iagnóstico → <strong>P</strong>lanejamento → <strong>I</strong>mplementação → <strong>A</strong>valiação</div>
+          <div class="kp"><strong>COFEN 358/2009:</strong> privativa do enfermeiro</div>
+          <div class="kp"><strong>Taxonomias:</strong> NANDA-I (diagnósticos), NIC (intervenções), NOC (resultados)</div>
+        </div>
+        <div class="mnem">🧠 HDPIA — "Hoje, Diagnóstico, Planejamento, Implementação, Avaliação"</div>
+      </div>
+    </div>
+
+    <!-- ===== MÓDULO 3 ===== -->
+    <div class="module-card m3">
+      <div class="top-bar"></div>
+      <div class="card-head">
+        <span class="num">3</span>
+        <span class="mod-title">Anotação de Enfermagem + Terminologias</span>
+        <span class="mod-icon">📝</span>
+      </div>
+      <div class="card-body">
+        <div class="key-points">
+          <div class="kp"><strong>Estrutura SOAP:</strong> <strong>S</strong>ubjetivo → <strong>O</strong>bjetivo → <strong>A</strong>valiação → <strong>P</strong>lano</div>
+          <div class="kp"><strong>Princípios:</strong> objetividade, cronologia, clareza, completude, sigilo</div>
+          <div class="kp"><strong>Terminologias:</strong> afebril, eupnéico, normocárdico, normotenso, L+O, anictérico</div>
+        </div>
+        <div class="mnem">🧠 Sempre: data + hora + assinatura + COREN</div>
+      </div>
+    </div>
+
+    <!-- ===== MÓDULO 4 ===== -->
+    <div class="module-card m4">
+      <div class="top-bar"></div>
+      <div class="card-head">
+        <span class="num">4</span>
+        <span class="mod-title">Administração de Medicamentos</span>
+        <span class="mod-icon">💊</span>
+      </div>
+      <div class="card-body">
+        <div class="key-points">
+          <div class="kp"><strong>7 Certos:</strong> Paciente, Med., Dose, Via, Horário, Registro, Orientação</div>
+          <div class="kp"><strong>Vias Enterais:</strong> VO, SL, SNG, SNE</div>
+          <div class="kp"><strong>Vias Parenterais:</strong> ID (15°), SC (45°), IM (90°), EV (25°)</div>
+          <div class="kp"><strong>Cálculo:</strong> Regra de 3 • Macrogota = Vol ÷ (h×3)</div>
+        </div>
+        <div class="mnem">🧠 PMDVHRO • 15-45-90</div>
+      </div>
+    </div>
+
+    <!-- ===== MÓDULO 5 ===== -->
+    <div class="module-card m5">
+      <div class="top-bar"></div>
+      <div class="card-head">
+        <span class="num">5</span>
+        <span class="mod-title">Assepsia, Antissepsia, Higiene</span>
+        <span class="mod-icon">🧼</span>
+      </div>
+      <div class="card-body">
+        <div class="key-points">
+          <div class="kp"><strong>Assepsia:</strong> impedir entrada de microrganismos (campo estéril)</div>
+          <div class="kp"><strong>Antissepsia:</strong> reduzir microrganismos na pele (álcool, PVPI, clorexidina)</div>
+          <div class="kp"><strong>5 momentos OMS:</strong> antes paciente → antes procedimento → após fluido → após paciente → após superfície</div>
+          <div class="kp"><strong>Banho no leito:</strong> olhos → face → braços → tórax → abdômen → MMII → períneo → dorso</div>
+        </div>
+        <div class="mnem">🧠 EPIs: luvas, máscara, avental, óculos</div>
+      </div>
+    </div>
+
+    <!-- ===== MÓDULO 6 ===== -->
+    <div class="module-card m6">
+      <div class="top-bar"></div>
+      <div class="card-head">
+        <span class="num">6</span>
+        <span class="mod-title">Curativos e Feridas</span>
+        <span class="mod-icon">🩹</span>
+      </div>
+      <div class="card-body">
+        <div class="key-points">
+          <div class="kp"><strong>Classificação:</strong> causa • contaminação (limpa → infectada) • tempo (aguda/crônica) • profundidade</div>
+          <div class="kp"><strong>Coberturas:</strong> hidrocoloide (seca) • alginato (exsudativa) • carvão (infectada) • espuma (moderada)</div>
+          <div class="kp"><strong>LPP:</strong> Estágio 1 (eritema) → 2 (bolha) → 3 (gordura) → 4 (osso)</div>
+        </div>
+        <div class="mnem">🧠 Curativo: centro → periferia • SF 0,9%</div>
+      </div>
+    </div>
+
+    <!-- ===== MÓDULO 7 ===== -->
+    <div class="module-card m7">
+      <div class="top-bar"></div>
+      <div class="card-head">
+        <span class="num">7</span>
+        <span class="mod-title">Oxigenoterapia + Cateterismos</span>
+        <span class="mod-icon">🫁</span>
+      </div>
+      <div class="card-body">
+        <div class="key-points">
+          <div class="kp"><strong>Oxigênio:</strong> CN (1-5L/min) • Máscara simples (5-10) • Venturi (FiO₂ exata) • Reservatório (10-15)</div>
+          <div class="kp"><strong>SNG:</strong> estômago (descompressão) • <strong>SNE:</strong> intestino (dieta)</div>
+          <div class="kp"><strong>Sonda Vesical:</strong> bexiga (diurese) • <strong>Sonda Retal:</strong> gases/fecaloma</div>
+        </div>
+        <div class="mnem">🧠 Verificar SNG: RX é padrão ouro</div>
+      </div>
+    </div>
+
+    <!-- ===== MÓDULO 8 ===== -->
+    <div class="module-card m8">
+      <div class="top-bar"></div>
+      <div class="card-head">
+        <span class="num">8</span>
+        <span class="mod-title">Exames, Coletas e Medidas Antropométricas</span>
+        <span class="mod-icon">📏</span>
+      </div>
+      <div class="card-body">
+        <div class="key-points">
+          <div class="kp"><strong>Coletas:</strong> sangue (jejum) • urina (jato médio) • fezes (3 amostras) • escarro (matinal)</div>
+          <div class="kp"><strong>IMC = peso/altura²:</strong> &lt;18,5 magreza • 18,5-24,9 normal • 25-29,9 sobrepeso • ≥30 obesidade</div>
+          <div class="kp"><strong>Antropometria:</strong> peso, altura, IMC, circunferência abdominal, pregas cutâneas</div>
+        </div>
+        <div class="mnem">🧠 Balanço hídrico = Ingesta - Perda</div>
+      </div>
+    </div>
+
+    <!-- ===== MÓDULO 9 ===== -->
+    <div class="module-card m9">
+      <div class="top-bar"></div>
+      <div class="card-head">
+        <span class="num">9</span>
+        <span class="mod-title">Posições, Crioterapia, Termoterapia e Contenção</span>
+        <span class="mod-icon">🛏️</span>
+      </div>
+      <div class="card-body">
+        <div class="key-points">
+          <div class="kp"><strong>Posições:</strong> Fowler (45° dispneia) • Semi-Fowler (30°) • Sims (lateral) • Trendelenburg (choque)</div>
+          <div class="kp"><strong>Cama hospitalar:</strong> ocupada (paciente no leito) × desocupada (vazia) • arrumação diária</div>
+          <div class="kp"><strong>Crioterapia ❄️:</strong> frio 20min — edema, dor aguda • <strong>Termoterapia 🔥:</strong> calor 20min — contraturas, crônica</div>
+          <div class="kp"><strong>Contenção:</strong> mecânica (faixas) • química (sedação) • ambiental (grades) — ÚLTIMO RECURSO!</div>
+        </div>
+        <div class="mnem">🧠 Mudança decúbito a cada 2h</div>
+      </div>
+    </div>
+
+    <!-- ===== MÓDULO 10 ===== -->
+    <div class="module-card m10">
+      <div class="top-bar"></div>
+      <div class="card-head">
+        <span class="num">10</span>
+        <span class="mod-title">Admissão, Alta e Processo Pós-Morte</span>
+        <span class="mod-icon">📋</span>
+      </div>
+      <div class="card-body">
+        <div class="key-points">
+          <div class="kp"><strong>Admissão:</strong> pulseira + SV + histórico + exame físico + orientações</div>
+          <div class="kp"><strong>Alta:</strong> resumo + orientações + receitas + atestados + desocupação</div>
+          <div class="kp"><strong>Pós-morte:</strong> confirmar óbito → declaração → higiene → retirar dispositivos → identificar → família</div>
+        </div>
+        <div class="mnem">🧠 Enfermeiro NÃO declara óbito (médico)</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== LEGEND ===== -->
+  <div class="legend-row">
+    <div class="legend-item"><span class="dot" style="background:#e65100;"></span> Módulo 1 - Teoria</div>
+    <div class="legend-item"><span class="dot" style="background:#0d47a1;"></span> Módulo 2 - SAE</div>
+    <div class="legend-item"><span class="dot" style="background:#2e7d32;"></span> Módulo 3 - Anotação</div>
+    <div class="legend-item"><span class="dot" style="background:#c62828;"></span> Módulo 4 - Medicação</div>
+    <div class="legend-item"><span class="dot" style="background:#6a1b9a;"></span> Módulo 5 - Assepsia</div>
+    <div class="legend-item"><span class="dot" style="background:#00838f;"></span> Módulo 6 - Curativos</div>
+    <div class="legend-item"><span class="dot" style="background:#4e342e;"></span> Módulo 7 - Oxigênio</div>
+    <div class="legend-item"><span class="dot" style="background:#1565c0;"></span> Módulo 8 - Exames</div>
+    <div class="legend-item"><span class="dot" style="background:#e67e22;"></span> Módulo 9 - Posições</div>
+    <div class="legend-item"><span class="dot" style="background:#37474f;"></span> Módulo 10 - Admissão</div>
+  </div>
+
+  <!-- FLOW DIRECTION NOTE -->
+  <div style="text-align:center;margin-top:12px;font-size:0.7em;color:#aaa;">
+    ⬅️ Leia da esquerda para a direita | Cores por módulo | Mnemônicos em destaque
+  </div>
+</div>
+
+</body>
+</html>

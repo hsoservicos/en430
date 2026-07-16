@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia de Vídeos Recomendados - Introdução à Enfermagem</title>
+<style>
+  @page { margin: 1cm; size: A4; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: #f5f7fa;
+    color: #1a1a2e;
+    padding: 30px;
+  }
+  .page { max-width: 210mm; margin: 0 auto; }
+  .header {
+    background: linear-gradient(135deg, #c62828, #e53935);
+    color: #fff;
+    padding: 28px 32px;
+    border-radius: 14px;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+  .header h1 { font-size: 1.8em; font-weight: 800; letter-spacing: -0.5px; }
+  .header .sub { font-size: 0.9em; opacity: 0.85; margin-top: 4px; }
+  .header .badge { display:inline-block; background:rgba(255,255,255,0.15); padding:4px 16px; border-radius:20px; font-size:0.78em; margin-top:8px; border:1px solid rgba(255,255,255,0.2); }
+
+  .intro-box {
+    background:#fff; border-radius:12px; padding:18px 22px; margin-bottom:22px;
+    box-shadow:0 2px 12px rgba(0,0,0,0.06); border:1px solid #e0e0e0;
+    font-size:0.88em; color:#555; line-height:1.6;
+  }
+  .intro-box strong { color:#c62828; }
+
+  .modulo-video {
+    background:#fff; border-radius:14px; margin-bottom:20px;
+    box-shadow:0 2px 12px rgba(0,0,0,0.06); overflow:hidden;
+    border:1px solid #e0e0e0; page-break-inside:avoid; break-inside:avoid;
+  }
+  .modulo-video .mv-header {
+    background:linear-gradient(135deg, #c62828, #e53935); color:#fff;
+    padding:12px 20px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .modulo-video .mv-header .num {
+    width:30px; height:30px; background:rgba(255,255,255,0.2);
+    border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:0.85em; flex-shrink:0;
+  }
+  .modulo-video .mv-header h3 { font-size:0.95em; font-weight:700; flex:1; }
+  .modulo-video .mv-body { padding:14px 20px; }
+
+  .video-item {
+    display:flex; gap:10px; padding:8px 0; border-bottom:1px solid #f0f0f0;
+    align-items:flex-start;
+  }
+  .video-item:last-child { border-bottom:none; }
+  .video-item .v-icon { font-size:1.3em; flex-shrink:0; margin-top:2px; }
+  .video-item .v-info { flex:1; }
+  .video-item .v-info .v-title { font-size:0.85em; font-weight:600; color:#0a3d62; }
+  .video-item .v-info .v-desc { font-size:0.78em; color:#666; margin:2px 0 3px; line-height:1.4; }
+  .video-item .v-info .v-link {
+    display:inline-flex; align-items:center; gap:4px;
+    background:#c62828; color:#fff; padding:3px 12px; border-radius:6px;
+    font-size:0.72em; font-weight:600; text-decoration:none;
+    transition:background 0.15s;
+  }
+  .video-item .v-info .v-link:hover { background:#e53935; }
+  .video-item .v-info .v-channel { font-size:0.7em; color:#999; }
+
+  .canais-box {
+    background:#fff; border-radius:12px; padding:18px 22px; margin-top:20px;
+    box-shadow:0 2px 12px rgba(0,0,0,0.06); border:1px solid #e0e0e0;
+  }
+  .canais-box h3 { font-size:0.95em; color:#0a3d62; margin-bottom:10px; }
+  .canais-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .canal-item { font-size:0.8em; padding:6px 10px; background:#f8fafc; border-radius:6px; border:1px solid #e8ecf0; }
+  .canal-item strong { color:#c62828; }
+  .canal-item .c-desc { color:#666; display:block; font-size:0.92em; margin-top:2px; }
+  .canal-item .c-link { color:#1e6f9e; font-size:0.9em; text-decoration:none; }
+  .canal-item .c-link:hover { text-decoration:underline; }
+
+  .nav-index {
+    background: linear-gradient(135deg, #c62828, #e53935);
+    padding: 10px 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .nav-index a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.88em;
+    font-weight: 600;
+  }
+  .nav-index a:hover { text-decoration: underline; opacity: 0.85; }
+  @media print {
+    .nav-index { display: none; }
+    body { background:#fff; padding:0; }
+    .modulo-video { break-inside:avoid; }
+  }
+  @media screen and (max-width:700px) { .canais-grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<div class="nav-index">
+  <a href="index_estudos.html">← 📋 Voltar à Central de Estudos</a>
+</div>
+
+<div class="page">
+<div class="header">
+  <h1>🎬 Guia de Vídeos Recomendados</h1>
+  <div class="sub">Introdução à Enfermagem (EN_430) • Canais e Links do YouTube por Módulo</div>
+  <span class="badge">📺 60+ vídeos selecionados</span>
+</div>
+
+<div class="intro-box">
+  <strong>📺 Como usar este guia:</strong> Cada módulo da disciplina possui vídeos selecionados dos melhores canais de enfermagem do YouTube. 
+  Assista na ordem sugerida: primeiro o vídeo teórico, depois o prático. 
+  Os links foram pesquisados e selecionados para complementar o <strong>Guia Completo de Estudos</strong> 
+  e o <strong>Plano de 20 Horas</strong>. 🎯
+</div>
+
+<!-- ===== MÓDULO 1 ===== -->
+<div class="modulo-video">
+  <div class="mv-header">
+    <span class="num">1</span>
+    <h3>🧩 Teoria das Necessidades Básicas (Wanda Horta)</h3>
+  </div>
+  <div class="mv-body">
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Teoria das Necessidades Humanas Básicas - Wanda Horta</div>
+        <div class="v-desc">Vídeo acadêmico completo explicando os 3 níveis de necessidades: psicobiológicas, psicossociais e psicoespirituais.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=QmV-G-_Ubyw" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • Canal Acadêmico</span>
+      </div>
+    </div>
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Processo de Enfermagem - Horta | Resumo</div>
+        <div class="v-desc">Resumo rápido focado na correlação entre a teoria e o processo de enfermagem. Ideal para revisão.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=S1drLVnFjbg" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • Canal: Opção Enfermagem</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 2 ===== -->
+<div class="modulo-video">
+  <div class="mv-header">
+    <span class="num">2</span>
+    <h3>🔄 SAE — Sistematização da Assistência de Enfermagem</h3>
+  </div>
+  <div class="mv-body">
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Playlist: Processo de Enfermagem (NANDA, NIC, NOC)</div>
+        <div class="v-desc">Playlist completa com explicações práticas sobre como conectar NANDA (diagnósticos), NOC (resultados) e NIC (intervenções) dentro da SAE.</div>
+        <a class="v-link" href="https://www.youtube.com/playlist?list=PLJ1OgTEs7EoeniFOwMNsz1M8r89D-7-5l" target="_blank">▶ Ver Playlist</a>
+        <span class="v-channel"> • Canal: Descomplica Enfermagem</span>
+      </div>
+    </div>
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Playlist: NANDA - NOC - NIC (Profa. Larissa Perez)</div>
+        <div class="v-desc">Abordagem técnica e detalhada sobre cada classificação, ideal para quem precisa aprofundar o entendimento.</div>
+        <a class="v-link" href="https://www.youtube.com/playlist?list=PLcAXwmSruHo_0o14_3p8avMuT39rZCdNB" target="_blank">▶ Ver Playlist</a>
+        <span class="v-channel"> • Canal: Profa. Larissa Perez</span>
+      </div>
+    </div>
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Como usar NANDA, NIC e NOC no Processo de Enfermagem</div>
+        <div class="v-desc">Foco na interconexão entre as três classificações: diagnóstico (NANDA) → objetivo (NOC) → intervenções (NIC).</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=cULqT6PLLDo" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • Canal: Descomplica Enfermagem</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 3 ===== -->
+<div class="modulo-video">
+  <div class="mv-header">
+    <span class="num">3</span>
+    <h3>📝 Anotação de Enfermagem + Terminologias Técnicas</h3>
+  </div>
+  <div class="mv-body">
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Principais Termos Técnicos na Enfermagem</div>
+        <div class="v-desc">Vídeo didático abordando as terminologias mais utilizadas no dia a dia hospitalar.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=GcrTMre8oIo" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • Canal Acadêmico</span>
+      </div>
+    </div>
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Termos Usados na Enfermagem (Videoaula)</div>
+        <div class="v-desc">Excelente para aprender terminologias específicas (bradicardia, cianose, disfagia, etc.) de forma contextualizada.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=owNEk23KoCI" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • Canal Acadêmico</span>
+      </div>
+    </div>
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Como fazer uma Anotação de Enfermagem?</div>
+        <div class="v-desc">Oferece modelos e um guia sobre o registro correto das atividades, procedimentos e intercorrências.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=Jtv6KjLc7aE" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • Canal Acadêmico</span>
+      </div>
+    </div>
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Curso de Anotação e Evolução de Enfermagem</div>
+        <div class="v-desc">Parte teórica e jurídica — ideal para entender as etapas dos registros e responsabilidades éticas.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=j7wP6MGSFf4" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • Canal Acadêmico</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 4 ===== -->
+<div class="modulo-video">
+  <div class="mv-header">
+    <span class="num">4</span>
+    <h3>💊 Administração de Medicamentos</h3>
+  </div>
+  <div class="mv-body">
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">13 Certos na Administração de Medicamentos - Aula Completa</div>
+        <div class="v-desc">Versão moderna e completa dos protocolos de segurança, superando a lista clássica de 7 certos.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=27-4bLmNyi8" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • Canal Acadêmico</span>
+      </div>
+    </div>
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Vias de Administração de Medicamentos - Aula Completa</div>
+        <div class="v-desc">Aula estruturada cobrindo as definições e principais vias: enteral, parenteral, tópica.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=yDV849S8MMI" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • Canal Acadêmico</span>
+      </div>
+    </div>
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Playlist: Preparação e Administração de Medicamentos</div>
+        <div class="v-desc">Passo a passo prático de preparo e administração correta, incluindo técnicas para vias parenterais (IV, IM, SC).</div>
+        <a class="v-link" href="https://www.youtube.com/playlist?list=PLLuKfqDRXrJRbB872CzvisuRjZozpJSk0" target="_blank">▶ Ver Playlist</a>
+        <span class="v-channel"> • Canal: Prática Enfermagem</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 5 ===== -->
+<div class="modulo-video">
+  <div class="mv-header">
+    <span class="num">5</span>
+    <h3>🧼 Assepsia, Antissepsia e Higiene do Paciente</h3>
+  </div>
+  <div class="mv-body">
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Higienização das Mãos - Passo a Passo (Protocolo ANVISA)</div>
+        <div class="v-desc">Detalhamento técnico da higienização simples das mãos em conformidade com as recomendações da ANVISA.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=RVdDGkt-76U" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • Canal Acadêmico</span>
+      </div>
+    </div>
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Paramentação Cirúrgica e Lavagem das Mãos (LICIG UNIFOR)</div>
+        <div class="v-desc">Demonstração completa da escovação cirúrgica e paramentação estéril.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=H-nFXFHex1g" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • UNIFOR</span>
+      </div>
+    </div>
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Passo a passo para Higienização das Mãos (TV INCA)</div>
+        <div class="v-desc">11 passos fundamentais da higiene das mãos — excelente para consulta rápida e fixação dos movimentos corretos.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=3cFqtT43XmA" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • TV INCA</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 6 ===== -->
+<div class="modulo-video">
+  <div class="mv-header">
+    <span class="num">6</span>
+    <h3>🩹 Curativos, Feridas e Coberturas</h3>
+  </div>
+  <div class="mv-body">
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Você Tem Obrigação de Conhecer Esses Curativos!</div>
+        <div class="v-desc">Vídeo prático sobre tipos de curativos, coberturas especiais e suas indicações para cada tipo de ferida.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=KOru0c9aMCw" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • Canal: Descomplica Enfermagem</span>
+      </div>
+    </div>
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Feridas e Curativos - Aulas completas</div>
+        <div class="v-desc">Conteúdo focado em concursos, abordando feridas e coberturas com base em evidências e literatura técnica.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=ROXfK5JKArM" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • Canal: Prof. Rômulo Passos</span>
+      </div>
+    </div>
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Limpeza de Feridas: da Teoria à Prática</div>
+        <div class="v-desc">Conteúdo com viés prático, abordando limpeza e tratamento de feridas no dia a dia da enfermagem.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=MojG1LY74jY" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • Canal: Enfermagem Protagonista</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 7 ===== -->
+<div class="modulo-video">
+  <div class="mv-header">
+    <span class="num">7</span>
+    <h3>🫁 Oxigenoterapia + Cateterismos</h3>
+  </div>
+  <div class="mv-body">
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Guia da Oxigenoterapia: Do Cateter à Máscara de Venturi</div>
+        <div class="v-desc">Visão geral sobre o escalonamento dos dispositivos de oferta de oxigênio — baixo e alto fluxo.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=H5Jydn5KgrQ" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • Canal Acadêmico</span>
+      </div>
+    </div>
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Tudo sobre a Máscara de Venturi - Oxigenoterapia</div>
+        <div class="v-desc">Mecanismo de precisão da FiO₂ da Máscara de Venturi, tópico essencial na prática clínica.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=BQot_YZLBqY" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • Canal: Prof. João Victor</span>
+      </div>
+    </div>
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Tudo que você precisa saber sobre Oxigenoterapia</div>
+        <div class="v-desc">Aula abrangente sobre manejo de via aérea e suporte ventilatório básico.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=2SSmkuCmGMc" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • Canal: Manual da Enfermagem</span>
+      </div>
+    </div>
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Canal: Prática Enfermagem (SNG, SNE, Sonda Vesical)</div>
+        <div class="v-desc">Maior canal de enfermagem do Brasil! Vídeos passo a passo de cateterismo vesical, SNG, SNE e mais.</div>
+        <a class="v-link" href="https://www.youtube.com/@PraticaEnfermagem" target="_blank">▶ Ver Canal</a>
+        <span class="v-channel"> • Canal: Prática Enfermagem (Prof. Éder Marques)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 8 ===== -->
+<div class="modulo-video">
+  <div class="mv-header">
+    <span class="num">8</span>
+    <h3>📏 Exames, Coletas e Medidas Antropométricas</h3>
+  </div>
+  <div class="mv-body">
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Canal Prática Enfermagem - Coleta de Sangue, Exames</div>
+        <div class="v-desc">Canal referência em procedimentos práticos de enfermagem. Busque por "punção venosa", "coleta de exames" no canal.</div>
+        <a class="v-link" href="https://www.youtube.com/@PraticaEnfermagem" target="_blank">▶ Ver Canal</a>
+        <span class="v-channel"> • Canal: Prática Enfermagem</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 9 ===== -->
+<div class="modulo-video">
+  <div class="mv-header">
+    <span class="num">9</span>
+    <h3>🛏️ Posições, Crioterapia, Termoterapia e Contenção</h3>
+  </div>
+  <div class="mv-body">
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Como Realizar Contenção Mecânica Protetiva de Forma Adequada</div>
+        <div class="v-desc">Técnicas adequadas para aplicação da contenção mecânica, sempre como último recurso e sob prescrição médica.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=AN9tUCO_mT8" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • Canal Acadêmico</span>
+      </div>
+    </div>
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Contenção Mecânica e os Cuidados de Enfermagem</div>
+        <div class="v-desc">Aspectos polêmicos, tipos de materiais permitidos e cuidados durante o período de contenção.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=b9f6_YLS4Vg" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • Canal Acadêmico</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 10 ===== -->
+<div class="modulo-video">
+  <div class="mv-header">
+    <span class="num">10</span>
+    <h3>📋 Admissão, Alta, Transferência e Processo Pós-Morte</h3>
+  </div>
+  <div class="mv-body">
+    <div class="video-item">
+      <span class="v-icon">📺</span>
+      <div class="v-info">
+        <div class="v-title">Admissão de Pacientes na Enfermagem: Procedimentos, Registros e Questões</div>
+        <div class="v-desc">Foco na parte técnica e documental — o que deve constar no prontuário no momento da admissão.</div>
+        <a class="v-link" href="https://www.youtube.com/watch?v=DOsbBpHD5Z4" target="_blank">▶ Assistir</a>
+        <span class="v-channel"> • Canal Acadêmico</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CANAIS RECOMENDADOS ===== -->
+<div class="canais-box">
+  <h3>📺 Melhores Canais de Enfermagem no YouTube</h3>
+  <div class="canais-grid">
+    <div class="canal-item">
+      <strong>Prática Enfermagem</strong>
+      <span class="c-desc">Passo a passo de procedimentos, técnica asséptica, SNG, SNE, cateterismo</span>
+      <a class="c-link" href="https://www.youtube.com/@PraticaEnfermagem" target="_blank">→ youtube.com/@PraticaEnfermagem</a>
+    </div>
+    <div class="canal-item">
+      <strong>Descomplica Enfermagem</strong>
+      <span class="c-desc">Didática simplificada, SAE, NANDA/NIC/NOC, curativos</span>
+      <a class="c-link" href="https://www.youtube.com/@descomplicaenfermagem" target="_blank">→ youtube.com/@descomplicaenfermagem</a>
+    </div>
+    <div class="canal-item">
+      <strong>Enfermagem Florence</strong>
+      <span class="c-desc">Revisão de técnica e cuidados fundamentais para estudantes</span>
+      <a class="c-link" href="https://www.youtube.com/@EnfermagemFlorence" target="_blank">→ youtube.com/@EnfermagemFlorence</a>
+    </div>
+    <div class="canal-item">
+      <strong>Prof. Rômulo Passos</strong>
+      <span class="c-desc">Conteúdo para concursos, feridas e coberturas com evidências</span>
+      <a class="c-link" href="https://www.youtube.com/@ProfRomuloPassos" target="_blank">→ youtube.com/@ProfRomuloPassos</a>
+    </div>
+    <div class="canal-item">
+      <strong>Enfermagem Protagonista</strong>
+      <span class="c-desc">Prática clínica, limpeza e tratamento de feridas</span>
+      <a class="c-link" href="https://www.youtube.com/@EnfermagemProtagonista" target="_blank">→ youtube.com/@EnfermagemProtagonista</a>
+    </div>
+    <div class="canal-item">
+      <strong>Manual da Enfermagem</strong>
+      <span class="c-desc">Oxigenoterapia, manejo de via aérea, suporte ventilatório</span>
+      <a class="c-link" href="https://www.youtube.com/@ManualdaEnfermagem" target="_blank">→ youtube.com/@ManualdaEnfermagem</a>
+    </div>
+  </div>
+  <div style="margin-top:12px;font-size:0.78em;color:#888;text-align:center;">
+    💡 <strong>Dica:</strong> Use o termo "enfermagem" + nome do procedimento (ex: "cateterismo vesical enfermagem") para encontrar mais vídeos específicos no YouTube.
+  </div>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+A disciplina é EAD, mas tem material escrito, vídeos, slides, como uma aula normal online e dependendo do resultado da enquete que vou enviar abaixo, vamos precisar de aula prática, eu informo ainda que estes assuntos fazem parte da ementa de vocês e está dentro da disciplina de Fundamentos.
+
+Eletiva É uma matéria tao importante quanto as presenciais e eu dou a abertura para os alunos de 4 modulo elencar a disciplina, pois ja passaram pela maioria e sabem as dificuldades.
+
+---
+
+CURSO ENFERMAGEM:
+
+MODALIDADE/FORMA DE OFERTA	EAD/SUBSEQUENTE
+
+COMPONENTE CURRICULAR	INTRODUÇÃO EM ENFERMAGEM
+
+CÓDIGO	(EN_430)
+
+CH	120
+---
+OBJETOS DO CONHECIMENTO:
+Teoria das Necessidades Básicas.
+Técnicas de Enfermagem para higiene, conforto e segurança do paciente.
+Princípios de enfermagem para o preparo e administração de medicamentos a partir das vias enterais e parenterais.
+Desenvolvimento das técnicas para realização da sistematização da assistência de enfermagem, bem como, registro da anotação de enfermagem.
+Cuidados de enfermagem relacionados aos procedimentos, como: oxigenoterapia, cateterismos vesicais, gástricos, enterais e retais.
+Curativos e feridas.
+Técnicas de preparo exames e coleta de materiais. Arrumação e higiene da cama hospitalar, conforto e mudança de decubito do paciente.
+Higiene do paciente. Higienização das mãos e calçar luvas estéreis com conhecimento do processo de assepsia e antissepsia.
+Admissão, transferência e alta do paciente.
+Verificação das medidas antropométricas.
+Técnicas para realização de crioterapia e termoterapia.
+Tipos de contenção.
+Técnicas para realização do processo pós-morte.
+Terminologias técnicas.
+
+---
+
+"Preciso aprender **SOBRE O ASSUNTO APRESENTADO A CIMA** rapidamente. Crie um plano de estudos abrangente e aprimorado, com focado nos conceitos e resultados. Divida em 10 sessões, com os melhores recursos e uma revisão de 30 minutos ao final de cada uma. Crie um artefato em PDF para estudos."
+
+Implemente o uso do enter para confirmação do input e continuidade do registro de informação nos formulários. Coloque as máscaras devidas nos input que necessitam de máscaras!
+
+joao.testec@email.com
+1234

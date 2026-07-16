@@ -1,0 +1,54 @@
+# ─── Credenciais e Configuração Sensível ────────────────────────
+.env                    # Variáveis de ambiente com senhas/API keys
+*.env.local
+*.env.production
+
+# ─── Banco de Dados ─────────────────────────────────────────────
+avaliacao.db            # Banco SQLite (dados de estudantes)
+*.db
+*.sqlite
+*.sqlite3
+
+# ─── Python ──────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ─── Ambiente Virtual ────────────────────────────────────────────
+venv/
+.venv/
+env/
+.env/
+
+# ─── IDE / Editor ────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ─── Logs ────────────────────────────────────────────────────────
+*.log
+/var/
+
+# ─── PHP - Sistema de Avaliação ──────────────────────────────────
+sistema_avaliacao/php/vendor/           # Composer dependencies
+sistema_avaliacao/php/.phpunit.result.cache  # PHPUnit cache
+sistema_avaliacao/php/reports/          # Relatórios de code coverage (gerado)
+sistema_avaliacao/php/xdebug.so         # Xdebug baixado para coverage
+sistema_avaliacao/php/avaliacao_test.db # Banco de teste
+sistema_avaliacao/php/avaliacao_test_int.db  # Banco de teste integração
+
+# ─── Arquivos Temporários ────────────────────────────────────────
+*.tmp
+*.bak
+*.orig

@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casos Clínicos - Introdução à Enfermagem</title>
+<style>
+  @page { margin: 1.2cm; size: A4; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    color: #1a1a2e;
+    background: #f5f7fa;
+    padding: 30px;
+  }
+
+  .page { max-width: 210mm; margin: 0 auto; }
+
+  .header {
+    background: linear-gradient(135deg, #0a3d62, #1e6f9e);
+    color: #fff;
+    padding: 30px 35px;
+    border-radius: 14px;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+  .header h1 { font-size: 1.8em; font-weight: 800; letter-spacing: -0.5px; }
+  .header .sub { font-size: 0.9em; opacity: 0.85; margin-top: 4px; }
+  .header .badge {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    padding: 5px 18px; border-radius: 25px; font-size: 0.78em;
+    margin-top: 10px; border: 1px solid rgba(255,255,255,0.2);
+  }
+  .header .badge.orange { background: #f39c12; color: #1a1a2e; font-weight: 700; }
+
+  .instructions {
+    background: #fff8e1; border: 1px solid #ffe082;
+    border-radius: 10px; padding: 14px 20px; margin-bottom: 25px;
+    font-size: 0.82em; color: #6d4c00;
+  }
+  .instructions strong { color: #e65100; }
+
+  .caso {
+    background: #fff;
+    border-radius: 14px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .caso-header {
+    background: linear-gradient(135deg, #0a3d62, #1e6f9e);
+    color: #fff;
+    padding: 14px 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .caso-header .num {
+    width: 34px; height: 34px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 0.9em;
+    flex-shrink: 0;
+  }
+  .caso-header .title {
+    font-size: 1em; font-weight: 700; flex: 1;
+  }
+  .caso-header .modulos {
+    font-size: 0.68em; background: rgba(255,255,255,0.15);
+    padding: 3px 12px; border-radius: 12px;
+  }
+
+  .caso-body { padding: 20px 22px; }
+
+  .cenario {
+    background: #f0f7ff;
+    border-left: 4px solid #1e6f9e;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 16px;
+    font-size: 0.88em;
+    line-height: 1.6;
+  }
+  .cenario strong { color: #0a3d62; }
+  .cenario .highlight {
+    background: #fff8e1; padding: 1px 5px; border-radius: 3px;
+  }
+
+  .questoes {
+    margin-bottom: 10px;
+  }
+  .questoes .q {
+    padding: 8px 0 8px 24px;
+    position: relative;
+    font-size: 0.85em;
+    color: #333;
+    line-height: 1.5;
+  }
+  .questoes .q::before {
+    content: attr(data-num) ".";
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+    color: #0a3d62;
+  }
+  .questoes .q strong { color: #0a3d62; }
+
+  .gabarito-caso {
+    margin-top: 12px;
+    padding: 14px 18px;
+    background: #f8fff4;
+    border: 1px solid #c8e6c9;
+    border-radius: 8px;
+  }
+  .gabarito-caso .g-title {
+    font-size: 0.78em;
+    font-weight: 700;
+    color: #2e7d32;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .gabarito-caso .g-content {
+    font-size: 0.82em;
+    color: #333;
+    line-height: 1.6;
+  }
+  .gabarito-caso .g-content ul {
+    list-style: none;
+    padding: 0;
+  }
+  .gabarito-caso .g-content ul li {
+    padding: 2px 0 2px 16px;
+    position: relative;
+  }
+  .gabarito-caso .g-content ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #4caf50;
+    font-weight: 700;
+  }
+
+  .dica-prova {
+    background: #f3e5f5;
+    border-left: 4px solid #9c27b0;
+    padding: 8px 14px;
+    border-radius: 0 6px 6px 0;
+    margin: 8px 0;
+    font-size: 0.78em;
+    color: #6a1b9a;
+  }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .header { border-radius: 0; }
+    .caso { break-inside: avoid; box-shadow: none; }
+  }
+  .nav-index {
+    background: linear-gradient(135deg, #0a3d62, #1e6f9e);
+    padding: 10px 18px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .nav-index a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85em;
+    font-weight: 600;
+  }
+  .nav-index a:hover { text-decoration: underline; opacity: 0.85; }
+  @media print { .nav-index { display: none; } }
+  @media screen and (max-width: 700px) {
+    body { padding: 10px; }
+    .header h1 { font-size: 1.3em; }
+    .header { padding: 20px 15px; }
+    .header .meta { flex-direction: column; gap: 6px; }
+    .caso-header { flex-direction: column; text-align: center; }
+    .caso-body { padding: 15px; }
+    .questoes { padding: 10px; }
+    .gabarito { padding: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<div class="nav-index">
+  <a href="index_estudos.html">← 📋 Voltar à Central de Estudos</a>
+</div>
+
+<div class="header">
+  <h1>🏥 Casos Clínicos — Prática Avançada</h1>
+  <div class="sub">Introdução à Enfermagem (EN_430) • Questões Discursivas com Cenários Reais</div>
+  <div>
+    <span class="badge">📚 10 casos clínicos</span>
+    <span class="badge orange">⚡ Integração de todos os módulos</span>
+  </div>
+</div>
+
+<div class="instructions">
+  <strong>🎯 Como usar:</strong> Leia cada caso clínico atentamente. Responda às questões discursivas 
+  aplicando os conhecimentos dos módulos do Guia Completo de Estudos. 
+  <strong>⚠️ IMPORTANTE:</strong> Responda <u>antes</u> de consultar o gabarito comentado ao final de cada caso!
+  <br><strong>⏱ Tempo sugerido:</strong> 15-20 min por caso. | <strong>📝 Total:</strong> 10 casos | <strong>📋 Questões:</strong> 35 no total
+</div>
+
+<!-- ===== CASO 1 ===== -->
+<div class="caso">
+  <div class="caso-header">
+    <span class="num">1</span>
+    <span class="title">Sra. Maria — Necessidades Básicas e SAE</span>
+    <span class="modulos">Módulos 1-2</span>
+  </div>
+  <div class="caso-body">
+    <div class="cenario">
+      <strong>Sra. Maria, 72 anos</strong>, internada há 3 dias após AVE (Acidente Vascular Encefálico) 
+      com hemiparesia à direita. Encontra-se <span class="highlight">consciente, L+O</span>, 
+      porém com <span class="highlight">dificuldade para deglutir</span> (disfagia). 
+      Apresenta <span class="highlight">incontinência urinária</span>, 
+      <span class="highlight">imobilidade no leito</span> e 
+      <span class="highlight">expressa preocupação</span> com sua recuperação, 
+      relatando: <em>"Estou com medo de não voltar a andar"</em>.
+      SSVV: PA 150x90 mmHg, FC 88 bpm, FR 18 irpm, Tax 36,5°C, SatO₂ 96%.
+    </div>
+    <div class="questoes">
+      <div class="q" data-num="1">Identifique <strong>3 necessidades psicobiológicas</strong> afetadas e <strong>2 psicossociais</strong> baseado na Teoria de Wanda Horta.</div>
+      <div class="q" data-num="2">Elabore um <strong>Diagnóstico de Enfermagem</strong> (NANDA-I) para o risco mais iminente da paciente.</div>
+      <div class="q" data-num="3">Descreva as <strong>5 etapas da SAE</strong> aplicadas a este caso, detalhando pelo menos uma intervenção para cada etapa.</div>
+    </div>
+
+    <div class="gabarito-caso">
+      <div class="g-title">✅ Gabarito Comentado</div>
+      <div class="g-content">
+        <ul>
+          <li><strong>Necessidades psicobiológicas afetadas:</strong> Locomoção (hemiparesia), 
+          Nutrição (disfagia/deglutição), Eliminação (incontinência urinária), 
+          Integridade cutânea (risco de LPP por imobilidade).</li>
+          <li><strong>Necessidades psicossociais:</strong> Segurança emocional (medo da recuperação), 
+          Autoestima (dependência para atividades básicas).</li>
+          <li><strong>Diagnóstico NANDA-I:</strong> "Risco de integridade da pele prejudicada 
+          relacionado a imobilidade física evidenciado por hemiparesia e restrição ao leito."</li>
+          <li><strong>SAE:</strong> (1) Histórico — coleta dos dados acima; 
+          (2) Diagnóstico — risco de LPP, déficit de autocuidado; 
+          (3) Planejamento — estabelecer mudança de decúbito 2/2h; 
+          (4) Implementação — realizar mudança de decúbito, avaliar pele; 
+          (5) Avaliação — verificar integridade da pele após 24h.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CASO 2 ===== -->
+<div class="caso">
+  <div class="caso-header">
+    <span class="num">2</span>
+    <span class="title">Sr. João — Anotação de Enfermagem e Terminologias</span>
+    <span class="modulos">Módulo 3</span>
+  </div>
+  <div class="caso-body">
+    <div class="cenario">
+      <strong>Sr. João, 58 anos</strong>, pós-operatório de colecistectomia videolaparoscópica 
+      (retirada da vesícula). Está no 1º PO, <span class="highlight">lúcido e orientado</span>, 
+      <span class="highlight">deambulando</span>, <span class="highlight">afebril</span>, 
+      <span class="highlight">normocárdico</span> (FC 76 bpm), 
+      <span class="highlight">eupnéico</span> (FR 17 irpm), 
+      <span class="highlight">normotenso</span> (PA 125x80 mmHg). 
+      Apresenta ferida operatória limpa e seca. Refere <span class="highlight">dor leve</span> 
+      no local (EVA 3/10). Aceitou dieta líquida sem intercorrências. 
+      Diurese presente e eliminou flatos. 
+    </div>
+    <div class="questoes">
+      <div class="q" data-num="1">Escreva uma <strong>anotação de enfermagem completa</strong> (estrutura SOAP) para este paciente no momento da visita.</div>
+      <div class="q" data-num="2">Identifique e explique o significado de <strong>5 terminologias técnicas</strong> presentes no caso.</div>
+      <div class="q" data-num="3">Qual(is) <strong>sinais de alerta</strong> você monitoraria nas próximas 24h? Justifique.</div>
+    </div>
+
+    <div class="gabarito-caso">
+      <div class="g-title">✅ Gabarito Comentado</div>
+      <div class="g-content">
+        <ul>
+          <li><strong>Anotação SOAP:</strong> S - "Refere dor leve (EVA 3/10) no local da F.O." 
+          O - "Paciente L+O, deambulando, afebril, normocárdico, eupnéico, normotenso. 
+          F.O. limpa e seca, com curativo oclusivo. Dieta líquida aceita. Diurese +, flatos +." 
+          A - "Pós-operatório imediato de colecistectomia, evoluindo bem." 
+          P - "Manter dieta conforme prescrição, analgesia, observação da F.O., 
+          estímulo à deambulação."</li>
+          <li><strong>Terminologias:</strong> Afebril (sem febre), Normocárdico (FC normal), 
+          Eupnéico (FR normal), Normotenso (PA normal), Lúcido e Orientado (consciente).</li>
+          <li><strong>Sinais de alerta:</strong> Febre (infecção), sangramento na F.O., 
+          retenção urinária, vômitos, dor intensa — todos indicam possíveis complicações 
+          cirúrgicas.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CASO 3 ===== -->
+<div class="caso">
+  <div class="caso-header">
+    <span class="num">3</span>
+    <span class="title">Sra. Ana — Administração de Medicamentos</span>
+    <span class="modulos">Módulo 4</span>
+  </div>
+  <div class="caso-body">
+    <div class="cenario">
+      Você é o enfermeiro responsável pela Sra. Ana, 45 anos, internada na clínica médica 
+      com diagnóstico de <span class="highlight">pielonefrite</span> (infecção renal). 
+      Prescrição médica:
+      <ul style="margin:6px 0 0 20px;font-size:0.85em;">
+        <li>SF 0,9% 500 mL EV + 1g Ceftriaxona — 12/12h (correr em 30 min)</li>
+        <li>Dipirona 500 mg IM (se dor ou febre)</li>
+        <li>Heparina 5.000 UI SC (profilaxia TVP)</li>
+        <li>Omeprazol 20 mg VO (jejum)</li>
+      </ul>
+    </div>
+    <div class="questoes">
+      <div class="q" data-num="1">Aplique os <strong>7 Certos da Medicação</strong> para a administração do antibiótico (Ceftriaxona).</div>
+      <div class="q" data-num="2">Qual a via correta da Heparina? Qual o <strong>local de aplicação</strong>, <strong>ângulo</strong> e <strong>cuidados</strong>?</div>
+      <div class="q" data-num="3">Calcule as <strong>macrogotas/min</strong> do SF 0,9% para correr em 30 minutos. Fórmula: Volume ÷ (Tempo×3).</div>
+      <div class="q" data-num="4">A dipirona IM pode ser aplicada em quais <strong>músculos</strong>? Qual o volume máximo em cada um?</div>
+    </div>
+
+    <div class="gabarito-caso">
+      <div class="g-title">✅ Gabarito Comentado</div>
+      <div class="g-content">
+        <ul>
+          <li><strong>7 Certos:</strong> (1) Paciente — conferir pulseira/nome; 
+          (2) Medicamento — Ceftriaxona 1g; (3) Dose — 1g; (4) Via — EV; 
+          (5) Horário — 12/12h; (6) Registro — anotar após administrar; 
+          (7) Orientação — explicar sobre o antibiótico.</li>
+          <li><strong>Heparina SC:</strong> Via subcutânea. Aplicar no abdômen (2 dedos do umbigo), 
+          ângulo 45-90°, agulha fina. Fazer prega cutânea, não aspirar, não massagear local. 
+          Revezar quadrantes.</li>
+          <li><strong>Cálculo:</strong> 500 mL ÷ 30 min = 500 ÷ (0,5×3) = 500 ÷ 1,5 = <strong>~333 gotas/min</strong>.</li>
+          <li><strong>Via IM:</strong> Deltoide (2 mL), Vasto lateral da coxa (5 mL), 
+          Glúteo (4 mL). A dipirona 500 mg é 2 mL, cabe no deltoide. 
+          ângulo 90°, agulha 25x7 mm.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CASO 4 ===== -->
+<div class="caso">
+  <div class="caso-header">
+    <span class="num">4</span>
+    <span class="title">Sr. Pedro — Assepsia e Curativos</span>
+    <span class="modulos">Módulos 5-6</span>
+  </div>
+  <div class="caso-body">
+    <div class="cenario">
+      <strong>Sr. Pedro, 65 anos</strong>, diabético tipo 2, internado para tratamento de 
+      <span class="highlight">ferida infectada</span> no membro inferior direito 
+      (pé diabético). A ferida apresenta <span class="highlight">exsudato purulento</span>, 
+      <span class="highlight">odor forte</span>, bordas irregulares e 
+      <span class="highlight">tecido necrótico</span> em 30% do leito. 
+      Classificada como <span class="highlight">estágio 3 de LPP</span> em região calcânea. 
+      Glicemia capilar: 245 mg/dL.
+    </div>
+    <div class="questoes">
+      <div class="q" data-num="1">Qual(is) <strong>cobertura(is)</strong> você indicaria para esta ferida? Justifique.</div>
+      <div class="q" data-num="2">Descreva o <strong>passo a passo do curativo</strong> para esta ferida, incluindo os princípios de assepsia e antissepsia.</div>
+      <div class="q" data-num="3">Quais <strong>medidas preventivas</strong> para lesão por pressão você implementaria neste paciente?</div>
+      <div class="q" data-num="4">Explique a <strong>técnica de calçar luvas estéreis</strong> para este procedimento.</div>
+    </div>
+
+    <div class="gabarito-caso">
+      <div class="g-title">✅ Gabarito Comentado</div>
+      <div class="g-content">
+        <ul>
+          <li><strong>Cobertura indicada:</strong> Carvão ativado com prata (controle de odor e ação antimicrobiana) 
+          associado a alginato de cálcio (exsudato purulento). Realizar desbridamento do tecido necrótico.</li>
+          <li><strong>Passo a passo:</strong> (1) Higienizar mãos; (2) Calçar luvas de procedimento; 
+          (3) Remover curativo anterior; (4) Avaliar ferida; (5) Calçar luvas estéreis; 
+          (6) Limpeza com SF 0,9% (centro → periferia); (7) Secar bordas; (8) Aplicar cobertura; 
+          (9) Cobrir com gaze e fixar; (10) Desprezar resíduos; (11) Higienizar mãos; 
+          (12) Registrar.</li>
+          <li><strong>Prevenção LPP:</strong> Mudança de decúbito 2/2h, colchão piramidal, 
+          hidratação da pele, avaliar escala de Braden, proteger proeminências ósseas.</li>
+          <li><strong>Luvas estéreis:</strong> Abrir envelope pela parte externa. 
+          Calçar 1ª luva com mão dominante (pegar pelo avesso do punho). 
+          Calçar 2ª luva com dedos enluvados sob o punho dobrado. Mãos postas à frente.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CASO 5 ===== -->
+<div class="caso">
+  <div class="caso-header">
+    <span class="num">5</span>
+    <span class="title">Sra. Lúcia — Oxigenoterapia e Cateterismos</span>
+    <span class="modulos">Módulo 7</span>
+  </div>
+  <div class="caso-body">
+    <div class="cenario">
+      <strong>Sra. Lúcia, 78 anos</strong>, com DPOC (Doença Pulmonar Obstrutiva Crônica) 
+      agudizada, foi internada na emergência. Apresenta <span class="highlight">dispneia intensa</span>, 
+      <span class="highlight">cianose labial</span>, <span class="highlight">SatO₂ 84%</span>, 
+      FR 28 irpm, FC 110 bpm, PA 140x85 mmHg. Ausculta pulmonar com 
+      <span class="highlight">roncos e sibilos</span> difusos. 
+      Não consegue se alimentar por via oral. Apresenta <span class="highlight">retenção urinária</span> 
+      (bexigoma palpável).
+    </div>
+    <div class="questoes">
+      <div class="q" data-num="1">Qual <strong>dispositivo de oxigenoterapia</strong> é mais indicado para esta paciente? 
+      Qual fluxo e FiO₂ aproximados?</div>
+      <div class="q" data-num="2">Justifique por que a <strong>Máscara de Venturi</strong> é preferível à máscara simples em pacientes com DPOC.</div>
+      <div class="q" data-num="3">Quais <strong>cateterismos</strong> podem ser necessários? Indique o tipo e a finalidade de cada um.</div>
+      <div class="q" data-num="4">Descreva os <strong>cuidados de enfermagem</strong> para a SNE (dieta) e para a sonda vesical de demora.</div>
+    </div>
+
+    <div class="gabarito-caso">
+      <div class="g-title">✅ Gabarito Comentado</div>
+      <div class="g-content">
+        <ul>
+          <li><strong>Dispositivo:</strong> Máscara de Venturi com FiO₂ controlada (24-28%) para 
+          evitar depressão respiratória por O₂ em excesso em pacientes DPOC. Fluxo conforme 
+          especificação da máscara.</li>
+          <li><strong>Venturi vs Simples:</strong> A Venturi fornece FiO₂ <strong>exata e controlada</strong>, 
+          essencial para DPOC que depende do drive hipóxico. Máscara simples não permite 
+          controle preciso.</li>
+          <li><strong>Cateterismos:</strong> SNE (dieta enteral — impossibilidade de deglutir); 
+          Sonda vesical de demora (controle de diurese e retenção urinária).</li>
+          <li><strong>Cuidados SNE:</strong> Verificar posicionamento (RX), manter cabeceira elevada, 
+          lavar sonda antes/após dieta, administrar dieta em gotejamento contínuo. 
+          <strong>Cuidados sonda vesical:</strong> Técnica estéril, fixar na coxa, 
+          manter saco coletor abaixo da bexiga, higiene do meato uretral.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CASO 6 ===== -->
+<div class="caso">
+  <div class="caso-header">
+    <span class="num">6</span>
+    <span class="title">Sr. Antônio — Exames, IMC e Balanço Hídrico</span>
+    <span class="modulos">Módulo 8</span>
+  </div>
+  <div class="caso-body">
+    <div class="cenario">
+      <strong>Sr. Antônio, 55 anos</strong>, admitido com edema nos membros inferiores, 
+      dispneia e ganho de peso. Peso atual: <span class="highlight">98 kg</span>, 
+      altura: <span class="highlight">1,72 m</span>. 
+      Diagnóstico presuntivo: Insuficiência Cardíaca Congestiva (ICC). 
+      Prescrição: dieta hipossódica, restrição hídrica (1500 mL/dia), diurético EV. 
+      Coleta de exames: hemograma, urina 24h, eletrólitos.
+    </div>
+    <div class="questoes">
+      <div class="q" data-num="1">Calcule e <strong>classifique o IMC</strong> do paciente conforme a OMS.</div>
+      <div class="q" data-num="2">Explique como realizar a <strong>coleta de urina 24h</strong> e quais cuidados orientar ao paciente.</div>
+      <div class="q" data-num="3">O paciente recebeu 500 mL de SF 0,9% EV e ingeriu 600 mL de água. 
+      Diurese: 800 mL. Calcule o <strong>balanço hídrico</strong> e interprete o resultado.</div>
+    </div>
+
+    <div class="gabarito-caso">
+      <div class="g-title">✅ Gabarito Comentado</div>
+      <div class="g-content">
+        <ul>
+          <li><strong>IMC = 98 ÷ (1,72)² = 98 ÷ 2,96 = 33,1 kg/m²</strong> 
+          → Classificação: <strong>Obesidade Grau I</strong> (30,0-34,9).</li>
+          <li><strong>Urina 24h:</strong> Desprezar a 1ª urina da manhã. 
+          Coletar <strong>TODA</strong> a urina das próximas 24h em frasco único (refrigerar). 
+          Incluir a 1ª urina da manhã do dia seguinte. Orientar o paciente a não perder nenhuma micção.</li>
+          <li><strong>Balanço hídrico:</strong> Ingesta = 500 + 600 = <strong>1100 mL</strong>. 
+          Perda = 800 mL (diurese). <strong>Balanço = +300 mL</strong> (positivo — reteve líquido). 
+          Em ICC, o balanço positivo indica sobrecarga hídrica e necessidade de ajuste na terapia diurética.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CASO 7 ===== -->
+<div class="caso">
+  <div class="caso-header">
+    <span class="num">7</span>
+    <span class="title">Sra. Joana — Posições, Crioterapia e Contenção</span>
+    <span class="modulos">Módulo 9</span>
+  </div>
+  <div class="caso-body">
+    <div class="cenario">
+      <strong>Sra. Joana, 82 anos</strong>, pós-operatória de fratura de fêmur (prótese de quadril). 
+      Encontra-se <span class="highlight">confusa, agitada</span> no pós-operatório imediato, 
+      tentando <span class="highlight">retirar o dreno de Portovac</span> e 
+      <span class="highlight">sentar-se</span> sozinha, com alto risco de queda. 
+      Apresenta <span class="highlight">edema intenso</span> no membro operado. 
+      Recusa o gelo prescrito.
+    </div>
+    <div class="questoes">
+      <div class="q" data-num="1">Qual(is) <strong>posição(ões)</strong> são mais adequadas para esta paciente? Justifique.</div>
+      <div class="q" data-num="2">Explique os <strong>benefícios da crioterapia</strong> no pós-operatório imediato e como realizá-la corretamente.</div>
+      <div class="q" data-num="3">Descreva os <strong>tipos de contenção</strong> que podem ser considerados para evitar a retirada do dreno. 
+      Quais os <strong>cuidados éticos e assistenciais</strong> necessários?</div>
+    </div>
+
+    <div class="gabarito-caso">
+      <div class="g-title">✅ Gabarito Comentado</div>
+      <div class="g-content">
+        <ul>
+          <li><strong>Posições:</strong> Decúbito dorsal com membro operado ligeiramente elevado 
+          (reduzir edema). <strong>Evitar</strong> posição de Sims sobre o lado operado. 
+          Usar travesseiro/talas para manter o membro em posição neutra.</li>
+          <li><strong>Crioterapia:</strong> Reduz edema, dor e inflamação no pós-operatório. 
+          Aplicar bolsa de gelo envolta em pano por <strong>20 minutos</strong>, 
+          reavaliar a pele. Não aplicar diretamente sobre curativo. Explicar à paciente 
+          que o frio reduzirá a dor e o inchaço.</li>
+          <li><strong>Contenção:</strong> Mecânica (faixas de punho se necessário) como 
+          <strong>último recurso</strong>. Tentar primeiro contenção ambiental (grades, cama baixa) 
+          e química (sedação leve prescrita). 
+          <strong>Cuidados:</strong> Prescrição médica obrigatória, avaliar circulação a cada 1h, 
+          liberar a cada 2h, documentar, NUNCA como punição. Tentar reorientação verbal primeiro.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CASO 8 ===== -->
+<div class="caso">
+  <div class="caso-header">
+    <span class="num">8</span>
+    <span class="title">Sr. Carlos — Admissão e Processo Pós-Morte</span>
+    <span class="modulos">Módulo 10</span>
+  </div>
+  <div class="caso-body">
+    <div class="cenario">
+      <strong>Sr. Carlos, 88 anos</strong>, chega ao hospital vindo de uma instituição de longa 
+      permanência, com histórico de <span class="highlight">AVE prévio</span>, 
+      <span class="highlight">demência avançada</span>, <span class="highlight">SNE para dieta</span> 
+      e <span class="highlight">sonda vesical de demora</span>. 
+      Apresenta rebaixamento do nível de consciência, dispneia e SatO₂ 78%. 
+      A família (filha única) está visivelmente abalada.
+    </div>
+    <div class="questoes">
+      <div class="q" data-num="1">Descreva o <strong>checklist de admissão</strong> completo para este paciente.</div>
+      <div class="q" data-num="2">Infelizmente o paciente evolui para óbito 2h após a admissão. 
+      Descreva os <strong>passos do processo pós-morte</strong> que o enfermeiro deve realizar.</div>
+      <div class="q" data-num="3">Qual o <strong>papel do enfermeiro</strong> no apoio à família enlutada?</div>
+    </div>
+
+    <div class="gabarito-caso">
+      <div class="g-title">✅ Gabarito Comentado</div>
+      <div class="g-content">
+        <ul>
+          <li><strong>Admissão:</strong> (1) Pulseira de identificação; (2) Sinais vitais; 
+          (3) Histórico: HDA (queixa atual), HPP (AVE, demência), medicações, alergias; 
+          (4) Exame físico (atenção à SNE e sonda vesical); (5) Verificar dispositivos; 
+          (6) Orientar acompanhante; (7) Guardar pertences.</li>
+          <li><strong>Pós-morte:</strong> (1) Confirmar e registrar óbito; 
+          (2) Aguardar declaração de óbito (médico); (3) Posicionar corpo em decúbito dorsal; 
+          (4) Realizar higiene corporal; (5) Retirar dispositivos (SNE, sonda, cateteres); 
+          (6) Identificar corpo (pulseira + etiqueta); (7) Entregar à família; 
+          (8) Respeitar crenças religiosas.</li>
+          <li><strong>Apoio à família:</strong> Oferecer ambiente privado para despedida, 
+          comunicar com sensibilidade e clareza, permitir rituais religiosos, 
+          oferecer apoio psicológico, explicar os procedimentos, respeitar o tempo 
+          e as emoções da filha.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CASO 9 ===== -->
+<div class="caso">
+  <div class="caso-header">
+    <span class="num">9</span>
+    <span class="title">Sra. Denise — SAE + Medicação + Higiene (Caso Integrado)</span>
+    <span class="modulos">Módulos 2-4-5</span>
+  </div>
+  <div class="caso-body">
+    <div class="cenario">
+      <strong>Sra. Denise, 70 anos</strong>, internada na clínica médica com pneumonia. 
+      Está <span class="highlight">acamada</span>, em uso de <span class="highlight">SNG</span> 
+      para medicação e dieta, <span class="highlight">Cateter Nasal de O₂ a 3 L/min</span> 
+      (SatO₂ 91%). Prescrição: <span class="highlight">antibiótico EV 8/8h</span>, 
+      <span class="highlight">heparina SC 12/12h</span>. 
+      Apresenta-se <span class="highlight">confusa</span>, com 
+      <span class="highlight">incontinência fecal</span> e 
+      <span class="highlight">pele íntegra</span> (sem LPP).
+    </div>
+    <div class="questoes">
+      <div class="q" data-num="1">Elabore um <strong>plano de cuidados de enfermagem</strong> (Diagnóstico NANDA-I + Intervenções) 
+      para os <strong>3 principais diagnósticos</strong> desta paciente.</div>
+      <div class="q" data-num="2">Descreva o <strong>procedimento de higiene</strong> (banho no leito) 
+      incluindo a sequência correta e os materiais necessários.</div>
+      <div class="q" data-num="3">A SNG será usada para medicação. Quais os <strong>cuidados na administração de medicamentos por sonda</strong>?</div>
+    </div>
+
+    <div class="gabarito-caso">
+      <div class="g-title">✅ Gabarito Comentado</div>
+      <div class="g-content">
+        <ul>
+          <li><strong>Diagnósticos NANDA-I + Intervenções:</strong><br>
+          <strong>1.</strong> "Troca de gases prejudicada" → manter O₂, monitorar SatO₂, 
+          posição Fowler, fisioterapia respiratória.<br>
+          <strong>2.</strong> "Risco de integridade da pele prejudicada" → mudança de decúbito 2/2h, 
+          avaliar pele, hidratação, colchão adequado.<br>
+          <strong>3.</strong> "Déficit de autocuidado para higiene" → banho no leito, 
+          higiene íntima após cada eliminação, troca de fraldas.</li>
+          <li><strong>Banho no leito:</strong> Materiais: bacia, água morna, sabonete, 
+          toalhas, luvas, roupa de cama, comadre. 
+          <strong>Sequência:</strong> Olhos → face → braços → tórax → abdômen → 
+          MMII → períneo → dorso. 
+          <strong>Cuidados especiais:</strong> Proteger a SNG e o Cateter Nasal de O₂ 
+          durante o banho — evitar tração dos dispositivos, não molhar as fixações, 
+          verificar fixação adequada ao final do banho.</li>
+          <li><strong>Medicação por sonda:</strong> Verificar posicionamento da SNG, 
+          administrar cada medicação separadamente, triturar comprimidos (não triturar 
+          sublingual/LP/drágeas), diluir em 20-30 mL de água, lavar sonda entre cada 
+          medicação e ao final, manter cabeceira elevada.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CASO 10 ===== -->
+<div class="caso">
+  <div class="caso-header">
+    <span class="num">10</span>
+    <span class="title">Sr. Paulo — Caso Integrado Final (Todos os Módulos)</span>
+    <span class="modulos">🎯 Todos os módulos</span>
+  </div>
+  <div class="caso-body">
+    <div class="cenario">
+      <strong>Sr. Paulo, 60 anos</strong>, vítima de acidente automobilístico, admitido na emergência. 
+      <span class="highlight">Politraumatizado</span>, consciente, L+O, 
+      com múltiplas escoriações e uma <span class="highlight">ferida corto-contusa na perna D</span>, 
+      classificada como contaminada. PA 100x60 mmHg, FC 112 bpm, FR 24 irpm, SatO₂ 89%.
+      Precisa de <span class="highlight">cateterismo vesical</span> para monitorar diurese 
+      e <span class="highlight">acesso venoso periférico</span> para reposição volêmica. 
+      Prescrição: SF 0,9% 1000 mL EV (correr em 1h), 
+      <span class="highlight">Vacina antitetânica IM</span>, 
+      <span class="highlight">analgesia EV</span> e <span class="highlight">curativo na ferida</span>.
+    </div>
+    <div class="questoes">
+      <div class="q" data-num="1">Com base na avaliação dos SSVV, identifique os <strong>desvios dos parâmetros normais</strong> 
+      e as <strong>necessidades psicobiológicas prioritárias</strong> (Teoria de Wanda Horta).</div>
+      <div class="q" data-num="2">Calcule as <strong>microgotas/min</strong> do SF 0,9% para correr em 1h. 
+      Qual a importância desta reposição volêmica rápida?</div>
+      <div class="q" data-num="3">A vacina antitetânica é administrada por via <strong>IM profunda</strong>. 
+      Qual músculo escolher e quais os cuidados?</div>
+      <div class="q" data-num="4">Descreva a <strong>técnica de curativo</strong> na ferida contaminada, 
+      desde o preparo até o registro.</div>
+      <div class="q" data-num="5">Redija uma <strong>anotação de enfermagem completa (SOAP)</strong> 
+      para o momento da admissão.</div>
+    </div>
+
+    <div class="gabarito-caso">
+      <div class="g-title">✅ Gabarito Comentado</div>
+      <div class="g-content">
+        <ul>
+          <li><strong>Desvios:</strong> PA 100x60 (limítrofe — risco de choque), FC 112 (taquicárdico), 
+          FR 24 (taquipneico), SatO₂ 89% (hipóxia). 
+          <strong>Necessidades prioritárias:</strong> Oxigenação (SatO₂ baixa), 
+          Circulação (PA limítrofe + taquicardia compensatória — suspeita de choque hipovolêmico incipiente), 
+          Integridade cutânea (ferida contaminada).</li>
+          <li><strong>Microgotas = Volume ÷ Tempo(h) = 1000 ÷ 1 = 1000 microgotas/min.</strong> 
+          A reposição rápida visa estabilizar a hemodinâmica e prevenir choque hipovolêmico.</li>
+          <li><strong>Vacina IM:</strong> Músculo deltoide (2 mL) — normalmente a vacina vem 
+          em volume adequado. Aspirar antes de injetar, ângulo 90°, agulha 25x7 mm. 
+          Não massagear. Registrar lote e via.</li>
+          <li><strong>Curativo contaminado:</strong> (1) Luvas de procedimento; 
+          (2) Remover sujidades com SF 0,9%; (3) Calçar luvas estéreis; 
+          (4) Limpeza com SF 0,9% + PVPI tópico (movimento centro → periferia); 
+          (5) Aplicar carvão ativado ou cobertura antimicrobiana; 
+          (6) Cobrir com gaze estéril; (7) Fixar; (8) Registrar.</li>
+          <li><strong>Anotação SOAP:</strong> S - "Refere dor 8/10 na perna D." 
+          O - "Paciente L+O, PA 100x60, FC 112, FR 24, SatO₂ 89%. 
+          Ferida corto-contusa em perna D, contaminada." 
+          A - "Politrauma com sinais de choque hipovolêmico." 
+          P - "Instalado SF 0,9% 1000 mL EV (1000 mcgts/min), 
+          cateterismo vesical de demora instalado, 
+          vacina antitetânica aplicada no deltoide E, curativo realizado."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:20px;padding:16px 22px;background:#fff;border-radius:10px;border:1px solid #e0e0e0;font-size:0.82em;color:#555;">
+  <strong style="color:#0a3d62;">📊 Legenda de Desempenho:</strong>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:6px;">
+    <span style="background:#e8f5e9;padding:3px 12px;border-radius:6px;">✅ 8-10 casos certos: Excelente!</span>
+    <span style="background:#fff3e0;padding:3px 12px;border-radius:6px;">📖 5-7 casos certos: Bom, revise os módulos com erros</span>
+    <span style="background:#ffebee;padding:3px 12px;border-radius:6px;">📚 &lt;5 casos certos: Revise o Guia Completo antes</span>
+  </div>
+  <div style="margin-top:8px;color:#888;font-size:0.9em;">
+    💡 Cada caso integra múltiplos módulos — o objetivo é aplicar o conhecimento de forma interdisciplinar, como na prática real!
+  </div>
+</div>
+
+</div>
+</body>
+</html>

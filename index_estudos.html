@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Central de Estudos - Introdução à Enfermagem</title>
+<style>
+  @page { margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+    color: #1a1a2e;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* ===== TOP HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, #0a3d62 0%, #1e6f9e 40%, #0a3d62 100%);
+    color: #fff;
+    padding: 50px 40px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-size: 2.5em;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .hero .subtitle {
+    font-size: 1.15em;
+    font-weight: 300;
+    opacity: 0.9;
+    margin-bottom: 6px;
+  }
+  .hero .info-bar {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    position: relative;
+  }
+  .hero .info-bar span {
+    background: rgba(255,255,255,0.12);
+    padding: 6px 18px;
+    border-radius: 25px;
+    font-size: 0.85em;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .hero .badge-80 {
+    display: inline-block;
+    background: #f39c12;
+    color: #1a1a2e;
+    padding: 4px 18px;
+    border-radius: 25px;
+    font-size: 0.8em;
+    font-weight: 700;
+    margin-top: 12px;
+  }
+
+  /* ===== CONTAINER ===== */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 25px 60px;
+  }
+
+  /* ===== SECTION HEADER ===== */
+  .section-title {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #0a3d62;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, #1e6f9e, transparent);
+  }
+
+  /* ===== WELCOME CARD ===== */
+  .welcome-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 30px 35px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    border: 1px solid #e8ecf0;
+  }
+  .welcome-card h2 {
+    color: #0a3d62;
+    font-size: 1.3em;
+    margin-bottom: 12px;
+  }
+  .welcome-card p {
+    color: #555;
+    line-height: 1.7;
+    font-size: 0.95em;
+  }
+  .welcome-card .highlight {
+    color: #1e6f9e;
+    font-weight: 600;
+  }
+
+  /* ===== STUDY PATH ===== */
+  .study-path {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 15px 0;
+    padding: 15px 20px;
+    background: #e8f4fd;
+    border-radius: 12px;
+    border: 1px solid #c5d9f0;
+  }
+  .study-path .step {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #fff;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: #0a3d62;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .study-path .arrow {
+    color: #1e6f9e;
+    font-size: 1.1em;
+    font-weight: 700;
+  }
+
+  /* ===== ARTIFACT GRID ===== */
+  .artifact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .artifact-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #e8ecf0;
+    display: flex;
+    flex-direction: column;
+  }
+  .artifact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+
+  .artifact-card .card-header {
+    padding: 20px 22px 14px;
+    position: relative;
+  }
+  .artifact-card .card-header .icon-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6em;
+    margin-bottom: 10px;
+  }
+  .artifact-card .card-header h3 {
+    font-size: 1.15em;
+    color: #0a3d62;
+    margin-bottom: 4px;
+  }
+  .artifact-card .card-header .sub {
+    font-size: 0.82em;
+    color: #888;
+  }
+
+  .artifact-card .card-body {
+    padding: 0 22px 16px;
+    flex: 1;
+  }
+  .artifact-card .card-body .desc {
+    font-size: 0.88em;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .artifact-card .card-body .tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .artifact-card .card-body .tags span {
+    background: #e8f0fe;
+    color: #0a3d62;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.72em;
+    font-weight: 600;
+  }
+  .artifact-card .card-body .stats {
+    display: flex;
+    gap: 15px;
+    font-size: 0.78em;
+    color: #888;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 10px;
+    margin-top: 10px;
+  }
+  .artifact-card .card-body .stats span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .artifact-card .card-footer {
+    padding: 12px 22px;
+    background: #f8fafc;
+    border-top: 1px solid #e8ecf0;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .artifact-card .card-footer .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 0.82em;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s;
+    cursor: pointer;
+  }
+  .artifact-card .card-footer .btn-primary {
+    background: #0a3d62;
+    color: #fff;
+    border: none;
+  }
+  .artifact-card .card-footer .btn-primary:hover {
+    background: #1e6f9e;
+  }
+  .artifact-card .card-footer .btn-secondary {
+    background: #e8ecf0;
+    color: #333;
+    border: none;
+  }
+  .artifact-card .card-footer .btn-secondary:hover {
+    background: #d5dbe0;
+  }
+
+  /* Card colors */
+  .card-plano .icon-circle { background: #e3f2fd; }
+  .card-resumo .icon-circle { background: #e8f5e9; }
+  .card-flash .icon-circle { background: #fce4ec; }
+  .card-guia .icon-circle { background: #fff3e0; }
+  .card-exerc .icon-circle { background: #f3e5f5; }
+  .card-mapa .icon-circle { background: #fff3e0; }
+  .card-crono .icon-circle { background: #e0f2f1; }
+  .card-casos .icon-circle { background: #fbe9e7; }
+  .card-apostila .icon-circle { background: #e8eaf6; }
+  .card-videos .icon-circle { background: #ffebee; }
+  .card-eadplan .icon-circle { background: #e8f5e9; }
+  .card-simulado .icon-circle { background: #f3e5f5; }
+  .card-avaliacao .icon-circle { background: #e3f2fd; }
+
+  /* ===== EXTRA TIPS ===== */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+  .tip-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    border: 1px solid #e8ecf0;
+  }
+  .tip-card .tip-icon { font-size: 1.8em; margin-bottom: 8px; }
+  .tip-card h4 { font-size: 0.95em; color: #0a3d62; margin-bottom: 6px; }
+  .tip-card p { font-size: 0.84em; color: #666; line-height: 1.55; }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: #999;
+    font-size: 0.82em;
+    border-top: 1px solid #e0e8f0;
+    background: #f8fafc;
+  }
+  .footer strong { color: #555; }
+
+  @media print {
+    .hero { padding: 20px; }
+    .artifact-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+    .welcome-card .study-path { display: none; }
+    .footer { display: none; }
+  }
+
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 1.8em; }
+    .container { padding: 20px 15px; }
+    .artifact-grid { grid-template-columns: 1fr; }
+    .study-path .arrow { display: none; }
+    .study-path { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <h1>📚 Central de Estudos</h1>
+  <div class="subtitle">Introdução à Enfermagem — EN_430</div>
+  <div class="info-bar">
+    <span>🎓 Curso: Enfermagem</span>
+    <span>🌐 EAD / Subsequente</span>
+    <span>📋 CH: 120h</span>
+    <span>📅 2026</span>
+  </div>
+  <div class="badge-80">⚡ Método 80/20 — Foco no essencial</div>
+</div>
+
+<!-- ===== CONTAINER ===== -->
+<div class="container">
+
+  <!-- ===== WELCOME ===== -->
+  <div class="welcome-card">
+    <h2>👋 Bem-vindo(a) à sua Central de Estudos!</h2>
+    <p>
+      Esta página reúne <span class="highlight">todos os artefatos de estudo</span> 
+      desenvolvidos para a disciplina <strong>Introdução à Enfermagem (EN_430)</strong>. 
+      Cada material foi elaborado seguindo o <strong>Princípio de Pareto (80/20)</strong>, 
+      focando nos conceitos essenciais que geram os melhores resultados de aprendizado 
+      no menor tempo possível.
+    </p>
+    <div class="study-path">
+      <span class="step">🎯 1️⃣ Plano EAD</span>
+      <span class="arrow">→</span>
+      <span class="step">📖 2️⃣ Guia Completo</span>
+      <span class="arrow">→</span>
+      <span class="step">🧠 3️⃣ Mapa Mental</span>
+      <span class="arrow">→</span>
+      <span class="step">📘 4️⃣ Plano 20h</span>
+      <span class="arrow">→</span>
+      <span class="step">📋 5️⃣ Resumo</span>
+      <span class="arrow">→</span>
+      <span class="step">🃏 6️⃣ Flashcards</span>
+      <span class="arrow">→</span>
+      <span class="step">🏥 7️⃣ Casos</span>
+      <span class="arrow">→</span>
+      <span class="step">🎬 8️⃣ Vídeos</span>
+      <span class="arrow">→</span>
+      <span class="step">📝 9️⃣ Simulado</span>
+      <span class="arrow">→</span>
+      <span class="step">🌐 🔟 Avaliação Web</span>
+    </div>
+    <p style="font-size:0.85em;color:#888;margin-top:8px;">
+      💡 <strong>Sugestão:</strong> Plano EAD Avançado → Guia Completo → Mapa Mental → Plano 20h → Resumo → 
+      Flashcards → Casos Clínicos → Vídeos → Simulado → Avaliação Web. Acompanhe seu progresso com o Cronograma Mensal!
+    </p>
+    <div style="margin-top:10px;padding:10px 14px;background:#e8f5e9;border-radius:8px;font-size:0.82em;color:#2e7d32;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+      <span style="font-size:1.2em;">🔗</span>
+      <span><strong>Navegação inteligente:</strong> Todos os materiais HTML possuem um link <strong>"← Voltar à Central de Estudos"</strong> no topo da página para facilitar a navegação entre os artefatos!</span>
+    </div>
+  </div>
+
+  <!-- ===== ARTIFACTS SECTION ===== -->
+  <div class="section-title">
+    📦 Artefatos de Estudo
+    <span class="line"></span>
+  </div>
+
+  <div class="artifact-grid">
+
+    <!-- ARTIFACT 1: Guia Completo -->
+    <div class="artifact-card card-guia">
+      <div class="card-header">
+        <div class="icon-circle">📖</div>
+        <h3>Guia Completo de Estudos</h3>
+        <div class="sub">PDF • 10 módulos • 20 exercícios</div>
+      </div>
+      <div class="card-body">
+        <div class="desc">
+          O material mais completo! Reúne <strong>todo o conteúdo teórico</strong> 
+          da disciplina em 10 módulos organizados hierarquicamente, do fundamento 
+          à prática. Inclui <strong>glossário de terminologias</strong>, 
+          <strong>exercícios de fixação</strong> e <strong>gabarito</strong>.
+        </div>
+        <div class="tags">
+          <span>📖 Teoria</span>
+          <span>📊 Tabelas</span>
+          <span>🧠 Mnemônicos</span>
+          <span>📝 Exercícios</span>
+          <span>📋 Glossário</span>
+        </div>
+        <div class="stats">
+          <span>📄 10 módulos</span>
+          <span>📝 20 questões</span>
+          <span>📚 778 KB</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="guia_completo_estudos.html" class="btn btn-primary">📄 Abrir HTML</a>
+        <a href="Guia_Completo_Estudos_Introducao_Enfermagem.pdf" class="btn btn-secondary">📥 Baixar PDF</a>
+      </div>
+    </div>
+
+    <!-- ARTIFACT 2: Plano de Estudos 20h -->
+    <div class="artifact-card card-plano">
+      <div class="card-header">
+        <div class="icon-circle">📘</div>
+        <h3>Plano de Estudos — 20 Horas</h3>
+        <div class="sub">PDF • 10 sessões • 2h cada</div>
+      </div>
+      <div class="card-body">
+        <div class="desc">
+          <strong>10 sessões de 2 horas</strong> focadas nos 20% dos conceitos que 
+          geram 80% dos resultados. Cada sessão inclui: teoria, prática, exercícios 
+          e revisão de 15 minutos. Com <strong>recursos recomendados</strong> 
+          (vídeos, materiais, apps) para cada sessão.
+        </div>
+        <div class="tags">
+          <span>⚡ 80/20</span>
+          <span>📅 Cronograma</span>
+          <span>🎯 Foco</span>
+          <span>📺 Recursos</span>
+        </div>
+        <div class="stats">
+          <span>⏱ 20 horas</span>
+          <span>📅 10 sessões</span>
+          <span>📚 689 KB</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="Plano_de_Estudos_20h_Introducao_Enfermagem.pdf" class="btn btn-primary">📥 Baixar PDF</a>
+        <a href="plano_de_estudos_20h.html" class="btn btn-secondary">📄 Ver HTML</a>
+      </div>
+    </div>
+
+    <!-- ARTIFACT 3: Resumo 5 min -->
+    <div class="artifact-card card-resumo">
+      <div class="card-header">
+        <div class="icon-circle">📋</div>
+        <h3>Resumo em 5 Minutos</h3>
+        <div class="sub">PDF • 1 página • Revisão rápida</div>
+      </div>
+      <div class="card-body">
+        <div class="desc">
+          <strong>Uma única página</strong> com todos os conceitos essenciais da 
+          disciplina organizados em cards visuais. Ideal para <strong>revisar 
+          rapidamente antes da prova</strong> ou para consulta durante os estudos. 
+          Inclui mnemônicos, tabelas comparativas e terminologias.
+        </div>
+        <div class="tags">
+          <span>⚡ Revisão</span>
+          <span>📊 Tabelas</span>
+          <span>🧠 Mnemônicos</span>
+          <span>📖 Terminologias</span>
+        </div>
+        <div class="stats">
+          <span>📄 1 página</span>
+          <span>⏱ 5 min</span>
+          <span>📚 239 KB</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="Resumo_Introducao_Enfermagem_5min.pdf" class="btn btn-primary">📥 Baixar PDF</a>
+        <a href="resumo_uma_pagina.html" class="btn btn-secondary">📄 Ver HTML</a>
+      </div>
+    </div>
+
+    <!-- ARTIFACT 4: Flashcards -->
+    <div class="artifact-card card-flash">
+      <div class="card-header">
+        <div class="icon-circle">🃏</div>
+        <h3>Flashcards de Estudo</h3>
+        <div class="sub">PDF • 60 cartões • Frente e Verso</div>
+      </div>
+      <div class="card-body">
+        <div class="desc">
+          <strong>60 cartões</strong> com pergunta na frente e resposta no verso, 
+          cobrindo todos os tópicos da disciplina. Ideal para <strong>fixação ativa</strong> 
+          e autoavaliação. Inclui mnemônicos, dicas de memorização e gabarito compacto 
+          ao final.
+        </div>
+        <div class="tags">
+          <span>🃏 Pergunta/Resposta</span>
+          <span>🧠 Fixação</span>
+          <span>✂️ Recortável</span>
+          <span>📋 Gabarito</span>
+        </div>
+        <div class="stats">
+          <span>🃏 60 cartões</span>
+          <span>📝 Frente/Verso</span>
+          <span>📚 520 KB</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="Flashcards_Introducao_Enfermagem.pdf" class="btn btn-primary">📥 Baixar PDF</a>
+        <a href="flashcards_enfermagem.html" class="btn btn-secondary">📄 Ver HTML</a>
+      </div>
+    </div>
+
+    <!-- ARTIFACT 5: Exercícios -->
+    <div class="artifact-card card-exerc">
+      <div class="card-header">
+        <div class="icon-circle">📝</div>
+        <h3>Exercícios de Fixação</h3>
+        <div class="sub">No Guia Completo • 20 questões</div>
+      </div>
+      <div class="card-body">
+        <div class="desc">
+          <strong>20 questões de múltipla escolha</strong> incluídas no Guia Completo 
+          de Estudos (Módulo Final). Abrangem todos os 10 módulos da disciplina 
+          com gabarito comentado. Teste seu conhecimento e identifique pontos fracos!
+        </div>
+        <div class="tags">
+          <span>📝 Múltipla escolha</span>
+          <span>✅ Gabarito</span>
+          <span>📊 Autoavaliação</span>
+        </div>
+        <div class="stats">
+          <span>📝 20 questões</span>
+          <span>✅ Com gabarito</span>
+          <span>📚 No Guia Completo</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="guia_completo_estudos.html" class="btn btn-primary">📄 Ir para o Guia</a>
+      </div>
+    </div>
+
+    <!-- ARTIFACT 6: Mapa Mental -->
+    <div class="artifact-card card-mapa">
+      <div class="card-header">
+        <div class="icon-circle">🧠</div>
+        <h3>Mapa Mental dos 10 Módulos</h3>
+        <div class="sub">PDF • 1 página • Visual</div>
+      </div>
+      <div class="card-body">
+        <div class="desc">
+          <strong>Mapa visual</strong> com todos os 10 módulos da disciplina organizados 
+          em cards coloridos. Cada módulo com seus <strong>pontos-chave</strong> e 
+          <strong>mnemônicos</strong>. Ideal para ter uma <strong>visão geral</strong> 
+          da matéria e conectar os conceitos.
+        </div>
+        <div class="tags">
+          <span>🧠 Visual</span>
+          <span>🎨 Cores</span>
+          <span>🔗 Conexões</span>
+          <span>📋 Resumo</span>
+        </div>
+        <div class="stats">
+          <span>🧠 10 módulos</span>
+          <span>📄 1 página</span>
+          <span>📚 233 KB</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="Mapa_Mental_10_Modulos_Introducao_Enfermagem.pdf" class="btn btn-primary">📥 Baixar PDF</a>
+        <a href="mapa_mental_10_modulos.html" class="btn btn-secondary">📄 Ver HTML</a>
+      </div>
+    </div>
+
+    <!-- ARTIFACT 7: Cronograma Mensal -->
+    <div class="artifact-card card-crono">
+      <div class="card-header">
+        <div class="icon-circle">📅</div>
+        <h3>Cronograma Mensal de Estudos</h3>
+        <div class="sub">PDF • 4 semanas • Paisagem</div>
+      </div>
+      <div class="card-body">
+        <div class="desc">
+          <strong>4 semanas</strong> de estudo integrando <strong>todos os materiais</strong>! 
+          Cada dia com atividades específicas combinando Guia, Plano 20h, Flashcards, 
+          Resumo e Exercícios. Inclui <strong>dias de descanso</strong> e 
+          <strong>simulado final</strong>. ~54h de estudo.
+        </div>
+        <div class="tags">
+          <span>📅 30 dias</span>
+          <span>⚡ ~54h</span>
+          <span>🎯 Metas</span>
+          <span>🔄 Revisões</span>
+        </div>
+        <div class="stats">
+          <span>📅 4 semanas</span>
+          <span>⏱ ~54h</span>
+          <span>📚 349 KB</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="Cronograma_Mensal_Estudos_Introducao_Enfermagem.pdf" class="btn btn-primary">📥 Baixar PDF</a>
+        <a href="cronograma_mensal.html" class="btn btn-secondary">📄 Ver HTML</a>
+      </div>
+    </div>
+
+    <!-- ARTIFACT 8: Casos Clínicos -->
+    <div class="artifact-card card-casos">
+      <div class="card-header">
+        <div class="icon-circle">🏥</div>
+        <h3>Casos Clínicos — Prática Avançada</h3>
+        <div class="sub">PDF • 10 casos • 35 questões</div>
+      </div>
+      <div class="card-body">
+        <div class="desc">
+          <strong>10 casos clínicos</strong> com cenários reais de enfermagem e 
+          <strong>35 questões discursivas</strong>. Cada caso integra múltiplos 
+          módulos da disciplina. Inclui <strong>gabarito comentado</strong> para 
+          autoavaliação. Ideal para praticar a aplicação do conhecimento.
+        </div>
+        <div class="tags">
+          <span>🏥 Casos reais</span>
+          <span>📝 Discursivas</span>
+          <span>✅ Gabarito</span>
+          <span>🎯 Aplicação</span>
+        </div>
+        <div class="stats">
+          <span>🏥 10 casos</span>
+          <span>📝 35 questões</span>
+          <span>📚 320 KB</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="Casos_Clinicos_Pratica_Introducao_Enfermagem.pdf" class="btn btn-primary">📥 Baixar PDF</a>
+        <a href="casos_clinicos_pratica.html" class="btn btn-secondary">📄 Ver HTML</a>
+      </div>
+    </div>
+
+    <!-- ARTIFACT 9: Guia de Vídeos -->
+    <div class="artifact-card card-videos">
+      <div class="card-header">
+        <div class="icon-circle">🎬</div>
+        <h3>Guia de Vídeos Recomendados</h3>
+        <div class="sub">PDF • 10 módulos • Links do YouTube</div>
+      </div>
+      <div class="card-body">
+        <div class="desc">
+          <strong>60+ vídeos selecionados</strong> do YouTube organizados por módulo!
+          Cada módulo da disciplina possui links diretos para os <strong>melhores canais</strong>
+          de enfermagem (Prática Enfermagem, Descomplica Enfermagem, Prof. Rômulo Passos e mais).
+          Inclui seção de <strong>canais recomendados</strong>.
+        </div>
+        <div class="tags">
+          <span>🎬 YouTube</span>
+          <span>📺 60+ vídeos</span>
+          <span>📚 10 módulos</span>
+          <span>🎯 Links diretos</span>
+        </div>
+        <div class="stats">
+          <span>📺 60+ vídeos</span>
+          <span>📚 10 módulos</span>
+          <span>📄 504 KB</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="Guia_Videos_Recomendados_Introducao_Enfermagem.pdf" class="btn btn-primary">📥 Baixar PDF</a>
+        <a href="videos_recomendados.html" class="btn btn-secondary">📄 Ver HTML</a>
+      </div>
+    </div>
+
+    <!-- ARTIFACT 10: Plano de Estudos Avançado EAD -->
+    <div class="artifact-card card-eadplan">
+      <div class="card-header">
+        <div class="icon-circle">🎯</div>
+        <h3>Plano de Estudos Avançado — EAD</h3>
+        <div class="sub">PDF • 10 sessões • 2h30 cada • Revisão 30min</div>
+      </div>
+      <div class="card-body">
+        <div class="desc">
+          <strong>Plano abrangente</strong> desenvolvido especialmente para a <strong>modalidade EAD</strong>!
+          10 sessões de <strong>2h30 com revisões de 30 minutos</strong>, integrando material escrito, 
+          videoaulas, slides e recursos digitais. Foco em <strong>conceitos e resultados</strong> — 
+          não apenas 80/20, mas <strong>aprendizagem profunda e duradoura</strong>. Cada sessão inclui 
+          blocos de Teoria, Prática, Exercícios, Recursos EAD e Revisão Supervisionada.
+        </div>
+        <div class="tags">
+          <span>🎯 Foco em resultados</span>
+          <span>🌐 EAD</span>
+          <span>📖 Material escrito</span>
+          <span>🎬 Videoaulas</span>
+          <span>📊 Slides</span>
+        </div>
+        <div class="stats">
+          <span>⏱ 25 horas totais</span>
+          <span>📅 10 sessões</span>
+          <span>📄 989 KB</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="Plano_Estudos_Avancado_EAD_Introducao_Enfermagem.pdf" class="btn btn-primary">📥 Baixar PDF</a>
+        <a href="plano_estudos_avancado.html" class="btn btn-secondary">📄 Ver HTML</a>
+      </div>
+    </div>
+
+    <!-- ARTIFACT 11: Simulado -->
+    <div class="artifact-card card-simulado">
+      <div class="card-header">
+        <div class="icon-circle">📝</div>
+        <h3>Simulado — 40 Questões</h3>
+        <div class="sub">PDF • 10 módulos • 4 questões cada • Gabarito</div>
+      </div>
+      <div class="card-body">
+        <div class="desc">
+          <strong>40 questões de múltipla escolha</strong> (A-E) cobrindo <strong>todos os 10 módulos</strong> 
+          da disciplina, com 4 questões por módulo. Inclui <strong>gabarito comentado</strong> com 
+          explicações detalhadas para cada resposta. Ideal para <strong>autoavaliação</strong> e 
+          preparação para provas. Tempo sugerido: <strong>2 horas</strong>.
+        </div>
+        <div class="tags">
+          <span>📝 40 questões</span>
+          <span>✅ Gabarito comentado</span>
+          <span>📚 10 módulos</span>
+          <span>🎯 Múltipla escolha</span>
+        </div>
+        <div class="stats">
+          <span>📝 40 questões</span>
+          <span>✅ Com gabarito</span>
+          <span>📄 562 KB</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="Simulado_40_Questoes_Introducao_Enfermagem.pdf" class="btn btn-primary">📥 Baixar PDF</a>
+        <a href="simulado_40_questoes.html" class="btn btn-secondary">📄 Ver HTML</a>
+      </div>
+    </div>
+
+    <!-- ARTIFACT 12: Sistema de Avaliação Web -->
+    <div class="artifact-card card-avaliacao">
+      <div class="card-header">
+        <div class="icon-circle">🌐</div>
+        <h3>Sistema de Avaliação Web</h3>
+        <div class="sub">App Web • 3000 questões • 20 por avaliação</div>
+      </div>
+      <div class="card-body">
+        <div class="desc">
+          <strong>Sistema completo de avaliação online</strong> com <strong>3000 questões</strong> 
+          distribuídas pelos 10 módulos! Gera <strong>avaliações aleatórias de 20 questões</strong>, 
+          evita repetição, corrige automaticamente e acompanha o <strong>progresso por módulo</strong>. 
+          Inclui cadastro de estudantes, histórico completo e estatísticas de desempenho. 
+          Construído com Python/Flask + SQLite.
+        </div>
+        <div class="tags">
+          <span>🌐 Web App</span>
+          <span>🗄️ SQLite</span>
+          <span>🐍 Flask</span>
+          <span>📊 Progresso</span>
+          <span>🎲 Aleatório</span>
+        </div>
+        <div class="stats">
+          <span>📝 3000 questões</span>
+          <span>📋 10 módulos</span>
+          <span>⚡ 20 q/avaliação</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="https://enavaliar.appservice.tec.br/" class="btn btn-primary" target="_blank">🌐 Abrir Sistema</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== APOSTILA SECTION ===== -->
+  <div class="section-title">
+    📚 Compilado para Impressão
+    <span class="line"></span>
+  </div>
+
+  <div class="artifact-grid" style="grid-template-columns:1fr;">
+    <div class="artifact-card card-apostila">
+      <div class="card-header">
+        <div class="icon-circle">📚</div>
+        <h3>Apostila Completa — Todos os Materiais</h3>
+        <div class="sub">PDF Único • 11 artefatos • Para impressão</div>
+      </div>
+      <div class="card-body">
+        <div class="desc">
+          <strong>Todos os materiais</strong> compilados em um <strong>único PDF</strong> 
+          de <strong>~5 MB</strong>, pronto para <strong>impressão completa</strong>! Inclui <strong>capa personalizada
+          para Estudos e Aprendizado 🎓</strong> e todos os artefatos na ordem de estudo recomendada: 
+          Index → Plano EAD Avançado → Guia Completo → Plano 20h → Resumo → Flashcards → 
+          Mapa Mental → Cronograma → Casos Clínicos → Guia de Vídeos → Simulado.
+        </div>
+        <div class="tags">
+          <span>📚 Completo</span>
+          <span>🖨️ Imprimível</span>
+          <span>📄 3,9 MB</span>
+          <span>🎯 Tudo em um</span>
+        </div>
+        <div class="stats">
+          <span>📚 11 artefatos</span>
+          <span>🖨️ Pronto para imprimir</span>
+          <span>📄 ~5 MB</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="Apostila_Completa_Introducao_Enfermagem.pdf" class="btn btn-primary">📥 Baixar Apostila Completa</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STUDY TIPS SECTION ===== -->
+  <div class="section-title">
+    💡 Dicas de Estudo
+    <span class="line"></span>
+  </div>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-icon">🎯</div>
+      <h4>Comece pelos Fundamentos</h4>
+      <p>Priorize a Teoria das Necessidades Básicas e a SAE — são a base de todo o 
+      conhecimento de enfermagem. Domine esses 2 primeiros e o resto fica mais fácil.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">⏱️</div>
+      <h4>Consistência > Intensidade</h4>
+      <p>2 horas por dia durante 10 dias é mais eficaz que 8 horas em um único dia. 
+      O cérebro aprende melhor com revisões espaçadas (spaced repetition).</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🔄</div>
+      <h4>Estudo Ativo</h4>
+      <p>Não apenas leia — explique em voz alta, responda flashcards, resolva exercícios, 
+      desenhe esquemas. O aprendizado ativo fixa 3x mais que a leitura passiva.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🧠</div>
+      <h4>Use Mnemônicos</h4>
+      <p>Aproveite os mnemônicos dos materiais: SAE (HDPIA), 7 Certos (PMDVHRO), 
+      ângulos das vias (15-45-90). Crie seus próprios para o que for mais difícil!</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">📅</div>
+      <h4>Escolha seu Plano de Estudos</h4>
+      <p>Comece pelo <strong>Plano EAD Avançado</strong> (25h, revisões de 30min) para aprendizado 
+      profundo, ou use o <strong>Plano 20h</strong> (revisões de 15min) para uma rota mais rápida. 
+      Ambos cobrem os mesmos 10 módulos — escolha seu ritmo!</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🔄</div>
+      <h4>Revise, Revise, Revise</h4>
+      <p>Use o Resumo de 5 minutos para revisões diárias e os Flashcards para 
+      fixação semanal. Revisar é o segredo para transferir o conhecimento 
+      da memória de curto para longo prazo.</p>
+    </div>
+  </div>
+
+  <!-- ===== STUDY PLAN TABLE ===== -->
+  <div class="section-title">
+    📅 Sugestão de Cronograma
+    <span class="line"></span>
+  </div>
+
+  <div style="background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 15px rgba(0,0,0,0.06);border:1px solid #e8ecf0;margin-bottom:30px;">
+    <table style="width:100%;border-collapse:collapse;font-size:0.85em;">
+      <tr style="background:#0a3d62;color:#fff;">
+        <th style="padding:10px 15px;text-align:left;">Dia</th>
+        <th style="padding:10px 15px;text-align:left;">Atividade</th>
+        <th style="padding:10px 15px;text-align:left;">Material</th>
+        <th style="padding:10px 15px;text-align:left;">Duração</th>
+      </tr>
+      <tr style="border-bottom:1px solid #e8ecf0;">
+        <td style="padding:10px 15px;"><strong>1</strong></td>
+        <td style="padding:10px 15px;">Módulos 1-2 do Guia Completo</td>
+        <td style="padding:10px 15px;">📖 Guia + 🃏 Flashcards 1-6</td>
+        <td style="padding:10px 15px;">2h</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e8ecf0;background:#f8fafc;">
+        <td style="padding:10px 15px;"><strong>2</strong></td>
+        <td style="padding:10px 15px;">Módulos 3-4 do Guia Completo</td>
+        <td style="padding:10px 15px;">📖 Guia + 🃏 Flashcards 7-16</td>
+        <td style="padding:10px 15px;">2h</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e8ecf0;">
+        <td style="padding:10px 15px;"><strong>3</strong></td>
+        <td style="padding:10px 15px;">Módulos 5-6 do Guia Completo</td>
+        <td style="padding:10px 15px;">📖 Guia + 🃏 Flashcards 17-26</td>
+        <td style="padding:10px 15px;">2h</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e8ecf0;background:#f8fafc;">
+        <td style="padding:10px 15px;"><strong>4</strong></td>
+        <td style="padding:10px 15px;">Módulos 7-8 do Guia Completo</td>
+        <td style="padding:10px 15px;">📖 Guia + 🃏 Flashcards 27-41</td>
+        <td style="padding:10px 15px;">2h</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e8ecf0;">
+        <td style="padding:10px 15px;"><strong>5</strong></td>
+        <td style="padding:10px 15px;">Módulos 9-10 + Glossário</td>
+        <td style="padding:10px 15px;">📖 Guia + 🃏 Flashcards 42-55</td>
+        <td style="padding:10px 15px;">2h</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e8ecf0;background:#f8fafc;">
+        <td style="padding:10px 15px;"><strong>6</strong></td>
+        <td style="padding:10px 15px;">Revisão: Resumo 5 min + Flashcards 56-60</td>
+        <td style="padding:10px 15px;">📋 Resumo + 🃏 Flashcards</td>
+        <td style="padding:10px 15px;">1h</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e8ecf0;">
+        <td style="padding:10px 15px;"><strong>6</strong></td>
+        <td style="padding:10px 15px;">Resolver Exercícios de Fixação</td>
+        <td style="padding:10px 15px;">📝 Guia (módulo final)</td>
+        <td style="padding:10px 15px;">1h</td>
+      </tr>
+      <tr style="background:#fff8e1;">
+        <td style="padding:10px 15px;"><strong>7</strong></td>
+        <td style="padding:10px 15px;"><strong>🎯 Revisão Geral + Simulado</strong></td>
+        <td style="padding:10px 15px;">📋 Resumo + 🃏 Todos flashcards</td>
+        <td style="padding:10px 15px;">2h</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ===== COMPARISON TABLE ===== -->
+  <div class="section-title">
+    📊 Comparação dos Artefatos
+    <span class="line"></span>
+  </div>
+
+  <div style="background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 15px rgba(0,0,0,0.06);border:1px solid #e8ecf0;margin-bottom:30px;">
+    <table style="width:100%;border-collapse:collapse;font-size:0.82em;">
+      <tr style="background:#0a3d62;color:#fff;">
+        <th style="padding:10px 14px;text-align:left;">Artefato</th>
+        <th style="padding:10px 14px;text-align:center;">🎯 Objetivo</th>
+        <th style="padding:10px 14px;text-align:center;">⏱ Tempo</th>
+        <th style="padding:10px 14px;text-align:center;">📄 Tam.</th>
+        <th style="padding:10px 14px;text-align:center;">🎨 Visual</th>
+        <th style="padding:10px 14px;text-align:center;">📝 Exercícios</th>
+      </tr>
+      <tr style="border-bottom:1px solid #e8ecf0;">
+        <td style="padding:8px 14px;font-weight:600;">📖 Guia Completo</td>
+        <td style="padding:8px 14px;text-align:center;">Aprender teoria</td>
+        <td style="padding:8px 14px;text-align:center;">10h</td>
+        <td style="padding:8px 14px;text-align:center;">689 KB</td>
+        <td style="padding:8px 14px;text-align:center;">⭐⭐⭐⭐⭐</td>
+        <td style="padding:8px 14px;text-align:center;">✅ 20</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e8ecf0;background:#f8fafc;">
+        <td style="padding:8px 14px;font-weight:600;">📘 Plano 20h</td>
+        <td style="padding:8px 14px;text-align:center;">Organizar estudos</td>
+        <td style="padding:8px 14px;text-align:center;">20h</td>
+        <td style="padding:8px 14px;text-align:center;">689 KB</td>
+        <td style="padding:8px 14px;text-align:center;">⭐⭐⭐⭐</td>
+        <td style="padding:8px 14px;text-align:center;">❌</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e8ecf0;">
+        <td style="padding:8px 14px;font-weight:600;">📋 Resumo 5min</td>
+        <td style="padding:8px 14px;text-align:center;">Revisar rápido</td>
+        <td style="padding:8px 14px;text-align:center;">5 min</td>
+        <td style="padding:8px 14px;text-align:center;">239 KB</td>
+        <td style="padding:8px 14px;text-align:center;">⭐⭐⭐⭐⭐</td>
+        <td style="padding:8px 14px;text-align:center;">❌</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e8ecf0;background:#f8fafc;">
+        <td style="padding:8px 14px;font-weight:600;">🃏 Flashcards</td>
+        <td style="padding:8px 14px;text-align:center;">Fixar conteúdo</td>
+        <td style="padding:8px 14px;text-align:center;">15-30 min/dia</td>
+        <td style="padding:8px 14px;text-align:center;">520 KB</td>
+        <td style="padding:8px 14px;text-align:center;">⭐⭐⭐⭐</td>
+        <td style="padding:8px 14px;text-align:center;">❌ (autoavaliação)</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e8ecf0;">
+        <td style="padding:8px 14px;font-weight:600;">🧠 Mapa Mental</td>
+        <td style="padding:8px 14px;text-align:center;">Visualizar módulos</td>
+        <td style="padding:8px 14px;text-align:center;">5 min</td>
+        <td style="padding:8px 14px;text-align:center;">233 KB</td>
+        <td style="padding:8px 14px;text-align:center;">⭐⭐⭐⭐⭐</td>
+        <td style="padding:8px 14px;text-align:center;">❌</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e8ecf0;background:#f8fafc;">
+        <td style="padding:8px 14px;font-weight:600;">📅 Cronograma</td>
+        <td style="padding:8px 14px;text-align:center;">Planejar estudos</td>
+        <td style="padding:8px 14px;text-align:center;">Mensal</td>
+        <td style="padding:8px 14px;text-align:center;">349 KB</td>
+        <td style="padding:8px 14px;text-align:center;">⭐⭐⭐⭐</td>
+        <td style="padding:8px 14px;text-align:center;">❌</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e8ecf0;">
+        <td style="padding:8px 14px;font-weight:600;">🏥 Casos Clínicos</td>
+        <td style="padding:8px 14px;text-align:center;">Praticar aplicação</td>
+        <td style="padding:8px 14px;text-align:center;">3-4h</td>
+        <td style="padding:8px 14px;text-align:center;">320 KB</td>
+        <td style="padding:8px 14px;text-align:center;">⭐⭐⭐⭐</td>
+        <td style="padding:8px 14px;text-align:center;">✅ 35</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e8ecf0;background:#f8fafc;">
+        <td style="padding:8px 14px;font-weight:600;">🎬 Guia de Vídeos</td>
+        <td style="padding:8px 14px;text-align:center;">Complementar com vídeos</td>
+        <td style="padding:8px 14px;text-align:center;">2-3h</td>
+        <td style="padding:8px 14px;text-align:center;">504 KB</td>
+        <td style="padding:8px 14px;text-align:center;">⭐⭐⭐⭐</td>
+        <td style="padding:8px 14px;text-align:center;">❌</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e8ecf0;background:#e8f5e9;">
+        <td style="padding:8px 14px;font-weight:600;color:#2d5016;">🎯 Plano EAD Avançado</td>
+        <td style="padding:8px 14px;text-align:center;">Aprender para EAD</td>
+        <td style="padding:8px 14px;text-align:center;">25h</td>
+        <td style="padding:8px 14px;text-align:center;">989 KB</td>
+        <td style="padding:8px 14px;text-align:center;">⭐⭐⭐⭐⭐</td>
+        <td style="padding:8px 14px;text-align:center;">❌ (nas sessões)</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e8ecf0;background:#f3e5f5;">
+        <td style="padding:8px 14px;font-weight:600;color:#4a148c;">📝 Simulado 40 Questões</td>
+        <td style="padding:8px 14px;text-align:center;">Autoavaliar conhecimento</td>
+        <td style="padding:8px 14px;text-align:center;">2h</td>
+        <td style="padding:8px 14px;text-align:center;">562 KB</td>
+        <td style="padding:8px 14px;text-align:center;">⭐⭐⭐⭐</td>
+        <td style="padding:8px 14px;text-align:center;">✅ 40</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e8ecf0;background:#e3f2fd;">
+        <td style="padding:8px 14px;font-weight:600;">🌐 Sistema Avaliação Web</td>
+        <td style="padding:8px 14px;text-align:center;">Avaliar online</td>
+        <td style="padding:8px 14px;text-align:center;">30 min</td>
+        <td style="padding:8px 14px;text-align:center;">Web App</td>
+        <td style="padding:8px 14px;text-align:center;">⭐⭐⭐⭐⭐</td>
+        <td style="padding:8px 14px;text-align:center;">✅ 1500 no banco</td>
+      </tr>
+      <tr style="background:#fff8e1;">
+        <td style="padding:8px 14px;font-weight:600;">📚 Apostila Completa</td>
+        <td style="padding:8px 14px;text-align:center;color:#e65100;"><strong>TUDO EM UM</strong></td>
+        <td style="padding:8px 14px;text-align:center;">Completo</td>
+        <td style="padding:8px 14px;text-align:center;">~5 MB</td>
+        <td style="padding:8px 14px;text-align:center;">⭐⭐⭐⭐⭐</td>
+        <td style="padding:8px 14px;text-align:center;">✅ 95 (20+35+40)</td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <p>📚 <strong>Central de Estudos — Introdução à Enfermagem (EN_430)</strong></p>
+  <p>🎓 Curso de Enfermagem • EAD / Subsequente • 2026</p>
+  <p>⚡ Materiais desenvolvidos com o Método 80/20 para máximo aprendizado em mínimo tempo</p>
+  <p>📚 Material organizado para <strong>Estudos e Aprendizado</strong></p>
+  <p style="margin-top:8px;font-size:0.78em;">
+    📂 Diretório: <code style="background:#f0f0f0;padding:2px 8px;border-radius:4px;">15072026/</code>
+  </p>
+</div>
+
+</body>
+</html>

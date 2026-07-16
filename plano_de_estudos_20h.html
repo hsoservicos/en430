@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano de Estudos - Introdução à Enfermagem (20h)</title>
+<style>
+  @page { margin: 1.5cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    color: #1a1a2e;
+    background: #f8f9fa;
+    line-height: 1.6;
+    padding: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .cover {
+    background: linear-gradient(135deg, #0a3d62 0%, #1e6f9e 50%, #0a3d62 100%);
+    color: #fff;
+    padding: 60px 50px;
+    border-radius: 16px;
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover h1 { font-size: 2.4em; margin-bottom: 10px; letter-spacing: -0.5px; }
+  .cover h2 { font-size: 1.2em; font-weight: 400; opacity: 0.9; margin-bottom: 8px; }
+  .cover .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 24px;
+    border-radius: 30px;
+    font-size: 0.9em;
+    margin-top: 15px;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  .cover .meta {
+    margin-top: 20px;
+    font-size: 0.85em;
+    opacity: 0.75;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  .intro-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-left: 5px solid #0a3d62;
+  }
+  .intro-card h3 { color: #0a3d62; margin-bottom: 12px; font-size: 1.1em; }
+  .intro-card p { color: #444; font-size: 0.95em; }
+  .principle-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 15px 0;
+  }
+  .principle-item {
+    background: #e8f0fe;
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #0a3d62;
+    text-align: center;
+    border: 1px solid #c5d9f0;
+  }
+  .session {
+    background: #fff;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    overflow: hidden;
+    border-top: 4px solid #1e6f9e;
+  }
+  .session-header {
+    background: linear-gradient(135deg, #f0f7ff, #e8f4fd);
+    padding: 18px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-bottom: 1px solid #e0e8f0;
+  }
+  .session-header h3 {
+    color: #0a3d62;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .session-header .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: #0a3d62;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 0.9em;
+    font-weight: 700;
+  }
+  .session-header .topico {
+    background: #0a3d62;
+    color: #fff;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+  }
+  .session-body { padding: 20px 25px; }
+  .session-body .time-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .session-body .time-label {
+    flex-shrink: 0;
+    width: 75px;
+    background: #e8f0fe;
+    color: #0a3d62;
+    font-size: 0.8em;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-align: center;
+  }
+  .session-body .time-content { font-size: 0.9em; color: #333; }
+  .session-body .time-content strong { color: #0a3d62; }
+  .session-body ul { list-style: none; padding: 0; }
+  .session-body ul li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+    font-size: 0.9em;
+    color: #444;
+  }
+  .session-body ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #1e6f9e;
+    font-weight: 700;
+  }
+  .recursos {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: #f8fff4;
+    border-radius: 8px;
+    border: 1px solid #d4edda;
+  }
+  .recursos .label {
+    font-size: 0.78em;
+    font-weight: 700;
+    color: #28a745;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .recursos p { font-size: 0.85em; color: #555; }
+  .revisao {
+    background: #fff8e1;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border: 1px solid #ffeeba;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .revisao .label {
+    font-size: 0.78em;
+    font-weight: 700;
+    color: #e67e22;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .revisao p { font-size: 0.85em; color: #7a6a3a; }
+  .footer-note {
+    margin-top: 30px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    text-align: center;
+    border: 1px solid #e0e0e0;
+  }
+  .footer-note p { font-size: 0.85em; color: #888; }
+  .nav-index {
+    background: linear-gradient(135deg, #0a3d62, #1e6f9e);
+    padding: 10px 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .nav-index a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.88em;
+    font-weight: 600;
+  }
+  .nav-index a:hover { text-decoration: underline; opacity: 0.85; }
+  @media print {
+    .nav-index { display: none; }
+    body { background: #fff; padding: 0; }
+    .cover { border-radius: 0; }
+    .session { break-inside: avoid; }
+  }
+  @media screen and (max-width: 700px) {
+    body { padding: 15px; }
+    .cover h1 { font-size: 1.6em; }
+    .cover { padding: 30px 20px; }
+    .cover .meta { flex-direction: column; gap: 8px; }
+    .session-body { padding: 15px; }
+    .time-row { flex-direction: column; }
+    .time-label { width: 100%; text-align: left; }
+    .principle-box { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-index">
+  <a href="index_estudos.html">← 📋 Voltar à Central de Estudos</a>
+</div>
+
+<div class="cover">
+  <h1>📘 Plano de Estudos — 20 Horas</h1>
+  <h2>Introdução à Enfermagem</h2>
+  <div class="badge">⚡ Princípio 80/20 — Foco no essencial</div>
+  <div class="meta">
+    <span>📚 10 sessões × 2 horas</span>
+    <span>🎯 Curso: Enfermagem (EAD/Subsequente)</span>
+    <span>📋 Componente: EN_430 — CH: 120h</span>
+  </div>
+</div>
+
+<div class="intro-card">
+  <h3>🎯 Como usar este plano</h3>
+  <p>
+    Este plano foi elaborado seguindo o <strong>Princípio de Pareto (80/20)</strong>: focamos nos <strong>20% dos conceitos</strong> que geram <strong>80% dos resultados</strong> na disciplina de Introdução à Enfermagem. 
+    Cada sessão de 2 horas inclui teoria ativa, prática com recursos recomendados e uma <strong>revisão de 15 minutos ao final</strong>. 
+    O objetivo é que você aprenda o essencial de forma rápida, estruturada e aplicável.
+  </p>
+  <div style="margin-top:15px;">
+    <p style="font-size:0.9em;color:#555;margin-bottom:8px;"><strong>🔑 Os 20% essenciais que geram 80% dos resultados:</strong></p>
+    <div class="principle-box">
+      <div class="principle-item">① Teoria das Necessidades Básicas</div>
+      <div class="principle-item">② SAE + Anotação de Enfermagem</div>
+      <div class="principle-item">③ Administração de Medicamentos</div>
+      <div class="principle-item">④ Assepsia, Higiene e Segurança</div>
+      <div class="principle-item">⑤ Curativos e Feridas</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SESSÃO 1 ===== -->
+<div class="session">
+  <div class="session-header">
+    <h3><span class="num">1</span> Teoria das Necessidades Básicas — Fundamentos</h3>
+    <span class="topico">🧠 80/20</span>
+  </div>
+  <div class="session-body">
+    <div class="time-row">
+      <span class="time-label">0h00–0h40</span>
+      <div class="time-content"><strong>Teoria:</strong> Estude a Teoria das Necessidades Humanas Básicas de Wanda Horta. Foco nos níveis: psicobiológicas, psicossociais e psicoespirituais. Entenda a hierarquia e a relação com Maslow.</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">0h40–1h15</span>
+      <div class="time-content"><strong>Prática:</strong> Faça um mapa mental relacionando cada necessidade básica com exemplos práticos de cuidados de enfermagem. Associe cada nível a diagnósticos de enfermagem comuns.</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">1h15–1h45</span>
+      <div class="time-content"><strong>Exercício:</strong> Resolva 5 casos clínicos simples identificando as necessidades básicas afetadas em cada paciente e propondo intervenções.</div>
+    </div>
+    <div class="revisao">
+      <span class="label">⏱ Revisão 15min</span>
+      <p>Explique com suas palavras os 3 níveis da Teoria das Necessidades Básicas e dê 2 exemplos de cada. Revise o mapa mental criado.</p>
+    </div>
+    <div class="recursos">
+      <div class="label">📌 Recursos</div>
+      <p>🔗 <strong>Vídeo:</strong> "Teoria das Necessidades Humanas Básicas - Wanda Horta" no YouTube • <strong>Leitura:</strong> Cap. 1 do livro "Fundamentos de Enfermagem" (Potter & Perry) ou material da disciplina • <strong>App:</strong> Anki para flashcards</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SESSÃO 2 ===== -->
+<div class="session">
+  <div class="session-header">
+    <h3><span class="num">2</span> SAE — Sistematização da Assistência de Enfermagem</h3>
+    <span class="topico">🧠 80/20</span>
+  </div>
+  <div class="session-body">
+    <div class="time-row">
+      <span class="time-label">0h00–0h40</span>
+      <div class="time-content"><strong>Teoria:</strong> Estude as 5 etapas da SAE: Histórico de Enfermagem → Diagnóstico de Enfermagem → Planejamento → Implementação → Avaliação. Foco na Resolução COFEN 358/2009.</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">0h40–1h15</span>
+      <div class="time-content"><strong>Prática:</strong> Aplique as 5 etapas a um caso clínico hipotético. Use a taxonomia NANDA-I para diagnósticos, NIC para intervenções e NOC para resultados.</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">1h15–1h45</span>
+      <div class="time-content"><strong>Exercício:</strong> Crie um fluxograma da SAE em uma folha. Treine nomear cada etapa em ordem crescente com exemplos.</div>
+    </div>
+    <div class="revisao">
+      <span class="label">⏱ Revisão 15min</span>
+      <p>Recite as 5 etapas da SAE em ordem. Descreva brevemente o que acontece em cada etapa em um caso de paciente pós-operatório.</p>
+    </div>
+    <div class="recursos">
+      <div class="label">📌 Recursos</div>
+      <p>🔗 <strong>Vídeo:</strong> "SAE - Sistematização da Assistência de Enfermagem" no YouTube • <strong>Leitura:</strong> Resolução COFEN 358/2009 • <strong>App:</strong> NANDA-I (diagnósticos) • <strong>PDF:</strong> Roteiro SAE simplificado</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SESSÃO 3 ===== -->
+<div class="session">
+  <div class="session-header">
+    <h3><span class="num">3</span> Anotação de Enfermagem + Terminologias Técnicas</h3>
+    <span class="topico">🧠 80/20</span>
+  </div>
+  <div class="session-body">
+    <div class="time-row">
+      <span class="time-label">0h00–0h40</span>
+      <div class="time-content"><strong>Teoria:</strong> Estude os princípios da anotação de enfermagem: objetividade, clareza, cronologia, sigilo, letra legível. Aprenda as terminologias técnicas mais usadas (afebril, normocárdico, eupnéico, etc.).</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">0h40–1h15</span>
+      <div class="time-content"><strong>Prática:</strong> Analise 3 exemplos de anotações de enfermagem reais (corrija erros comuns). Reescreva anotações confusas em versões claras e objetivas.</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">1h15–1h45</span>
+      <div class="time-content"><strong>Exercício:</strong> Escreva 5 anotações de enfermagem para situações clínicas distintas (admissão, pós-procedimento, intercorrência, evolução diária, alta).</div>
+    </div>
+    <div class="revisao">
+      <span class="label">⏱ Revisão 15min</span>
+      <p>Liste 10 terminologias técnicas com seus significados. Revise a estrutura correta de uma anotação de enfermagem (SOAP ou outra).</p>
+    </div>
+    <div class="recursos">
+      <div class="label">📌 Recursos</div>
+      <p>🔗 <strong>Vídeo:</strong> "Como fazer anotação de enfermagem" no YouTube • <strong>Material:</strong> Glossário de terminologias técnicas em enfermagem • <strong>Exemplos:</strong> Prontuários modelo do COFEN</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SESSÃO 4 ===== -->
+<div class="session">
+  <div class="session-header">
+    <h3><span class="num">4</span> Administração de Medicamentos — Vias Enterais</h3>
+    <span class="topico">🧠 80/20</span>
+  </div>
+  <div class="session-body">
+    <div class="time-row">
+      <span class="time-label">0h00–0h40</span>
+      <div class="time-content"><strong>Teoria:</strong> Estude os 7 Certos da administração de medicamentos (paciente certo, medicamento certo, dose certa, via certa, horário certo, registro certo, orientação certa). Vias enterais: oral (VO), sublingual (SL), sonda nasogástrica/enteral.</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">0h40–1h15</span>
+      <div class="time-content"><strong>Prática:</strong> Simule o preparo e administração de medicamentos por sonda (diluição, trituração, compatibilidade). Calcule doses e diluições com exemplos.</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">1h15–1h45</span>
+      <div class="time-content"><strong>Exercício:</strong> Resolva 10 questões de cálculo de medicamentos (regra de três, gotejamento, dosagem pediátrica). Crie um cartão-resumo dos 7 Certos.</div>
+    </div>
+    <div class="revisao">
+      <span class="label">⏱ Revisão 15min</span>
+      <p>Recite os 7 Certos da medicação. Explique as diferenças entre as vias enterais e quando usar cada uma. Revise os cálculos.</p>
+    </div>
+    <div class="recursos">
+      <div class="label">📌 Recursos</div>
+      <p>🔗 <strong>Vídeo:</strong> "Cálculo de medicamentos" e "Vias de administração" no YouTube • <strong>App:</strong> MedCalc • <strong>Material:</strong> Tabela de compatibilidade de medicamentos por sonda</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SESSÃO 5 ===== -->
+<div class="session">
+  <div class="session-header">
+    <h3><span class="num">5</span> Administração de Medicamentos — Vias Parenterais</h3>
+    <span class="topico">🧠 80/20</span>
+  </div>
+  <div class="session-body">
+    <div class="time-row">
+      <span class="time-label">0h00–0h40</span>
+      <div class="time-content"><strong>Teoria:</strong> Estude as vias parenterais: intradérmica (ID), subcutânea (SC), intramuscular (IM), endovenosa (EV). Locais de aplicação, ângulos, volumes máximos, agulhas e seringas adequadas.</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">0h40–1h15</span>
+      <div class="time-content"><strong>Prática:</strong> Crie uma tabela comparativa com todas as vias parenterais (ângulo, local, volume, agulha, exemplos de medicamentos). Desenhe os locais de aplicação no corpo humano.</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">1h15–1h45</span>
+      <div class="time-content"><strong>Exercício:</strong> Para cada via, resolva: qual agulha usar? Qual ângulo? Qual volume máximo? Simule o preparo de uma medicação IM e EV.</div>
+    </div>
+    <div class="revisao">
+      <span class="label">⏱ Revisão 15min</span>
+      <p>Recite as 4 vias parenterais com ângulo, local e volume máximo de cada uma. Dê um exemplo de medicação para cada via.</p>
+    </div>
+    <div class="recursos">
+      <div class="label">📌 Recursos</div>
+      <p>🔗 <strong>Vídeo:</strong> "Vias de administração parenteral" no YouTube • <strong>Material:</strong> Tabela de agulhas × vias • <strong>Simulador:</strong> Aplicativos de simulação de enfermagem (e.g., Nursing Skills Lab)</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SESSÃO 6 ===== -->
+<div class="session">
+  <div class="session-header">
+    <h3><span class="num">6</span> Higiene, Conforto, Segurança + Assepsia e Antissepsia</h3>
+    <span class="topico">🧠 80/20</span>
+  </div>
+  <div class="session-body">
+    <div class="time-row">
+      <span class="time-label">0h00–0h40</span>
+      <div class="time-content"><strong>Teoria:</strong> Estude os conceitos de assepsia (ausência de microrganismos) e antissepsia (redução de microrganismos). Técnica de lavagem das mãos, calçar luvas estéreis, parametração cirúrgica. Higiene do paciente: banho no leito, higiene oral, conforto e mudança de decúbito.</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">0h40–1h15</span>
+      <div class="time-content"><strong>Prática:</strong> Descreva passo a passo a técnica de lavagem das mãos (5 momentos da OMS). Simule a sequência para calçar luvas estéreis e a parametração completa.</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">1h15–1h45</span>
+      <div class="time-content"><strong>Exercício:</strong> Elabore um checklist de 10 itens para garantir a segurança do paciente durante o banho no leito e mudança de decúbito. Identifique 5 riscos e suas prevenções.</div>
+    </div>
+    <div class="revisao">
+      <span class="label">⏱ Revisão 15min</span>
+      <p>Explique a diferença entre assepsia e antissepsia. Recite os 5 momentos da higienização das mãos (OMS). Liste os passos para calçar luvas estéreis.</p>
+    </div>
+    <div class="recursos">
+      <div class="label">📌 Recursos</div>
+      <p>🔗 <strong>Vídeo:</strong> "Técnica de lavagem das mãos - OMS" e "Calçar luvas estéreis" no YouTube • <strong>Material:</strong> Protocolo de segurança do paciente (ANVISA) • <strong>PDF:</strong> Checklist de banho no leito</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SESSÃO 7 ===== -->
+<div class="session">
+  <div class="session-header">
+    <h3><span class="num">7</span> Curativos, Feridas e Coberturas</h3>
+    <span class="topico">🧠 80/20</span>
+  </div>
+  <div class="session-body">
+    <div class="time-row">
+      <span class="time-label">0h00–0h40</span>
+      <div class="time-content"><strong>Teoria:</strong> Classificação de feridas (abertas/fechadas, agudas/crônicas, limpas/contaminadas/infectadas). Tipos de curativos: convencional, compressivo, oclusivo. Coberturas especiais: hidrocoloide, alginato, carvão ativado, espuma, filme transparente.</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">0h40–1h15</span>
+      <div class="time-content"><strong>Prática:</strong> Crie um quadro-resumo com tipo de ferida → cobertura indicada → tempo de troca → indicações. Analise 3 casos de feridas e escolha a cobertura adequada.</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">1h15–1h45</span>
+      <div class="time-content"><strong>Exercício:</strong> Descreva o passo a passo do curativo de uma ferida cirúrgica limpa e de uma ferida contaminada. Quais materiais usar? Qual técnica (estéril/limpa)?</div>
+    </div>
+    <div class="revisao">
+      <span class="label">⏱ Revisão 15min</span>
+      <p>Classifique 5 tipos de cobertura e indique para qual tipo de ferida cada uma é mais indicada. Explique a diferença entre técnica estéril e técnica limpa.</p>
+    </div>
+    <div class="recursos">
+      <div class="label">📌 Recursos</div>
+      <p>🔗 <strong>Vídeo:</strong> "Tipos de curativos e coberturas" no YouTube • <strong>Material:</strong> Guia de coberturas do Ministério da Saúde • <strong>App:</strong> Wound Care Advisor</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SESSÃO 8 ===== -->
+<div class="session">
+  <div class="session-header">
+    <h3><span class="num">8</span> Oxigenoterapia + Cateterismos (Vesical, Gástrico, Entérico, Retal)</h3>
+    <span class="topico">⚕ Essencial</span>
+  </div>
+  <div class="session-body">
+    <div class="time-row">
+      <span class="time-label">0h00–0h40</span>
+      <div class="time-content"><strong>Teoria:</strong> Oxigenoterapia: indicações, dispositivos (cateter nasal, máscara de Venturi, máscara com reservatório), fluxo e FiO₂. Cateterismos: vesical de alívio/demora, sonda nasogástrica (SNG), sonda enteral (SNE), sonda retal — indicações e cuidados.</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">0h40–1h15</span>
+      <div class="time-content"><strong>Prática:</strong> Crie uma tabela comparativa dos dispositivos de oxigenoterapia com fluxo e FiO₂. Descreva as diferenças entre: SNG (descompressão/lavagem) × SNE (dieta) × sonda vesical (diurese) × sonda retal (fecaloma).</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">1h15–1h45</span>
+      <div class="time-content"><strong>Exercício:</strong> Para cada tipo de cateterismo, liste: indicação, material necessário, cuidados de enfermagem pré, durante e pós-procedimento. Destaque 3 complicações possíveis de cada um.</div>
+    </div>
+    <div class="revisao">
+      <span class="label">⏱ Revisão 15min</span>
+      <p>Compare os 4 tipos de cateterismos e a oxigenoterapia. Recite um cuidado essencial para cada procedimento e uma complicação possível.</p>
+    </div>
+    <div class="recursos">
+      <div class="label">📌 Recursos</div>
+      <p>🔗 <strong>Vídeos:</strong> "Oxigenoterapia - Dispositivos", "Sondagem vesical feminina e masculina", "SNG e SNE" no YouTube • <strong>Material:</strong> Protocolos de cateterismo do Ministério da Saúde</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SESSÃO 9 ===== -->
+<div class="session">
+  <div class="session-header">
+    <h3><span class="num">9</span> Exames, Coletas, Medidas Antropométricas, Crioterapia e Termoterapia</h3>
+    <span class="topico">⚕ Essencial</span>
+  </div>
+  <div class="session-body">
+    <div class="time-row">
+      <span class="time-label">0h00–0h40</span>
+      <div class="time-content"><strong>Teoria:</strong> Técnicas de preparo e coleta de exames laboratoriais (hemograma, urina, fezes, escarro, culturas). Medidas antropométricas: peso, altura, IMC, circunferências, pregas cutâneas. Crioterapia (frio) e termoterapia (calor): indicações, contraindicações e técnicas.</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">0h40–1h15</span>
+      <div class="time-content"><strong>Prática:</strong> Faça uma lista de verificação para cada tipo de coleta (jejum, frasco, prazo de entrega). Calcule o IMC de 5 exemplos e classifique. Crie um quadro comparativo crioterapia × termoterapia.</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">1h15–1h45</span>
+      <div class="time-content"><strong>Exercício:</strong> Simule o preparo de um paciente para coleta de sangue venoso e para coleta de urina 24h. Para crioterapia e termoterapia, identifique 3 indicações e 3 contraindicações de cada.</div>
+    </div>
+    <div class="revisao">
+      <span class="label">⏱ Revisão 15min</span>
+      <p>Explique quando usar crioterapia vs termoterapia. Recite os passos para coleta de hemograma e urina. Calcule e classifique o IMC de 2 exemplos.</p>
+    </div>
+    <div class="recursos">
+      <div class="label">📌 Recursos</div>
+      <p>🔗 <strong>Vídeos:</strong> "Técnica de punção venosa" e "Medidas antropométricas" no YouTube • <strong>Material:</strong> Tabela de IMC (OMS) • <strong>PDF:</strong> Guia de coleta de exames laboratoriais</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SESSÃO 10 ===== -->
+<div class="session">
+  <div class="session-header">
+    <h3><span class="num">10</span> Admissão/Transferência/ALta, Contenção, Processo Pós-Morte + Revisão Final</h3>
+    <span class="topico">🎯 Fechamento</span>
+  </div>
+  <div class="session-body">
+    <div class="time-row">
+      <span class="time-label">0h00–0h40</span>
+      <div class="time-content"><strong>Teoria:</strong> Admissão, transferência e alta do paciente (checklists e documentação). Tipos de contenção (mecânica, química, ambiental). Processo pós-morte: declaração de óbito, preparo do corpo, aspectos legais e éticos. Arrumação e higiene da cama hospitalar (cama ocupada/desocupada).</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">0h40–1h15</span>
+      <div class="time-content"><strong>Prática:</strong> Elabore um checklist de admissão e um de alta hospitalar. Descreva o passo a passo do preparo do corpo pós-morte. Demonstre a técnica de contenção mecânica (indicações, cuidados, tempo máximo).</div>
+    </div>
+    <div class="time-row">
+      <span class="time-label">1h15–1h45</span>
+      <div class="time-content"><strong>Revisão Geral:</strong> Retome os mapas mentais, tabelas e resumos criados nas sessões anteriores. Responda a 20 questões de múltipla escolha cobrindo todos os tópicos. Identifique pontos fracos e revise rapidamente.</div>
+    </div>
+    <div class="revisao">
+      <span class="label">⏱ Revisão 15min</span>
+      <p>⏱ Revisão Final de 15 min: Revise seus resumos de uma página. Recite os 7 Certos, as 5 etapas da SAE, a classificação de feridas e as 4 vias parenterais.</p>
+    </div>
+    <div class="recursos">
+      <div class="label">📌 Recursos</div>
+      <p>🔗 <strong>Vídeos:</strong> "Processo pós-morte - Cuidados de enfermagem", "Tipos de contenção", "Arrumação da cama hospitalar" no YouTube • <strong>Material:</strong> Protocolos institucionais • <strong>Questões:</strong> Banco de questões de introdução à enfermagem</p>
+    </div>
+  </div>
+</div>
+
+<div class="footer-note">
+  <p><strong>📌 Dica de ouro:</strong> Revise este plano no início de cada sessão. Os melhores recursos estão no YouTube (canais: Enfermagem Esquematizada, Enfermagem com Amor, Prof. Eduarda Lopes) e nos materiais da sua disciplina EAD.</p>
+  <p style="margin-top:5px;">⚡ Lembre-se: consistência > intensidade. 2 horas por dia > 8 horas em um único dia.</p>
+</div>
+
+</body>
+</html>

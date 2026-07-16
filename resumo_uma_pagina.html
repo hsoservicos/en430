@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo - Introdução à Enfermagem (5 min)</title>
+<style>
+  @page { margin: 0.8cm; size: A4; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    color: #1a1a2e;
+    background: #fff;
+    padding: 20px;
+    max-width: 210mm;
+    margin: 0 auto;
+  }
+  .header {
+    background: linear-gradient(135deg, #0a3d62, #1e6f9e);
+    color: #fff;
+    padding: 16px 24px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .header h1 { font-size: 1.3em; letter-spacing: -0.3px; }
+  .header .sub { font-size: 0.7em; opacity: 0.85; }
+  .header .badge {
+    background: rgba(255,255,255,0.2);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  /* Grid layout */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .full-width { grid-column: 1 / -1; }
+
+  .card {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 12px 14px;
+    border: 1px solid #e2e8f0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .card-title {
+    font-size: 0.8em;
+    font-weight: 700;
+    color: #0a3d62;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 2px solid #d4e4f0;
+    padding-bottom: 5px;
+  }
+  .card-title .icon { font-size: 1em; }
+  .card-content { font-size: 0.72em; color: #333; line-height: 1.55; }
+  .card-content ul { list-style: none; padding: 0; }
+  .card-content ul li {
+    padding: 1.5px 0 1.5px 12px;
+    position: relative;
+  }
+  .card-content ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #1e6f9e;
+    font-weight: 700;
+  }
+
+  .highlight {
+    background: #fff8e1;
+    border-left: 3px solid #f39c12;
+    padding: 6px 10px;
+    margin: 6px 0;
+    border-radius: 4px;
+    font-size: 0.7em;
+  }
+  .highlight strong { color: #e67e22; }
+
+  .table-mini {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.7em;
+    margin: 4px 0;
+  }
+  .table-mini th {
+    background: #0a3d62;
+    color: #fff;
+    padding: 3px 6px;
+    text-align: left;
+    font-weight: 600;
+  }
+  .table-mini td {
+    padding: 2px 6px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .table-mini tr:nth-child(even) td { background: #f0f5fa; }
+
+  .dica {
+    background: #e8f5e9;
+    border-radius: 8px;
+    padding: 8px 14px;
+    margin-top: 6px;
+    border: 1px solid #c8e6c9;
+    font-size: 0.7em;
+    color: #2e7d32;
+  }
+
+  .footer {
+    text-align: center;
+    font-size: 0.65em;
+    color: #999;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #e2e8f0;
+  }
+  .nav-index {
+    background: linear-gradient(135deg, #0a3d62, #1e6f9e);
+    padding: 8px 16px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .nav-index a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.8em;
+    font-weight: 600;
+  }
+  .nav-index a:hover { text-decoration: underline; opacity: 0.85; }
+  @media print {
+    .nav-index { display: none; }
+    body { padding: 0; }
+    .card { break-inside: avoid; }
+  }
+  @media screen and (max-width: 700px) {
+    body { padding: 10px; }
+    .header h1 { font-size: 1em; }
+    .header { flex-direction: column; text-align: center; padding: 12px 16px; }
+    .grid { grid-template-columns: 1fr; }
+    .card { padding: 10px 12px; }
+    .card-content { font-size: 0.7em; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-index">
+  <a href="index_estudos.html">← 📋 Voltar à Central de Estudos</a>
+</div>
+
+<div class="header">
+  <div>
+    <h1>📋 Introdução à Enfermagem — Resumo em 5 Minutos</h1>
+    <div class="sub">Componente: EN_430 — Fundamentos de Enfermagem</div>
+  </div>
+  <span class="badge">⚡ 80/20</span>
+</div>
+
+<div class="grid">
+
+  <!-- Card 1: Necessidades Básicas -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🧩</span> Teoria das Necessidades Básicas (Wanda Horta)</div>
+    <div class="card-content">
+      <ul>
+        <li><strong>Psicobiológicas:</strong> oxigenação, hidratação, nutrição, eliminação, sono, repouso, locomoção, cuidado corporal, integridade cutânea</li>
+        <li><strong>Psicossociais:</strong> comunicação, interação social, lazer, segurança emocional, autoestima</li>
+        <li><strong>Psicoespirituais:</strong> crenças, valores, religiosidade, transcendência</li>
+      </ul>
+      <div class="highlight">💡 <strong>Pensamento-chave:</strong> O cuidado de enfermagem visa atender necessidades afetadas em cada nível, de forma integral.</div>
+    </div>
+  </div>
+
+  <!-- Card 2: SAE -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🔄</span> SAE — 5 Etapas</div>
+    <div class="card-content">
+      <ol style="padding-left:16px;margin:0;">
+        <li><strong>Histórico de Enfermagem:</strong> Coleta de dados (entrevista + exame físico)</li>
+        <li><strong>Diagnóstico de Enfermagem:</strong> Julgamento clínico (taxonomia NANDA-I)</li>
+        <li><strong>Planejamento:</strong> Definição de resultados (NOC) e intervenções (NIC)</li>
+        <li><strong>Implementação:</strong> Execução das intervenções planejadas</li>
+        <li><strong>Avaliação:</strong> Verificação dos resultados alcançados</li>
+      </ol>
+      <div class="highlight">⚖️ <strong>Base legal:</strong> Resolução COFEN 358/2009 — SAE é privativa do enfermeiro.</div>
+    </div>
+  </div>
+
+  <!-- Card 3: 7 Certos -->
+  <div class="card">
+    <div class="card-title"><span class="icon">💊</span> Administração de Medicamentos — 7 Certos</div>
+    <div class="card-content">
+      <ul>
+        <li>① <strong>Paciente certo</strong> — confira nome + identificação</li>
+        <li>② <strong>Medicamento certo</strong> — compare com a prescrição</li>
+        <li>③ <strong>Dose certa</strong> — calcule e confira</li>
+        <li>④ <strong>Via certa</strong> — enteral (VO, SL, sonda) × parenteral (ID, SC, IM, EV)</li>
+        <li>⑤ <strong>Horário certo</strong> — respeite o intervalo prescrito</li>
+        <li>⑥ <strong>Registro certo</strong> — anote imediatamente após administrar</li>
+        <li>⑦ <strong>Orientação certa</strong> — informe o paciente sobre a medicação</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Card 4: Vias Parenterais -->
+  <div class="card">
+    <div class="card-title"><span class="icon">💉</span> Vias Parenterais — Comparativo</div>
+    <div class="card-content">
+      <table class="table-mini">
+        <tr><th>Via</th><th>Ângulo</th><th>Vol. máx.</th><th>Exemplo</th></tr>
+        <tr><td><strong>ID</strong> (intradérmica)</td><td>10–15°</td><td>0,5 mL</td><td>PPD, BCG</td></tr>
+        <tr><td><strong>SC</strong> (subcutânea)</td><td>45–90°</td><td>1–2 mL</td><td>Insulina, heparina</td></tr>
+        <tr><td><strong>IM</strong> (intramuscular)</td><td>90°</td><td>3–5 mL</td><td>Benzetacil, dipirona</td></tr>
+        <tr><td><strong>EV</strong> (endovenosa)</td><td>25–45°</td><td>Variável</td><td>Soro, antibióticos</td></tr>
+      </table>
+      <div style="margin-top:4px;font-size:0.7em;color:#666;">Locais IM: deltoide (2 mL), vasto lateral (5 mL), glúteo (4 mL).</div>
+    </div>
+  </div>
+
+  <!-- Card 5: Assepsia e Higiene (LARGER) -->
+  <div class="card full-width">
+    <div class="card-title"><span class="icon">🧼</span> Assepsia, Antissepsia e Higiene do Paciente</div>
+    <div class="card-content">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:140px;">
+          <strong>🧴 Conceitos:</strong>
+          <ul>
+            <li><strong>Assepsia:</strong> Ausência de microrganismos (campo estéril)</li>
+            <li><strong>Antissepsia:</strong> Redução de microrganismos na pele (álcool 70%, PVPI, clorexidina)</li>
+            <li><strong>Degermação:</strong> Lavagem das mãos com água e sabão</li>
+          </ul>
+        </div>
+        <div style="flex:1;min-width:140px;">
+          <strong>🖐️ 5 Momentos da Higienização (OMS):</strong>
+          <ol style="padding-left:16px;margin:2px 0;">
+            <li>Antes de tocar o paciente</li>
+            <li>Antes de procedimento limpo/asséptico</li>
+            <li>Após risco de exposição a fluidos</li>
+            <li>Após tocar o paciente</li>
+            <li>Após tocar superfícies próximas</li>
+          </ol>
+        </div>
+        <div style="flex:1;min-width:140px;">
+          <strong>🛌 Cuidados de higiene:</strong>
+          <ul>
+            <li>Banho no leito (passos: material → segurança → privacidade → técnica)</li>
+            <li>Mudança de decúbito (a cada 2h — prevenir lesão por pressão)</li>
+            <li>Cama hospitalar: ocupada × desocupada, posições (Fowler, Sims, Trendelenburg)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 6: Curativos e Feridas -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🩹</span> Curativos e Feridas</div>
+    <div class="card-content">
+      <strong>Classificação de feridas:</strong>
+      <ul>
+        <li><strong>Quanto à causa:</strong> cirúrgica, traumática, ulcerativa</li>
+        <li><strong>Quanto à contaminação:</strong> limpa, limpa-contaminada, contaminada, infectada</li>
+        <li><strong>Quanto ao tempo:</strong> aguda (até 6 semanas) × crônica (> 6 sem)</li>
+      </ul>
+      <strong>Coberturas comuns:</strong>
+      <ul>
+        <li><strong>Hidrocoloide:</strong> feridas secas a pouco exsudativas</li>
+        <li><strong>Alginato:</strong> feridas muito exsudativas</li>
+        <li><strong>Carvão ativado:</strong> feridas infectadas com odor</li>
+        <li><strong>Espuma (poliuretano):</strong> feridas moderadamente exsudativas</li>
+        <li><strong>Filme transparente:</strong> proteção de pele íntegra, cobertura de cateteres</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Card 7: Oxigenoterapia e Cateterismos -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🫁</span> Oxigenoterapia &amp; Cateterismos</div>
+    <div class="card-content">
+      <strong>Oxigenoterapia:</strong>
+      <ul>
+        <li><strong>Cateter nasal:</strong> 1–5 L/min (FiO₂ 24–40%)</li>
+        <li><strong>Máscara simples:</strong> 5–10 L/min (FiO₂ 35–50%)</li>
+        <li><strong>Máscara Venturi:</strong> fluxo exato, FiO₂ controlada (24–50%)</li>
+        <li><strong>Máscara c/ reservatório:</strong> 10–15 L/min (FiO₂ 60–95%)</li>
+      </ul>
+      <strong>Cateterismos:</strong>
+      <ul>
+        <li><strong>SNG:</strong> descompressão gástrica, lavagem, coleta</li>
+        <li><strong>SNE:</strong> administração de dieta/medicação</li>
+        <li><strong>Sonda vesical (de alívio/demora):</strong> esvaziamento vesical, controle de diurese</li>
+        <li><strong>Sonda retal:</strong> eliminação de gases, fecaloma</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Card 8: Admissão/Alta/Óbito/Contenção -->
+  <div class="card full-width">
+    <div class="card-title"><span class="icon">📋</span> Admissão, Alta, Processo Pós-Morte, Contenção</div>
+    <div class="card-content">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:120px;">
+          <strong>📥 Admissão:</strong>
+          <ul>
+            <li>Identificação + pulseira</li>
+            <li>Sinais vitais</li>
+            <li>Histórico e exame físico</li>
+            <li>Vaga, leito, pertences</li>
+          </ul>
+        </div>
+        <div style="flex:1;min-width:120px;">
+          <strong>📤 Transferência/Alta:</strong>
+          <ul>
+            <li>Resumo de alta (evolução)</li>
+            <li>Orientações ao paciente</li>
+            <li>Receitas e atestados</li>
+            <li>Desocupação do leito</li>
+          </ul>
+        </div>
+        <div style="flex:1;min-width:120px;">
+          <strong>⚰️ Pós-morte:</strong>
+          <ul>
+            <li>Declaração de óbito (médico)</li>
+            <li>Preparo do corpo: higiene, identificação, posição (decúbito dorsal)</li>
+            <li>Aspectos legais e éticos</li>
+            <li>Respeito à família e crenças</li>
+          </ul>
+        </div>
+        <div style="flex:1;min-width:120px;">
+          <strong>🔒 Contenção:</strong>
+          <ul>
+            <li><strong>Mecânica:</strong> faixas (punho, tórax, joelhos)</li>
+            <li><strong>Química:</strong> sedação medicamentosa</li>
+            <li><strong>Ambiental:</strong> grades, cama baixa</li>
+            <li>Cuidados: avaliar q 1h, liberar q 2h</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 9: Terminologias -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📖</span> Terminologias Técnicas Essenciais</div>
+    <div class="card-content">
+      <table class="table-mini">
+        <tr><th>Termo</th><th>Significado</th></tr>
+        <tr><td>Afebril</td><td>Sem febre</td></tr>
+        <tr><td>Normocárdico</td><td>FC normal (60-100 bpm)</td></tr>
+        <tr><td>Eupneico</td><td>Respiração normal (16-20 irpm)</td></tr>
+        <tr><td>Normotenso</td><td>PA normal (120/80 mmHg)</td></tr>
+        <tr><td>Anictérico</td><td>Sem icterícia</td></tr>
+        <tr><td>Normocorado</td><td>Coloração normal da pele/mucosas</td></tr>
+        <tr><td>Hidratado/Desidratado</td><td>Turgor e elasticidade da pele</td></tr>
+        <tr><td>Lúcido e Orientado</td><td>Consciente, responde a comandos</td></tr>
+        <tr><td>Diurese presente/ausente</td><td>Volume urinário normal/alterado</td></tr>
+        <tr><td>Eliminações fisiológicas</td><td>Urina e fezes dentro da normalidade</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Card 10: Exames e Medidas -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📏</span> Exames, Coletas, Crioterapia &amp; Termoterapia</div>
+    <div class="card-content">
+      <strong>Coletas comuns:</strong>
+      <ul>
+        <li><strong>Sangue:</strong> punção venosa — torniquete, assepsia, agulha, frasco</li>
+        <li><strong>Urina:</strong> jato médio, 24h, urocultura (jato médio)</li>
+        <li><strong>Fezes:</strong> parasitológico, sangue oculto</li>
+        <li><strong>Escarro:</strong> matinal, jejum, lavagem brônquica</li>
+      </ul>
+      <strong>Medidas antropométricas:</strong>
+      <ul>
+        <li>Peso, altura, IMC (kg/m²), circunferência abdominal</li>
+        <li>Classificação IMC: &lt;18,5 magreza | 18,5-24,9 normal | 25-29,9 sobrepeso | ≥30 obesidade</li>
+      </ul>
+      <strong>Crioterapia ❄️:</strong> bolsa de gelo 20min — edema agudo, dor, processo inflamatório<br>
+      <strong>Termoterapia 🔥:</strong> bolsa de água quente 20min — contraturas, abscesso, dor crônica
+    </div>
+  </div>
+
+  <!-- Card 11: Cuidados com a cama hospitalar -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🛏️</span> Cama Hospitalar e Posições</div>
+    <div class="card-content">
+      <strong>Cama ocupada × desocupada:</strong>
+      <ul>
+        <li><strong>Desocupada:</strong> leito vazio, roupa limpa completa</li>
+        <li><strong>Ocupada:</strong> paciente no leito, troca parcial (lençol móvel, fronha)</li>
+      </ul>
+      <strong>Posições principais:</strong>
+      <ul>
+        <li><strong>Fowler (45°):</strong> dispneia, alimentação</li>
+        <li><strong>Semi-Fowler (30°):</strong> conforto, repouso</li>
+        <li><strong>Sims (decúbito lateral):</strong> SNE, procedimentos retais</li>
+        <li><strong>Trendelenburg:</strong> choque, hipotensão</li>
+        <li><strong>Decúbito dorsal:</strong> exame físico, repouso</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Card 12: Dicas Finais -->
+  <div class="card">
+    <div class="card-title"><span class="icon">⭐</span> Dicas de Memorização</div>
+    <div class="card-content">
+      <div class="dica" style="margin-top:0;">
+        <strong>🧠 Mnemônicos úteis:</strong>
+      </div>
+      <ul>
+        <li><strong>SAE:</strong> HDPIA — "Hoje Diagnóstico, Planejamento, Implementação, Avaliação"</li>
+        <li><strong>7 Certos:</strong> P M D V H R O — "Paciente, Medicamento, Dose, Via, Horário, Registro, Orientação"</li>
+        <li><strong>Vias parenterais (ângulo):</strong> ID 15°, SC 45°, IM 90° — "15, 45, 90: quanto + fundo, maior o ângulo"</li>
+        <li><strong>5 momentos da higienização:</strong> "Antes do paciente, Antes do procedimento, Após fluido, Após paciente, Após ambiente"</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  ⚡ 20% dos conceitos · 80% dos resultados | Introdução à Enfermagem — EN_430 | Revisão em 5 minutos
+</div>
+
+</body>
+</html>

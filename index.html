@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introdução à Enfermagem — EN_430</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #0a3d62 0%, #1e6f9e 100%);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px 20px;
+  }
+  .container { max-width: 650px; }
+  h1 { font-size: 2.8em; font-weight: 800; margin-bottom: 10px; letter-spacing: -1px; }
+  .subtitle { font-size: 1.2em; opacity: 0.85; margin-bottom: 30px; }
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    padding: 6px 20px;
+    border-radius: 25px;
+    font-size: 0.85em;
+    margin-bottom: 35px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px);
+    border-radius: 14px;
+    padding: 22px 28px;
+    text-align: left;
+    transition: transform 0.2s, background 0.2s;
+    border: 1px solid rgba(255,255,255,0.12);
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,0.18);
+  }
+  .card .icon { font-size: 2em; flex-shrink: 0; }
+  .card .info h3 { font-size: 1.1em; margin-bottom: 4px; }
+  .card .info p { font-size: 0.82em; opacity: 0.75; }
+  .card .arrow { margin-left: auto; font-size: 1.4em; opacity: 0.5; }
+  .footer { opacity: 0.5; font-size: 0.8em; margin-top: 20px; }
+  .footer a { color: #fff; text-decoration: underline; }
+  @media (max-width: 500px) {
+    h1 { font-size: 2em; }
+    .card { padding: 16px 20px; }
+    .card .icon { font-size: 1.5em; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>📚 Introdução à Enfermagem</h1>
+  <div class="subtitle">Disciplina EN_430 — Curso de Enfermagem</div>
+  <div class="badge">🎓 EAD / Subsequente • CH: 120h • 2026</div>
+
+  <div class="cards">
+    <a href="index_estudos.html" class="card">
+      <div class="icon">🗺️</div>
+      <div class="info">
+        <h3>Central de Estudos</h3>
+        <p>Acesse todos os 12 artefatos de estudo: Guia, Planos, Resumo, Flashcards, Mapas, Vídeos, Simulado e mais</p>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+    <a href="https://enavaliar.appservice.tec.br/" class="card" target="_blank">
+      <div class="icon">🌐</div>
+      <div class="info">
+        <h3>Sistema de Avaliação Web</h3>
+        <p>3000 questões • Avaliações aleatórias • Cadastro de estudantes • Progresso por módulo</p>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+    <a href="Apostila_Completa_Introducao_Enfermagem.pdf" class="card">
+      <div class="icon">📚</div>
+      <div class="info">
+        <h3>Apostila Completa (PDF)</h3>
+        <p>5,2 MB • Todos os materiais compilados em um único PDF para impressão • Capa personalizada</p>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+  </div>
+
+  <div class="footer">
+    <p>📂 <strong>Introdução à Enfermagem (EN_430)</strong> — Material organizado para Estudos e Aprendizado 🎓</p>
+  </div>
+</div>
+</body>
+</html>

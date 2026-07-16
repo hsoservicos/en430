@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flashcards - Introdução à Enfermagem</title>
+<style>
+  @page {
+    size: A4;
+    margin: 1.2cm;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: #f0f2f5;
+    padding: 30px;
+    color: #1a1a2e;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #0a3d62, #1e6f9e);
+    color: #fff;
+    border-radius: 14px;
+  }
+  .page-header h1 { font-size: 1.8em; margin-bottom: 5px; letter-spacing: -0.5px; }
+  .page-header p { font-size: 0.9em; opacity: 0.85; }
+  .page-header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 3px 16px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    margin-top: 8px;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  .instructions {
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin-bottom: 25px;
+    font-size: 0.85em;
+    color: #6d4c00;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .instructions strong { color: #e65100; }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .flashcard {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    page-break-inside: avoid;
+    break-inside: avoid;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+  }
+
+  .card-front {
+    padding: 16px 18px;
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-front .tag {
+    font-size: 0.65em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #1e6f9e;
+    margin-bottom: 6px;
+  }
+  .card-front .tag.dif { color: #e67e22; }
+  .card-front .tag.proc { color: #27ae60; }
+  .card-front .tag.term { color: #8e44ad; }
+  .card-front .tag.leg { color: #c0392b; }
+
+  .card-front .question {
+    font-size: 0.88em;
+    font-weight: 600;
+    color: #0a3d62;
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .card-divider {
+    height: 3px;
+    background: linear-gradient(90deg, #1e6f9e, #3498db, #1e6f9e);
+  }
+
+  .card-back {
+    padding: 14px 18px;
+    background: #f8fbff;
+    min-height: 80px;
+  }
+  .card-back .answer {
+    font-size: 0.8em;
+    color: #2c3e50;
+    line-height: 1.55;
+  }
+  .card-back .answer strong { color: #0a3d62; }
+  .card-back .answer ul {
+    list-style: none;
+    padding: 0;
+    margin: 4px 0;
+  }
+  .card-back .answer ul li {
+    padding: 1.5px 0 1.5px 12px;
+    position: relative;
+  }
+  .card-back .answer ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #1e6f9e;
+    font-weight: 700;
+  }
+  .card-back .dica-memo {
+    margin-top: 6px;
+    padding: 5px 10px;
+    background: #e8f5e9;
+    border-radius: 6px;
+    font-size: 0.75em;
+    color: #2e7d32;
+    border-left: 3px solid #4caf50;
+  }
+
+  .page-break {
+    page-break-before: always;
+    break-before: page;
+    margin-top: 20px;
+  }
+
+  /* Cut marks for printing */
+  .card-grid.with-marks {
+    position: relative;
+  }
+
+  .nav-index {
+    background: linear-gradient(135deg, #0a3d62, #1e6f9e);
+    padding: 10px 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .nav-index a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.88em;
+    font-weight: 600;
+  }
+  .nav-index a:hover { text-decoration: underline; opacity: 0.85; }
+  @media print {
+    .nav-index { display: none; }
+    body { background: #fff; padding: 15px; }
+    .page-header { border-radius: 0; }
+    .instructions { display: none; }
+    .flashcard { box-shadow: none; border: 1px solid #ccc; }
+    .card-grid { gap: 10px; }
+  }
+
+  @media screen and (max-width: 700px) {
+    .card-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-index">
+  <a href="index_estudos.html">← 📋 Voltar à Central de Estudos</a>
+</div>
+
+<div class="page-header">
+  <h1>🃏 Flashcards — Introdução à Enfermagem</h1>
+  <p>60 cartões com os conceitos essenciais • Baseado no Princípio 80/20</p>
+  <span class="badge">🎯 Curso: Enfermagem (EN_430) • 120h</span>
+</div>
+
+<div class="instructions">
+  <span style="font-size:1.5em;">✂️</span>
+  <div><strong>Como usar:</strong> Recorte cada flashcard e dobre ao meio (frente ÷ verso). Estude pela pergunta, tente responder, e vire para conferir. <strong>Dica:</strong> Separe em pilhas "Já sei" e "Preciso revisar".</div>
+</div>
+
+<div class="card-grid">
+
+  <!-- ===== FLASHCARD 1 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🧩 TEORIA</span>
+      <div class="question">Quais são os 3 níveis da Teoria das Necessidades Básicas de Wanda Horta?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>1. Psicobiológicas</strong> — oxigenação, nutrição, eliminação, sono, locomoção, cuidado corporal<br>
+        <strong>2. Psicossociais</strong> — comunicação, segurança emocional, interação social, lazer, autoestima<br>
+        <strong>3. Psicoespirituais</strong> — crenças, religiosidade, transcendência, valores
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 2 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🧩 TEORIA</span>
+      <div class="question">O que é a SAE e quais suas 5 etapas?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>SAE</strong> = Sistematização da Assistência de Enfermagem. Processo que organiza o trabalho do enfermeiro.<br><br>
+        5 etapas: <strong>H</strong>istórico → <strong>D</strong>iagnóstico → <strong>P</strong>lanejamento → <strong>I</strong>mplementação → <strong>A</strong>valiação<br>
+        <div class="dica-memo">🧠 Mnemônico: <strong>HDPIA</strong> — "Hoje, Diagnóstico, Planejamento, Implementação, Avaliação"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 3 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🧩 TEORIA</span>
+      <div class="question">Qual a base legal que regulamenta a SAE no Brasil?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Resolução COFEN 358/2009.</strong><br>
+        Dispõe sobre a Sistematização da Assistência de Enfermagem (SAE) como atividade privativa do enfermeiro, que deve ocorrer em ambientes públicos e privados onde ocorre o cuidado de enfermagem.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 4 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">💊 MEDICAÇÃO</span>
+      <div class="question">Quais são os 7 Certos da Administração de Medicamentos?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <ol style="padding-left:18px;margin:0;">
+          <li><strong>P</strong>aciente certo</li>
+          <li><strong>M</strong>edicamento certo</li>
+          <li><strong>D</strong>ose certa</li>
+          <li><strong>V</strong>ia certa</li>
+          <li><strong>H</strong>orário certo</li>
+          <li><strong>R</strong>egistro certo</li>
+          <li><strong>O</strong>rientação certa</li>
+        </ol>
+        <div class="dica-memo">🧠 Mnemônico: <strong>PMDVHRO</strong> — Paciente, Medicamento, Dose, Via, Horário, Registro, Orientação</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 5 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">💊 MEDICAÇÃO</span>
+      <div class="question">Quais são as vias enterais de administração de medicamentos?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Vias Enterais</strong> — utilizam o trato gastrointestinal:<br>
+        ✔ <strong>Oral (VO)</strong> — comprimidos, cápsulas, líquidos<br>
+        ✔ <strong>Sublingual (SL)</strong> — absorção rápida, bypass hepático<br>
+        ✔ <strong>Sonda Nasogástrica (SNG)</strong> — para pacientes impossibilitados de deglutir<br>
+        ✔ <strong>Sonda Nasoenteral (SNE)</strong> — dieta/medicação diretamente no intestino
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 6 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">💊 MEDICAÇÃO</span>
+      <div class="question">Quais são as 4 vias parenterais? Diferencie ângulo, volume máximo e local.</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>ID</strong> (intradérmica): 10–15°, 0,5 mL — antebraço (PPD, BCG)<br>
+        <strong>SC</strong> (subcutânea): 45–90°, 1–2 mL — abdômen, braço (insulina, heparina)<br>
+        <strong>IM</strong> (intramuscular): 90°, 3–5 mL — deltoide (2mL), vasto lateral (5mL), glúteo (4mL)<br>
+        <strong>EV</strong> (endovenosa): 25–45°, volume variável — veias superficiais<br>
+        <div class="dica-memo">🧠 "15, 45, 90: quanto + fundo, maior o ângulo"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 7 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🧼 HIGIENE</span>
+      <div class="question">Qual a diferença entre assepsia e antissepsia?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Assepsia:</strong> Conjunto de medidas para <strong>impedir</strong> a entrada de microrganismos (campo estéril, material esterilizado)<br><br>
+        <strong>Antissepsia:</strong> Aplicação de substâncias para <strong>reduzir</strong> microrganismos na pele/mucosas (álcool 70%, PVPI, clorexidina)<br><br>
+        <strong>Degermação:</strong> Lavagem das mãos com água e sabão
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 8 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🧼 HIGIENE</span>
+      <div class="question">Quais são os 5 Momentos da Higienização das Mãos (OMS)?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <ol style="padding-left:18px;margin:0;">
+          <li><strong>Antes</strong> de tocar o paciente</li>
+          <li><strong>Antes</strong> de procedimento limpo/asséptico</li>
+          <li><strong>Após</strong> risco de exposição a fluidos corporais</li>
+          <li><strong>Após</strong> tocar o paciente</li>
+          <li><strong>Após</strong> tocar superfícies próximas ao paciente</li>
+        </ol>
+        <div class="dica-memo">🧠 "Antes do paciente, Antes do procedimento, Após fluido, Após paciente, Após ambiente"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 9 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🩹 CURATIVOS</span>
+      <div class="question">Como as feridas são classificadas?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Quanto à causa:</strong> cirúrgica, traumática, ulcerativa<br>
+        <strong>Quanto à contaminação:</strong> limpa, limpa-contaminada, contaminada, infectada<br>
+        <strong>Quanto ao tempo:</strong> aguda (até 6 semanas) × crônica (>6 semanas)<br>
+        <strong>Quanto à profundidade:</strong> superficial, parcial, total
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 10 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🩹 CURATIVOS</span>
+      <div class="question">Cite 4 tipos de coberturas especiais e suas indicações.</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Hidrocoloide:</strong> feridas secas a pouco exsudativas — mantém ambiente úmido<br>
+        <strong>Alginato de cálcio:</strong> feridas muito exsudativas — alta absorção<br>
+        <strong>Carvão ativado com prata:</strong> feridas infectadas com odor — antimicrobiano<br>
+        <strong>Espuma (poliuretano):</strong> feridas moderadamente exsudativas — conforto e absorção<br>
+        <strong>Filme transparente:</strong> proteção de pele íntegra, fixação de cateteres
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 11 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🫁 OXIGÊNIO</span>
+      <div class="question">Quais são os dispositivos de oxigenoterapia e seus fluxos?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Cateter nasal (CN):</strong> 1–5 L/min → FiO₂ 24–40%<br>
+        <strong>Máscara simples:</strong> 5–10 L/min → FiO₂ 35–50%<br>
+        <strong>Máscara de Venturi:</strong> fluxo exato → FiO₂ controlada 24–50%<br>
+        <strong>Máscara c/ reservatório (não reinalante):</strong> 10–15 L/min → FiO₂ 60–95%
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 12 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🫁 CATETERISMOS</span>
+      <div class="question">Qual a diferença entre SNG, SNE, Sonda Vesical e Sonda Retal?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>SNG (Sonda Nasogástrica):</strong> descompressão gástrica, lavagem, coleta de conteúdo — nariz → estômago<br>
+        <strong>SNE (Sonda Nasoenteral):</strong> administração de dieta/medicação — nariz → intestino<br>
+        <strong>Sonda Vesical (alívio/demora):</strong> esvaziamento vesical, diurese — uretra → bexiga<br>
+        <strong>Sonda Retal:</strong> eliminação de gases, fecaloma — ânus → reto
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 13 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">📖 TERMINOLOGIAS</span>
+      <div class="question">O que significam: afebril, normocárdico, eupnéico, normotenso?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Afebril:</strong> sem febre (temperatura normal: 36–37°C)<br>
+        <strong>Normocárdico:</strong> frequência cardíaca normal (60–100 bpm)<br>
+        <strong>Eupneico:</strong> respiração normal (16–20 irpm)<br>
+        <strong>Normotenso:</strong> pressão arterial normal (~120/80 mmHg)<br><br>
+        <strong>Bônus:</strong> Anictérico (sem icterícia), Normocorado (coloração normal), Lúcido e Orientado (consciente)
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 14 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">📖 TERMINOLOGIAS</span>
+      <div class="question">O que significam: anictérico, normocorado, hidratado, lúcido e orientado?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Anictérico:</strong> sem coloração amarelada na pele/escleróticas (sem icterícia)<br>
+        <strong>Normocorado:</strong> coloração normal da pele e mucosas (corado)<br>
+        <strong>Hidratado:</strong> turgor e elasticidade da pele preservados<br>
+        <strong>Lúcido e Orientado (L+O):</strong> consciente, responde a comandos, orientado no tempo e espaço
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 15 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🛏️ POSIÇÕES</span>
+      <div class="question">Cite 4 posições da cama hospitalar e suas indicações.</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Fowler (45°):</strong> paciente sentado — dispneia, alimentação, aspiração<br>
+        <strong>Semi-Fowler (30°):</strong> conforto, repouso, prevenção de broncoaspiração<br>
+        <strong>Sims (decúbito lateral):</strong> administração de SNE, clister, exames retais<br>
+        <strong>Trendelenburg:</strong> inclinada com cabeça baixa — choque, hipotensão, escoamento brônquico
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 16 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">📏 MEDIDAS</span>
+      <div class="question">Como classificar o IMC? Quais os pontos de corte?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>IMC = Peso (kg) / Altura² (m)</strong><br><br>
+        <strong>&lt; 18,5:</strong> Magreza (abaixo do peso)<br>
+        <strong>18,5 – 24,9:</strong> Peso normal (eutrófico)<br>
+        <strong>25,0 – 29,9:</strong> Sobrepeso<br>
+        <strong>30,0 – 34,9:</strong> Obesidade grau I<br>
+        <strong>35,0 – 39,9:</strong> Obesidade grau II<br>
+        <strong>≥ 40:</strong> Obesidade grau III (mórbida)
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 17 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">❄️🔥 TERAPIAS</span>
+      <div class="question">Quando indicar crioterapia e quando indicar termoterapia?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Crioterapia (frio) ❄️:</strong> 20 min — edema agudo, trauma, processo inflamatório inicial, dor aguda, hemorragia, pós-operatório imediato<br><br>
+        <strong>Termoterapia (calor) 🔥:</strong> 20 min — contraturas musculares, abscesso, dor crônica, processo inflamatório crônico, hematomas
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 18 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🔒 CONTENÇÃO</span>
+      <div class="question">Quais os tipos de contenção e os cuidados de enfermagem?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Tipos:</strong>
+        <ul>
+          <li><strong>Mecânica:</strong> faixas (punho, tórax, joelhos, cadeira)</li>
+          <li><strong>Química:</strong> sedação medicamentosa</li>
+          <li><strong>Ambiental:</strong> grades elevadas, cama baixa, supervisão</li>
+        </ul>
+        <strong>Cuidados:</strong> avaliar circulação a cada 1h, liberar a cada 2h, documentar, prescrição médica necessária
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 19 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">⚰️ PÓS-MORTE</span>
+      <div class="question">Quais os passos do processo pós-morte (cuidados com o corpo)?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>1.</strong> Confirmar óbito e registrar<br>
+        <strong>2.</strong> Aguardar declaração de óbito (médico)<br>
+        <strong>3.</strong> Posicionar corpo em decúbito dorsal<br>
+        <strong>4.</strong> Realizar higiene corporal<br>
+        <strong>5.</strong> Retirar dispositivos (sondas, cateteres, curativos)<br>
+        <strong>6.</strong> Identificar corpo (pulseira, etiqueta)<br>
+        <strong>7.</strong> Respeitar crenças religiosas e aspectos éticos<br>
+        <strong>8.</strong> Apoiar a família
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 20 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">📋 ADMISSÃO/ALTA</span>
+      <div class="question">Quais os principais passos na admissão e alta do paciente?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Admissão:</strong> identificação + pulseira → sinais vitais → histórico e exame físico → orientações → pertences<br>
+        <strong>Alta:</strong> resumo de alta (evolução) → orientações ao paciente/cuidador → receitas e atestados → desocupação do leito → documentação
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 21 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🩺 EXAMES</span>
+      <div class="question">Quais os cuidados na coleta de exames: sangue, urina, fezes e escarro?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Sangue:</strong> punção venosa — torniquete, assepsia, agulha adequada, frasco correto, jejum se necessário<br>
+        <strong>Urina:</strong> jato médio (urocultura), 24h (dosagem), primeira urina da manhã (EAS)<br>
+        <strong>Fezes:</strong> parasitológico (3 amostras), sangue oculto (dieta específica)<br>
+        <strong>Escarro:</strong> matinal, jejum, lavagem brônquica, recipiente estéril
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 22 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🧩 TEORIA</span>
+      <div class="question">Qual a relação entre a Teoria de Wanda Horta e a hierarquia de Maslow?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        Wanda Horta baseou sua <strong>Teoria das Necessidades Humanas Básicas</strong> na hierarquia de Maslow, adaptando-a para a enfermagem.<br><br>
+        <strong>Maslow:</strong> Fisiológicas → Segurança → Social → Estima → Autorrealização<br>
+        <strong>Horta:</strong> Psicobiológicas (equivalem a fisiológicas + segurança) → Psicossociais (social + estima) → Psicoespirituais (autorrealização/transcendência)
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 23 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">📝 ANOTAÇÃO</span>
+      <div class="question">Quais os princípios de uma boa anotação de enfermagem?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Princípios:</strong>
+        <ul>
+          <li><strong>Objetividade</strong> — informações claras e diretas</li>
+          <li><strong>Cronologia</strong> — ordem dos acontecimentos</li>
+          <li><strong>Clareza</strong> — letra legível, sem rasuras</li>
+          <li><strong>Completude</strong> — dados completos (data, hora, assinatura, COREN)</li>
+          <li><strong>Sigilo</strong> — informações confidenciais</li>
+          <li><strong>Precisão</strong> — terminologias técnicas corretas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 24 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">💊 MEDICAÇÃO</span>
+      <div class="question">Quais são os principais locais de aplicação da via intramuscular (IM)?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Músculo Deltoide:</strong> face externa do braço — volume máx. 2 mL<br>
+        <strong>Músculo Vasto Lateral da Coxa:</strong> face ântero-lateral da coxa — volume máx. 5 mL<br>
+        <strong>Músculo Glúteo Máximo:</strong> quadrante superior externo da nádega — volume máx. 4 mL<br>
+        <strong>Músculo Dorsoglúteo:</strong> região glútea profunda — volume máx. 4 mL<br><br>
+        ⚠️ <strong>Cuidado:</strong> região glútea — risco de lesão do nervo ciático!
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 25 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🧼 HIGIENE</span>
+      <div class="question">Quais os passos para calçar luvas estéreis (técnica correta)?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>1.</strong> Higienizar as mãos<br>
+        <strong>2.</strong> Abrir o envelope (tocar apenas na parte externa)<br>
+        <strong>3.</strong> Calçar a 1ª luva: pegar pelo avesso do punho (parte interna), com a mão dominante<br>
+        <strong>4.</strong> Calçar a 2ª luva: com a mão já enluvada, deslizar os dedos sob o punho dobrado (parte externa)<br>
+        <strong>5.</strong> Ajustar os dedos sem tocar na pele<br>
+        <strong>6.</strong> Mãos postas à frente, acima da cintura — <strong>não tocar em superfícies não estéreis!</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 26 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🩹 CURATIVOS</span>
+      <div class="question">Qual a diferença entre curativo com técnica limpa e técnica estéril?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Técnica limpa:</strong> uso de material limpo, não necessariamente estéril. Para <strong>feridas limpas, fechadas ou crônicas</strong> sem sinais de infecção.<br><br>
+        <strong>Técnica estéril:</strong> uso de material estéril (luva estéril, gaze estéril, campo estéril). Para <strong>feridas abertas, cirúrgicas, queimaduras ou com risco de infecção.</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 27 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">📖 TERMINOLOGIAS</span>
+      <div class="question">O que significa: diurese presente, eliminações fisiológicas, deambulando?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Diurese presente/ausente:</strong> paciente urinou/não urinou (quantidade e aspecto da urina)<br>
+        <strong>Eliminações fisiológicas preservadas:</strong> urina e fezes dentro da normalidade<br>
+        <strong>Deambulando:</strong> paciente andando (sem restrições de locomoção)<br>
+        <strong>Em uso de:</strong> indicação de dispositivo ou medicação em uso<br>
+        <strong>Intercorrência:</strong> evento inesperado durante a assistência
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 28 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🛏️ POSIÇÕES</span>
+      <div class="question">O que é mudança de decúbito e qual sua finalidade?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Mudança de decúbito:</strong> reposicionamento do paciente no leito a cada <strong>2 horas</strong>.<br><br>
+        <strong>Finalidade:</strong> prevenir lesões por pressão (LPP/escara), aliviar pontos de compressão, melhorar conforto, facilitar higiene, prevenir contraturas e complicações respiratórias.<br><br>
+        Posições alternadas: dorsal → lateral D → dorsal → lateral E → dorsal
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 29 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🫁 CATETERISMOS</span>
+      <div class="question">Quais os cuidados de enfermagem na sonda vesical de demora?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Cuidados essenciais:</strong>
+        <ul>
+          <li>Técnica estéril na inserção</li>
+          <li>Fixar a sonda na coxa (feminino) / abdômen (masculino)</li>
+          <li>Manter saco coletor abaixo do nível da bexiga</li>
+          <li>Não desconectar o sistema fechado</li>
+          <li>Higiene diária do meato uretral</li>
+          <li>Observar características da urina (cor, aspecto, volume)</li>
+          <li>Registrar balanço hídrico</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 30 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">💊 MEDICAÇÃO</span>
+      <div class="question">Quais os cuidados na administração de medicamentos por sonda?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Cuidados:</strong>
+        <ul>
+          <li>Verificar posicionamento da sonda antes</li>
+          <li>Administrar cada medicação <strong>separadamente</strong></li>
+          <li>Triturar comprimidos duros (não triturar: sublingual, liberação prolongada, drágeas)</li>
+          <li>Diluir em água (20–30 mL)</li>
+          <li>Lavar sonda com 20 mL de água entre cada medicação</li>
+          <li>Lavar sonda antes e após administração</li>
+          <li>Manter cabeceira elevada (Fowler)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 31 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">📝 ANOTAÇÃO</span>
+      <div class="question">Qual a estrutura de uma anotação de enfermagem completa?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Estrutura SOAP (ou similar):</strong><br><br>
+        <strong>S</strong> — Subjetivo: queixas do paciente ("refere dor 8/10")<br>
+        <strong>O</strong> — Objetivo: dados observados (sinais vitais, exame físico)<br>
+        <strong>A</strong> — Avaliação: análise/impressão clínica<br>
+        <strong>P</strong> — Plano: intervenções realizadas e previstas<br><br>
+        <strong>Sempre:</strong> data, hora, assinatura e número do COREN
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 32 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🧩 TEORIA</span>
+      <div class="question">O que são necessidades psicobiológicas? Dê 5 exemplos.</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        São necessidades relacionadas ao <strong>funcionamento biológico</strong> e à <strong>sobrevivência</strong> do ser humano.<br><br>
+        <strong>Exemplos:</strong><br>
+        1. Oxigenação — respiração adequada<br>
+        2. Nutrição — alimentação e hidratação<br>
+        3. Eliminação — urinar e evacuar<br>
+        4. Sono e repouso — descanso adequado<br>
+        5. Cuidado corporal — higiene e integridade da pele<br>
+        6. Locomoção — movimentação e atividade física
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 33 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🧩 TEORIA</span>
+      <div class="question">O que são necessidades psicossociais e psicoespirituais?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Psicossociais:</strong> relacionadas à vida em sociedade e ao equilíbrio emocional<br>
+        → Comunicação, interação social, lazer, segurança emocional, autoestima, amor, aceitação<br><br>
+        <strong>Psicoespirituais:</strong> relacionadas à transcendência e ao sentido da vida<br>
+        → Crenças religiosas, valores, espiritualidade, esperança, gratidão, perdão
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 34 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🧼 HIGIENE</span>
+      <div class="question">Quais os materiais necessários para o banho no leito?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Materiais:</strong><br>
+        • Bacia com água morna<br>
+        • Sabonete neutro/líquido<br>
+        • Toalhas de banho (2–3)<br>
+        • Luvas de procedimento<br>
+        • Roupa de cama limpa<br>
+        • Comadre/urinol<br>
+        • Produtos de higiene (xampu, hidratante)<br>
+        • Biombo/lençol para privacidade<br><br>
+        <strong>Sequência:</strong> olhos → face → braços → tórax → abdômen → MMII → períneo → dorso
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 35 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🔒 CONTENÇÃO</span>
+      <div class="question">Quais as indicações para contenção mecânica de pacientes?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Indicações (último recurso!):</strong><br>
+        <ul>
+          <li>Risco de queda (agitação psicomotora, delirium)</li>
+          <li>Risco de remoção de dispositivos (TOT, sonda, cateter, dreno)</li>
+          <li>Proteção do próprio paciente ou de terceiros</li>
+          <li>Procedimentos invasivos emergenciais</li>
+        </ul>
+        <strong>Contraindicações:</strong> punição, conveniência da equipe, pacientes sedados sem risco
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 36 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">⚰️ PÓS-MORTE</span>
+      <div class="question">Qual o papel do enfermeiro no processo pós-morte?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Atribuições do enfermeiro:</strong>
+        <ul>
+          <li>Confirmar sinais de morte e registrar no prontuário</li>
+          <li>Comunicar o médico para declaração de óbito</li>
+          <li>Preparar o corpo: higiene, posicionamento, identificação</li>
+          <li>Retirar dispositivos invasivos</li>
+          <li>Respeitar aspectos culturais e religiosos</li>
+          <li>Comunicar e apoiar a família com sensibilidade</li>
+          <li>Encaminhar corpo ao serviço funerário</li>
+          <li>Providenciar documentação legal</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 37 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🩺 EXAMES</span>
+      <div class="question">O que é balanço hídrico e como é realizado?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Balanço hídrico:</strong> registro de todos os líquidos ingeridos e eliminados pelo paciente em 24h.<br><br>
+        <strong>Ingestas (Líquidos):</strong> água, dieta via SNE, medicamentos EV, soros, sangue<br>
+        <strong>Eliminações (Perdas):</strong> diurese, vômito, drenos, fístulas, evacuações líquidas<br><br>
+        <strong>Cálculo:</strong> Balanço = Ingesta total - Perda total<br>
+        <strong>Positivo</strong> (+): reteve líquido → risco de edema<br>
+        <strong>Negativo</strong> (-): perdeu líquido → risco de desidratação
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 38 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">💊 MEDICAÇÃO</span>
+      <div class="question">Como calcular gotejamento de soro (macrogotas e microgotas)?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Fórmulas essenciais:</strong><br><br>
+        <strong>Macrogotas/min</strong> = Volume (mL) ÷ (Tempo (h) × 3)<br>
+        <em>ou</em> Volume (mL) ÷ Tempo (min) × 20<br><br>
+        <strong>Microgotas/min</strong> = Volume (mL) ÷ Tempo (h)<br>
+        <em>ou</em> Macrogotas × 3<br><br>
+        <strong>Exemplo:</strong> SF 0,9% 500 mL em 8h<br>
+        Macrogotas = 500 ÷ 24 = ~21 gotas/min
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 39 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">📖 TERMINOLOGIAS</span>
+      <div class="question">O que significam as abreviações: CV, FC, PA, FR, Tax, SatO₂?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>CV</strong> — Cardiovascular (sistema circulatório)<br>
+        <strong>FC</strong> — Frequência Cardíaca (normal: 60–100 bpm)<br>
+        <strong>PA</strong> — Pressão Arterial (normal: ~120×80 mmHg)<br>
+        <strong>FR</strong> — Frequência Respiratória (normal: 16–20 irpm)<br>
+        <strong>Tax</strong> — Temperatura axilar (normal: 36–37°C)<br>
+        <strong>SatO₂</strong> — Saturação de Oxigênio (normal: ≥95%)
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 40 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🩹 CURATIVOS</span>
+      <div class="question">Quais os passos para realizar um curativo simples?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>1.</strong> Higienizar as mãos e calçar luvas de procedimento<br>
+        <strong>2.</strong> Remover curativo anterior (se houver)<br>
+        <strong>3.</strong> Avaliar a ferida (tamanho, exsudato, odor, tecido)<br>
+        <strong>4.</strong> Limpar a ferida com SF 0,9% (movimento centro → periferia)<br>
+        <strong>5.</strong> Secar bordas com gaze estéril<br>
+        <strong>6.</strong> Aplicar cobertura indicada<br>
+        <strong>7.</strong> Cobrir com gaze e fixar com esparadrapo/atadura<br>
+        <strong>8.</strong> Desprezar resíduos e higienizar mãos<br>
+        <strong>9.</strong> Registrar: aspecto, cobertura, data e hora
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 41 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🫁 OXIGÊNIO</span>
+      <div class="question">Quais os cuidados de enfermagem na oxigenoterapia?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Cuidados:</strong>
+        <ul>
+          <li>Manter vias aéreas pérvias</li>
+          <li>Umidificar O₂ (evitar ressecamento de mucosas)</li>
+          <li>Monitorar SatO₂ e sinais de desconforto respiratório</li>
+          <li>Verificar fluxo e dispositivo conforme prescrição</li>
+          <li>Trocar cateter/máscara a cada 24h</li>
+          <li>Manter cabeceira elevada (Fowler)</li>
+          <li>Sinalização de risco: "Proibido fumar — Oxigênio em uso"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 42 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🧼 HIGIENE</span>
+      <div class="question">O que são precauções padrão e quais as principais medidas?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Precauções Padrão:</strong> medidas de proteção universal aplicadas a TODOS os pacientes.<br><br>
+        <strong>Medidas:</strong>
+        <ul>
+          <li>Higienização das mãos</li>
+          <li>Uso de EPIs (luvas, máscara, avental, óculos)</li>
+          <li>Descarte correto de perfurocortantes</li>
+          <li>Manipulação segura de resíduos</li>
+          <li>Limpeza e desinfecção de superfícies</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 43 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">💊 MEDICAÇÃO</span>
+      <div class="question">Qual a diferença entre ampola, frasco-ampola e frasco (soro)?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Ampola:</strong> vidro fino, dose única — quebrar o gargalo (proteger com algodão)<br>
+        <strong>Frasco-ampola:</strong> vidro grosso, tampa de borracha — usar agulha para aspirar (dose única ou múltipla)<br>
+        <strong>Frasco de soro:</strong> plástico ou vidro, grande volume — para infusão EV (SF 0,9%, Ringer, glicose)
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 44 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">📏 MEDIDAS</span>
+      <div class="question">Quais são as principais medidas antropométricas e como são realizadas?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Peso:</strong> balança calibrada, paciente descalço e com roupas leves<br>
+        <strong>Altura:</strong> estadiômetro, paciente em posição ereta, descalço<br>
+        <strong>IMC:</strong> peso ÷ altura² — classificação (magreza, normal, sobrepeso, obesidade)<br>
+        <strong>Circunferência abdominal:</strong> fita métrica no ponto médio entre costela e crista ilíaca<br>
+        <strong>Pregas cutâneas:</strong> adipômetro — avaliação de percentual de gordura
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 45 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🫁 CATETERISMOS</span>
+      <div class="question">Quais as complicações possíveis da SNG e SNE?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>SNG:</strong>
+        <ul>
+          <li>Aspiração pulmonar (posicionamento incorreto)</li>
+          <li>Lesão de mucosa nasal/esofágica</li>
+          <li>Desconforto, náuseas, epistaxe</li>
+          <li>Obstrução da sonda</li>
+        </ul>
+        <strong>SNE:</strong>
+        <ul>
+          <li>Deslocamento/obstrução</li>
+          <li>Síndrome de realimentação</li>
+          <li>Diarreia/constipação</li>
+          <li>Broncoaspiração</li>
+          <li>Infecção</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 46 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">📋 ADMISSÃO</span>
+      <div class="question">O que deve conter no histórico de enfermagem na admissão?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Histórico de Enfermagem (1ª etapa da SAE):</strong><br>
+        <ul>
+          <li>Dados de identificação (nome, idade, leito, prontuário)</li>
+          <li>Queixa principal (QP) e história da doença atual (HDA)</li>
+          <li>História patológica pregressa (HPP)</li>
+          <li>Medicações em uso, alergias</li>
+          <li>Exame físico: sinais vitais, cabeça/pescoço, tórax, abdômen, MMSS/MMII</li>
+          <li>Condições de pele, mucosas, eliminações</li>
+          <li>Avaliação psicossocial e espiritual</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 47 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🧩 TEORIA</span>
+      <div class="question">Em quais situações a Teoria das Necessidades Básicas se aplica na prática?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        Em <strong>todas</strong> as situações de cuidado de enfermagem! A teoria é a base para:<br><br>
+        • Identificar diagnósticos de enfermagem (NANDA-I)<br>
+        • Planejar intervenções personalizadas<br>
+        • Avaliar a evolução do paciente<br>
+        • Garantir cuidado integral e humanizado<br>
+        • Priorizar ações (necessidades psicobiológicas primeiro → depois psicossociais → psicoespirituais)
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 48 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">📖 TERMINOLOGIAS</span>
+      <div class="question">O que significam: bradicárdico, taquicárdico, hipertenso, hipotenso?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Bradicárdico:</strong> FC &lt; 60 bpm (coração lento)<br>
+        <strong>Taquicárdico:</strong> FC &gt; 100 bpm (coração acelerado)<br>
+        <strong>Hipertenso:</strong> PA &gt; 140×90 mmHg (pressão alta)<br>
+        <strong>Hipotenso:</strong> PA &lt; 90×60 mmHg (pressão baixa)<br><br>
+        <strong>Bradipneico:</strong> FR &lt; 16 irpm (respiração lenta)<br>
+        <strong>Taquipneico:</strong> FR &gt; 20 irpm (respiração rápida)
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 49 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">💊 MEDICAÇÃO</span>
+      <div class="question">Quais os cuidados na administração de medicamentos EV?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Cuidados na via EV:</strong>
+        <ul>
+          <li>Verificar acesso venoso (sem sinais de flebite/infiltração)</li>
+          <li>Realizar flush com SF 0,9% antes e após</li>
+          <li>Administrar em push lentamente (exceto se prescrito em bolus)</li>
+          <li>Observar sinais de reações adversas</li>
+          <li>Respeitar compatibilidade de medicamentos na mesma via</li>
+          <li>Trocar equipo conforme protocolo (72h ou 24h para nutrição parenteral/sangue)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 50 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🩹 CURATIVOS</span>
+      <div class="question">O que é lesão por pressão (LPP) e quais os estágios?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>LPP (Escara):</strong> lesão na pele/tecido subjacente por pressão prolongada + proeminência óssea.<br><br>
+        <strong>Estágios (NPUAP):</strong><br>
+        <strong>Estágio 1:</strong> pele íntegra, eritema não branqueável<br>
+        <strong>Estágio 2:</strong> perda parcial da pele (bolha/fricção)<br>
+        <strong>Estágio 3:</strong> perda total da pele (gordura visível)<br>
+        <strong>Estágio 4:</strong> perda total + exposição óssea/muscular<br>
+        <strong>Não classificável:</strong> totalmente coberta por esfacelo/escara
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 51 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🧼 HIGIENE</span>
+      <div class="question">Quais os tipos de EPI e quando utilizar cada um?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>EPIs na enfermagem:</strong><br>
+        • <strong>Luvas de procedimento:</strong> contato com sangue/fluidos/mucosas<br>
+        • <strong>Luvas estéreis:</strong> procedimentos cirúrgicos/invasivos, parto<br>
+        • <strong>Máscara cirúrgica:</strong> proteção de gotículas (tosse, espirro)<br>
+        • <strong>Máscara N95/PFF2:</strong> aerossóis (tuberculose, COVID-19, intubação)<br>
+        • <strong>Avental:</strong> risco de respingos/sangue<br>
+        • <strong>Óculos de proteção:</strong> proteção de mucosa ocular<br>
+        • <strong>Gorro:</strong> campos estéreis, centro cirúrgico
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 52 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🫁 CATETERISMOS</span>
+      <div class="question">Como verificar o posicionamento correto da SNG?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Métodos para verificar posicionamento da SNG:</strong><br><br>
+        ✅ <strong>Padrão ouro:</strong> Raio-X de tórax/abdômen<br><br>
+        ✅ <strong>Métodos à beira do leito:</strong><br>
+        1. <strong>Aspirar conteúdo gástrico</strong> (verificar pH: gástrico &lt; 5,5)<br>
+        2. <strong>Injetar ar (20-30 mL)</strong> + ausculta epigástrica (borborigmo)<br>
+        3. <strong>Medir a distância externa</strong> da sonda (marcação de referência)<br><br>
+        ❌ <strong>Não usar:</strong> teste de borbulhamento em copo d'água (risco de aspiração!)
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 53 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">📖 TERMINOLOGIAS</span>
+      <div class="question">Traduza: TOT, CVC, dreno de Penrose, dreno de Portovac.</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>TOT (Tubo Orotraqueal/Traqueal):</strong> via aérea artificial inserida pela boca ou traqueostomia<br>
+        <strong>CVC (Cateter Venoso Central):</strong> acesso venoso em veia central (subclávia, jugular, femoral)<br>
+        <strong>Dreno de Penrose:</strong> látex, drenagem passiva — cavidades/abscessos (gravidade)<br>
+        <strong>Dreno de Portovac/JP:</strong> sistema fechado a vácuo — drenagem ativa pós-cirúrgica
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 54 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">❄️🔥 TERAPIAS</span>
+      <div class="question">Quais as contraindicações da crioterapia e termoterapia?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Crioterapia ❄️:</strong><br>
+        • Contraindicada em: hipersensibilidade ao frio, crioglobulinemia, doença vascular periférica grave, área com circulação comprometida<br><br>
+        <strong>Termoterapia 🔥:</strong><br>
+        • Contraindicada em: área com sangramento ativo, ferida aberta recente, tumor maligno, pacientes inconscientes/sem sensibilidade, edema agudo, processo inflamatório agudo
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 55 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">💊 MEDICAÇÃO</span>
+      <div class="question">O que é a regra de três na enfermagem e como aplicar?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Regra de três:</strong> método para calcular doses e diluições.<br><br>
+        <strong>Fórmula:</strong> Dose prescrita × Volume total ÷ Dose disponível<br><br>
+        <strong>Exemplo:</strong> Prescrição: Heparina 5.000 UI EV. Disponível: Frasco de 5.000 UI/5mL<br>
+        Cálculo: 5.000 × 5 ÷ 5.000 = <strong>5 mL</strong><br><br>
+        <strong>Dica:</strong> Monte as proporções: Dose disponível : Volume = Dose prescrita : X
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 56 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🧩 TEORIA</span>
+      <div class="question">Qual a importância dos diagnósticos de enfermagem (NANDA-I)?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Diagnóstico de Enfermagem (NANDA-I):</strong> julgamento clínico sobre respostas do indivíduo/família/comunidade a processos vitais ou problemas de saúde.<br><br>
+        <strong>Importância:</strong><br>
+        • Base para escolha das intervenções (NIC)<br>
+        • Resultados mensuráveis (NOC)<br>
+        • Comunicação padronizada entre equipe<br>
+        • Documentação do raciocínio clínico<br>
+        • Subsídio para auditoria e pesquisa<br><br>
+        <strong>Exemplo:</strong> "Risco de integridade da pele prejudicada relacionado a imobilidade no leito"
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 57 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">📋 ADMISSÃO</span>
+      <div class="question">O que deve ser verificado na passagem de plantão de enfermagem?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Passagem de plantão — checklist mínimo:</strong><br>
+        <ul>
+          <li>Número de pacientes e suas condições clínicas</li>
+          <li>Intercorrências do turno anterior</li>
+          <li>Procedimentos realizados e pendentes</li>
+          <li>Medicações administradas e próximos horários</li>
+          <li>Pacientes críticos/instáveis</li>
+          <li>Dispositivos (sondas, drenos, cateteres, acessos)</li>
+          <li>Exames realizados e resultados pendentes</li>
+          <li>Prescrições médicas novas/alterações</li>
+          <li>Materiais/equipamentos (estoque, falhas)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 58 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🛏️ POSIÇÕES</span>
+      <div class="question">Qual a diferença entre cama ocupada e desocupada na arrumação?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Cama desocupada:</strong> leito vazio — troca <strong>completa</strong> de roupa de cama (lençol de baixo, lençol móvel, coberta, fronha, impermeável). Feita na admissão ou após alta.<br><br>
+        <strong>Cama ocupada:</strong> paciente no leito — troca <strong>parcial</strong> (lençol móvel, fronha). Técnica de rolagem do paciente para trocar o lençol inferior. Feita diariamente ou quando necessário.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 59 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">💊 MEDICAÇÃO</span>
+      <div class="question">O que fazer em caso de erro de medicação?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <strong>Conduta em erro de medicação:</strong><br>
+        1. <strong>Não omitir</strong> — comunicar imediatamente o enfermeiro responsável<br>
+        2. <strong>Avaliar o paciente</strong> — sinais vitais, reações adversas<br>
+        3. <strong>Notificar o médico</strong> para conduta<br>
+        4. <strong>Prestar assistência</strong> necessária ao paciente<br>
+        5. <strong>Registrar</strong> no prontuário e notificar a farmácia<br>
+        6. <strong>Preencher</strong> formulário de notificação de incidentes<br>
+        7. <strong>Analisar a causa</strong> para prevenir recorrência (cultura justa, não punitiva)
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLASHCARD 60 ===== -->
+  <div class="flashcard">
+    <div class="card-front">
+      <span class="tag">🌟 REVISÃO GERAL</span>
+      <div class="question">⚡ TOP 5 CONCEITOS 80/20 — Quais os 20% que geram 80% dos resultados?</div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-back">
+      <div class="answer">
+        <div style="font-size:0.9em;text-align:center;padding:5px 0;">
+          🥇 <strong>Teoria das Necessidades Básicas</strong> (fundamento de tudo)<br><br>
+          🥇 <strong>SAE + Anotação de Enfermagem</strong> (processo de trabalho)<br><br>
+          🥇 <strong>Administração de Medicamentos</strong> (7 certos + vias)<br><br>
+          🥇 <strong>Assepsia, Higiene e Segurança</strong> (base de todos os procedimentos)<br><br>
+          🥇 <strong>Curativos e Feridas</strong> (procedimento clínico essencial)
+        </div>
+        <div class="dica-memo">⭐ Domine esses 5 tópicos e você terá 80% do conhecimento necessário para a disciplina!</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="page-break-before:always;break-before:page;margin-top:40px;"></div>
+
+<div class="page-header" style="margin-top:30px;">
+  <h1>✂️ Gabarito — Flashcards de Introdução à Enfermagem</h1>
+  <p>Índice de respostas para consulta rápida</p>
+</div>
+
+<div style="font-size:0.78em;color:#444;line-height:1.8;columns:3;column-gap:20px;">
+  <p><strong>1.</strong> Psicobiológicas, Psicossociais, Psicoespirituais</p>
+  <p><strong>2.</strong> SAE: H → D → P → I → A</p>
+  <p><strong>3.</strong> Resolução COFEN 358/2009</p>
+  <p><strong>4.</strong> Paciente, Med., Dose, Via, Horário, Registro, Orientação</p>
+  <p><strong>5.</strong> Oral, Sublingual, SNG, SNE</p>
+  <p><strong>6.</strong> ID/SC/IM/EV — ângulos e volumes</p>
+  <p><strong>7.</strong> Assepsia=impedir × Antissepsia=reduzir</p>
+  <p><strong>8.</strong> 5 momentos da higienização (OMS)</p>
+  <p><strong>9.</strong> Causa, contaminação, tempo, profundidade</p>
+  <p><strong>10.</strong> Hidrocoloide, alginato, carvão, espuma, filme</p>
+  <p><strong>11.</strong> CN 1-5L/min, Máscara 5-10, Venturi, Reservatório</p>
+  <p><strong>12.</strong> SNG(estômago), SNE(intestino), Vesical(bexiga), Retal(reto)</p>
+  <p><strong>13.</strong> Sem febre, FC normal, FR normal, PA normal</p>
+  <p><strong>14.</strong> Sem icterícia, corado, hidratado, consciente</p>
+  <p><strong>15.</strong> Fowler 45°, Semi-Fowler 30°, Sims, Trendelenburg</p>
+  <p><strong>16.</strong> &lt;18,5 / 18,5-24,9 / 25-29,9 / ≥30</p>
+  <p><strong>17.</strong> Crioterapia=frio, Termoterapia=calor</p>
+  <p><strong>18.</strong> Mecânica, química, ambiental</p>
+  <p><strong>19.</strong> Confirmar óbito → higiene → identificação → família</p>
+  <p><strong>20.</strong> Admissão: ID+SV+histórico. Alta: resumo+orientações</p>
+  <p><strong>21.</strong> Sangue/jejum, Urina/jato médio, Fezes/3 amostras</p>
+  <p><strong>22.</strong> Wanda Horta baseada em Maslow</p>
+  <p><strong>23.</strong> Objetividade, cronologia, clareza, sigilo</p>
+  <p><strong>24.</strong> Deltoide(2mL), Vasto lateral(5mL), Glúteo(4mL)</p>
+  <p><strong>25.</strong> Passos para calçar luvas estéreis</p>
+  <p><strong>26.</strong> Limpa ≠ Estéril</p>
+  <p><strong>27.</strong> Urinou, fezes normais, andando</p>
+  <p><strong>28.</strong> Mudança de decúbito a cada 2h — prevenir LPP</p>
+  <p><strong>29.</strong> Cuidados sonda vesical</p>
+  <p><strong>30.</strong> Cuidados medicação por sonda</p>
+  <p><strong>31.</strong> Estrutura SOAP (S-O-A-P)</p>
+  <p><strong>32.</strong> Necessidades fisiológicas/biológicas</p>
+  <p><strong>33.</strong> Sociais + Espirituais</p>
+  <p><strong>34.</strong> Banho no leito: materiais e sequência</p>
+  <p><strong>35.</strong> Indicações de contenção</p>
+  <p><strong>36.</strong> Papel do enfermeiro no pós-morte</p>
+  <p><strong>37.</strong> Balanço hídrico</p>
+  <p><strong>38.</strong> Gotejamento: macro/microgotas</p>
+  <p><strong>39.</strong> CV, FC, PA, FR, Tax, SatO₂</p>
+  <p><strong>40.</strong> Passos do curativo simples</p>
+  <p><strong>41.</strong> Cuidados oxigenoterapia</p>
+  <p><strong>42.</strong> Precauções padrão</p>
+  <p><strong>43.</strong> Ampola VS Frasco-ampola VS Soro</p>
+  <p><strong>44.</strong> Medidas antropométricas</p>
+  <p><strong>45.</strong> Complicações SNG/SNE</p>
+  <p><strong>46.</strong> Histórico de enfermagem</p>
+  <p><strong>47.</strong> Aplicações prática da teoria</p>
+  <p><strong>48.</strong> Bradi/Taqui (+/-)</p>
+  <p><strong>49.</strong> Cuidados medicação EV</p>
+  <p><strong>50.</strong> LPP: estágios 1-4</p>
+  <p><strong>51.</strong> EPIs e indicações</p>
+  <p><strong>52.</strong> Verificação SNG</p>
+  <p><strong>53.</strong> TOT, CVC, Penrose, Portovac</p>
+  <p><strong>54.</strong> Contraindicações criotermoterapia</p>
+  <p><strong>55.</strong> Regra de três</p>
+  <p><strong>56.</strong> Diagnóstico de enfermagem NANDA-I</p>
+  <p><strong>57.</strong> Passagem de plantão</p>
+  <p><strong>58.</strong> Cama ocupada × desocupada</p>
+  <p><strong>59.</strong> Erro de medicação: conduta</p>
+  <p><strong>60.</strong> ★ TOP 5 80/20</p>
+</div>
+
+<div class="page-header" style="margin-top:30px;">
+  <h1>📐 Guia de Recorte</h1>
+  <p style="font-size:0.85em;">Cada flashcard tem ≈ 9 × 13 cm (dobre ao meio e cole se desejar um cartão mais firme)</p>
+</div>
+
+</body>
+</html>

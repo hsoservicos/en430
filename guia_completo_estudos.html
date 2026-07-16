@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia Completo de Estudos - Introdução à Enfermagem</title>
+<style>
+  @page { margin: 1.5cm; size: A4; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    color: #1a1a2e;
+    background: #f8f9fa;
+    line-height: 1.65;
+    padding: 0;
+  }
+
+  .page { max-width: 210mm; margin: 0 auto; padding: 30px 40px; background: #fff; }
+
+  /* ===== COVER ===== */
+  .cover {
+    background: linear-gradient(135deg, #0a3d62 0%, #1e6f9e 50%, #0a3d62 100%);
+    color: #fff;
+    padding: 80px 60px;
+    border-radius: 0 0 30px 30px;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .cover .icon-big { font-size: 4em; margin-bottom: 15px; }
+  .cover h1 { font-size: 2.6em; font-weight: 800; margin-bottom: 8px; letter-spacing: -1px; }
+  .cover h2 { font-size: 1.4em; font-weight: 300; opacity: 0.9; margin-bottom: 15px; }
+  .cover .divider {
+    width: 80px; height: 3px; background: rgba(255,255,255,0.5);
+    margin: 15px auto;
+  }
+  .cover .meta-grid {
+    display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+    margin-top: 20px;
+  }
+  .cover .meta-item {
+    background: rgba(255,255,255,0.12);
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 0.85em;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .cover .study-path {
+    background: rgba(255,255,255,0.1);
+    padding: 20px 30px;
+    border-radius: 16px;
+    margin-top: 25px;
+    border: 1px solid rgba(255,255,255,0.15);
+    max-width: 600px;
+  }
+  .cover .study-path p { font-size: 0.85em; opacity: 0.9; }
+
+  /* ===== SECTION ===== */
+  .modulo {
+    background: #fff;
+    border-radius: 14px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+    overflow: hidden;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    border: 1px solid #e8ecf0;
+  }
+  .modulo-header {
+    background: linear-gradient(135deg, #0a3d62, #1e6f9e);
+    color: #fff;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .modulo-header .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 38px; height: 38px; background: rgba(255,255,255,0.2);
+    border-radius: 50%; font-size: 1em; font-weight: 800;
+    flex-shrink: 0;
+  }
+  .modulo-header h2 { font-size: 1.15em; font-weight: 700; }
+  .modulo-header .ch {
+    margin-left: auto; font-size: 0.75em; opacity: 0.8;
+    background: rgba(255,255,255,0.15); padding: 3px 12px; border-radius: 12px;
+  }
+
+  .modulo-body { padding: 22px 24px; }
+
+  .modulo-body h3 {
+    color: #0a3d62; font-size: 0.95em; margin: 14px 0 8px 0;
+    padding-bottom: 4px; border-bottom: 2px solid #e8f0f8;
+  }
+  .modulo-body h3:first-child { margin-top: 0; }
+
+  .modulo-body p { font-size: 0.88em; color: #333; margin-bottom: 8px; }
+  .modulo-body ul, .modulo-body ol {
+    font-size: 0.86em; color: #444;
+    padding-left: 22px; margin-bottom: 10px;
+  }
+  .modulo-body ul li { margin-bottom: 3px; }
+  .modulo-body ol li { margin-bottom: 4px; }
+
+  /* ===== TABLES ===== */
+  .info-table {
+    width: 100%; border-collapse: collapse; font-size: 0.82em;
+    margin: 10px 0;
+  }
+  .info-table th {
+    background: #0a3d62; color: #fff; padding: 6px 10px;
+    text-align: left; font-weight: 600;
+  }
+  .info-table td {
+    padding: 5px 10px; border-bottom: 1px solid #e0e8f0;
+  }
+  .info-table tr:nth-child(even) td { background: #f8fafc; }
+  .info-table tr:last-child td { border-bottom: 2px solid #0a3d62; }
+
+  /* ===== HIGHLIGHTS ===== */
+  .destaque {
+    background: #e8f5e9;
+    border-left: 4px solid #4caf50;
+    padding: 10px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 10px 0;
+    font-size: 0.84em;
+  }
+  .destaque strong { color: #2e7d32; }
+  .alerta {
+    background: #fff3e0;
+    border-left: 4px solid #ff9800;
+    padding: 10px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 10px 0;
+    font-size: 0.84em;
+  }
+  .alerta strong { color: #e65100; }
+  .info-box {
+    background: #e3f2fd;
+    border-left: 4px solid #2196f3;
+    padding: 10px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 10px 0;
+    font-size: 0.84em;
+  }
+  .info-box strong { color: #0d47a1; }
+  .mnemonico {
+    background: #f3e5f5;
+    border-left: 4px solid #9c27b0;
+    padding: 10px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 10px 0;
+    font-size: 0.84em;
+  }
+  .mnemonico strong { color: #6a1b9a; }
+
+  /* ===== TWO-COLUMN ===== */
+  .two-col {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0;
+  }
+  .two-col .col {
+    background: #f8fafc; border-radius: 8px; padding: 12px 14px;
+    border: 1px solid #e2e8f0;
+  }
+  .two-col .col-title {
+    font-size: 0.8em; font-weight: 700; color: #0a3d62; margin-bottom: 6px;
+  }
+  .two-col .col ul { font-size: 0.8em; padding-left: 16px; margin: 0; }
+  .two-col .col ul li { margin-bottom: 2px; }
+
+  /* ===== EXERCISE ===== */
+  .exercicios {
+    margin-top: 16px; padding-top: 16px;
+    border-top: 2px dashed #c5d9f0;
+  }
+  .exercicios h3 { border-bottom: none; color: #e67e22; }
+  .questao {
+    background: #f8f9fa; padding: 12px 16px; border-radius: 8px;
+    margin: 8px 0; border: 1px solid #e0e0e0;
+    font-size: 0.84em;
+  }
+  .questao .alt { display: block; padding: 2px 0 2px 20px; }
+  .questao .alt.certa { font-weight: 700; color: #2e7d32; }
+  .gabarito {
+    background: #fff8e1; border: 1px solid #ffe082;
+    padding: 10px 16px; border-radius: 8px; margin: 8px 0;
+    font-size: 0.82em;
+  }
+  .gabarito strong { color: #e65100; }
+
+  /* ===== GLOSSARY ===== */
+  .glossario-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+  }
+  .glossario-item {
+    display: flex; gap: 8px; padding: 4px 0;
+    border-bottom: 1px dotted #e0e0e0;
+    font-size: 0.8em;
+  }
+  .glossario-item .termo { font-weight: 700; color: #0a3d62; min-width: 120px; }
+  .glossario-item .sign { color: #555; }
+
+  @media print {
+    body { background: #fff; }
+    .page { padding: 0; box-shadow: none; }
+    .modulo { break-inside: avoid; box-shadow: none; }
+    .cover { border-radius: 0; }
+  }
+  .nav-index {
+    background: linear-gradient(135deg, #0a3d62, #1e6f9e);
+    padding: 10px 18px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .nav-index a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85em;
+    font-weight: 600;
+  }
+  .nav-index a:hover { text-decoration: underline; opacity: 0.85; }
+  @media print { .nav-index { display: none; } }
+  @media screen and (max-width: 700px) {
+    body { padding: 10px; }
+    .cover h1 { font-size: 1.5em; }
+    .cover { padding: 25px 15px; }
+    .cover .meta { flex-direction: column; gap: 6px; font-size: 0.75em; }
+    .modulo-header { flex-direction: column; text-align: center; }
+    .modulo-body { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<div class="nav-index">
+  <a href="index_estudos.html">← 📋 Voltar à Central de Estudos</a>
+</div>
+
+<!-- ===== COVER ===== -->
+<div class="cover">
+  <div class="icon-big">📚</div>
+  <h1>Guia Completo de Estudos</h1>
+  <h2>Introdução à Enfermagem</h2>
+  <div class="divider"></div>
+  <div class="meta-grid">
+    <span class="meta-item">🎓 Curso: Enfermagem</span>
+    <span class="meta-item">📋 EN_430 • CH: 120h</span>
+    <span class="meta-item">🌐 EAD / Subsequente</span>
+    <span class="meta-item">⚡ Método 80/20</span>
+  </div>
+  <div class="study-path">
+    <p style="font-size:0.9em;font-weight:600;margin-bottom:8px;">🗺️ Como usar este guia</p>
+    <p style="font-size:0.82em;opacity:0.9;">
+      1️⃣ Comece pela <strong>Teoria das Necessidades Básicas</strong> (fundação)<br>
+      2️⃣ Avance para <strong>SAE e Anotação</strong> (processo de trabalho)<br>
+      3️⃣ Estude <strong>Medicação e Assepsia</strong> (procedimentos base)<br>
+      4️⃣ Complete com os <strong>demais módulos</strong> na ordem sugerida<br>
+      5️⃣ Finalize com os <strong>Exercícios de Fixação</strong> e <strong>Flashcards</strong>
+    </p>
+  </div>
+</div>
+
+<!-- ===== INTRODUÇÃO ===== -->
+<div class="modulo">
+  <div class="modulo-header">
+    <span class="num">★</span>
+    <h2>Como Estudar com Este Material</h2>
+  </div>
+  <div class="modulo-body">
+    <p style="font-size:0.88em;">
+      Este Guia Completo reúne <strong>todo o conteúdo essencial</strong> da disciplina de Introdução à Enfermagem (EN_430) 
+      em <strong>10 módulos</strong> organizados do fundamento à prática. Cada módulo contém:
+    </p>
+    <ul>
+      <li><strong>📖 Conteúdo teórico</strong> — conceitos fundamentais explicados de forma clara</li>
+      <li><strong>📊 Tabelas e quadros</strong> — informações organizadas para consulta rápida</li>
+      <li><strong>🧠 Mnemônicos</strong> — técnicas de memorização para fixar o conteúdo</li>
+      <li><strong>⚠️ Pontos de atenção</strong> — destaques para o que mais cai em provas</li>
+      <li><strong>📝 Exercícios</strong> — questões ao final de cada bloco principal</li>
+    </ul>
+    <p style="font-size:0.88em;margin-top:8px;">
+      ⚡ <strong>Dica:</strong> Estude um módulo por dia. Ao final de cada módulo, revise os flashcards correspondentes e 
+      consulte o resumo de 5 minutos para fixar.
+    </p>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 1 ===== -->
+<div class="modulo">
+  <div class="modulo-header">
+    <span class="num">1</span>
+    <h2>Teoria das Necessidades Básicas</h2>
+    <span class="ch">🧩 Fundamento</span>
+  </div>
+  <div class="modulo-body">
+    <h3>📖 Conceito Fundamental</h3>
+    <p>
+      Desenvolvida por <strong>Wanda de Aguiar Horta</strong> (1979), a Teoria das Necessidades Humanas Básicas é 
+      o <strong>alicerce da enfermagem moderna brasileira</strong>. Ela se baseia na hierarquia de <strong>Maslow</strong>, 
+      adaptando-a para a realidade do cuidado de enfermagem.
+    </p>
+
+    <h3>🧩 Os 3 Níveis de Necessidades</h3>
+    <div class="two-col">
+      <div class="col">
+        <div class="col-title">🧬 Psicobiológicas</div>
+        <ul>
+          <li>Oxigenação / Circulação</li>
+          <li>Hidratação / Nutrição</li>
+          <li>Eliminação (urinária, intestinal)</li>
+          <li>Sono e Repouso</li>
+          <li>Locomoção / Atividade física</li>
+          <li>Cuidado corporal / Integridade cutânea</li>
+          <li>Regulação térmica / Neurológica</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="col-title">🤝 Psicossociais</div>
+        <ul>
+          <li>Comunicação / Interação social</li>
+          <li>Lazer / Recreação</li>
+          <li>Segurança emocional</li>
+          <li>Autoestima / Autoconfiança</li>
+          <li>Amor / Aceitação / Pertencimento</li>
+        </ul>
+      </div>
+      <div class="col" style="grid-column:1/-1;">
+        <div class="col-title">🕊️ Psicoespirituais</div>
+        <ul>
+          <li>Crenças religiosas / Espiritualidade</li>
+          <li>Valores éticos e morais</li>
+          <li>Esperança / Sentido da vida</li>
+          <li>Gratidão / Perdão / Transcendência</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="destaque">
+      <strong>🎯 Aplicação prática:</strong> Ao avaliar um paciente, identifique 
+      <strong>primeiro</strong> as necessidades psicobiológicas (urgência vital), 
+      depois as psicossociais, e por fim as psicoespirituais. Ex: um paciente com dor 
+      (psicobiológica) precisa ser medicado antes de receber apoio emocional.
+    </div>
+
+    <h3>💡 Relação com Maslow</h3>
+    <table class="info-table">
+      <tr><th>Hierarquia de Maslow</th><th>Necessidades de Horta</th><th>Exemplo em Enfermagem</th></tr>
+      <tr><td>Fisiológicas</td><td>Psicobiológicas</td><td>Oxigenação, alimentação</td></tr>
+      <tr><td>Segurança</td><td>Psicobiológicas</td><td>Conforto, proteção de quedas</td></tr>
+      <tr><td>Social (Pertencimento)</td><td>Psicossociais</td><td>Apoio familiar, visitas</td></tr>
+      <tr><td>Estima</td><td>Psicossociais</td><td>Autocuidado, privacidade</td></tr>
+      <tr><td>Autorrealização</td><td>Psicoespirituais</td><td>Assistência religiosa</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 2 ===== -->
+<div class="modulo">
+  <div class="modulo-header">
+    <span class="num">2</span>
+    <h2>SAE — Sistematização da Assistência de Enfermagem</h2>
+    <span class="ch">🔄 Processo</span>
+  </div>
+  <div class="modulo-body">
+    <h3>📖 O que é a SAE?</h3>
+    <p>
+      A <strong>SAE</strong> é uma metodologia científica que organiza o trabalho do enfermeiro, 
+      garantindo cuidado individualizado, seguro e de qualidade. É <strong>privativa do enfermeiro</strong> 
+      e regulamentada pela <strong>Resolução COFEN 358/2009</strong>.
+    </p>
+
+    <h3>📋 As 5 Etapas da SAE</h3>
+    <table class="info-table">
+      <tr><th style="width:50px;">#</th><th>Etapa</th><th>Descrição</th><th>Ferramenta</th></tr>
+      <tr>
+        <td style="text-align:center;font-weight:700;">1</td>
+        <td><strong>Histórico</strong></td>
+        <td>Coleta de dados: entrevista + exame físico + prontuário</td>
+        <td>Roteiro de anamnese</td>
+      </tr>
+      <tr>
+        <td style="text-align:center;font-weight:700;">2</td>
+        <td><strong>Diagnóstico</strong></td>
+        <td>Julgamento clínico sobre as respostas do paciente</td>
+        <td>Taxonomia NANDA-I</td>
+      </tr>
+      <tr>
+        <td style="text-align:center;font-weight:700;">3</td>
+        <td><strong>Planejamento</strong></td>
+        <td>Definição de resultados esperados e intervenções</td>
+        <td>NOC e NIC</td>
+      </tr>
+      <tr>
+        <td style="text-align:center;font-weight:700;">4</td>
+        <td><strong>Implementação</strong></td>
+        <td>Execução das intervenções prescritas</td>
+        <td>Prescrição de enfermagem</td>
+      </tr>
+      <tr>
+        <td style="text-align:center;font-weight:700;">5</td>
+        <td><strong>Avaliação</strong></td>
+        <td>Verificação se os resultados foram alcançados</td>
+        <td>Evolução de enfermagem</td>
+      </tr>
+    </table>
+
+    <div class="mnemonico">
+      <strong>🧠 Mnemônico:</strong> <strong>HDPIA</strong> — 
+      "Hoje, Diagnóstico, Planejamento, Implementação, Avaliação"
+    </div>
+
+    <div class="alerta">
+      <strong>⚠️ Ponto de prova:</strong> A SAE é <strong>privativa do enfermeiro</strong> 
+      (não pode ser delegada a técnicos ou auxiliares). As etapas de <strong>Histórico, Diagnóstico e Planejamento</strong> 
+      são exclusivas do enfermeiro. A <strong>Implementação</strong> pode ser compartilhada com a equipe.
+    </div>
+
+    <h3>📊 Taxonomias Utilizadas</h3>
+    <ul>
+      <li><strong>NANDA-I</strong> — Diagnósticos de Enfermagem (ex: "Integridade da pele prejudicada")</li>
+      <li><strong>NIC</strong> — Classificação das Intervenções (ex: "Cuidados com lesão por pressão")</li>
+      <li><strong>NOC</strong> — Classificação dos Resultados (ex: "Cicatrização de feridas")</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 3 ===== -->
+<div class="modulo">
+  <div class="modulo-header">
+    <span class="num">3</span>
+    <h2>Anotação de Enfermagem e Terminologias Técnicas</h2>
+    <span class="ch">📝 Registro</span>
+  </div>
+  <div class="modulo-body">
+    <h3>📖 Princípios da Anotação de Enfermagem</h3>
+    <p>
+      A anotação de enfermagem é o <strong>registro escrito</strong> de todas as observações, 
+      cuidados e ocorrências relacionados ao paciente. Tem valor legal, ético e clínico.
+    </p>
+    <div class="two-col">
+      <div class="col">
+        <div class="col-title">✅ Princípios</div>
+        <ul>
+          <li><strong>Objetividade</strong> — direto ao ponto</li>
+          <li><strong>Cronologia</strong> — ordem dos fatos</li>
+          <li><strong>Clareza</strong> — sem rasuras, letra legível</li>
+          <li><strong>Completude</strong> — data, hora, assinatura + COREN</li>
+          <li><strong>Sigilo</strong> — informações confidenciais</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="col-title">❌ Erros Comuns</div>
+        <ul>
+          <li>Usar siglas não padronizadas</li>
+          <li>Anotações subjetivas ("paciente parece triste")</li>
+          <li>Deixar espaços em branco</li>
+          <li>Rasuras ou corretivo</li>
+          <li>Anotar antes de realizar o procedimento</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>📋 Estrutura SOAP</h3>
+    <table class="info-table">
+      <tr><th>Letra</th><th>Significado</th><th>Exemplo</th></tr>
+      <tr><td><strong>S</strong></td><td>Subjetivo — queixas do paciente</td><td>"Refere dor abdominal 7/10"</td></tr>
+      <tr><td><strong>O</strong></td><td>Objetivo — dados observados/mensurados</td><td>"PA 140x90, FC 98 bpm, abdômen distendido"</td></tr>
+      <tr><td><strong>A</strong></td><td>Avaliação — análise clínica</td><td>"Possível retenção urinária"</td></tr>
+      <tr><td><strong>P</strong></td><td>Plano — intervenções realizadas/previstas</td><td>"Instalado SVD, mantido em observação"</td></tr>
+    </table>
+
+    <h3>📖 Principais Terminologias Técnicas</h3>
+    <div class="glossario-grid">
+      <div class="glossario-item"><span class="termo">Afebril</span><span class="sign">Sem febre (36-37°C)</span></div>
+      <div class="glossario-item"><span class="termo">Normocárdico</span><span class="sign">FC normal (60-100 bpm)</span></div>
+      <div class="glossario-item"><span class="termo">Eupnéico</span><span class="sign">FR normal (16-20 irpm)</span></div>
+      <div class="glossario-item"><span class="termo">Normotenso</span><span class="sign">PA normal (~120×80 mmHg)</span></div>
+      <div class="glossario-item"><span class="termo">Anictérico</span><span class="sign">Sem icterícia</span></div>
+      <div class="glossario-item"><span class="termo">Normocorado</span><span class="sign">Pele/mucosas coradas</span></div>
+      <div class="glossario-item"><span class="termo">Hidratado</span><span class="sign">Turgor preservado</span></div>
+      <div class="glossario-item"><span class="termo">Lúcido e Orientado</span><span class="sign">Consciente (L+O)</span></div>
+      <div class="glossario-item"><span class="termo">Diurese presente</span><span class="sign">Urina normal</span></div>
+      <div class="glossario-item"><span class="termo">Bradicárdico</span><span class="sign">FC &lt; 60 bpm</span></div>
+      <div class="glossario-item"><span class="termo">Taquicárdico</span><span class="sign">FC &gt; 100 bpm</span></div>
+      <div class="glossario-item"><span class="termo">Taquipneico</span><span class="sign">FR &gt; 20 irpm</span></div>
+      <div class="glossario-item"><span class="termo">Deambulando</span><span class="sign">Paciente andando</span></div>
+      <div class="glossario-item"><span class="termo">Eliminações fisiológicas</span><span class="sign">Urina e fezes normais</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 4 ===== -->
+<div class="modulo">
+  <div class="modulo-header">
+    <span class="num">4</span>
+    <h2>Administração de Medicamentos</h2>
+    <span class="ch">💊 Essencial</span>
+  </div>
+  <div class="modulo-body">
+    <h3>📖 Os 7 Certos da Medicação</h3>
+    <table class="info-table">
+      <tr><th style="width:50px;">#</th><th>Certo</th><th>O que significa</th><th>Cuidado prático</th></tr>
+      <tr><td style="text-align:center;">1</td><td><strong>Paciente</strong></td><td>Conferir nome + leito + pulseira</td><td>Perguntar nome ao paciente</td></tr>
+      <tr><td style="text-align:center;">2</td><td><strong>Medicamento</strong></td><td>Conferir com a prescrição</td><td>Ler rótulo 3 vezes</td></tr>
+      <tr><td style="text-align:center;">3</td><td><strong>Dose</strong></td><td>Calcular e confirmar</td><td>Usar regra de 3</td></tr>
+      <tr><td style="text-align:center;">4</td><td><strong>Via</strong></td><td>Via correta (enteral/parenteral)</td><td>Verificar compatibilidade</td></tr>
+      <tr><td style="text-align:center;">5</td><td><strong>Horário</strong></td><td>Horário e intervalo corretos</td><td>Não atrasar nem adiantar</td></tr>
+      <tr><td style="text-align:center;">6</td><td><strong>Registro</strong></td><td>Anotar após administrar</td><td>Nunca anotar antes</td></tr>
+      <tr><td style="text-align:center;">7</td><td><strong>Orientação</strong></td><td>Informar o paciente</td><td>Explicar medicação e efeitos</td></tr>
+    </table>
+    <div class="mnemonico"><strong>🧠 Mnemônico:</strong> <strong>PMDVHRO</strong> — Paciente, Medicamento, Dose, Via, Horário, Registro, Orientação</div>
+
+    <h3>💉 Vias Enterais × Parenterais</h3>
+    <div class="two-col">
+      <div class="col">
+        <div class="col-title">💊 Enterais (via TGI)</div>
+        <ul>
+          <li><strong>Oral (VO)</strong> — comprimidos, xaropes</li>
+          <li><strong>Sublingual (SL)</strong> — absorção rápida</li>
+          <li><strong>Sonda NG/NE</strong> — pacientes sem deglutição</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="col-title">💉 Parenterais (fora do TGI)</div>
+        <ul>
+          <li><strong>ID</strong> — 10-15°, 0,5 mL (PPD, BCG)</li>
+          <li><strong>SC</strong> — 45-90°, 1-2 mL (insulina)</li>
+          <li><strong>IM</strong> — 90°, 3-5 mL (Benzetacil)</li>
+          <li><strong>EV</strong> — 25-45°, volume variável (soros)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>🧮 Cálculo de Medicamentos</h3>
+    <div class="info-box">
+      <strong>🔢 Fórmulas essenciais:</strong><br>
+      • <strong>Regra de 3:</strong> Dose prescrita × Volume total ÷ Dose disponível<br>
+      • <strong>Macrogotas/min:</strong> Volume (mL) ÷ (Tempo (h) × 3)<br>
+      • <strong>Microgotas/min:</strong> Volume (mL) ÷ Tempo (h)<br>
+      • <strong>Microgotas = Macrogotas × 3</strong>
+    </div>
+
+    <div class="destaque">
+      <strong>💡 Exemplo:</strong> Prescrição: SF 0,9% 500 mL em 6h. Quantas macrogotas/min?<br>
+      Cálculo: 500 ÷ (6×3) = 500 ÷ 18 = <strong>~28 gotas/min</strong>
+    </div>
+
+    <h3>📌 Locais da Via IM</h3>
+    <table class="info-table">
+      <tr><th>Músculo</th><th>Local</th><th>Vol. Máx.</th></tr>
+      <tr><td>Deltoide</td><td>Face externa do braço</td><td>2 mL</td></tr>
+      <tr><td>Vasto Lateral da Coxa</td><td>Antero-lateral da coxa</td><td>5 mL</td></tr>
+      <tr><td>Glúteo Máximo</td><td>Quadrante superior externo</td><td>4 mL</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 5 ===== -->
+<div class="modulo">
+  <div class="modulo-header">
+    <span class="num">5</span>
+    <h2>Assepsia, Antissepsia e Higiene do Paciente</h2>
+    <span class="ch">🧼 Base</span>
+  </div>
+  <div class="modulo-body">
+    <h3>📖 Conceitos Fundamentais</h3>
+    <div class="two-col">
+      <div class="col">
+        <div class="col-title">🛡️ Assepsia</div>
+        <ul>
+          <li>Ausência total de microrganismos</li>
+          <li>Campo estéril, material esterilizado</li>
+          <li>Centro cirúrgico, procedimentos invasivos</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="col-title">🧴 Antissepsia</div>
+        <ul>
+          <li>Redução de microrganismos na pele</li>
+          <li>Álcool 70%, PVPI, Clorexidina</li>
+          <li>Antes de procedimentos, curativos</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>🖐️ 5 Momentos da Higienização das Mãos (OMS)</h3>
+    <ol>
+      <li><strong>Antes</strong> de tocar o paciente</li>
+      <li><strong>Antes</strong> de procedimento limpo/asséptico</li>
+      <li><strong>Após</strong> risco de exposição a fluidos corporais</li>
+      <li><strong>Após</strong> tocar o paciente</li>
+      <li><strong>Após</strong> tocar superfícies próximas ao paciente</li>
+    </ol>
+
+    <h3>🧤 Técnica para Calçar Luvas Estéreis</h3>
+    <ol>
+      <li>Higienizar as mãos (degermação)</li>
+      <li>Abrir o envelope estéril pela parte externa</li>
+      <li>Calçar 1ª luva com mão dominante (pegar pelo avesso do punho)</li>
+      <li>Calçar 2ª luva (dedos enluvados sob o punho dobrado da 2ª luva)</li>
+      <li>Mãos postas à frente, acima da cintura — não tocar em nada não estéril!</li>
+    </ol>
+
+    <h3>🛌 Banho no Leito — Sequência Correta</h3>
+    <div class="destaque">
+      <strong>Sequência:</strong> Olhos → Face → Braços → Tórax → Abdômen → Membros Inferiores → Períneo → Dorso<br>
+      <strong>Materiais:</strong> Bacia com água morna, sabonete neutro, toalhas, luvas, roupa de cama limpa
+    </div>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 6 ===== -->
+<div class="modulo">
+  <div class="modulo-header">
+    <span class="num">6</span>
+    <h2>Curativos e Feridas</h2>
+    <span class="ch">🩹 Procedimento</span>
+  </div>
+  <div class="modulo-body">
+    <h3>📖 Classificação de Feridas</h3>
+    <table class="info-table">
+      <tr><th>Critério</th><th>Classificação</th><th>Exemplo</th></tr>
+      <tr><td rowspan="2"><strong>Causa</strong></td><td>Cirúrgica</td><td>Incisão cirúrgica (limpa)</td></tr>
+      <tr><td>Traumática / Ulcerativa</td><td>Escoriação / Lesão por pressão</td></tr>
+      <tr><td rowspan="4"><strong>Contaminação</strong></td><td>Limpa</td><td>Cirurgia eletiva, sem infecção</td></tr>
+      <tr><td>Limpa-contaminada</td><td>Cirurgia com abertura de víscera</td></tr>
+      <tr><td>Contaminada</td><td>Trauma com sujidade visível</td></tr>
+      <tr><td>Infectada</td><td>Pus, secreção purulenta</td></tr>
+      <tr><td><strong>Tempo</strong></td><td>Aguda / Crônica</td><td>&lt; 6 semanas / &gt; 6 semanas</td></tr>
+    </table>
+
+    <h3>🩹 Principais Coberturas</h3>
+    <table class="info-table">
+      <tr><th>Cobertura</th><th>Indicação</th><th>Troca</th></tr>
+      <tr><td><strong>Hidrocoloide</strong></td><td>Feridas secas a pouco exsudativas</td><td>A cada 3-5 dias</td></tr>
+      <tr><td><strong>Alginato de Cálcio</strong></td><td>Feridas muito exsudativas</td><td>1-2x ao dia</td></tr>
+      <tr><td><strong>Carvão Ativado + Prata</strong></td><td>Feridas infectadas com odor</td><td>A cada 2-3 dias</td></tr>
+      <tr><td><strong>Espuma (poliuretano)</strong></td><td>Feridas moderadamente exsudativas</td><td>A cada 3-5 dias</td></tr>
+      <tr><td><strong>Filme Transparente</strong></td><td>Proteção de pele íntegra, cateteres</td><td>A cada 7 dias</td></tr>
+    </table>
+
+    <h3>📋 Lesão por Pressão (LPP) — Estágios NPUAP</h3>
+    <table class="info-table">
+      <tr><th>Estágio</th><th>Descrição</th></tr>
+      <tr><td style="text-align:center;"><strong>1</strong></td><td>Pele íntegra com eritema não branqueável</td></tr>
+      <tr><td style="text-align:center;"><strong>2</strong></td><td>Perda parcial da pele (bolha, abrasão)</td></tr>
+      <tr><td style="text-align:center;"><strong>3</strong></td><td>Perda total — gordura subcutânea visível</td></tr>
+      <tr><td style="text-align:center;"><strong>4</strong></td><td>Perda total — osso/músculo expostos</td></tr>
+    </table>
+    <div class="alerta"><strong>⚠️ Prevenção:</strong> Mudança de decúbito a cada 2h, manter pele limpa e seca, usar colchão adequado.</div>
+
+    <h3>📋 Passo a Passo do Curativo Simples</h3>
+    <ol>
+      <li>Higienizar as mãos + calçar luvas de procedimento</li>
+      <li>Remover curativo anterior</li>
+      <li>Avaliar ferida (tamanho, aspecto, odor, exsudato, bordas)</li>
+      <li>Limpar com SF 0,9% (movimento centro → periferia)</li>
+      <li>Secar bordas com gaze estéril</li>
+      <li>Aplicar cobertura indicada</li>
+      <li>Cobrir com gaze e fixar</li>
+      <li>Desprezar resíduos + higienizar mãos</li>
+      <li>Registrar: aspecto, cobertura, data e hora + COREN</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 7 ===== -->
+<div class="modulo">
+  <div class="modulo-header">
+    <span class="num">7</span>
+    <h2>Oxigenoterapia e Cateterismos</h2>
+    <span class="ch">🫁 Procedimentos</span>
+  </div>
+  <div class="modulo-body">
+    <h3>🫁 Oxigenoterapia — Dispositivos</h3>
+    <table class="info-table">
+      <tr><th>Dispositivo</th><th>Fluxo (L/min)</th><th>FiO₂</th><th>Indicação</th></tr>
+      <tr><td>Cateter Nasal</td><td>1 - 5</td><td>24 - 40%</td><td>Baixa demanda, confortável</td></tr>
+      <tr><td>Máscara Simples</td><td>5 - 10</td><td>35 - 50%</td><td>Oxigenação moderada</td></tr>
+      <tr><td>Máscara Venturi</td><td>Variável</td><td>24 - 50% (exata)</td><td>DPOC, FiO₂ controlada</td></tr>
+      <tr><td>Máscara c/ Reservatório</td><td>10 - 15</td><td>60 - 95%</td><td>Alta demanda, emergência</td></tr>
+    </table>
+    <div class="destaque"><strong>💡 Cuidados:</strong> Umidificar O₂, monitorar SatO₂ (≥95%), trocar dispositivo a cada 24h, manter cabeceira elevada.</div>
+
+    <h3>🫁 Cateterismos — Tipos e Indicações</h3>
+    <div class="two-col">
+      <div class="col">
+        <div class="col-title">Sonda Nasogástrica (SNG)</div>
+        <ul>
+          <li>Descompressão gástrica</li>
+          <li>Lavagem gástrica</li>
+          <li>Coleta de conteúdo gástrico</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="col-title">Sonda Nasoenteral (SNE)</div>
+        <ul>
+          <li>Administração de dieta</li>
+          <li>Administração de medicações</li>
+          <li>Posição: intestino (pós-pilórica)</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="col-title">Sonda Vesical</div>
+        <ul>
+          <li>Esvaziamento vesical</li>
+          <li>Controle de diurese</li>
+          <li>Coleta de urina estéril</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="col-title">Sonda Retal</div>
+        <ul>
+          <li>Eliminação de gases</li>
+          <li>Fecaloma</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>🔍 Verificação da SNG:</strong> Raio-X (padrão ouro) ou aspirar conteúdo + 
+      verificar pH &lt; 5,5. <strong>Não usar</strong> teste de borbulhamento em copo d'água!
+    </div>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 8 ===== -->
+<div class="modulo">
+  <div class="modulo-header">
+    <span class="num">8</span>
+    <h2>Exames, Coletas e Medidas Antropométricas</h2>
+    <span class="ch">📏 Diagnóstico</span>
+  </div>
+  <div class="modulo-body">
+    <h3>🧪 Coleta de Exames</h3>
+    <table class="info-table">
+      <tr><th>Exame</th><th>Técnica</th><th>Cuidados</th></tr>
+      <tr><td><strong>Hemograma</strong></td><td>Punção venosa (jejum 8-12h)</td><td>Torniquete, assepsia, frasco roxo</td></tr>
+      <tr><td><strong>Urina (EAS)</strong></td><td>Jato médio, 1ª urina da manhã</td><td>Higiene íntima, frasco estéril</td></tr>
+      <tr><td><strong>Urocultura</strong></td><td>Jato médio em frasco estéril</td><td>Desprezar 1º jato, coletar o médio</td></tr>
+      <tr><td><strong>Parasitológico de fezes</strong></td><td>Coleta de 3 amostras (dias alternados)</td><td>Frasco específico, conservar sob refrigeração</td></tr>
+      <tr><td><strong>Escarro</strong></td><td>Matinal, jejum, lavagem brônquica</td><td>Recipiente estéril, bochechar água antes</td></tr>
+      <tr><td><strong>Urina 24h</strong></td><td>Toda urina de 24h em frasco único</td><td>Desprezar 1ª urina, refrigerar</td></tr>
+    </table>
+
+    <h3>📏 Medidas Antropométricas</h3>
+    <table class="info-table">
+      <tr><th>Medida</th><th>Equipamento</th><th>Procedimento</th></tr>
+      <tr><td>Peso</td><td>Balança calibrada</td><td>Descalço, roupas leves</td></tr>
+      <tr><td>Altura</td><td>Estadiômetro</td><td>Posição ereta, descalço</td></tr>
+      <tr><td>IMC</td><td>Fórmula (peso/altura²)</td><td>Classificar resultado</td></tr>
+      <tr><td>Circunferência abdominal</td><td>Fita métrica</td><td>Entre costela e crista ilíaca</td></tr>
+    </table>
+
+    <h3>📊 Classificação do IMC (OMS)</h3>
+    <div class="two-col">
+      <div class="col">
+        <div class="col-title">&lt; 18,5</div>
+        <ul><li>Magreza (abaixo do peso)</li></ul>
+      </div>
+      <div class="col">
+        <div class="col-title">18,5 - 24,9</div>
+        <ul><li>Peso normal (eutrófico)</li></ul>
+      </div>
+      <div class="col">
+        <div class="col-title">25,0 - 29,9</div>
+        <ul><li>Sobrepeso</li></ul>
+      </div>
+      <div class="col">
+        <div class="col-title">≥ 30,0</div>
+        <ul><li>Obesidade (I, II, III)</li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 9 ===== -->
+<div class="modulo">
+  <div class="modulo-header">
+    <span class="num">9</span>
+    <h2>Posições Hospitalares, Crioterapia, Termoterapia e Contenção</h2>
+    <span class="ch">🛏️❄️🔥🔒</span>
+  </div>
+  <div class="modulo-body">
+    <h3>🛏️ Posições da Cama Hospitalar</h3>
+    <table class="info-table">
+      <tr><th>Posição</th><th>Descrição</th><th>Indicação</th></tr>
+      <tr><td><strong>Fowler</strong></td><td>45° (sentado)</td><td>Dispneia, alimentação, SNG/SNE</td></tr>
+      <tr><td><strong>Semi-Fowler</strong></td><td>30°</td><td>Conforto, repouso, prevenção broncoaspiração</td></tr>
+      <tr><td><strong>Sims</strong></td><td>Decúbito lateral</td><td>SNE, clister, exames retais</td></tr>
+      <tr><td><strong>Trendelenburg</strong></td><td>Inclinada (cabeça baixa)</td><td>Choque, hipotensão</td></tr>
+      <tr><td><strong>Decúbito Dorsal</strong></td><td>Barriga para cima</td><td>Exame físico, repouso</td></tr>
+    </table>
+    <div class="destaque"><strong>💡 Mudança de decúbito:</strong> reposicionar o paciente a cada <strong>2h</strong> para prevenir LPP.</div>
+
+    <h3>❄️🔥 Crioterapia × Termoterapia</h3>
+    <div class="two-col">
+      <div class="col">
+        <div class="col-title">❄️ Crioterapia (Frio — 20min)</div>
+        <ul>
+          <li>Edema agudo / Trauma</li>
+          <li>Processo inflamatório inicial</li>
+          <li>Dor aguda / Pós-operatório</li>
+          <li>Hemorragia</li>
+          <li><strong>Contraindicação:</strong> hipersensibilidade ao frio, doença vascular periférica</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="col-title">🔥 Termoterapia (Calor — 20min)</div>
+        <ul>
+          <li>Contraturas musculares</li>
+          <li>Abscesso / Dor crônica</li>
+          <li>Processo inflamatório crônico</li>
+          <li>Hematomas</li>
+          <li><strong>Contraindicação:</strong> sangramento ativo, tumor, edema agudo</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>🔒 Tipos de Contenção</h3>
+    <table class="info-table">
+      <tr><th>Tipo</th><th>Descrição</th><th>Cuidados</th></tr>
+      <tr><td><strong>Mecânica</strong></td><td>Faixas (punho, tórax, joelhos)</td><td>Avaliar q 1h, liberar q 2h</td></tr>
+      <tr><td><strong>Química</strong></td><td>Sedativos / Neurolépticos</td><td>Prescrição médica obrigatória</td></tr>
+      <tr><td><strong>Ambiental</strong></td><td>Grades, cama baixa</td><td>Supervisão constante</td></tr>
+    </table>
+    <div class="alerta"><strong>⚠️</strong> Contenção é <strong>último recurso</strong> — nunca usar como punição ou por conveniência!</div>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 10 ===== -->
+<div class="modulo">
+  <div class="modulo-header">
+    <span class="num">10</span>
+    <h2>Admissão, Transferência, Alta e Processo Pós-Morte</h2>
+    <span class="ch">📋⚰️</span>
+  </div>
+  <div class="modulo-body">
+    <h3>📥 Admissão do Paciente</h3>
+    <ul>
+      <li><strong>Identificação</strong> — pulseira, nome, leito, prontuário</li>
+      <li><strong>Sinais Vitais</strong> — PA, FC, FR, Tax, SatO₂</li>
+      <li><strong>Histórico de Enfermagem</strong> — QP, HDA, HPP, alergias, medicações</li>
+      <li><strong>Exame Físico</strong> — cefalocaudal, sistemas</li>
+      <li><strong>Orientações</strong> — rotinas, horários, visitas</li>
+      <li><strong>Pertences</strong> — guardar e documentar objetos de valor</li>
+    </ul>
+
+    <h3>📤 Transferência e Alta</h3>
+    <div class="two-col">
+      <div class="col">
+        <div class="col-title">Transferência</div>
+        <ul>
+          <li>Resumo de evolução</li>
+          <li>Passagem de plantão completa</li>
+          <li>Documentos e exames</li>
+          <li>Comunicação entre unidades</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="col-title">Alta Hospitalar</div>
+        <ul>
+          <li>Resumo de alta</li>
+          <li>Orientações ao paciente/cuidador</li>
+          <li>Receitas e atestados</li>
+          <li>Agendamento de retorno</li>
+          <li>Desocupação do leito</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>⚰️ Processo Pós-Morte</h3>
+    <ol>
+      <li>Confirmar óbito + registrar no prontuário</li>
+      <li>Aguardar declaração de óbito (médico)</li>
+      <li>Posicionar corpo em decúbito dorsal</li>
+      <li>Realizar higiene corporal</li>
+      <li>Retirar dispositivos (sondas, drenos, cateteres)</li>
+      <li>Identificar corpo (pulseira, etiqueta)</li>
+      <li>Respeitar crenças religiosas</li>
+      <li>Comunicar e apoiar a família</li>
+    </ol>
+    <div class="alerta"><strong>⚠️ Aspectos legais:</strong> O enfermeiro não pode declarar óbito (atribuição médica). O preparo do corpo é responsabilidade da equipe de enfermagem.</div>
+  </div>
+</div>
+
+<!-- ===== GLOSSÁRIO COMPLETO ===== -->
+<div class="modulo">
+  <div class="modulo-header">
+    <span class="num">★</span>
+    <h2>Glossário de Terminologias Técnicas</h2>
+    <span class="ch">📖 Consulta</span>
+  </div>
+  <div class="modulo-body">
+    <div class="glossario-grid">
+      <div class="glossario-item"><span class="termo">Afebril</span><span class="sign">Sem febre (36-37°C)</span></div>
+      <div class="glossario-item"><span class="termo">Anictérico</span><span class="sign">Sem icterícia (pele sem coloração amarelada)</span></div>
+      <div class="glossario-item"><span class="termo">Anúria</span><span class="sign">Ausência de diurese (&lt; 50 mL/dia)</span></div>
+      <div class="glossario-item"><span class="termo">Balanço Hídrico</span><span class="sign">Diferença entre ingesta e perda de líquidos em 24h</span></div>
+      <div class="glossario-item"><span class="termo">Bradicárdico</span><span class="sign">FC &lt; 60 bpm</span></div>
+      <div class="glossario-item"><span class="termo">Bradipneico</span><span class="sign">FR &lt; 16 irpm</span></div>
+      <div class="glossario-item"><span class="termo">Cianose</span><span class="sign">Coloração azulada por má oxigenação</span></div>
+      <div class="glossario-item"><span class="termo">Deambulando</span><span class="sign">Paciente andando sem restrições</span></div>
+      <div class="glossario-item"><span class="termo">Disúria</span><span class="sign">Dificuldade/dor ao urinar</span></div>
+      <div class="glossario-item"><span class="termo">Diurese presente</span><span class="sign">Eliminação urinária normal</span></div>
+      <div class="glossario-item"><span class="termo">Edema</span><span class="sign">Inchaço por acúmulo de líquido intersticial</span></div>
+      <div class="glossario-item"><span class="termo">Eliminações fisiológicas</span><span class="sign">Urina e fezes dentro da normalidade</span></div>
+      <div class="glossario-item"><span class="termo">Epistaxe</span><span class="sign">Sangramento nasal</span></div>
+      <div class="glossario-item"><span class="termo">Eupnéico</span><span class="sign">FR normal (16-20 irpm)</span></div>
+      <div class="glossario-item"><span class="termo">Exantema</span><span class="sign">Erupção cutânea (manchas vermelhas)</span></div>
+      <div class="glossario-item"><span class="termo">Hematêmese</span><span class="sign">Vômito com sangue</span></div>
+      <div class="glossario-item"><span class="termo">Hemiparesia</span><span class="sign">Paralisia parcial de um lado do corpo</span></div>
+      <div class="glossario-item"><span class="termo">Hemiplegia</span><span class="sign">Paralisia total de um lado do corpo</span></div>
+      <div class="glossario-item"><span class="termo">Hidratado</span><span class="sign">Turgor e elasticidade da pele preservados</span></div>
+      <div class="glossario-item"><span class="termo">Hipertenso</span><span class="sign">PA &gt; 140x90 mmHg</span></div>
+      <div class="glossario-item"><span class="termo">Hipotenso</span><span class="sign">PA &lt; 90x60 mmHg</span></div>
+      <div class="glossario-item"><span class="termo">Inconsciente</span><span class="sign">Sem resposta a estímulos verbais</span></div>
+      <div class="glossario-item"><span class="termo">Intercorrência</span><span class="sign">Evento inesperado durante a assistência</span></div>
+      <div class="glossario-item"><span class="termo">Lúcido e Orientado (L+O)</span><span class="sign">Consciente, orientado no tempo e espaço</span></div>
+      <div class="glossario-item"><span class="termo">Melena</span><span class="sign">Fezes escuras com sangue digerido</span></div>
+      <div class="glossario-item"><span class="termo">Normocárdico</span><span class="sign">FC normal (60-100 bpm)</span></div>
+      <div class="glossario-item"><span class="termo">Normocorado</span><span class="sign">Coloração normal da pele/mucosas</span></div>
+      <div class="glossario-item"><span class="termo">Normotenso</span><span class="sign">PA normal (~120x80 mmHg)</span></div>
+      <div class="glossario-item"><span class="termo">Oligúria</span><span class="sign">Diurese diminuída (&lt; 400 mL/dia)</span></div>
+      <div class="glossario-item"><span class="termo">Paresia</span><span class="sign">Fraqueza muscular parcial</span></div>
+      <div class="glossario-item"><span class="termo">Plegia</span><span class="sign">Paralisia total</span></div>
+      <div class="glossario-item"><span class="termo">Poliúria</span><span class="sign">Diurese aumentada (&gt; 2500 mL/dia)</span></div>
+      <div class="glossario-item"><span class="termo">Prognóstico</span><span class="sign">Previsão da evolução do quadro clínico</span></div>
+      <div class="glossario-item"><span class="termo">Punção</span><span class="sign">Perfuração/introdução de agulha ou cateter</span></div>
+      <div class="glossario-item"><span class="termo">Sialorreia</span><span class="sign">Salivação excessiva</span></div>
+      <div class="glossario-item"><span class="termo">Taquicárdico</span><span class="sign">FC &gt; 100 bpm</span></div>
+      <div class="glossario-item"><span class="termo">Taquipneico</span><span class="sign">FR &gt; 20 irpm</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== EXERCÍCIOS DE FIXAÇÃO ===== -->
+<div class="modulo" style="break-inside:auto;">
+  <div class="modulo-header">
+    <span class="num">★</span>
+    <h2>Exercícios de Fixação — 20 Questões</h2>
+    <span class="ch">📝 Teste seu conhecimento</span>
+  </div>
+  <div class="modulo-body">
+    <div class="exercicios">
+      <div class="questao">
+        <strong>1.</strong> Quais são os 3 níveis da Teoria das Necessidades Básicas de Wanda Horta?
+        <span class="alt">a) Físicas, Mentais e Espirituais</span>
+        <span class="alt">b) Psicobiológicas, Psicossociais e Psicoespirituais</span>
+        <span class="alt">c) Orgânicas, Sociais e Religiosas</span>
+        <span class="alt">d) Primárias, Secundárias e Terciárias</span>
+      </div>
+      <div class="questao">
+        <strong>2.</strong> Qual a Resolução do COFEN que regulamenta a SAE?
+        <span class="alt">a) 272/2002</span>
+        <span class="alt">b) 358/2009</span>
+        <span class="alt">c) 429/2012</span>
+        <span class="alt">d) 564/2017</span>
+      </div>
+      <div class="questao">
+        <strong>3.</strong> Qual a sequência correta das 5 etapas da SAE?
+        <span class="alt">a) Diagnóstico → Planejamento → Implementação → Avaliação → Histórico</span>
+        <span class="alt">b) Histórico → Diagnóstico → Planejamento → Implementação → Avaliação</span>
+        <span class="alt">c) Planejamento → Histórico → Diagnóstico → Implementação → Avaliação</span>
+        <span class="alt">d) Histórico → Planejamento → Diagnóstico → Avaliação → Implementação</span>
+      </div>
+      <div class="questao">
+        <strong>4.</strong> Qual o ângulo de aplicação da via intramuscular (IM)?
+        <span class="alt">a) 10-15°</span>
+        <span class="alt">b) 45°</span>
+        <span class="alt">c) 90°</span>
+        <span class="alt">d) 25-45°</span>
+      </div>
+      <div class="questao">
+        <strong>5.</strong> Quantos e quais são os 7 Certos da Administração de Medicamentos?
+        <span class="alt">a) Paciente, Medicamento, Dose, Via, Horário, Registro, Orientação</span>
+        <span class="alt">b) Paciente, Medicamento, Dose, Via, Horário, Registro, Ambiente</span>
+        <span class="alt">c) Paciente, Medicamento, Dose, Tempo, Via, Registro, Orientação</span>
+        <span class="alt">d) Paciente, Medicação, Dose, Hora, Registro, Orientações, Ambiente</span>
+      </div>
+      <div class="questao">
+        <strong>6.</strong> Qual a diferença entre ASSEPSIA e ANTI-SEPSIA?
+        <span class="alt">a) Assepsia reduz microrganismos; antissepsia elimina totalmente</span>
+        <span class="alt">b) Assepsia impede a entrada de microrganismos; antissepsia reduz na pele</span>
+        <span class="alt">c) São sinônimos</span>
+        <span class="alt">d) Assepsia é para objetos; antissepsia é para pessoas</span>
+      </div>
+      <div class="questao">
+        <strong>7.</strong> Quais são os 5 Momentos da Higienização das Mãos (OMS)?
+        <span class="alt">a) Antes e após contato com paciente, antes de procedimento, após fluidos, após superfícies</span>
+        <span class="alt">b) Ao chegar, ao sair, antes do almoço, após banheiro, ao final do plantão</span>
+        <span class="alt">c) Antes e após cada medicação, ao acordar, antes de dormir</span>
+        <span class="alt">d) Ao entrar no quarto, antes de tocar, após tocar, após luvas, após alimentos</span>
+      </div>
+      <div class="questao">
+        <strong>8.</strong> Qual o volume máximo para aplicação no músculo deltoide?
+        <span class="alt">a) 1 mL</span>
+        <span class="alt">b) 2 mL</span>
+        <span class="alt">c) 3 mL</span>
+        <span class="alt">d) 5 mL</span>
+      </div>
+      <div class="questao">
+        <strong>9.</strong> O que significa "normocárdico" na terminologia técnica?
+        <span class="alt">a) Pressão arterial normal</span>
+        <span class="alt">b) Frequência cardíaca normal (60-100 bpm)</span>
+        <span class="alt">c) Temperatura normal</span>
+        <span class="alt">d) Respiração normal</span>
+      </div>
+      <div class="questao">
+        <strong>10.</strong> Para qual tipo de ferida o Alginato de Cálcio é mais indicado?
+        <span class="alt">a) Feridas secas</span>
+        <span class="alt">b) Feridas muito exsudativas</span>
+        <span class="alt">c) Pele íntegra</span>
+        <span class="alt">d) Feridas fechadas</span>
+      </div>
+      <div class="questao">
+        <strong>11.</strong> Qual o fluxo de oxigênio do Cateter Nasal?
+        <span class="alt">a) 1-5 L/min</span>
+        <span class="alt">b) 5-10 L/min</span>
+        <span class="alt">c) 10-15 L/min</span>
+        <span class="alt">d) 15-20 L/min</span>
+      </div>
+      <div class="questao">
+        <strong>12.</strong> Qual a diferença entre SNG e SNE?
+        <span class="alt">a) SNG vai até o estômago; SNE vai até o intestino</span>
+        <span class="alt">b) SNG vai pela boca; SNE vai pelo nariz</span>
+        <span class="alt">c) SNG é para medicação; SNE é para coleta</span>
+        <span class="alt">d) Não há diferença</span>
+      </div>
+      <div class="questao">
+        <strong>13.</strong> Qual a posição indicada para paciente com dispneia?
+        <span class="alt">a) Decúbito dorsal</span>
+        <span class="alt">b) Trendelenburg</span>
+        <span class="alt">c) Fowler (45°)</span>
+        <span class="alt">d) Sims</span>
+      </div>
+      <div class="questao">
+        <strong>14.</strong> De quanto em quanto tempo deve-se realizar a mudança de decúbito?
+        <span class="alt">a) 30 min</span>
+        <span class="alt">b) 1 hora</span>
+        <span class="alt">c) 2 horas</span>
+        <span class="alt">d) 4 horas</span>
+      </div>
+      <div class="questao">
+        <strong>15.</strong> Qual IMC classifica o paciente com obesidade grau I?
+        <span class="alt">a) 25,0 - 29,9</span>
+        <span class="alt">b) 30,0 - 34,9</span>
+        <span class="alt">c) 35,0 - 39,9</span>
+        <span class="alt">d) ≥ 40</span>
+      </div>
+      <div class="questao">
+        <strong>16.</strong> Quando usar CRIOTERAPIA?
+        <span class="alt">a) Contraturas musculares crônicas</span>
+        <span class="alt">b) Edema agudo, trauma recente</span>
+        <span class="alt">c) Abscesso</span>
+        <span class="alt">d) Dor crônica</span>
+      </div>
+      <div class="questao">
+        <strong>17.</strong> Qual o método PADRÃO OURO para verificar posicionamento da SNG?
+        <span class="alt">a) Ausculta epigástrica</span>
+        <span class="alt">b) Teste de borbulhamento</span>
+        <span class="alt">c) Raio-X</span>
+        <span class="alt">d) pH do aspirado</span>
+      </div>
+      <div class="questao">
+        <strong>18.</strong> O que significa a sigla L+O na anotação de enfermagem?
+        <span class="alt">a) Leito + Observação</span>
+        <span class="alt">b) Lúcido e Orientado</span>
+        <span class="alt">c) Limpo e Organizado</span>
+        <span class="alt">d) Local + Origem</span>
+      </div>
+      <div class="questao">
+        <strong>19.</strong> Qual destes NÃO é um tipo de contenção?
+        <span class="alt">a) Mecânica</span>
+        <span class="alt">b) Química</span>
+        <span class="alt">c) Física (exercícios)</span>
+        <span class="alt">d) Ambiental</span>
+      </div>
+      <div class="questao">
+        <strong>20.</strong> Qual o primeiro passo no processo pós-morte?
+        <span class="alt">a) Retirar dispositivos invasivos</span>
+        <span class="alt">b) Realizar higiene corporal</span>
+        <span class="alt">c) Confirmar e registrar o óbito</span>
+        <span class="alt">d) Identificar o corpo</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== GABARITO ===== -->
+<div class="modulo">
+  <div class="modulo-header">
+    <span class="num">★</span>
+    <h2>Gabarito dos Exercícios</h2>
+    <span class="ch">✅ Correção</span>
+  </div>
+  <div class="modulo-body">
+    <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.85em;">
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>1.</strong> B</div>
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>2.</strong> B</div>
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>3.</strong> B</div>
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>4.</strong> C</div>
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>5.</strong> A</div>
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>6.</strong> B</div>
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>7.</strong> A</div>
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>8.</strong> B</div>
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>9.</strong> B</div>
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>10.</strong> B</div>
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>11.</strong> A</div>
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>12.</strong> A</div>
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>13.</strong> C</div>
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>14.</strong> C</div>
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>15.</strong> B</div>
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>16.</strong> B</div>
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>17.</strong> C</div>
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>18.</strong> B</div>
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>19.</strong> C</div>
+      <div style="background:#e8f5e9;padding:6px 12px;border-radius:6px;"><strong>20.</strong> C</div>
+    </div>
+    <div class="destaque" style="margin-top:12px;">
+      <strong>📊 Resultado:</strong> Acertou &lt; 10 = precisa revisar os módulos 1-5 • 
+      10-15 = bom, revise os pontos fracos • 16-20 = excelente, siga para os flashcards e pratique!
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

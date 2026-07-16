@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cronograma Mensal - Introdução à Enfermagem</title>
+<style>
+  @page { margin: 0.8cm; size: A4 landscape; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    color: #1a1a2e;
+    background: #f0f2f5;
+    padding: 20px;
+  }
+
+  .page {
+    max-width: 297mm;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0a3d62, #1e6f9e);
+    color: #fff;
+    padding: 20px 28px;
+    border-radius: 14px;
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .header h1 {
+    font-size: 1.6em;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+  .header .sub {
+    font-size: 0.85em;
+    opacity: 0.85;
+  }
+  .header .badge {
+    background: rgba(255,255,255,0.15);
+    padding: 6px 18px;
+    border-radius: 25px;
+    font-size: 0.78em;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .header .badge.orange {
+    background: #f39c12;
+    color: #1a1a2e;
+    font-weight: 700;
+  }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    padding: 12px 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+    border: 1px solid #e0e0e0;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75em;
+    color: #555;
+  }
+  .legend-item .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  /* WEEK */
+  .week {
+    background: #fff;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+  }
+  .week-header {
+    background: linear-gradient(135deg, #0a3d62, #1e6f9e);
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .week-header h2 {
+    font-size: 1em;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .week-header .focus {
+    font-size: 0.75em;
+    background: rgba(255,255,255,0.15);
+    padding: 3px 14px;
+    border-radius: 15px;
+  }
+  .week-header .progress {
+    font-size: 0.7em;
+    opacity: 0.8;
+  }
+
+  .week-body {
+    padding: 0;
+  }
+
+  /* DAYS GRID */
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+  }
+
+  .day-card {
+    padding: 10px 12px;
+    min-height: 130px;
+    border-right: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+  }
+  .day-card:nth-child(7n) { border-right: none; }
+  .day-card.rest-day {
+    background: #fafafa;
+  }
+
+  .day-card .day-num {
+    font-size: 0.75em;
+    font-weight: 700;
+    color: #0a3d62;
+    margin-bottom: 4px;
+  }
+  .day-card.rest-day .day-num { color: #aaa; }
+
+  .day-card .activities {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .day-card .act {
+    font-size: 0.62em;
+    padding: 2px 6px;
+    border-radius: 4px;
+    line-height: 1.3;
+    display: flex;
+    align-items: flex-start;
+    gap: 3px;
+  }
+  .day-card .act .emoji { flex-shrink: 0; }
+
+  .act-guia   { background: #fff3e0; color: #e65100; }
+  .act-plano  { background: #e3f2fd; color: #0d47a1; }
+  .act-resumo { background: #e8f5e9; color: #1b5e20; }
+  .act-flash  { background: #fce4ec; color: #880e4f; }
+  .act-exerc  { background: #f3e5f5; color: #4a148c; }
+  .act-revisao { background: #fff8e1; color: #f57f17; }
+  .act-prova  { background: #ffebee; color: #b71c1c; }
+
+  .day-card .rest-label {
+    font-size: 0.65em;
+    color: #bbb;
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+  /* SUMMARY TABLE */
+  .summary {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-top: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border: 1px solid #e0e0e0;
+  }
+  .summary h3 {
+    font-size: 0.9em;
+    color: #0a3d62;
+    margin-bottom: 10px;
+  }
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .summary-item {
+    font-size: 0.72em;
+    padding: 8px 12px;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid #e8ecf0;
+  }
+  .summary-item .label { color: #888; }
+  .summary-item .val { font-weight: 700; color: #0a3d62; }
+
+  @media print {
+    body { background: #fff; padding: 10px; }
+    .header { border-radius: 0; }
+    .day-card { break-inside: avoid; }
+  }
+
+  @media screen and (max-width: 800px) {
+    .days-grid { grid-template-columns: repeat(3, 1fr); }
+    .summary-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .nav-index {
+    background: linear-gradient(135deg, #0a3d62, #1e6f9e);
+    padding: 8px 16px;
+    border-radius: 10px;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  .nav-index a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.8em;
+    font-weight: 600;
+  }
+  .nav-index a:hover { text-decoration: underline; opacity: 0.85; }
+  @media print { .nav-index { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<div class="nav-index">
+  <a href="index_estudos.html">← 📋 Voltar à Central de Estudos</a>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div>
+    <h1>📅 Cronograma Mensal de Estudos</h1>
+    <div class="sub">Introdução à Enfermagem — EN_430 • Curso de Enfermagem (EAD/Subsequente)</div>
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+    <span class="badge">📚 CH: 120h</span>
+    <span class="badge orange">⚡ Método 80/20</span>
+  </div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="legend-item"><span class="dot" style="background:#fff3e0;border:1px solid #e65100;"></span> 📖 Guia Completo</div>
+  <div class="legend-item"><span class="dot" style="background:#e3f2fd;border:1px solid #0d47a1;"></span> 📘 Plano 20h</div>
+  <div class="legend-item"><span class="dot" style="background:#e8f5e9;border:1px solid #1b5e20;"></span> 📋 Resumo 5min</div>
+  <div class="legend-item"><span class="dot" style="background:#fce4ec;border:1px solid #880e4f;"></span> 🃏 Flashcards</div>
+  <div class="legend-item"><span class="dot" style="background:#f3e5f5;border:1px solid #4a148c;"></span> 📝 Exercícios</div>
+  <div class="legend-item"><span class="dot" style="background:#fff8e1;border:1px solid #f57f17;"></span> 🔄 Revisão</div>
+  <div class="legend-item"><span class="dot" style="background:#ffebee;border:1px solid #b71c1c;"></span> 🎯 Prova/Simulado</div>
+  <div class="legend-item"><span class="dot" style="background:#fafafa;border:1px solid #ddd;"></span> 🟢 Descanso</div>
+</div>
+
+<!-- ===== WEEK 1 ===== -->
+<div class="week">
+  <div class="week-header">
+    <h2>📆 Semana 1 — Fundamentos (Dias 1–7)</h2>
+    <span class="focus">🎯 Foco: Teoria + SAE + Anotação</span>
+    <span class="progress">⏱ ~14h • 35% concluído</span>
+  </div>
+  <div class="week-body">
+    <div class="days-grid">
+
+      <div class="day-card">
+        <div class="day-num">Dia 1 • Seg</div>
+        <div class="activities">
+          <div class="act act-guia"><span class="emoji">📖</span> Módulo 1: Necessidades Básicas</div>
+          <div class="act act-plano"><span class="emoji">📘</span> Sessão 1 do Plano 20h</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Flashcards 1-2</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-num">Dia 2 • Ter</div>
+        <div class="activities">
+          <div class="act act-guia"><span class="emoji">📖</span> Módulo 2: SAE (5 etapas)</div>
+          <div class="act act-plano"><span class="emoji">📘</span> Sessão 2 do Plano 20h</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Flashcards 3-4</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-num">Dia 3 • Qua</div>
+        <div class="activities">
+          <div class="act act-guia"><span class="emoji">📖</span> Módulo 3: Anotação + Terminologias</div>
+          <div class="act act-plano"><span class="emoji">📘</span> Sessão 3 do Plano 20h</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Flashcards 5-6</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-num">Dia 4 • Qui</div>
+        <div class="activities">
+          <div class="act act-guia"><span class="emoji">📖</span> Revisar Módulos 1-3</div>
+          <div class="act act-resumo"><span class="emoji">📋</span> Resumo 5 min (tópicos 1-3)</div>
+          <div class="act act-revisao"><span class="emoji">🔄</span> Revisão geral Semana 1</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-num">Dia 5 • Sex</div>
+        <div class="activities">
+          <div class="act act-flash"><span class="emoji">🃏</span> Revisar Flashcards 1-6</div>
+          <div class="act act-exerc"><span class="emoji">📝</span> Exercícios 1-5 do Guia</div>
+        </div>
+      </div>
+
+      <div class="day-card rest-day">
+        <div class="day-num">Dia 6 • Sáb</div>
+        <div class="rest-label">🟢 Descanso / Revisão leve</div>
+        <div class="activities" style="margin-top:4px;">
+          <div class="act act-resumo" style="font-size:0.58em;"><span class="emoji">📋</span> Ler Resumo 5min (5 min)</div>
+        </div>
+      </div>
+
+      <div class="day-card rest-day">
+        <div class="day-num">Dia 7 • Dom</div>
+        <div class="rest-label">🟢 Descanso</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== WEEK 2 ===== -->
+<div class="week">
+  <div class="week-header">
+    <h2>📆 Semana 2 — Procedimentos Base (Dias 8–14)</h2>
+    <span class="focus">🎯 Foco: Medicação + Assepsia + Curativos</span>
+    <span class="progress">⏱ ~14h • 60% concluído</span>
+  </div>
+  <div class="week-body">
+    <div class="days-grid">
+
+      <div class="day-card">
+        <div class="day-num">Dia 8 • Seg</div>
+        <div class="activities">
+          <div class="act act-guia"><span class="emoji">📖</span> Módulo 4: Medicação (7 certos + vias enterais)</div>
+          <div class="act act-plano"><span class="emoji">📘</span> Sessão 4 do Plano 20h</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Flashcards 7-12</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-num">Dia 9 • Ter</div>
+        <div class="activities">
+          <div class="act act-guia"><span class="emoji">📖</span> Módulo 4: Vias parenterais + Cálculos</div>
+          <div class="act act-plano"><span class="emoji">📘</span> Sessão 5 do Plano 20h</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Flashcards 13-16</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-num">Dia 10 • Qua</div>
+        <div class="activities">
+          <div class="act act-guia"><span class="emoji">📖</span> Módulo 5: Assepsia, Antissepsia, Higiene</div>
+          <div class="act act-plano"><span class="emoji">📘</span> Sessão 6 do Plano 20h</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Flashcards 17-22</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-num">Dia 11 • Qui</div>
+        <div class="activities">
+          <div class="act act-guia"><span class="emoji">📖</span> Módulo 6: Curativos, Feridas, Coberturas</div>
+          <div class="act act-plano"><span class="emoji">📘</span> Sessão 7 do Plano 20h</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Flashcards 23-26</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-num">Dia 12 • Sex</div>
+        <div class="activities">
+          <div class="act act-revisao"><span class="emoji">🔄</span> Revisar Módulos 4-6</div>
+          <div class="act act-resumo"><span class="emoji">📋</span> Resumo 5 min (completo)</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Revisar Flashcards 7-26</div>
+          <div class="act act-exerc"><span class="emoji">📝</span> Exercícios 6-10 do Guia</div>
+        </div>
+      </div>
+
+      <div class="day-card rest-day">
+        <div class="day-num">Dia 13 • Sáb</div>
+        <div class="rest-label">🟢 Descanso</div>
+      </div>
+
+      <div class="day-card rest-day">
+        <div class="day-num">Dia 14 • Dom</div>
+        <div class="rest-label">🟢 Descanso</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== WEEK 3 ===== -->
+<div class="week">
+  <div class="week-header">
+    <h2>📆 Semana 3 — Procedimentos Avançados (Dias 15–21)</h2>
+    <span class="focus">🎯 Foco: Oxigenoterapia + Cateterismos + Exames</span>
+    <span class="progress">⏱ ~14h • 85% concluído</span>
+  </div>
+  <div class="week-body">
+    <div class="days-grid">
+
+      <div class="day-card">
+        <div class="day-num">Dia 15 • Seg</div>
+        <div class="activities">
+          <div class="act act-guia"><span class="emoji">📖</span> Módulo 7: Oxigenoterapia</div>
+          <div class="act act-plano"><span class="emoji">📘</span> Sessão 8 do Plano 20h</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Flashcards 27-32</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-num">Dia 16 • Ter</div>
+        <div class="activities">
+          <div class="act act-guia"><span class="emoji">📖</span> Módulo 7: Cateterismos (SNG, SNE, Vesical, Retal)</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Flashcards 33-36</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-num">Dia 17 • Qua</div>
+        <div class="activities">
+          <div class="act act-guia"><span class="emoji">📖</span> Módulo 8: Exames, Coletas, Medidas Antropométricas</div>
+          <div class="act act-plano"><span class="emoji">📘</span> Sessão 9 do Plano 20h</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Flashcards 37-41</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-num">Dia 18 • Qui</div>
+        <div class="activities">
+          <div class="act act-guia"><span class="emoji">📖</span> Módulo 9: Posições + Crioterapia/Termoterapia + Contenção</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Flashcards 42-48</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-num">Dia 19 • Sex</div>
+        <div class="activities">
+          <div class="act act-guia"><span class="emoji">📖</span> Módulo 10: Admissão, Alta, Pós-Morte</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Flashcards 49-55</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-num">Dia 20 • Sáb</div>
+        <div class="activities">
+          <div class="act act-revisao"><span class="emoji">🔄</span> Revisar Módulos 7-10</div>
+          <div class="act act-resumo"><span class="emoji">📋</span> Resumo 5 min (completo)</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Revisar Flashcards 27-55</div>
+          <div class="act act-exerc"><span class="emoji">📝</span> Exercícios 11-15 do Guia</div>
+        </div>
+      </div>
+
+      <div class="day-card rest-day">
+        <div class="day-num">Dia 21 • Dom</div>
+        <div class="rest-label">🟢 Descanso</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== WEEK 4 ===== -->
+<div class="week">
+  <div class="week-header">
+    <h2>📆 Semana 4 — Revisão e Fixação Final (Dias 22–30)</h2>
+    <span class="focus">🎯 Foco: Revisão geral + Flashcards + Simulado</span>
+    <span class="progress">⏱ ~12h • 100% concluído ✅</span>
+  </div>
+  <div class="week-body">
+    <div class="days-grid">
+
+      <div class="day-card">
+        <div class="day-num">Dia 22 • Seg</div>
+        <div class="activities">
+          <div class="act act-revisao"><span class="emoji">🔄</span> Revisar Módulo 1 (Necessidades Básicas)</div>
+          <div class="act act-resumo"><span class="emoji">📋</span> Resumo 5 min + Flashcards 1-6</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Revisar mnemônicos HDPIA</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-num">Dia 23 • Ter</div>
+        <div class="activities">
+          <div class="act act-revisao"><span class="emoji">🔄</span> Revisar Módulos 2-3 (SAE + Anotação)</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Flashcards 3-6 + terminologias</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-num">Dia 24 • Qua</div>
+        <div class="activities">
+          <div class="act act-revisao"><span class="emoji">🔄</span> Revisar Módulo 4 (Medicação)</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Flashcards 7-16 (7 certos, vias, cálculos)</div>
+          <div class="act act-resumo"><span class="emoji">📋</span> Mnemônico PMDVHRO</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-num">Dia 25 • Qui</div>
+        <div class="activities">
+          <div class="act act-revisao"><span class="emoji">🔄</span> Revisar Módulos 5-6 (Assepsia + Curativos)</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Flashcards 17-26</div>
+          <div class="act act-resumo"><span class="emoji">📋</span> 5 momentos da higienização</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-num">Dia 26 • Sex</div>
+        <div class="activities">
+          <div class="act act-revisao"><span class="emoji">🔄</span> Revisar Módulos 7-8 (Oxigênio + Exames)</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Flashcards 27-41</div>
+          <div class="act act-exerc"><span class="emoji">📝</span> Exercícios 16-20 do Guia</div>
+        </div>
+      </div>
+
+      <div class="day-card">
+        <div class="day-num">Dia 27 • Sáb</div>
+        <div class="activities">
+          <div class="act act-revisao"><span class="emoji">🔄</span> Revisar Módulos 9-10 + Glossário</div>
+          <div class="act act-flash"><span class="emoji">🃏</span> Flashcards 42-55</div>
+        </div>
+      </div>
+
+      <div class="day-card rest-day">
+        <div class="day-num">Dia 28 • Dom</div>
+        <div class="rest-label">🟢 Descanso</div>
+      </div>
+
+      <div class="day-card" style="grid-column:span 7;border-right:none;background:#f8fff4;border:2px solid #4caf50;">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <span style="font-size:2em;">🎯</span>
+          <div>
+            <strong style="color:#2e7d32;font-size:0.9em;">DIAS 29-30: SIMULADO FINAL + REVISÃO COMPLETA</strong>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;">
+              <div class="act act-prova" style="font-size:0.7em;"><span class="emoji">🎯</span> Resolver TODOS os 20 exercícios do Guia</div>
+              <div class="act act-prova" style="font-size:0.7em;"><span class="emoji">🎯</span> Flashcards 56-60 (TOP 5 80/20)</div>
+              <div class="act act-prova" style="font-size:0.7em;"><span class="emoji">🎯</span> Ler Resumo 5 min (última leitura)</div>
+              <div class="act act-prova" style="font-size:0.7em;"><span class="emoji">🎯</span> Revisar erros nos exercícios</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary">
+  <h3>📊 Resumo do Cronograma Mensal</h3>
+  <div class="summary-grid">
+    <div class="summary-item">
+      <div class="label">📖 Guia Completo</div>
+      <div class="val">10 módulos estudados</div>
+      <div style="font-size:0.7em;color:#888;">Distribuídos nas semanas 1-3</div>
+    </div>
+    <div class="summary-item">
+      <div class="label">📘 Plano 20h</div>
+      <div class="val">9 das 10 sessões</div>
+      <div style="font-size:0.7em;color:#888;">~18h de estudo guiado</div>
+    </div>
+    <div class="summary-item">
+      <div class="label">📋 Resumo 5 min</div>
+      <div class="val">Revisão diária</div>
+      <div style="font-size:0.7em;color:#888;">Leitura rápida todos os dias</div>
+    </div>
+    <div class="summary-item">
+      <div class="label">🃏 Flashcards</div>
+      <div class="val">60 cartões revisados</div>
+      <div style="font-size:0.7em;color:#888;">Distribuídos ao longo do mês</div>
+    </div>
+    <div class="summary-item">
+      <div class="label">📝 Exercícios</div>
+      <div class="val">20 questões resolvidas</div>
+      <div style="font-size:0.7em;color:#888;">Com gabarito e correção</div>
+    </div>
+    <div class="summary-item">
+      <div class="label">⏱ Carga Horária</div>
+      <div class="val">~54 horas</div>
+      <div style="font-size:0.7em;color:#888;">~2h/dia em dias de estudo</div>
+    </div>
+    <div class="summary-item">
+      <div class="label">🔄 Revisões</div>
+      <div class="val">8 sessões de revisão</div>
+      <div style="font-size:0.7em;color:#888;">Semanal + final</div>
+    </div>
+    <div class="summary-item" style="background:#fff8e1;border-color:#ffe082;">
+      <div class="label">🎯 Dias de Descanso</div>
+      <div class="val">6 dias</div>
+      <div style="font-size:0.7em;color:#888;">Essenciais para fixação!</div>
+    </div>
+  </div>
+</div>
+
+<!-- TIPS FOOTER -->
+<div style="margin-top:16px;padding:14px 20px;background:#fff;border-radius:10px;border:1px solid #e0e0e0;font-size:0.78em;color:#555;">
+  <strong style="color:#0a3d62;">💡 Dicas para seguir o cronograma:</strong><br>
+  • Marque cada atividade concluída com um ✅ para acompanhar o progresso<br>
+  • Se perder um dia, não acumule — pule e siga adiante, revisando no final de semana<br>
+  • Use o <strong>Resumo de 5 Minutos</strong> diariamente como aquecimento antes de estudar<br>
+  • Reserve os <strong>Flashcards</strong> para momentos de espera (transporte, filas, etc.)<br>
+  • O <strong>descanso</strong> é parte fundamental do aprendizado — respeite os dias de pausa!
+</div>
+
+</div>
+</body>
+</html>

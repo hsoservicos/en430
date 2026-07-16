@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulado - Introdução à Enfermagem (40 Questões)</title>
+<style>
+  @page { margin: 1.2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    color: #1a1a2e;
+    background: #f0f2f5;
+    padding: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .nav-index {
+    background: linear-gradient(135deg, #6a1b9a, #9c27b0);
+    padding: 10px 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .nav-index a { color: #fff; text-decoration: none; font-size: 0.88em; font-weight: 600; }
+  .nav-index a:hover { text-decoration: underline; opacity: 0.85; }
+
+  .cover {
+    background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 50%, #4a148c 100%);
+    color: #fff;
+    padding: 50px 40px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: ''; position: absolute; top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .cover .icon-big { font-size: 3.5em; margin-bottom: 10px; }
+  .cover h1 { font-size: 2.2em; font-weight: 800; letter-spacing: -1px; }
+  .cover h2 { font-size: 1.1em; font-weight: 300; opacity: 0.9; margin-bottom: 10px; }
+  .cover .badge {
+    display: inline-block; background: #f39c12; color: #1a1a2e;
+    padding: 6px 22px; border-radius: 30px; font-size: 0.85em; font-weight: 700;
+    margin-top: 10px;
+  }
+  .cover .meta {
+    margin-top: 18px; font-size: 0.82em; opacity: 0.8;
+    display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
+  }
+  .cover .meta span {
+    background: rgba(255,255,255,0.1); padding: 4px 16px;
+    border-radius: 20px; border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .instrucoes {
+    background: #fff; border-radius: 14px; padding: 22px 28px;
+    margin-bottom: 25px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-left: 6px solid #7b1fa2;
+  }
+  .instrucoes h3 { color: #4a148c; font-size: 1em; margin-bottom: 8px; }
+  .instrucoes p { font-size: 0.88em; color: #555; line-height: 1.6; }
+  .instrucoes ul { list-style: none; padding: 0; margin: 8px 0; }
+  .instrucoes ul li {
+    padding: 3px 0 3px 20px; position: relative; font-size: 0.85em; color: #555;
+  }
+  .instrucoes ul li::before {
+    content: '📌'; position: absolute; left: 0; font-size: 0.85em;
+  }
+
+  .modulo-section {
+    background: #fff; border-radius: 14px; margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden;
+    page-break-inside: avoid; break-inside: avoid;
+  }
+  .modulo-header {
+    background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+    padding: 14px 22px; display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 8px;
+    border-bottom: 1px solid #ce93d8;
+  }
+  .modulo-header .m-num {
+    width: 30px; height: 30px; background: #7b1fa2; color: #fff;
+    border-radius: 50%; display: inline-flex; align-items: center;
+    justify-content: center; font-weight: 700; font-size: 0.8em;
+  }
+  .modulo-header h3 { color: #4a148c; font-size: 0.95em; flex: 1; }
+  .modulo-header .q-range {
+    background: #7b1fa2; color: #fff; padding: 3px 12px;
+    border-radius: 12px; font-size: 0.72em; font-weight: 600;
+  }
+
+  .questao {
+    padding: 16px 22px; border-bottom: 1px solid #f0eef2;
+  }
+  .questao:last-child { border-bottom: none; }
+  .questao .q-num {
+    font-weight: 700; color: #4a148c; font-size: 0.9em; margin-bottom: 6px;
+  }
+  .questao .q-enunciado {
+    font-size: 0.88em; color: #333; line-height: 1.55; margin-bottom: 8px;
+  }
+  .questao .q-enunciado strong { color: #1a1a2e; }
+  .questao .q-opcoes { list-style: none; padding: 0; }
+  .questao .q-opcoes li {
+    padding: 4px 0 4px 24px; position: relative; font-size: 0.84em; color: #444;
+    cursor: default;
+  }
+  .questao .q-opcoes li::before {
+    content: ''; position: absolute; left: 2px;
+    width: 16px; height: 16px; border: 2px solid #7b1fa2;
+    border-radius: 50%; top: 6px;
+  }
+  .questao .q-opcoes li .letra { font-weight: 700; color: #4a148c; }
+
+  .page-break { page-break-before: always; break-before: page; margin-top: 20px; }
+
+  .gabarito-section {
+    background: #fff; border-radius: 14px; margin-top: 30px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden;
+  }
+  .gabarito-header {
+    background: linear-gradient(135deg, #1b5e20, #388e3c);
+    color: #fff; padding: 16px 22px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .gabarito-header h3 { font-size: 1.1em; }
+  .gabarito-header .g-badge {
+    background: rgba(255,255,255,0.2); padding: 3px 14px;
+    border-radius: 20px; font-size: 0.75em;
+  }
+  .gabarito-body { padding: 18px 22px; }
+
+  .gabarito-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px;
+  }
+  .gabarito-item {
+    padding: 6px 10px; border-radius: 6px; font-size: 0.82em;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid #e8f5e9;
+  }
+  .gabarito-item .g-q { font-weight: 700; color: #1b5e20; min-width: 35px; }
+  .gabarito-item .g-resp {
+    background: #1b5e20; color: #fff; padding: 1px 10px;
+    border-radius: 4px; font-weight: 700; font-size: 0.85em;
+  }
+  .gabarito-item .g-coment {
+    color: #555; font-size: 0.88em; flex: 1;
+  }
+  .gabarito-item:nth-child(even) { background: #f1f8e9; }
+
+  .footer-note {
+    text-align: center; padding: 20px; margin-top: 20px;
+    color: #888; font-size: 0.8em;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  @media print {
+    .nav-index { display: none; }
+    body { background: #fff; padding: 5px; }
+    .cover { border-radius: 0; }
+    .modulo-section { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+    .questao { break-inside: avoid; }
+  }
+  @media screen and (max-width: 700px) {
+    body { padding: 12px; }
+    .cover h1 { font-size: 1.5em; }
+    .cover { padding: 25px 15px; }
+    .cover .meta { flex-direction: column; gap: 6px; }
+    .modulo-header { flex-direction: column; text-align: center; }
+    .questao { padding: 12px 14px; }
+    .gabarito-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-index">
+  <a href="index_estudos.html">← 📋 Voltar à Central de Estudos</a>
+</div>
+
+<div class="cover">
+  <div class="icon-big">📝</div>
+  <h1>Simulado</h1>
+  <h2>Introdução à Enfermagem — 40 Questões de Múltipla Escolha</h2>
+  <div class="badge">📚 10 módulos • 4 questões cada • Gabarito comentado</div>
+  <div class="meta">
+    <span>🎓 EN_430</span>
+    <span>⏱ 2 horas</span>
+    <span>✅ 40 questões</span>
+    <span>📋 Múltipla escolha (A-E)</span>
+  </div>
+</div>
+
+<div class="instrucoes">
+  <h3>📋 Instruções</h3>
+  <ul>
+    <li>Este simulado contém <strong>40 questões de múltipla escolha</strong>, 4 para cada um dos 10 módulos da disciplina</li>
+    <li>Cada questão tem <strong>5 alternativas (A a E)</strong>, com apenas uma correta</li>
+    <li><strong>Tempo sugerido:</strong> 2 horas (3 minutos por questão)</li>
+    <li>Responda primeiro <strong>todas as questões</strong> antes de consultar o gabarito</li>
+    <li>O <strong>gabarito comentado</strong> está ao final — use para autoavaliação</li>
+    <li>Marque suas respostas em uma folha separada para poder refazer o simulado depois</li>
+  </ul>
+</div>
+
+<!-- ===== MÓDULO 1 ===== -->
+<div class="modulo-section">
+  <div class="modulo-header">
+    <h3><span class="m-num">1</span> 🧩 Teoria das Necessidades Básicas (Wanda Horta)</h3>
+    <span class="q-range">Questões 1–4</span>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 1</div>
+    <div class="q-enunciado">
+      Segundo a Teoria das Necessidades Humanas Básicas de Wanda Horta, as necessidades são organizadas em três níveis. Assinale a alternativa que os apresenta corretamente:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Fisiológicas, psicológicas e sociais</li>
+      <li><span class="letra">B)</span> Primárias, secundárias e terciárias</li>
+      <li><span class="letra">C)</span> Psicobiológicas, psicossociais e psicoespirituais</li>
+      <li><span class="letra">D)</span> Básicas, intermediárias e avançadas</li>
+      <li><span class="letra">E)</span> Individuais, coletivas e transcendentais</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 2</div>
+    <div class="q-enunciado">
+      São exemplos de necessidades psicobiológicas, EXCETO:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Oxigenação</li>
+      <li><span class="letra">B)</span> Hidratação</li>
+      <li><span class="letra">C)</span> Comunicação</li>
+      <li><span class="letra">D)</span> Eliminação</li>
+      <li><span class="letra">E)</span> Sono e repouso</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 3</div>
+    <div class="q-enunciado">
+      A Teoria das Necessidades Básicas de Wanda Horta foi influenciada pela teoria de:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Florence Nightingale</li>
+      <li><span class="letra">B)</span> Jean Watson</li>
+      <li><span class="letra">C)</span> Abraham Maslow</li>
+      <li><span class="letra">D)</span> Madeleine Leininger</li>
+      <li><span class="letra">E)</span> Callista Roy</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 4</div>
+    <div class="q-enunciado">
+      Um paciente hospitalizado que expressa medo da cirurgia e preocupação com a família está com qual tipo de necessidade afetada?
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Psicobiológica</li>
+      <li><span class="letra">B)</span> Psicoespiritual</li>
+      <li><span class="letra">C)</span> Psicossocial</li>
+      <li><span class="letra">D)</span> Fisiológica</li>
+      <li><span class="letra">E)</span> Orgânica</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 2 ===== -->
+<div class="modulo-section">
+  <div class="modulo-header">
+    <h3><span class="m-num">2</span> 🔄 SAE — Sistematização da Assistência de Enfermagem</h3>
+    <span class="q-range">Questões 5–8</span>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 5</div>
+    <div class="q-enunciado">
+      A SAE é regulamentada no Brasil pela Resolução COFEN:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> 272/2002</li>
+      <li><span class="letra">B)</span> 358/2009</li>
+      <li><span class="letra">C)</span> 429/2012</li>
+      <li><span class="letra">D)</span> 564/2017</li>
+      <li><span class="letra">E)</span> 618/2021</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 6</div>
+    <div class="q-enunciado">
+      Qual é a sequência correta das 5 etapas da SAE?
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Diagnóstico → Histórico → Planejamento → Implementação → Avaliação</li>
+      <li><span class="letra">B)</span> Histórico → Planejamento → Diagnóstico → Implementação → Avaliação</li>
+      <li><span class="letra">C)</span> Histórico → Diagnóstico → Planejamento → Implementação → Avaliação</li>
+      <li><span class="letra">D)</span> Planejamento → Histórico → Diagnóstico → Avaliação → Implementação</li>
+      <li><span class="letra">E)</span> Histórico → Diagnóstico → Implementação → Planejamento → Avaliação</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 7</div>
+    <div class="q-enunciado">
+      Na SAE, as taxonomias NANDA-I, NIC e NOC referem-se, respectivamente, a:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Intervenções, diagnósticos e resultados</li>
+      <li><span class="letra">B)</span> Diagnósticos, intervenções e resultados</li>
+      <li><span class="letra">C)</span> Resultados, diagnósticos e intervenções</li>
+      <li><span class="letra">D)</span> Diagnósticos, resultados e intervenções</li>
+      <li><span class="letra">E)</span> Intervenções, resultados e diagnósticos</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 8</div>
+    <div class="q-enunciado">
+      A SAE é privativa do enfermeiro. Qual etapa envolve a coleta de dados por meio de entrevista e exame físico?
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Diagnóstico de Enfermagem</li>
+      <li><span class="letra">B)</span> Planejamento</li>
+      <li><span class="letra">C)</span> Implementação</li>
+      <li><span class="letra">D)</span> Histórico de Enfermagem</li>
+      <li><span class="letra">E)</span> Avaliação</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 3 ===== -->
+<div class="modulo-section">
+  <div class="modulo-header">
+    <h3><span class="m-num">3</span> 📝 Anotação de Enfermagem + Terminologias Técnicas</h3>
+    <span class="q-range">Questões 9–12</span>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 9</div>
+    <div class="q-enunciado">
+      Qual é o significado do termo técnico "normocárdico"?
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Frequência cardíaca normal (60-100 bpm)</li>
+      <li><span class="letra">B)</span> Pressão arterial normal</li>
+      <li><span class="letra">C)</span> Temperatura corporal normal</li>
+      <li><span class="letra">D)</span> Respiração normal</li>
+      <li><span class="letra">E)</span> Glicemia normal</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 10</div>
+    <div class="q-enunciado">
+      São princípios fundamentais da anotação de enfermagem, EXCETO:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Objetividade</li>
+      <li><span class="letra">B)</span> Clareza</li>
+      <li><span class="letra">C)</span> Opinião pessoal do profissional</li>
+      <li><span class="letra">D)</span> Cronologia</li>
+      <li><span class="letra">E)</span> Sigilo</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 11</div>
+    <div class="q-enunciado">
+      O termo "anictérico" significa que o paciente:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Está com febre</li>
+      <li><span class="letra">B)</span> Não apresenta icterícia</li>
+      <li><span class="letra">C)</span> Está desidratado</li>
+      <li><span class="letra">D)</span> Apresenta icterícia leve</li>
+      <li><span class="letra">E)</span> Está inconsciente</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 12</div>
+    <div class="q-enunciado">
+      O método SOAP (Subjetivo, Objetivo, Avaliação, Plano) é utilizado para:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Calcular medicações</li>
+      <li><span class="letra">B)</span> Estruturar a anotação de evolução de enfermagem</li>
+      <li><span class="letra">C)</span> Classificar feridas</li>
+      <li><span class="letra">D)</span> Realizar curativos</li>
+      <li><span class="letra">E)</span> Administrar medicamentos</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 4 ===== -->
+<div class="modulo-section">
+  <div class="modulo-header">
+    <h3><span class="m-num">4</span> 💊 Administração de Medicamentos — Vias Enterais</h3>
+    <span class="q-range">Questões 13–16</span>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 13</div>
+    <div class="q-enunciado">
+      São consideradas vias enterais de administração de medicamentos:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Intradérmica, subcutânea e intramuscular</li>
+      <li><span class="letra">B)</span> Oral, sublingual e sonda nasogástrica</li>
+      <li><span class="letra">C)</span> Endovenosa, intradérmica e sublingual</li>
+      <li><span class="letra">D)</span> Subcutânea, intramuscular e endovenosa</li>
+      <li><span class="letra">E)</span> Tópica, oral e intramuscular</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 14</div>
+    <div class="q-enunciado">
+      Qual dos itens abaixo NÃO faz parte dos "7 Certos" da administração de medicamentos?
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Paciente certo</li>
+      <li><span class="letra">B)</span> Medicamento certo</li>
+      <li><span class="letra">C)</span> Dose certa</li>
+      <li><span class="letra">D)</span> Horário certo</li>
+      <li><span class="letra">E)</span> Preço certo</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 15</div>
+    <div class="q-enunciado">
+      Foi prescrito 500mg de Amoxicilina VO. Estão disponíveis comprimidos de 250mg. Quantos comprimidos administrar?
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> 1 comprimido</li>
+      <li><span class="letra">B)</span> 1,5 comprimidos</li>
+      <li><span class="letra">C)</span> 2 comprimidos</li>
+      <li><span class="letra">D)</span> 2,5 comprimidos</li>
+      <li><span class="letra">E)</span> 3 comprimidos</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 16</div>
+    <div class="q-enunciado">
+      A via sublingual tem absorção mais rápida que a via oral porque:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> O medicamento é mastigado</li>
+      <li><span class="letra">B)</span> A mucosa sublingual é altamente vascularizada e evita o metabolismo hepático de primeira passagem</li>
+      <li><span class="letra">C)</span> O medicamento é diluído em água</li>
+      <li><span class="letra">D)</span> A via sublingual utiliza doses maiores</li>
+      <li><span class="letra">E)</span> Não há diferença significativa entre as vias</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 5 ===== -->
+<div class="modulo-section">
+  <div class="modulo-header">
+    <h3><span class="m-num">5</span> 💉 Administração de Medicamentos — Vias Parenterais</h3>
+    <span class="q-range">Questões 17–20</span>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 17</div>
+    <div class="q-enunciado">
+      Qual o ângulo de inserção correto para uma injeção intramuscular (IM)?
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> 10-15°</li>
+      <li><span class="letra">B)</span> 25-30°</li>
+      <li><span class="letra">C)</span> 45°</li>
+      <li><span class="letra">D)</span> 90°</li>
+      <li><span class="letra">E)</span> 180°</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 18</div>
+    <div class="q-enunciado">
+      O volume máximo recomendado para administração por via intramuscular no músculo deltoide é:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> 0,5 mL</li>
+      <li><span class="letra">B)</span> 1 mL</li>
+      <li><span class="letra">C)</span> 2 mL</li>
+      <li><span class="letra">D)</span> 4 mL</li>
+      <li><span class="letra">E)</span> 5 mL</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 19</div>
+    <div class="q-enunciado">
+      A insulina é administrada por qual via parenteral?
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Intradérmica (ID)</li>
+      <li><span class="letra">B)</span> Subcutânea (SC)</li>
+      <li><span class="letra">C)</span> Intramuscular (IM)</li>
+      <li><span class="letra">D)</span> Endovenosa (EV)</li>
+      <li><span class="letra">E)</span> Intratecal</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 20</div>
+    <div class="q-enunciado">
+      Prescrição: 250mg de Ampicilina EV. Frasco disponível: 500mg — diluir em 5mL. Quantos mL administrar?
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> 1,5 mL</li>
+      <li><span class="letra">B)</span> 2,0 mL</li>
+      <li><span class="letra">C)</span> 2,5 mL</li>
+      <li><span class="letra">D)</span> 3,0 mL</li>
+      <li><span class="letra">E)</span> 5,0 mL</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 6 ===== -->
+<div class="modulo-section">
+  <div class="modulo-header">
+    <h3><span class="m-num">6</span> 🧼 Assepsia, Antissepsia e Higiene do Paciente</h3>
+    <span class="q-range">Questões 21–24</span>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 21</div>
+    <div class="q-enunciado">
+      A diferença entre assepsia e antissepsia é:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Assepsia elimina todos os microrganismos; antissepsia reduz microrganismos na pele</li>
+      <li><span class="letra">B)</span> Assepsia reduz microrganismos; antissepsia elimina todos</li>
+      <li><span class="letra">C)</span> Ambas são sinônimos</li>
+      <li><span class="letra">D)</span> Assepsia é para mãos; antissepsia é para feridas</li>
+      <li><span class="letra">E)</span> Assepsia usa água; antissepsia usa álcool</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 22</div>
+    <div class="q-enunciado">
+      Segundo a OMS, quantos são os momentos fundamentais para a higienização das mãos?
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> 3</li>
+      <li><span class="letra">B)</span> 4</li>
+      <li><span class="letra">C)</span> 5</li>
+      <li><span class="letra">D)</span> 6</li>
+      <li><span class="letra">E)</span> 7</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 23</div>
+    <div class="q-enunciado">
+      Qual dos seguintes é um dos 5 momentos da higienização das mãos (OMS)?
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Antes de entrar no hospital</li>
+      <li><span class="letra">B)</span> Após calçar luvas</li>
+      <li><span class="letra">C)</span> Após risco de exposição a fluidos corporais</li>
+      <li><span class="letra">D)</span> Antes de sair do plantão</li>
+      <li><span class="letra">E)</span> Após anotar no prontuário</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 24</div>
+    <div class="q-enunciado">
+      A mudança de decúbito do paciente acamado deve ser realizada a cada:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> 30 minutos</li>
+      <li><span class="letra">B)</span> 1 hora</li>
+      <li><span class="letra">C)</span> 2 horas</li>
+      <li><span class="letra">D)</span> 4 horas</li>
+      <li><span class="letra">E)</span> 6 horas</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 7 ===== -->
+<div class="modulo-section">
+  <div class="modulo-header">
+    <h3><span class="m-num">7</span> 🩹 Curativos, Feridas e Coberturas</h3>
+    <span class="q-range">Questões 25–28</span>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 25</div>
+    <div class="q-enunciado">
+      Uma ferida cirúrgica limpa, com 48 horas de pós-operatório e sem sinais de infecção, é classificada como:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Contaminada</li>
+      <li><span class="letra">B)</span> Infectada</li>
+      <li><span class="letra">C)</span> Limpa</li>
+      <li><span class="letra">D)</span> Limpa-contaminada</li>
+      <li><span class="letra">E)</span> Suja</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 26</div>
+    <div class="q-enunciado">
+      Qual cobertura é mais indicada para uma ferida muito exsudativa?
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Hidrocoloide</li>
+      <li><span class="letra">B)</span> Filme transparente</li>
+      <li><span class="letra">C)</span> Alginato de cálcio</li>
+      <li><span class="letra">D)</span> Gaze comum</li>
+      <li><span class="letra">E)</span> Micropore</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 27</div>
+    <div class="q-enunciado">
+      A cobertura de carvão ativado com prata é indicada para:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Feridas secas e limpas</li>
+      <li><span class="letra">B)</span> Feridas infectadas com odor</li>
+      <li><span class="letra">C)</span> Pele íntegra sob cateter</li>
+      <li><span class="letra">D)</span> Feridas com pouca exsudação</li>
+      <li><span class="letra">E)</span> Curativos pós-cirúrgicos imediatos</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 28</div>
+    <div class="q-enunciado">
+      Quanto ao tempo de evolução, as feridas são classificadas como:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Superficiais e profundas</li>
+      <li><span class="letra">B)</span> Limpas e infectadas</li>
+      <li><span class="letra">C)</span> Agudas (até 6 semanas) e crônicas (> 6 semanas)</li>
+      <li><span class="letra">D)</span> Cirúrgicas e traumáticas</li>
+      <li><span class="letra">E)</span> Fechadas e abertas</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 8 ===== -->
+<div class="modulo-section">
+  <div class="modulo-header">
+    <h3><span class="m-num">8</span> 🫁 Oxigenoterapia + Cateterismos</h3>
+    <span class="q-range">Questões 29–32</span>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 29</div>
+    <div class="q-enunciado">
+      Qual dispositivo de oxigenoterapia permite fornecer uma FiO₂ exata e controlada?
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Cateter nasal</li>
+      <li><span class="letra">B)</span> Máscara simples</li>
+      <li><span class="letra">C)</span> Máscara de Venturi</li>
+      <li><span class="letra">D)</span> Máscara com reservatório</li>
+      <li><span class="letra">E)</span> Cânula nasal</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 30</div>
+    <div class="q-enunciado">
+      A Sonda Nasogástrica (SNG) é indicada para:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Administração de dieta</li>
+      <li><span class="letra">B)</span> Descompressão gástrica e lavagem gástrica</li>
+      <li><span class="letra">C)</span> Controle de diurese</li>
+      <li><span class="letra">D)</span> Eliminação de gases</li>
+      <li><span class="letra">E)</span> Coleta de urina estéril</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 31</div>
+    <div class="q-enunciado">
+      Qual a diferença entre SNG e SNE?
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> SNG é para adultos; SNE é para crianças</li>
+      <li><span class="letra">B)</span> SNG termina no estômago; SNE termina no intestino delgado</li>
+      <li><span class="letra">C)</span> SNG é para dieta; SNE é para descompressão</li>
+      <li><span class="letra">D)</span> Não há diferença</li>
+      <li><span class="letra">E)</span> SNG é mais calibrosa que SNE</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 32</div>
+    <div class="q-enunciado">
+      O cateterismo vesical de demora é indicado principalmente para:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Administrar medicamentos</li>
+      <li><span class="letra">B)</span> Coleta de urina para urocultura</li>
+      <li><span class="letra">C)</span> Controle preciso de diurese e esvaziamento vesical prolongado</li>
+      <li><span class="letra">D)</span> Lavagem gástrica</li>
+      <li><span class="letra">E)</span> Eliminação de gases</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 9 ===== -->
+<div class="modulo-section">
+  <div class="modulo-header">
+    <h3><span class="m-num">9</span> 📏 Exames, Coletas, Medidas Antropométricas, Crioterapia e Termoterapia</h3>
+    <span class="q-range">Questões 33–36</span>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 33</div>
+    <div class="q-enunciado">
+      Um paciente com peso de 80 kg e altura de 1,70 m apresenta IMC de:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> 22,6 (normal)</li>
+      <li><span class="letra">B)</span> 24,2 (normal)</li>
+      <li><span class="letra">C)</span> 27,7 (sobrepeso)</li>
+      <li><span class="letra">D)</span> 30,1 (obesidade grau I)</li>
+      <li><span class="letra">E)</span> 32,5 (obesidade grau I)</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 34</div>
+    <div class="q-enunciado">
+      Para a coleta de urocultura, o método correto é:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Primeira urina da manhã, desprezando o primeiro jato</li>
+      <li><span class="letra">B)</span> Urina de 24 horas</li>
+      <li><span class="letra">C)</span> Jato médio em frasco estéril, após higiene íntima</li>
+      <li><span class="letra">D)</span> Qualquer urina do dia, sem cuidados especiais</li>
+      <li><span class="letra">E)</span> Urina coletada por sonda vesical de alívio</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 35</div>
+    <div class="q-enunciado">
+      A crioterapia (aplicação de frio) é mais indicada para:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Contraturas musculares crônicas</li>
+      <li><span class="letra">B)</span> Edema agudo e processo inflamatório inicial</li>
+      <li><span class="letra">C)</span> Abscessos</li>
+      <li><span class="letra">D)</span> Dores crônicas</li>
+      <li><span class="letra">E)</span> Torcicolo</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 36</div>
+    <div class="q-enunciado">
+      O tempo de aplicação recomendado tanto para crioterapia quanto para termoterapia é de aproximadamente:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> 5 minutos</li>
+      <li><span class="letra">B)</span> 10 minutos</li>
+      <li><span class="letra">C)</span> 20 minutos</li>
+      <li><span class="letra">D)</span> 40 minutos</li>
+      <li><span class="letra">E)</span> 60 minutos</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== MÓDULO 10 ===== -->
+<div class="modulo-section">
+  <div class="modulo-header">
+    <h3><span class="m-num">10</span> 📋 Admissão, Alta, Contenção, Cama Hospitalar e Processo Pós-Morte</h3>
+    <span class="q-range">Questões 37–40</span>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 37</div>
+    <div class="q-enunciado">
+      No momento da admissão do paciente, é obrigatório:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Realizar apenas a identificação</li>
+      <li><span class="letra">B)</span> Identificação com pulseira, coleta de sinais vitais e histórico de enfermagem</li>
+      <li><span class="letra">C)</span> Iniciar medicação imediatamente</li>
+      <li><span class="letra">D)</span> Encaminhar o paciente ao leito sem registros</li>
+      <li><span class="letra">E)</span> Solicitar exames laboratoriais de rotina</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 38</div>
+    <div class="q-enunciado">
+      São tipos de contenção utilizados em enfermagem:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Mecânica, química e ambiental</li>
+      <li><span class="letra">B)</span> Física, verbal e medicamentosa</li>
+      <li><span class="letra">C)</span> Total, parcial e seletiva</li>
+      <li><span class="letra">D)</span> Ativa, passiva e assistida</li>
+      <li><span class="letra">E)</span> Preventiva, corretiva e punitiva</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 39</div>
+    <div class="q-enunciado">
+      No processo pós-morte, o preparo do corpo inclui:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> Higiene corporal, identificação, posição decúbito dorsal e algodão nos orifícios</li>
+      <li><span class="letra">B)</span> Apenas a lavagem do corpo</li>
+      <li><span class="letra">C)</span> Posição de Fowler e curativo nos olhos</li>
+      <li><span class="letra">D)</span> Administração de sedativos</li>
+      <li><span class="letra">E)</span> Remoção imediata sem cuidados</li>
+    </ul>
+  </div>
+
+  <div class="questao">
+    <div class="q-num">Questão 40</div>
+    <div class="q-enunciado">
+      Durante a contenção mecânica, o paciente deve ser avaliado:
+    </div>
+    <ul class="q-opcoes">
+      <li><span class="letra">A)</span> A cada 30 minutos e liberado a cada 1 hora</li>
+      <li><span class="letra">B)</span> A cada 1 hora e liberado a cada 2 horas</li>
+      <li><span class="letra">C)</span> A cada 2 horas e liberado a cada 4 horas</li>
+      <li><span class="letra">D)</span> A cada 4 horas e liberado a cada 6 horas</li>
+      <li><span class="letra">E)</span> A cada 6 horas e liberado a cada 12 horas</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== GABARITO ===== -->
+<div class="page-break"></div>
+<div class="gabarito-section">
+  <div class="gabarito-header">
+    <h3>✅ Gabarito Comentado</h3>
+    <span class="g-badge">40 questões • 10 módulos</span>
+  </div>
+  <div class="gabarito-body">
+    <div class="gabarito-grid">
+
+      <!-- Módulo 1 -->
+      <div class="gabarito-item"><span class="g-q">Q1</span><span class="g-resp">C</span><span class="g-coment">Wanda Horta classifica em psicobiológicas, psicossociais e psicoespirituais</span></div>
+      <div class="gabarito-item"><span class="g-q">Q2</span><span class="g-resp">C</span><span class="g-coment">Comunicação é necessidade psicossocial, não psicobiológica</span></div>
+      <div class="gabarito-item"><span class="g-q">Q3</span><span class="g-resp">C</span><span class="g-coment">Horta foi influenciada pela hierarquia de necessidades de Maslow</span></div>
+      <div class="gabarito-item"><span class="g-q">Q4</span><span class="g-resp">C</span><span class="g-coment">Medo e preocupação são necessidades psicossociais (segurança emocional)</span></div>
+
+      <!-- Módulo 2 -->
+      <div class="gabarito-item"><span class="g-q">Q5</span><span class="g-resp">B</span><span class="g-coment">Resolução COFEN 358/2009 regulamenta a SAE no Brasil</span></div>
+      <div class="gabarito-item"><span class="g-q">Q6</span><span class="g-resp">C</span><span class="g-coment">Histórico → Diagnóstico → Planejamento → Implementação → Avaliação</span></div>
+      <div class="gabarito-item"><span class="g-q">Q7</span><span class="g-resp">B</span><span class="g-coment">NANDA-I (diagnósticos), NIC (intervenções), NOC (resultados)</span></div>
+      <div class="gabarito-item"><span class="g-q">Q8</span><span class="g-resp">D</span><span class="g-coment">Histórico de Enfermagem é a 1ª etapa — coleta de dados</span></div>
+
+      <!-- Módulo 3 -->
+      <div class="gabarito-item"><span class="g-q">Q9</span><span class="g-resp">A</span><span class="g-coment">Normocárdico = frequência cardíaca normal (60-100 bpm)</span></div>
+      <div class="gabarito-item"><span class="g-q">Q10</span><span class="g-resp">C</span><span class="g-coment">Anotação deve ser objetiva — opinião pessoal NÃO é permitida</span></div>
+      <div class="gabarito-item"><span class="g-q">Q11</span><span class="g-resp">B</span><span class="g-coment">Anictérico = sem icterícia (coloração amarelada da pele)</span></div>
+      <div class="gabarito-item"><span class="g-q">Q12</span><span class="g-resp">B</span><span class="g-coment">SOAP estrutura a evolução de enfermagem (S=Subjetivo, O=Objetivo...)</span></div>
+
+      <!-- Módulo 4 -->
+      <div class="gabarito-item"><span class="g-q">Q13</span><span class="g-resp">B</span><span class="g-coment">Vias enterais: VO, sublingual e sonda (SNG/SNE)</span></div>
+      <div class="gabarito-item"><span class="g-q">Q14</span><span class="g-resp">E</span><span class="g-coment">"Preço certo" NÃO faz parte dos 7 Certos da medicação</span></div>
+      <div class="gabarito-item"><span class="g-q">Q15</span><span class="g-resp">C</span><span class="g-coment">500 ÷ 250 = 2 comprimidos (regra de três simples)</span></div>
+      <div class="gabarito-item"><span class="g-q">Q16</span><span class="g-resp">B</span><span class="g-coment">Mucosa sublingual é vascularizada e evita metabolismo hepático</span></div>
+
+      <!-- Módulo 5 -->
+      <div class="gabarito-item"><span class="g-q">Q17</span><span class="g-resp">D</span><span class="g-coment">IM = 90° (ângulo reto). Decore: quanto mais profundo, maior o ângulo</span></div>
+      <div class="gabarito-item"><span class="g-q">Q18</span><span class="g-resp">C</span><span class="g-coment">Deltoide: volume máximo de 2 mL</span></div>
+      <div class="gabarito-item"><span class="g-q">Q19</span><span class="g-resp">B</span><span class="g-coment">Insulina e heparina são administradas por via subcutânea (SC)</span></div>
+      <div class="gabarito-item"><span class="g-q">Q20</span><span class="g-resp">C</span><span class="g-coment">500mg → 5mL | 250mg → X | X = (250×5)/500 = 2,5mL</span></div>
+
+      <!-- Módulo 6 -->
+      <div class="gabarito-item"><span class="g-q">Q21</span><span class="g-resp">A</span><span class="g-coment">Assepsia = ausência total; antissepsia = redução na pele</span></div>
+      <div class="gabarito-item"><span class="g-q">Q22</span><span class="g-resp">C</span><span class="g-coment">A OMS define 5 momentos para higienização das mãos</span></div>
+      <div class="gabarito-item"><span class="g-q">Q23</span><span class="g-resp">C</span><span class="g-coment">Após risco de exposição a fluidos é um dos 5 momentos da OMS</span></div>
+      <div class="gabarito-item"><span class="g-q">Q24</span><span class="g-resp">C</span><span class="g-coment">Mudança de decúbito a cada 2h para prevenir LPP</span></div>
+
+      <!-- Módulo 7 -->
+      <div class="gabarito-item"><span class="g-q">Q25</span><span class="g-resp">C</span><span class="g-coment">Ferida cirúrgica sem infecção = ferida limpa</span></div>
+      <div class="gabarito-item"><span class="g-q">Q26</span><span class="g-resp">C</span><span class="g-coment">Alginato de cálcio absorve grande quantidade de exsudato</span></div>
+      <div class="gabarito-item"><span class="g-q">Q27</span><span class="g-resp">B</span><span class="g-coment">Carvão ativado + prata: indicado para feridas infectadas com odor</span></div>
+      <div class="gabarito-item"><span class="g-q">Q28</span><span class="g-resp">C</span><span class="g-coment">Quanto ao tempo: agudas (até 6 sem) e crônicas (> 6 sem)</span></div>
+
+      <!-- Módulo 8 -->
+      <div class="gabarito-item"><span class="g-q">Q29</span><span class="g-resp">C</span><span class="g-coment">Máscara de Venturi permite controle exato da FiO₂</span></div>
+      <div class="gabarito-item"><span class="g-q">Q30</span><span class="g-resp">B</span><span class="g-coment">SNG: descompressão gástrica, lavagem e coleta de conteúdo</span></div>
+      <div class="gabarito-item"><span class="g-q">Q31</span><span class="g-resp">B</span><span class="g-coment">SNG termina no estômago; SNE no intestino delgado</span></div>
+      <div class="gabarito-item"><span class="g-q">Q32</span><span class="g-resp">C</span><span class="g-coment">SVD de demora: controle de diurese e esvaziamento prolongado</span></div>
+
+      <!-- Módulo 9 -->
+      <div class="gabarito-item"><span class="g-q">Q33</span><span class="g-resp">C</span><span class="g-coment">IMC = 80/(1,7²) = 80/2,89 = 27,7 — sobrepeso</span></div>
+      <div class="gabarito-item"><span class="g-q">Q34</span><span class="g-resp">C</span><span class="g-coment">Urocultura: jato médio em frasco estéril, após higiene íntima</span></div>
+      <div class="gabarito-item"><span class="g-q">Q35</span><span class="g-resp">B</span><span class="g-coment">Crioterapia: edema agudo e inflamação inicial (primeiras 48h)</span></div>
+      <div class="gabarito-item"><span class="g-q">Q36</span><span class="g-resp">C</span><span class="g-coment">Tempo padrão: 20 minutos para crioterapia e termoterapia</span></div>
+
+      <!-- Módulo 10 -->
+      <div class="gabarito-item"><span class="g-q">Q37</span><span class="g-resp">B</span><span class="g-coment">Admissão: identificação + pulseira + sinais vitais + histórico</span></div>
+      <div class="gabarito-item"><span class="g-q">Q38</span><span class="g-resp">A</span><span class="g-coment">Tipos de contenção: mecânica, química e ambiental</span></div>
+      <div class="gabarito-item"><span class="g-q">Q39</span><span class="g-resp">A</span><span class="g-coment">Pós-morte: higiene, identificação, decúbito dorsal e algodão nos orifícios</span></div>
+      <div class="gabarito-item"><span class="g-q">Q40</span><span class="g-resp">B</span><span class="g-coment">Contenção mecânica: avaliar a cada 1h e liberar a cada 2h</span></div>
+
+    </div>
+
+    <div style="margin-top:20px;padding:16px;background:#f1f8e9;border-radius:10px;border:1px solid #c8e6c9;">
+      <p style="font-size:0.85em;color:#2e7d32;">
+        <strong>📊 Desempenho:</strong> 40 questões • 10 módulos • 4 questões cada
+      </p>
+      <p style="font-size:0.82em;color:#558b2f;margin-top:4px;">
+        ✅ Acertos 36-40: Excelente! • ✅ Acertos 30-35: Bom, revise os erros • 📚 Acertos 20-29: Estude mais • 🔄 Acertos &lt;20: Refaça o plano de estudos
+      </p>
+      <p style="font-size:0.8em;color:#888;margin-top:6px;">
+        💡 Responda todas as questões antes de consultar o gabarito para uma autoavaliação fiel!
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="footer-note">
+  📝 Simulado • Introdução à Enfermagem (EN_430) • 40 questões • Material organizado por <strong>Vânia</strong> • Julho 2026
+</div>
+
+</body>
+</html>
