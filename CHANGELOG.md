@@ -10,88 +10,60 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ---
 
+## [2.1.0] — 2026-07-17
+
+### 🚀 Finalização e Publicação
+
+Aprimoramentos finais para publicação do sistema com módulo administrativo completo, balanceamento de questões e documentação de deploy.
+
+#### Adicionado
+
+##### ⚙️ Módulo Administrativo
+- [x] CRUD completo de estudantes (listar, filtrar, excluir, resetar senha)
+- [x] Paginação na lista de estudantes (15 por página)
+- [x] Filtro de busca por nome, email ou telefone
+- [x] Exportação CSV de estudantes, avaliações e questões
+- [x] Log de auditoria com últimas 50 ações administrativas
+- [x] Estatísticas globais no painel admin (estudantes, questões, avaliações)
+- [x] Distribuição de questões por módulo e dificuldade
+- [x] Visualização das últimas questões adicionadas
+
+##### 🔧 Core do Sistema
+- [x] router.php para servidor PHP built-in (php -S)
+- [x] Rate limiting de login (5 tentativas/minuto)
+- [x] Secure flag dinâmico no cookie de sessão
+
+##### 🗄️ Banco de Dados
+- [x] Balanceamento de questões para ~250 por módulo
+- [x] **2.803 questões** (aumento de 328 questões)
+- [x] Tabela `admin_log` para auditoria de ações
+
+##### 🧪 Testes
+- [x] Expansão para **158 testes e 385 asserções**
+- [x] FrontControllerDatabaseTest com testes de integração
+- [x] Cobertura: **91.15%** functions.php, **63.06%** index.php, **~54%** geral
+
+##### 📖 Documentação
+- [x] GUIA_PUBLICACAO_XAMPP_WINDOWS10.md — Guia completo para XAMPP (20 seções)
+- [x] README.md atualizado com números corretos (2.803 questões, 158 testes)
+
+#### 🔄 Modificado
+
+| Item | Antes | Depois |
+|:-----|:------|:--------|
+| **Questões** | 2.475 | 2.803 (balanceado) |
+| **Testes** | 141 (350 asserções) | 158 (385 asserções) |
+| **Coverage functions.php** | 86.59% | 91.15% |
+| **Coverage index.php** | 16.67% | 63.06% |
+| **Admin** | Básico (login + stats) | CRUD completo + CSV + Log |
+
+---
+
 ## [2.0.0] — 2026-07-16
 
 ### 🎉 Reformulação Completa
 
 Migração completa do sistema de Python/Flask para **PHP 8 + Apache + SQLite**.
-
-#### Adicionado
-
-##### 🔧 Core do Sistema
-- [x] Front controller (`index.php`) com roteamento de 15 rotas via switch/case
-- [x] 14 handlers dedicados para cada funcionalidade (cadastro, login, avaliação, admin, etc.)
-- [x] Sistema de autenticação com CSRF, bcrypt e session fixation prevention
-- [x] Flash messages com renderização automática nas views
-- [x] Tratamento de erros com try/catch e fallback para DEBUG
-- [x] Rota 404 com `http_response_code(404)`
-
-##### 🔒 Segurança
-- [x] Proteção CSRF em todos os formulários POST (`random_bytes(32)` + `hash_equals()`)
-- [x] Senhas com hash bcrypt (cost 12) via `password_hash()`/`password_verify()`
-- [x] Session fixation prevention (`session_regenerate_id(true)` pós-login)
-- [x] Session cookie com `httponly=true`, `samesite=Lax`, 24h de lifetime
-- [x] XSS prevention com `htmlspecialchars()` em 31 pontos de saída
-- [x] SQL Injection prevention com 100% prepared statements PDO
-
-##### 🗄️ Banco de Dados
-- [x] SQLite via PDO com WAL journal mode e foreign keys
-- [x] 2.475 questões distribuídas em 10 módulos com 3 níveis de dificuldade
-- [x] Schema com CHECK constraints, índices e view de progresso
-- [x] Script `recriar_questoes.php` para recriação do banco
-
-##### 🎨 Interface
-- [x] 10 templates PHP com design responsivo (media queries)
-- [x] CSS moderno com variáveis, animações e transições
-- [x] JavaScript com máscaras de entrada (telefone, CPF, CEP, data)
-- [x] Navegação por teclado (Enter para avançar questões)
-- [x] IntersectionObserver para animação de barras de progresso
-- [x] Seletor visual de dificuldade (Fácil/Médio/Difícil/Todas)
-
-##### 🧪 Testes
-- [x] PHPUnit 11.x com 141 testes e 350 asserções
-- [x] 6 suítes de teste: Auth (29), Database (4), Avaliacao (23), FunctionsUtil (66), FrontController (14), Integration (5)
-- [x] Script `make_coverage.sh` para geração de code coverage
-- [x] Code coverage: **86.59%** functions.php, **27.11%** geral
-
-##### 📖 Documentação
-- [x] README.md com 13 seções + badges de status
-- [x] GUIA_PUBLICACAO_APACHE.md — Guia completo para Linux (13 seções)
-- [x] GUIA_PUBLICACAO_APACHE_WINDOWS.md — Guia completo para Windows
-- [x] checklist_verificacao.md — 11 seções com 50+ itens de verificação
-- [x] RELATORIO_EVOLUCAO.md — Relatório de evolução e progresso
-- [x] CHANGELOG.md — Este documento
-
-##### 🚀 Deploy
-- [x] Script `instalar_publicar_linux.sh` — Instalação automatizada Linux
-- [x] Script `instalar_publicar_windows.ps1` — Instalação automatizada Windows
-- [x] Script `instalar_publicar_windows.bat` — Launcher Windows
-- [x] .htaccess com URL rewriting + bloqueio de arquivos sensíveis
-- [x] router.php para servidor PHP built-in (desenvolvimento)
-- [x] phpunit.xml com configuração de testes e coverage
-- [x] composer.json com dependências (phpunit 11.x)
-- [x] .gitignore completo
-
-### 🔄 Modificado
-
-| Item | Antes | Depois |
-|:-----|:------|:--------|
-| **Linguagem** | Python 3.10+ (Flask) | PHP 8.1+ |
-| **Servidor** | mod_wsgi / Gunicorn | Apache mod_php |
-| **Template** | Jinja2 | PHP embutido no HTML |
-| **Dependências** | ~10 pacotes pip | 1 pacote Composer (PHPUnit) |
-| **Testes** | 0 (inexistente) | 141 testes (350 asserções) |
-| **Coverage** | 0% | 86.59% (core) |
-| **Documentação** | Inexistente | 6 documentos + scripts |
-
-### ❌ Removido
-
-- [x] Todo o código Python (Flask, Jinja2, WSGI)
-- [x] Dependências pip (Flask, Jinja2, python-dotenv, etc.)
-- [x] Ambiente virtual Python (venv)
-- [x] Arquivos `__pycache__` e `.pyc`
-- [x] Referências a Python nos guias de instalação
-- [x] Configuração mod_wsgi
 
 ---
 

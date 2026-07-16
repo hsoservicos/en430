@@ -70,7 +70,7 @@ sistema_avaliacao/php/
 ├── functions.php           # 🔧 Funções principais (auth, CSRF, helpers)
 ├── router.php              # 🚀 Roteador para PHP built-in server
 ├── .htaccess               # 📜 Regras de rewrite (Apache)
-├── avaliacao.db            # 🗄️ Banco de dados SQLite (2.475 questões)
+├── avaliacao.db            # 🗄️ Banco de dados SQLite (2.803 questões)
 ├── .gitignore              # 🔒 Arquivos ignorados pelo Git
 ├── phpunit.xml             # 🧪 Configuração do PHPUnit
 ├── composer.json           # 📦 Dependências (PHPUnit para teste)
@@ -93,7 +93,7 @@ sistema_avaliacao/php/
 │   └── admin.php           # Painel administrativo
 │
 ├── scripts/                # 🔧 Scripts de manutenção
-│   ├── recriar_questoes.php     # Recria banco com 2.475 questões
+│   ├── recriar_questoes.php     # Recria banco com 2.803 questões
 │   └── questions_data.php       # Fonte de dados das questões
 │
 ├── tests/                  # 🧪 Testes automatizados
@@ -314,14 +314,14 @@ CREATE TABLE respostas (
 | 1 | Fundamentos da Enfermagem | 240 | 120 | 150 | **510** |
 | 2 | Processo de Enfermagem (SAE) | 150 | 50 | 50 | **250** |
 | 3 | Terminologias e Sinais Vitais | 145 | 55 | 50 | **250** |
-| 4 | Farmacologia | 115 | 55 | 45 | **215** |
-| 5 | Administração de Medicamentos | 105 | 65 | 45 | **215** |
-| 6 | Curativos e Coberturas | 105 | 65 | 50 | **220** |
-| 7 | Feridas e Lesões de Pele | 110 | 65 | 50 | **225** |
-| 8 | Cuidados com Queimaduras | 90 | 55 | 55 | **200** |
-| 9 | Emergência e Urgência | 90 | 65 | 60 | **215** |
-| 10 | Ética e Cuidados Paliativos | 75 | 50 | 50 | **175** |
-| | **Total** | **1.225** | **645** | **605** | **2.475** |
+| 4 | Farmacologia | 148 | 55 | 55 | **258** |
+| 5 | Administração de Medicamentos | 148 | 60 | 50 | **258** |
+| 6 | Curativos e Coberturas | 149 | 65 | 50 | **264** |
+| 7 | Feridas e Lesões de Pele | 150 | 70 | 50 | **270** |
+| 8 | Cuidados com Queimaduras | 130 | 60 | 50 | **240** |
+| 9 | Emergência e Urgência | 138 | 70 | 50 | **258** |
+| 10 | Ética e Cuidados Paliativos | 130 | 60 | 55 | **245** |
+| | **Total** | **1.528** | **665** | **610** | **2.803** |
 
 ### 8.3. Recriar o banco
 
@@ -379,7 +379,28 @@ php vendor/bin/phpunit --no-coverage tests/IntegrationTest.php
 ```
 PHPUnit 11.5.x
 
-OK (61 tests, 199 assertions)
+OK (158 tests, 385 assertions)
+```
+
+### 9.4. Cobertura de Código
+
+```bash
+# Gerar relatório de code coverage (requer xdebug)
+bash scripts/make_coverage.sh
+
+# Visualizar no navegador
+bash scripts/make_coverage.sh --serve
+```
+
+### 9.5. Cobertura atual
+
+| Arquivo | Cobertura |
+|:--------|:---------:|
+| `functions.php` | **91.15%** 🔥 |
+| `index.php` | **63.06%** 🎯 |
+| `db.php` | **78.95%** |
+| `handlers.php` | **30.24%** |
+| **Geral** | **~54%** |
 ```
 
 ---
@@ -484,7 +505,7 @@ php composer.phar install
 - **Ano:** 2026
 - **Linguagem:** PHP 8
 - **Banco:** SQLite
-- **Total de questões:** 2.475
+- **Total de questões:** 2.803
 - **Guias de implantação:** Linux (`GUIA_PUBLICACAO_APACHE.md`) | Windows (`GUIA_PUBLICACAO_APACHE_WINDOWS.md`)
 
 ---

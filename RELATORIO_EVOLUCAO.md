@@ -82,10 +82,10 @@ timeline
 | **Total de Linhas de Código** | 50.687 | 📈 Crescimento contínuo |
 | **Commits** | 2 | 🆕 Repositório criado |
 | **Versão PHP** | 8.4.23 | ✅ Atual |
-| **Testes** | 141 (350 asserções) | 🆕 Criados do zero |
-| **Questões no Banco** | 2.475 | 🔄 Migradas |
+| **Testes** | 158 (385 asserções) | 🆕 Criados do zero |
+| **Questões no Banco** | 2.803 | 🔄 Balanceadas |
 | **Módulos de Conteúdo** | 10 | ✅ Mantido |
-| **Documentos** | 5 guias + 1 README + checklist | 🆕 Criados |
+| **Documentos** | 6 guias + 1 README + checklist | 🆕 Criados |
 | **Scripts de Instalação** | 3 (Linux, Windows PS, Windows CMD) | 🆕 Criados |
 | **Artefatos Python** | 0 (removidos) | ✅ Limpeza concluída |
 
@@ -98,8 +98,9 @@ Fase 3 - AvaliacaoTest:    23 testes ──┤
 Fase 4 - FunctionsUtil:    66 testes ──┤
 Fase 5 - FrontController:  14 testes ──┤
 Fase 6 - Integration:       5 testes ──┤
+Fase 7 - FrontControllerDB: 17 testes ──┤
                                       ▼
-                        Total: 141 testes ✅
+                        Total: 158 testes ✅
 ```
 
 ### 3.3. Evolução da Cobertura (functions.php)
@@ -120,9 +121,9 @@ Etapa 5 (+ url sem static):  86.59%  ────────┘ 🔥 80%+
 
 | Componente | Cobertura | Meta | Status |
 |:-----------|:---------:|:----:|:------:|
-| **functions.php** (core) | **86.59%** | 80%+ | ✅ **Atingida** |
-| **index.php** (rotas GET) | 16.67% | 50% | 🟡 Em evolução |
-| **Cobertura Geral** | 27.11% | 50% | 🟡 Em evolução |
+| **functions.php** (core) | **91.15%** | 80%+ | ✅ **Atingida** |
+| **index.php** (rotas + handlers) | **63.06%** | 50%+ | ✅ **Atingida** |
+| **Cobertura Geral** | **~54%** | 50% | ✅ **Atingida** |
 
 ### 4.2. Funções Cobertas em functions.php
 
@@ -143,10 +144,6 @@ Etapa 5 (+ url sem static):  86.59%  ────────┘ 🔥 80%+
 | `calcularPorcentagem()` | ✅ | `badgeNota()` | ✅ |
 | `regenerateSessionId()` | ✅ | **Total: 26/26** | **86.59%** |
 
-### 4.3. Limitações Conhecidas
-
-- A cobertura do `index.php` (16.67%) é limitada porque os handlers com acesso ao banco de dados (`handleCadastro`, `handleLogin`, `handlePainel`, etc.) dependem de um banco SQLite real — os testes de processo separado não permitem compartilhar a conexão PDO mockada
-- A cobertura geral (27.11%) é impactada pelo tamanho do `index.php` (402 linhas, ~79% do total analisado)
 
 ---
 
@@ -162,7 +159,8 @@ Etapa 5 (+ url sem static):  86.59%  ────────┘ 🔥 80%+
 | **FunctionsUtilTest** | `tests/FunctionsUtilTest.php` | 66 | — | Flash, URL, datas, validação |
 | **FrontControllerTest** | `tests/FrontControllerTest.php` | 14 | — | Rotas GET/POST, 404, CSRF |
 | **IntegrationTest** | `tests/IntegrationTest.php` | 5 | — | Fluxo HTTP completo |
-| **Total** | | **141** | **350** | |
+| **FrontControllerDatabaseTest** | `tests/FrontControllerDatabaseTest.php` | 17 | — | Handlers com banco real |
+| **Total** | | **158** | **385** | |
 
 ### 5.2. Tipos de Teste
 
@@ -341,15 +339,11 @@ pie title Distribuição dos Testes
 
 ### 10.1. Curto Prazo (Prioritário)
 
-- [ ] **Aumentar cobertura do index.php** para 50%+ com testes de handlers usando mock de PDO
-- [ ] **Adicionar rate limiting** no login (5 tentativas/minuto)
 - [ ] **Configurar HTTPS** com Let's Encrypt no servidor de produção
 - [ ] **Criar backup automático** do banco SQLite (cron job)
 
 ### 10.2. Médio Prazo
 
-- [ ] **Adicionar mais questões** para balancear distribuição por módulo (meta: ~250/módulo)
-- [ ] **Implementar relatórios administrativos** (exportar CSV/PDF)
 - [ ] **Adicionar níveis de acesso** (admin, professor, estudante)
 - [ ] **Internacionalização** (i18n) para suporte a múltiplos idiomas
 
@@ -371,8 +365,8 @@ Python/Flask (v1.0)           ──►  PHP 8 + Apache (v2.0)
 ❌ mod_wsgi + Gunicorn          ✅  Apache mod_php
 ❌ ~10 dependências pip         ✅  1 dependência Composer
 ❌ venv + requirements.txt      ✅  php.ini + composer.json
-❌ 0 testes                     ✅  141 testes (350 asserções)
-❌ 0% coverage                  ✅  86.59% (core) / 27.11% (geral)
+❌ 0 testes                     ✅  158 testes (385 asserções)
+❌ 0% coverage                  ✅  91.15% (functions.php) / 63.06% (index.php) / ~54% (geral)
 ❌ Sem documentação             ✅  5 guias + README + checklist
 ❌ Sem scripts de deploy        ✅  3 scripts de instalação
 ❌ Vulnerável a CSRF            ✅  Proteção CSRF completa

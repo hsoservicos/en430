@@ -585,17 +585,34 @@ function handleAdminLogin(): void {
 }
 
 /**
- * Renderizar o painel admin (delega para renderAdminPainelComEstudantes)
+ * Constante: numero de estudantes por pagina no admin
+ */
+define('ADMIN_ESTUDANTES_POR_PAGINA', 15);
+
+/**
+ * Renderizar o painel admin com paginacao (delega para renderAdminPainelComEstudantes)
  */
 function renderAdminPainel(): void {
     $db = getDB();
-    $estudantes = $db->query("SELECT id, nome, email, data_nascimento, telefone, data_cadastro FROM estudantes ORDER BY id DESC")->fetchAll();
+    $pagina = max(1, (int)($_GET['pagina'] ?? 1));
+    $porPagina = ADMIN_ESTUDANTES_POR_PAGINA;
+    $total = (int)$db->query("SELECT COUNT(*) FROM estudantes")->fetchColumn();
+    $totalPaginas = max(1, (int)ceil($total / $porPagina));
+    
+    // Corrigir pagina se ultrapassar o total
+    if ($pagina > $totalPaginas) $pagina = $totalPaginas;
+    $offset = ($pagina - 1) * $porPagina;
+    
+    $stmt = $db->prepare("SELECT id, nome, email, data_nascimento, telefone, data_cadastro FROM estudantes ORDER BY id DESC LIMIT ? OFFSET ?");
+    $stmt->execute([$porPagina, $offset]);
+    $estudantes = $stmt->fetchAll();
+    
     $statsAv = $db->query("SELECT estudante_id, COUNT(*) as total FROM avaliacoes GROUP BY estudante_id")->fetchAll();
     $statsAvaliacoesPorEstudante = [];
     foreach ($statsAv as $row) {
         $statsAvaliacoesPorEstudante[$row['estudante_id']] = $row['total'];
     }
-    renderAdminPainelComEstudantes($estudantes, $statsAvaliacoesPorEstudante);
+    renderAdminPainelComEstudantes($estudantes, $statsAvaliacoesPorEstudante, $pagina, $totalPaginas, $total);
 }
 
 /**
@@ -694,18 +711,35 @@ function handleAdminExportarCSV(string $tipo): void {
 }
 
 /**
- * Admin: FILTRAR ESTUDANTES por nome, email ou telefone
+ * Admin: FILTRAR ESTUDANTES por nome, email ou telefone (com paginacao)
  */
 function handleAdminFiltrarEstudantes(): void {
     $busca = trim($_GET['busca'] ?? '');
     $db = getDB();
+    $pagina = max(1, (int)($_GET['pagina'] ?? 1));
+    $porPagina = ADMIN_ESTUDANTES_POR_PAGINA;
+    
     if ($busca) {
-        $stmt = $db->prepare("SELECT id, nome, email, data_nascimento, telefone, data_cadastro FROM estudantes 
-            WHERE nome LIKE ? OR email LIKE ? OR telefone LIKE ? ORDER BY id DESC");
         $like = "%{$busca}%";
-        $stmt->execute([$like, $like, $like]);
+        $countStmt = $db->prepare("SELECT COUNT(*) FROM estudantes WHERE nome LIKE ? OR email LIKE ? OR telefone LIKE ?");
+        $countStmt->execute([$like, $like, $like]);
+        $total = (int)$countStmt->fetchColumn();
+        
+        $totalPaginas = max(1, (int)ceil($total / $porPagina));
+        if ($pagina > $totalPaginas) $pagina = $totalPaginas;
+        $offset = ($pagina - 1) * $porPagina;
+        
+        $stmt = $db->prepare("SELECT id, nome, email, data_nascimento, telefone, data_cadastro FROM estudantes 
+            WHERE nome LIKE ? OR email LIKE ? OR telefone LIKE ? ORDER BY id DESC LIMIT ? OFFSET ?");
+        $stmt->execute([$like, $like, $like, $porPagina, $offset]);
     } else {
-        $stmt = $db->query("SELECT id, nome, email, data_nascimento, telefone, data_cadastro FROM estudantes ORDER BY id DESC");
+        $total = (int)$db->query("SELECT COUNT(*) FROM estudantes")->fetchColumn();
+        $totalPaginas = max(1, (int)ceil($total / $porPagina));
+        if ($pagina > $totalPaginas) $pagina = $totalPaginas;
+        $offset = ($pagina - 1) * $porPagina;
+        
+        $stmt = $db->prepare("SELECT id, nome, email, data_nascimento, telefone, data_cadastro FROM estudantes ORDER BY id DESC LIMIT ? OFFSET ?");
+        $stmt->execute([$porPagina, $offset]);
     }
     $estudantes = $stmt->fetchAll();
     
@@ -714,7 +748,7 @@ function handleAdminFiltrarEstudantes(): void {
     foreach ($statsAv as $row) {
         $statsAvaliacoesPorEstudante[$row['estudante_id']] = $row['total'];
     }
-    renderAdminPainelComEstudantes($estudantes, $statsAvaliacoesPorEstudante);
+    renderAdminPainelComEstudantes($estudantes, $statsAvaliacoesPorEstudante, $pagina, $totalPaginas, $total);
 }
 
 /**
@@ -731,9 +765,9 @@ function adminLogBuscar(): array {
 }
 
 /**
- * Admin: Renderiza admin com lista de estudantes personalizada
+ * Admin: Renderiza admin com lista de estudantes personalizada e paginacao
  */
-function renderAdminPainelComEstudantes(array $estudantes, array $statsAv): void {
+function renderAdminPainelComEstudantes(array $estudantes, array $statsAv, int $paginaAtual = 1, int $totalPaginas = 1, int $totalEstudantes = 0): void {
     $db = getDB();
     $totalQuestoes = $db->query("SELECT COUNT(*) FROM questoes")->fetchColumn();
     $totalAvaliacoes = $db->query("SELECT COUNT(*) FROM avaliacoes")->fetchColumn();
@@ -752,7 +786,7 @@ function renderAdminPainelComEstudantes(array $estudantes, array $statsAv): void
     
     view('admin', [
         'stats' => [
-            'total_estudantes' => count($estudantes),
+            'total_estudantes' => $totalEstudantes > 0 ? $totalEstudantes : count($estudantes),
             'total_questoes' => $totalQuestoes,
             'total_avaliacoes' => $totalAvaliacoes,
             'questoes_facil' => $questoesFacil,
@@ -764,6 +798,9 @@ function renderAdminPainelComEstudantes(array $estudantes, array $statsAv): void
         'questoes_por_modulo' => $questoesPorModulo,
         'ultimas_questoes' => $ultimasQuestoes,
         'busca_atual' => $_GET['busca'] ?? '',
+        'pagina_atual' => $paginaAtual,
+        'total_paginas' => $totalPaginas,
+        'total_estudantes' => $totalEstudantes,
         'logs' => adminLogBuscar(),
         'focus_log' => !empty($_GET['focus']) && $_GET['focus'] === 'log',
     ]);

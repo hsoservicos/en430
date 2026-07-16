@@ -40,7 +40,7 @@
   <!-- ESTUDANTES -->
   <div class="admin-card">
     <div class="admin-card-header" onclick="toggleCard(this)">
-      <span>👥</span><h2>Gestão de Estudantes (<?= (int)($stats['total_estudantes'] ?? 0) ?>)</h2><span class="toggle open">▶</span>
+      <span>👥</span><h2>Gestão de Estudantes (<?= (int)($total_estudantes ?? 0) ?>)</h2><span class="toggle open">▶</span>
     </div>
     <div class="admin-card-body">
       <form method="GET" action="<?= url('admin-filtrar') ?>" class="search-form">
@@ -52,6 +52,41 @@
           <?php endif; ?>
         </div>
       </form>
+
+<?php
+  $rotaPag = !empty($_GET['busca']) ? 'admin-filtrar' : 'admin';
+  $paramsPag = ['pagina' => '__P__'];
+  if (!empty($_GET['busca'])) $paramsPag['busca'] = $_GET['busca'];
+  if (isset($_GET['focus'])) $paramsPag['focus'] = $_GET['focus'];
+  $urlPag = function($p) use ($rotaPag, $paramsPag) {
+    $paramsPag['pagina'] = $p;
+    return url($rotaPag, $paramsPag);
+  };
+?>
+      <div class="pagination-bar">
+        <span class="pag-info"><?= (int)($total_estudantes ?? 0) ?> estudante(s) — Página <?= (int)($pagina_atual ?? 1) ?> de <?= (int)($total_paginas ?? 1) ?></span>
+        <?php if (($total_paginas ?? 1) > 1): ?>
+        <div class="pag-buttons">
+          <?php if (($pagina_atual ?? 1) > 1): ?>
+          <a href="<?= $urlPag(($pagina_atual ?? 1) - 1) ?>" class="pag-btn">‹ Anterior</a>
+          <?php endif; ?>
+          <?php
+            $inicio = max(1, ($pagina_atual ?? 1) - 2);
+            $fim = min($total_paginas ?? 1, $inicio + 4);
+            for ($i = $inicio; $i <= $fim; $i++):
+          ?>
+          <?php if ($i == ($pagina_atual ?? 1)): ?>
+          <span class="pag-btn ativo"><?= $i ?></span>
+          <?php else: ?>
+          <a href="<?= $urlPag($i) ?>" class="pag-btn"><?= $i ?></a>
+          <?php endif; ?>
+          <?php endfor; ?>
+          <?php if (($pagina_atual ?? 1) < ($total_paginas ?? 1)): ?>
+          <a href="<?= $urlPag(($pagina_atual ?? 1) + 1) ?>" class="pag-btn">Próximo ›</a>
+          <?php endif; ?>
+        </div>
+        <?php endif; ?>
+      </div>
 
       <div class="student-list">
         <table>
@@ -215,7 +250,7 @@
         <div class="info-item"><div class="info-label">Testes</div><div class="info-value">158 PHPUnit (54% coverage)</div></div>
       </div>
       <div style="margin-top:15px;text-align:center;font-size:0.85em;color:var(--text-muted);">
-        📋 <strong>Rotas:</strong> / /cadastro /login /painel /avaliacao/{id} /progresso /admin /admin-login /admin-log
+        📋 <strong>Rotas:</strong> / /cadastro /login /painel /avaliacao/{id} /progresso /admin /admin-login /admin?focus=log /recuperar-acesso
       </div>
     </div>
   </div>
