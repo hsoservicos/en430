@@ -1,30 +1,33 @@
 <?php
 /**
- * router.php — Roteador para o servidor PHP embutido
- * 
- * O servidor PHP built-in (php -S) não processa .htaccess.
- * Este arquivo replica as regras de reescrita do .htaccess.
- * 
- * Uso: php -S 0.0.0.0:8080 -t . router.php
+ * router.php — Roteador para o servidor PHP embutido (php -S)
+ *
+ * Simula o mod_rewrite do Apache: se o arquivo/pasta requisitado não existe
+ * fisicamente, redireciona para index.php preservando a URL original.
+ *
+ * Uso: php -S 0.0.0.0:8080 router.php
  */
 
 $uri = $_SERVER['REQUEST_URI'];
-$path = parse_url($uri, PHP_URL_PATH);
+$parsed = parse_url($uri);
+$path = $parsed['path'] ?? '/';
+$query = $parsed['query'] ?? '';
 
-// 1. Servir arquivos estáticos diretamente
-$docRoot = __DIR__;
-$filePath = $docRoot . $path;
-
-if ($path !== '/' && is_file($filePath)) {
-    // Deixar o PHP servir o arquivo estático
-    return false;
+// Se o arquivo ou diretório físico existe, serve diretamente (assets estáticos)
+$filePath = __DIR__ . $path;
+if ($path !== '/' && file_exists($filePath) && !is_dir($filePath)) {
+    return false; // Deixa o servidor embutido servir o arquivo
 }
 
-// 2. Rotas de assets/ e scripts/ — servir diretamente
-if (preg_match('#^/php/assets/|^/php/scripts/|^/assets/|^/scripts/#', $path)) {
-    return false;
+// Rewrite: preserva parâmetros da query string original e define rota
+$_SERVER['SCRIPT_NAME'] = '/index.php';
+if ($query) {
+    parse_str($query, $_GET);
+} else {
+    $_GET = [];
 }
-
-// 3. Tudo mais vai para o index.php (front controller)
 $_GET['url'] = ltrim($path, '/');
-require $docRoot . '/index.php';
+
+// Inclui o index.php com o contexto correto
+chdir(__DIR__);
+require __DIR__ . '/index.php';

@@ -74,12 +74,28 @@ $totalInseridas = 0;
 $distribuicao = ['Fácil' => 0, 'Médio' => 0, 'Difícil' => 0];
 $porModulo = [];
 
+// Ciclos variáveis por módulo para balancear ~250 questões cada
+// Módulo 1 tem mais base, então mantém 5 ciclos
+$ciclosPorModulo = [
+    1 => 5,   // 102 base × 5 = 510
+    2 => 5,   // 50  base × 5 = 250
+    3 => 5,   // 50  base × 5 = 250
+    4 => 6,   // 43  base × 6 = 258
+    5 => 6,   // 43  base × 6 = 258
+    6 => 6,   // 44  base × 6 = 264
+    7 => 6,   // 45  base × 6 = 270
+    8 => 6,   // 40  base × 6 = 240
+    9 => 6,   // 43  base × 6 = 258
+    10 => 7,  // 35  base × 7 = 245
+];
+
 $db->beginTransaction();
 
 foreach ($modulosQuestoes as $modulo => $questoes) {
     $countModulo = 0;
+    $ciclos = $ciclosPorModulo[$modulo] ?? 5;
     
-    for ($ciclo = 0; $ciclo < 5; $ciclo++) {
+    for ($ciclo = 0; $ciclo < $ciclos; $ciclo++) {
         $prefixo = $prefixos[$ciclo % count($prefixos)];
         
         foreach ($questoes as $q) {

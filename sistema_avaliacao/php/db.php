@@ -5,8 +5,16 @@
 
 require_once __DIR__ . '/config.php';
 
-function getDB(): PDO {
+/**
+ * Retorna referência ao PDO estático (para closeDB resetar o cache)
+ */
+function &getDBRef(): ?PDO {
     static $pdo = null;
+    return $pdo;
+}
+
+function getDB(): PDO {
+    $pdo = &getDBRef();
     
     if ($pdo === null) {
         // Permitir sobrescrita via env var para testes
@@ -35,8 +43,9 @@ function getDB(): PDO {
 }
 
 /**
- * Fecha a conexão (útil para testes)
+ * Fecha a conexão e reseta o cache estático (útil para testes)
  */
 function closeDB(): void {
-    $pdo = null;
+    $ref = &getDBRef();
+    $ref = null;
 }
