@@ -13,11 +13,13 @@ require_once __DIR__ . '/db.php';
 
 function initSession(): void {
     if (session_status() === PHP_SESSION_NONE) {
+        $secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
         session_set_cookie_params([
             'lifetime' => SESSION_LIFETIME,
             'path' => '/',
             'httponly' => true,
             'samesite' => 'Lax',
+            'secure' => $secure,
         ]);
         session_start();
     }
@@ -79,6 +81,77 @@ function renderFlashes(): string {
         $html .= "<div class=\"flash flash-{$tipo}\">{$msg}</div>";
     }
     return $html;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// RATE LIMITING (LOGIN)
+// ═══════════════════════════════════════════════════════════════
+
+/**
+ * Verifica se o número de tentativas de login excedeu o limite.
+ * Armazena as tentativas na sessão, indexadas pelo IP do cliente.
+ * 
+ * @return bool True se o limite foi excedido (bloqueado), False se pode tentar
+ */
+function checkLoginAttempts(): bool {
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+    $key = '_login_attempts_' . md5($ip);
+    
+    $attempts = $_SESSION[$key] ?? ['count' => 0, 'first_attempt' => 0];
+    
+    // Se passou do tempo de bloqueio, resetar
+    if (time() - $attempts['first_attempt'] > LOGIN_TIMEOUT) {
+        $attempts = ['count' => 0, 'first_attempt' => 0];
+        $_SESSION[$key] = $attempts;
+    }
+    
+    return $attempts['count'] >= LOGIN_MAX_ATTEMPTS;
+}
+
+/**
+ * Registra uma tentativa de login (bem-sucedida ou falha).
+ * Reseta o contador em caso de sucesso.
+ * 
+ * @param bool $sucesso Se true, reseta as tentativas
+ */
+function recordLoginAttempt(bool $sucesso = false): void {
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+    $key = '_login_attempts_' . md5($ip);
+    
+    if ($sucesso) {
+        // Login bem-sucedido: resetar tentativas
+        unset($_SESSION[$key]);
+        return;
+    }
+    
+    // Login falhou: incrementar contador
+    $attempts = $_SESSION[$key] ?? ['count' => 0, 'first_attempt' => time()];
+    
+    if ($attempts['count'] === 0) {
+        $attempts['first_attempt'] = time();
+    }
+    
+    $attempts['count']++;
+    $_SESSION[$key] = $attempts;
+}
+
+/**
+ * Retorna o tempo restante de bloqueio em segundos.
+ * 
+ * @return int Segundos restantes (0 se não estiver bloqueado)
+ */
+function getLoginBlockTime(): int {
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+    $key = '_login_attempts_' . md5($ip);
+    
+    $attempts = $_SESSION[$key] ?? ['count' => 0, 'first_attempt' => 0];
+    
+    if ($attempts['count'] < LOGIN_MAX_ATTEMPTS) {
+        return 0;
+    }
+    
+    $remaining = LOGIN_TIMEOUT - (time() - $attempts['first_attempt']);
+    return max(0, $remaining);
 }
 
 // ═══════════════════════════════════════════════════════════════

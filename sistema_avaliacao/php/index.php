@@ -222,6 +222,15 @@ function handleCadastro(): void {
  * Login do estudante
  */
 function handleLogin(): void {
+    // Verificar rate limiting
+    if (checkLoginAttempts()) {
+        $tempo = getLoginBlockTime();
+        $minutos = ceil($tempo / 60);
+        flash('erro', "🔒 Muitas tentativas de login. Aguarde {$minutos} minuto(s) antes de tentar novamente.");
+        view('login');
+        return;
+    }
+    
     $email = strtolower(trim($_POST['email'] ?? ''));
     $senha = $_POST['senha'] ?? '';
     
@@ -231,12 +240,14 @@ function handleLogin(): void {
     $estudante = $stmt->fetch();
     
     if ($estudante && verificarSenha($senha, $estudante['senha_hash'])) {
+        recordLoginAttempt(true); // Resetar tentativas
         $_SESSION['estudante_id'] = (int)$estudante['id'];
         $_SESSION['estudante_nome'] = $estudante['nome'];
         regenerateSessionId();
         flash('sucesso', "👋 Bem-vindo(a), {$estudante['nome']}!");
         redirect('painel');
     } else {
+        recordLoginAttempt(false); // Registrar falha
         flash('erro', '❌ Email ou senha incorretos.');
         view('login');
     }
@@ -710,12 +721,23 @@ function handleAdmin(): void {
  * Login admin via POST separado
  */
 function handleAdminLogin(): void {
+    // Verificar rate limiting
+    if (checkLoginAttempts()) {
+        $tempo = getLoginBlockTime();
+        $minutos = ceil($tempo / 60);
+        flash('erro', "🔒 Muitas tentativas de login administrativo. Aguarde {$minutos} minuto(s) antes de tentar novamente.");
+        view('admin_login');
+        return;
+    }
+    
     $senha = trim($_POST['senha_admin'] ?? '');
     if ($senha === ADMIN_SECRET) {
+        recordLoginAttempt(true); // Resetar tentativas
         $_SESSION['admin_authenticated'] = true;
         regenerateSessionId();
         redirect('admin');
     } else {
+        recordLoginAttempt(false); // Registrar falha
         flash('erro', '❌ Senha de administração incorreta.');
         view('admin_login');
     }

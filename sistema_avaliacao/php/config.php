@@ -20,5 +20,9 @@ define('ADMIN_SECRET', getenv('ADMIN_SECRET') ?: 'admin_enfermagem_2026');
 // ─── Sessão ─────────────────────────────────────────────────
 define('SESSION_LIFETIME', 86400); // 24 horas
 
+// ─── Rate Limiting (Login) ───────────────────────────────────
+define('LOGIN_MAX_ATTEMPTS', 5);    // Máximo de tentativas antes do bloqueio
+define('LOGIN_TIMEOUT', 60);        // Tempo de bloqueio em segundos (1 minuto)
+
 // ─── Modo Debug ─────────────────────────────────────────────
 define('DEBUG', getenv('APP_DEBUG') === '1' || getenv('APP_DEBUG') === 'true');

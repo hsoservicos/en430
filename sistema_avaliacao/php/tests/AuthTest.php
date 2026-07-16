@@ -252,4 +252,113 @@ class AuthTest extends PHPUnit\Framework\TestCase
         $this->assertFalse(validarSenha('123'));
         $this->assertFalse(validarSenha('12'));
     }
+
+    // ─── RATE LIMITING ───────────────────────────────────────
+
+    public function testCheckLoginAttemptsLiberadoInicialmente(): void
+    {
+        $_SERVER['REMOTE_ADDR'] = '192.168.1.100';
+        $_SESSION = [];
+        
+        $bloqueado = checkLoginAttempts();
+        $this->assertFalse($bloqueado, 'Sem tentativas, deve estar liberado');
+    }
+
+    public function testRecordLoginAttemptFalhaIncrementa(): void
+    {
+        $_SERVER['REMOTE_ADDR'] = '192.168.1.101';
+        $_SESSION = [];
+        
+        recordLoginAttempt(false); // 1ª falha
+        $this->assertFalse(checkLoginAttempts(), '1 falha: deve estar liberado');
+        
+        recordLoginAttempt(false); // 2ª falha
+        $this->assertFalse(checkLoginAttempts(), '2 falhas: deve estar liberado');
+        
+        recordLoginAttempt(false); // 3ª falha
+        $this->assertFalse(checkLoginAttempts(), '3 falhas: deve estar liberado');
+        
+        recordLoginAttempt(false); // 4ª falha
+        $this->assertFalse(checkLoginAttempts(), '4 falhas: deve estar liberado');
+        
+        recordLoginAttempt(false); // 5ª falha → bloqueio!
+        $this->assertTrue(checkLoginAttempts(), '5 falhas: deve estar BLOQUEADO');
+    }
+
+    public function testRecordLoginAttemptSucessoReseta(): void
+    {
+        $_SERVER['REMOTE_ADDR'] = '192.168.1.102';
+        $_SESSION = [];
+        
+        // 3 falhas
+        recordLoginAttempt(false);
+        recordLoginAttempt(false);
+        recordLoginAttempt(false);
+        $this->assertFalse(checkLoginAttempts(), '3 falhas: deve estar liberado');
+        
+        // Login bem-sucedido
+        recordLoginAttempt(true);
+        $this->assertFalse(checkLoginAttempts(), 'Apos sucesso, contador deve resetar');
+        
+        // Mais 3 falhas
+        recordLoginAttempt(false);
+        recordLoginAttempt(false);
+        recordLoginAttempt(false);
+        $this->assertFalse(checkLoginAttempts(), '3 falhas apos reset: liberado');
+    }
+
+    public function testGetLoginBlockTimeZeroQuandoLiberado(): void
+    {
+        $_SERVER['REMOTE_ADDR'] = '192.168.1.103';
+        $_SESSION = [];
+        
+        $tempo = getLoginBlockTime();
+        $this->assertEquals(0, $tempo, 'Sem bloqueio, tempo restante deve ser 0');
+    }
+
+    public function testCheckLoginAttemptsLimiteExato(): void
+    {
+        $_SERVER['REMOTE_ADDR'] = '192.168.1.104';
+        $_SESSION = [];
+        
+        // Exatamente LOGIN_MAX_ATTEMPTS - 1 falhas
+        for ($i = 0; $i < LOGIN_MAX_ATTEMPTS - 1; $i++) {
+            recordLoginAttempt(false);
+        }
+        $this->assertFalse(checkLoginAttempts(), 'Atingiu o limite - 1: deve estar liberado');
+        
+        // Última falha (atinge LOGIN_MAX_ATTEMPTS)
+        recordLoginAttempt(false);
+        $this->assertTrue(checkLoginAttempts(), 'Atingiu o limite: deve estar BLOQUEADO');
+    }
+
+    public function testRateLimitPorIpIndependente(): void
+    {
+        // IP 1: 5 falhas (bloqueado)
+        $_SERVER['REMOTE_ADDR'] = '10.0.0.1';
+        $_SESSION = [];
+        for ($i = 0; $i < LOGIN_MAX_ATTEMPTS; $i++) {
+            recordLoginAttempt(false);
+        }
+        $this->assertTrue(checkLoginAttempts(), 'IP 1 deve estar bloqueado');
+        
+        // IP 2: 0 falhas (liberado)
+        $_SERVER['REMOTE_ADDR'] = '10.0.0.2';
+        // Sessão diferente para IP diferente
+        $this->assertFalse(checkLoginAttempts(), 'IP 2 deve estar liberado');
+    }
+
+    public function testGetLoginBlockTimePositivoQuandoBloqueado(): void
+    {
+        $_SERVER['REMOTE_ADDR'] = '192.168.1.105';
+        $_SESSION = [];
+        
+        for ($i = 0; $i < LOGIN_MAX_ATTEMPTS; $i++) {
+            recordLoginAttempt(false);
+        }
+        
+        $tempo = getLoginBlockTime();
+        $this->assertGreaterThan(0, $tempo, 'Bloqueado: tempo restante deve ser positivo');
+        $this->assertLessThanOrEqual(LOGIN_TIMEOUT, $tempo, 'Tempo restante nao deve exceder timeout');
+    }
 }
