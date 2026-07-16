@@ -94,9 +94,9 @@ case "${1:-}" in
                 printf "  📦 %s (%s) - %s\n", file, $5, info[2] ? info[2] : "?"
             }'
             echo ""
-            local total=$(ls "$BACKUP_DIR"/*.db.gz 2>/dev/null | wc -l)
-            local size=$(du -sh "$BACKUP_DIR" 2>/dev/null | cut -f1)
-            echo "   Total: $total backup(s) — $size"
+            total=$(ls "$BACKUP_DIR"/*.db.gz 2>/dev/null | wc -l)
+            size=$(du -sh "$BACKUP_DIR" 2>/dev/null | cut -f1)
+            echo "   Total: ${total} backup(s) — ${size}"
         else
             echo "   Nenhum backup encontrado."
         fi
@@ -106,7 +106,7 @@ case "${1:-}" in
             echo "❌ Uso: $0 --restore <arquivo.db.gz>"
             exit 1
         fi
-        local restore_file="$BACKUP_DIR/$2"
+        restore_file="$BACKUP_DIR/$2"
         if [ ! -f "$restore_file" ]; then
             echo "❌ Arquivo não encontrado: $restore_file"
             echo "   Use $0 --list para ver os backups disponíveis."
@@ -129,7 +129,7 @@ case "${1:-}" in
         fi
         ;;
     --clean)
-        local removed=$(find "$BACKUP_DIR" -name "avaliacao_*.db.gz" -mtime +$MAX_BACKUP_DAYS -delete -print 2>/dev/null | wc -l)
+        removed=$(find "$BACKUP_DIR" -name "avaliacao_*.db.gz" -mtime +$MAX_BACKUP_DAYS -delete -print 2>/dev/null | wc -l)
         echo "🧹 Removidos $removed backup(s) com mais de $MAX_BACKUP_DAYS dias."
         ;;
     *)
