@@ -765,6 +765,38 @@ tr:hover td { background: #f8fafc; }
 .admin-card-header .toggle { font-size: 0.8em; color: #999; transition: transform 0.2s; }
 .admin-card-header .toggle.open { transform: rotate(90deg); }
 
+/* ─── ADMIN: ACTION BUTTONS ──────────────────────────────── */
+.quick-actions {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;
+}
+.quick-actions .btn { font-size: 0.82em; padding: 8px 16px; }
+
+.search-form { margin-bottom: 15px; }
+.search-bar {
+  display: flex; gap: 8px; align-items: center;
+}
+.search-bar input[type="search"] {
+  flex: 1; padding: 10px 14px; border: 2px solid var(--border);
+  border-radius: var(--radius-sm); font-size: 0.9em; transition: var(--transition);
+}
+.search-bar input[type="search"]:focus {
+  border-color: var(--primary); box-shadow: 0 0 0 3px rgba(10,61,98,0.1); outline: none;
+}
+
+.action-btns {
+  display: flex; gap: 4px;
+}
+.btn-action {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 8px; font-size: 1em;
+  transition: var(--transition); text-decoration: none;
+}
+.btn-action:hover { transform: scale(1.15); text-decoration: none; }
+.btn-delete { background: #fce4e4; color: var(--danger); }
+.btn-delete:hover { background: #f44336; color: #fff; }
+.btn-reset { background: #fff3e0; color: var(--warning); }
+.btn-reset:hover { background: #ff9800; color: #fff; }
+
 .guide-section { 
   background: #f8fafc; border: 1px solid var(--border); 
   border-radius: var(--radius-sm); padding: 20px; margin: 10px 0; 

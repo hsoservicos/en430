@@ -585,44 +585,174 @@ function handleAdminLogin(): void {
 }
 
 /**
- * Renderizar o painel admin
+ * Renderizar o painel admin (delega para renderAdminPainelComEstudantes)
  */
 function renderAdminPainel(): void {
     $db = getDB();
-    
-    $totalEstudantes = $db->query("SELECT COUNT(*) FROM estudantes")->fetchColumn();
-    $totalQuestoes = $db->query("SELECT COUNT(*) FROM questoes")->fetchColumn();
-    $totalAvaliacoes = $db->query("SELECT COUNT(*) FROM avaliacoes")->fetchColumn();
-    
-    $questoesFacil = $db->query("SELECT COUNT(*) FROM questoes WHERE dificuldade = 'Fácil'")->fetchColumn();
-    $questoesMedio = $db->query("SELECT COUNT(*) FROM questoes WHERE dificuldade = 'Médio'")->fetchColumn();
-    $questoesDificil = $db->query("SELECT COUNT(*) FROM questoes WHERE dificuldade = 'Difícil'")->fetchColumn();
-    
     $estudantes = $db->query("SELECT id, nome, email, data_nascimento, telefone, data_cadastro FROM estudantes ORDER BY id DESC")->fetchAll();
+    $statsAv = $db->query("SELECT estudante_id, COUNT(*) as total FROM avaliacoes GROUP BY estudante_id")->fetchAll();
+    $statsAvaliacoesPorEstudante = [];
+    foreach ($statsAv as $row) {
+        $statsAvaliacoesPorEstudante[$row['estudante_id']] = $row['total'];
+    }
+    renderAdminPainelComEstudantes($estudantes, $statsAvaliacoesPorEstudante);
+}
+
+/**
+ * REGISTRA LOG DE AUDITORIA ADMIN
+ * Cria a tabela automaticamente se não existir.
+ */
+function adminLog(string $acao, array $detalhes = []): void {
+    $db = getDB();
+    $db->exec("CREATE TABLE IF NOT EXISTS admin_log (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        acao TEXT NOT NULL,
+        detalhes TEXT,
+        data TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )");
+    $stmt = $db->prepare("INSERT INTO admin_log (acao, detalhes) VALUES (?, ?)");
+    $stmt->execute([$acao, json_encode($detalhes)]);
+}
+
+/**
+ * Admin: EXCLUIR estudante com todas as avaliações
+ */
+function handleAdminExcluirEstudante(int $id): void {
+    $db = getDB();
+    $stmt = $db->prepare("SELECT nome FROM estudantes WHERE id = ?");
+    $stmt->execute([$id]);
+    $estudante = $stmt->fetch();
+    if (!$estudante) {
+        flash('erro', '❌ Estudante não encontrado.');
+        redirect('admin');
+    }
+    $db->prepare("DELETE FROM avaliacoes WHERE estudante_id = ?")->execute([$id]);
+    $db->prepare("DELETE FROM estudantes WHERE id = ?")->execute([$id]);
+    adminLog('excluir_estudante', ['id' => $id, 'nome' => $estudante['nome']]);
+    flash('sucesso', "✅ Estudante '{$estudante['nome']}' e suas avaliações foram excluídos.");
+    redirect('admin');
+}
+
+/**
+ * Admin: RESETAR SENHA de estudante (gera nova senha aleatória)
+ */
+function handleAdminResetarSenha(int $id): void {
+    $db = getDB();
+    $stmt = $db->prepare("SELECT nome, email FROM estudantes WHERE id = ?");
+    $stmt->execute([$id]);
+    $estudante = $stmt->fetch();
+    if (!$estudante) {
+        flash('erro', '❌ Estudante não encontrado.');
+        redirect('admin');
+    }
+    $novaSenha = substr(bin2hex(random_bytes(4)), 0, 8);
+    $db->prepare("UPDATE estudantes SET senha_hash = ? WHERE id = ?")
+        ->execute([hashSenha($novaSenha), $id]);
+    adminLog('resetar_senha', ['id' => $id, 'nome' => $estudante['nome']]);
+    flash('sucesso', "✅ Senha do estudante '{$estudante['nome']}' foi redefinida para: <code>{$novaSenha}</code>");
+    redirect('admin');
+}
+
+/**
+ * Admin: EXPORTAR CSV de estudantes, avaliações ou questões
+ */
+function handleAdminExportarCSV(string $tipo): void {
+    $db = getDB();
+    header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Disposition: attachment; filename="en430_' . $tipo . '_' . date('Ymd') . '.csv"');
+    $output = fopen('php://output', 'w');
+    fprintf($output, chr(0xEF).chr(0xBB).chr(0xBF)); // BOM UTF-8
+    
+    if ($tipo === 'estudantes') {
+        fputcsv($output, ['ID', 'Nome', 'Email', 'Telefone', 'Data Nascimento', 'Data Cadastro', 'Avaliacoes', 'Media %']);
+        $rows = $db->query("SELECT e.*, (SELECT COUNT(*) FROM avaliacoes WHERE estudante_id = e.id AND status='concluido') as total_av,
+            COALESCE((SELECT ROUND(AVG(pontuacao*100.0/total_questoes),1) FROM avaliacoes WHERE estudante_id = e.id AND status='concluido'),0) as media
+            FROM estudantes e ORDER BY e.id")->fetchAll();
+        foreach ($rows as $r) {
+            fputcsv($output, [$r['id'], $r['nome'], $r['email'], $r['telefone'], $r['data_nascimento'], substr($r['data_cadastro'],0,10), (int)$r['total_av'], $r['media']]);
+        }
+    } elseif ($tipo === 'avaliacoes') {
+        fputcsv($output, ['ID', 'Estudante', 'Email', 'Data', 'Total Questoes', 'Acertos', '%', 'Status']);
+        $rows = $db->query("SELECT a.*, e.nome, e.email FROM avaliacoes a JOIN estudantes e ON e.id = a.estudante_id ORDER BY a.data_inicio")->fetchAll();
+        foreach ($rows as $r) {
+            $pct = ($r['total_questoes']??0) > 0 ? round(($r['pontuacao']??0)*100/$r['total_questoes'],1) : 0;
+            fputcsv($output, [$r['id'], $r['nome'], $r['email'], substr($r['data_inicio'],0,16), (int)$r['total_questoes'], (int)$r['pontuacao'], $pct, $r['status']]);
+        }
+    } elseif ($tipo === 'questoes') {
+        fputcsv($output, ['ID', 'Modulo', 'Dificuldade', 'Texto', 'A', 'B', 'C', 'D', 'Resposta']);
+        $rows = $db->query("SELECT * FROM questoes ORDER BY modulo, id")->fetchAll();
+        foreach ($rows as $r) {
+            fputcsv($output, [$r['id'], $r['modulo'], $r['dificuldade'], $r['texto'], $r['opcao_a'], $r['opcao_b'], $r['opcao_c'], $r['opcao_d'], $r['resposta']]);
+        }
+    }
+    fclose($output);
+    adminLog('exportar_csv', ['tipo' => $tipo]);
+    if (defined('PHPUNIT_TEST') && PHPUNIT_TEST) {
+        return;
+    }
+    exit;
+}
+
+/**
+ * Admin: FILTRAR ESTUDANTES por nome, email ou telefone
+ */
+function handleAdminFiltrarEstudantes(): void {
+    $busca = trim($_GET['busca'] ?? '');
+    $db = getDB();
+    if ($busca) {
+        $stmt = $db->prepare("SELECT id, nome, email, data_nascimento, telefone, data_cadastro FROM estudantes 
+            WHERE nome LIKE ? OR email LIKE ? OR telefone LIKE ? ORDER BY id DESC");
+        $like = "%{$busca}%";
+        $stmt->execute([$like, $like, $like]);
+    } else {
+        $stmt = $db->query("SELECT id, nome, email, data_nascimento, telefone, data_cadastro FROM estudantes ORDER BY id DESC");
+    }
+    $estudantes = $stmt->fetchAll();
     
     $statsAv = $db->query("SELECT estudante_id, COUNT(*) as total FROM avaliacoes GROUP BY estudante_id")->fetchAll();
     $statsAvaliacoesPorEstudante = [];
     foreach ($statsAv as $row) {
         $statsAvaliacoesPorEstudante[$row['estudante_id']] = $row['total'];
     }
+    renderAdminPainelComEstudantes($estudantes, $statsAvaliacoesPorEstudante);
+}
+
+/**
+ * Admin: BUSCAR LOG DE AUDITORIA (ultimas 50 entradas)
+ * NOTA: A tabela admin_log e criada pelo adminLog() no momento da escrita.
+ */
+function adminLogBuscar(): array {
+    $db = getDB();
+    try {
+        return $db->query("SELECT * FROM admin_log ORDER BY id DESC LIMIT 50")->fetchAll();
+    } catch (Exception $e) {
+        return []; // Tabela ainda nao existe (banco novo sem acoes admin)
+    }
+}
+
+/**
+ * Admin: Renderiza admin com lista de estudantes personalizada
+ */
+function renderAdminPainelComEstudantes(array $estudantes, array $statsAv): void {
+    $db = getDB();
+    $totalQuestoes = $db->query("SELECT COUNT(*) FROM questoes")->fetchColumn();
+    $totalAvaliacoes = $db->query("SELECT COUNT(*) FROM avaliacoes")->fetchColumn();
+    $questoesFacil = $db->query("SELECT COUNT(*) FROM questoes WHERE dificuldade = 'Fácil'")->fetchColumn();
+    $questoesMedio = $db->query("SELECT COUNT(*) FROM questoes WHERE dificuldade = 'Médio'")->fetchColumn();
+    $questoesDificil = $db->query("SELECT COUNT(*) FROM questoes WHERE dificuldade = 'Difícil'")->fetchColumn();
     
     $questoesPorModulo = $db->query("
-        SELECT 
-            modulo,
-            COUNT(*) as total,
+        SELECT modulo, COUNT(*) as total,
             SUM(CASE WHEN dificuldade = 'Fácil' THEN 1 ELSE 0 END) as facil,
             SUM(CASE WHEN dificuldade = 'Médio' THEN 1 ELSE 0 END) as medio,
             SUM(CASE WHEN dificuldade = 'Difícil' THEN 1 ELSE 0 END) as dificil
-        FROM questoes
-        GROUP BY modulo
-        ORDER BY modulo
-    ")->fetchAll();
+        FROM questoes GROUP BY modulo ORDER BY modulo")->fetchAll();
     
     $ultimasQuestoes = $db->query("SELECT id, modulo, dificuldade, texto, resposta FROM questoes ORDER BY id DESC LIMIT 20")->fetchAll();
     
     view('admin', [
         'stats' => [
-            'total_estudantes' => $totalEstudantes,
+            'total_estudantes' => count($estudantes),
             'total_questoes' => $totalQuestoes,
             'total_avaliacoes' => $totalAvaliacoes,
             'questoes_facil' => $questoesFacil,
@@ -630,9 +760,12 @@ function renderAdminPainel(): void {
             'questoes_dificil' => $questoesDificil,
         ],
         'estudantes' => $estudantes,
-        'stats_avaliacoes_por_estudante' => $statsAvaliacoesPorEstudante,
+        'stats_avaliacoes_por_estudante' => $statsAv,
         'questoes_por_modulo' => $questoesPorModulo,
         'ultimas_questoes' => $ultimasQuestoes,
+        'busca_atual' => $_GET['busca'] ?? '',
+        'logs' => adminLogBuscar(),
+        'focus_log' => !empty($_GET['focus']) && $_GET['focus'] === 'log',
     ]);
 }
 

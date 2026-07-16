@@ -150,6 +150,32 @@ try {
             handleAdmin();
             break;
 
+        // ── Admin: CRUD Estudantes ──
+        case 'admin-excluir-estudante':
+            requireAdmin();
+            $id = (int)($urlParts[1] ?? 0);
+            handleAdminExcluirEstudante($id);
+            break;
+
+        case 'admin-resetar-senha':
+            requireAdmin();
+            $id = (int)($urlParts[1] ?? 0);
+            handleAdminResetarSenha($id);
+            break;
+
+        // ── Admin: Exportar CSV ──
+        case 'admin-exportar':
+            requireAdmin();
+            $tipo = $urlParts[1] ?? '';
+            handleAdminExportarCSV($tipo);
+            break;
+
+        // ── Admin: Filtrar Estudantes ──
+        case 'admin-filtrar':
+            requireAdmin();
+            handleAdminFiltrarEstudantes();
+            break;
+
         case 'admin-login':
             if ($method === 'POST') {
                 requireCsrf();

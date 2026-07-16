@@ -174,12 +174,14 @@ function requireLogin(): void {
     if (!estaLogado()) {
         flash('erro', '🔒 Faça login para acessar esta página.');
         redirect('login');
+        return; // Segurança: redirect pode retornar em modo de teste
     }
 }
 
 function requireAdmin(): void {
     if (empty($_SESSION['admin_authenticated'])) {
         redirect('admin-login');
+        return; // Segurança: redirect pode retornar em modo de teste
     }
 }
 
@@ -199,7 +201,13 @@ function redirectUrl(string $rota = ''): string {
     return $rota ? url($rota) : url('');
 }
 
-function redirect(string $rota = ''): never {
+function redirect(string $rota = ''): void {
+    // Em testes de unidade (PHPUNIT_TEST definido), não chamar exit()
+    // para permitir que as asserções sejam executadas.
+    if (defined('PHPUNIT_TEST') && PHPUNIT_TEST) {
+        $_SESSION['_test_redirect'] = $rota;
+        return;
+    }
     header("Location: " . redirectUrl($rota));
     exit;
 }
