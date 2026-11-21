@@ -267,7 +267,7 @@ Acesse **http://ip-do-servidor/** no navegador. Deve aparecer a página padrão 
         ├── functions.php                 # 🔧 Funções (auth, CSRF, helpers)
         ├── router.php                    # 🚀 Roteador para PHP built-in server
         ├── .htaccess                     # 📜 Regras de rewrite para Apache
-        ├── avaliacao.db                  # 🗄️ Banco SQLite (2.475 questões)
+        ├── avaliacao.db                  # 🗄️ Banco SQLite (2.803 questões)
         ├── README.md                     # 📋 Documentação do sistema
         ├── assets/
         │   ├── css/style.css             # 🎨 Folha de estilos
@@ -283,7 +283,7 @@ Acesse **http://ip-do-servidor/** no navegador. Deve aparecer a página padrão 
         │   ├── recuperar_acesso.php      # Recuperação de senha
         │   └── admin.php                 # Painel administrativo
         ├── scripts/                      # 🔧 Scripts de manutenção
-        │   ├── recriar_questoes.php      # Recria banco (2.475 questões)
+        │   ├── recriar_questoes.php      # Recria banco (2.803 questões)
         │   └── questions_data.php        # Banco de questões fonte
         └── tests/                        # 🧪 Testes PHPUnit
             ├── bootstrap.php
@@ -557,12 +557,12 @@ O sistema já inclui um `.htaccess` em `sistema_avaliacao/php/.htaccess`:
 # Entre na pasta do sistema PHP
 cd /var/www/enfermagem/sistema_avaliacao/php
 
-# Recriar o banco (2.475 questões de enfermagem)
+# Recriar o banco (2.803 questões de enfermagem)
 php scripts/recriar_questoes.php
 
 # Verificar se o banco foi criado
 php -r "\$db = new PDO('sqlite:avaliacao.db'); echo 'Total: ' . \$db->query('SELECT COUNT(*) FROM questoes')->fetchColumn() . ' questões' . PHP_EOL;"
-# Deve retornar: Total: 2475 questões
+# Deve retornar: Total: 2803 questões
 
 # Ajustar permissão (IMPORTANTE: Apache precisa escrever no banco)
 sudo chown www-data:www-data avaliacao.db
@@ -1079,7 +1079,7 @@ Use esta lista para verificar se tudo está funcionando após a instalação.
 
 ### 🔲 12.5. Banco de Dados
 
-- [ ] Questões carregadas: `php -r "\$db = new PDO('sqlite:/var/www/enfermagem/sistema_avaliacao/php/avaliacao.db'); echo \$db->query('SELECT COUNT(*) FROM questoes')->fetchColumn();"` (deve mostrar 2475)
+- [ ] Questões carregadas: `php -r "\$db = new PDO('sqlite:/var/www/enfermagem/sistema_avaliacao/php/avaliacao.db'); echo \$db->query('SELECT COUNT(*) FROM questoes')->fetchColumn();"` (deve mostrar 2803)
 - [ ] Integridade OK: `php -r "\$db = new PDO('sqlite:/var/www/enfermagem/sistema_avaliacao/php/avaliacao.db'); echo \$db->query('PRAGMA integrity_check')->fetchColumn();"` (deve mostrar "ok")
 - [ ] Backup configurado: `ls -la /usr/local/bin/backup_enfermagem.sh`
 - [ ] Backup no crontab: `sudo crontab -l | grep backup`

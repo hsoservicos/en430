@@ -152,7 +152,7 @@
   ```bash
   php -r "\$db = new PDO('sqlite:avaliacao.db'); echo \$db->query('SELECT COUNT(*) FROM questoes')->fetchColumn();"
   ```
-  → Deve ser **2475**
+  → Deve ser **2803**
 - [ ] **Integridade do banco:**
   ```bash
   php -r "\$db = new PDO('sqlite:avaliacao.db'); echo \$db->query('PRAGMA integrity_check')->fetchColumn();"
@@ -280,7 +280,7 @@
 | Arquivos copiados | ✅ / ❌ | |
 | Permissões ajustadas | ✅ / ❌ | |
 | Apache configurado | ✅ / ❌ | |
-| Banco criado (2.475 questões) | ✅ / ❌ | |
+| Banco criado (2.803 questões) | ✅ / ❌ | |
 | Landing page acessível | ✅ / ❌ | |
 | Sistema de avaliação acessível | ✅ / ❌ | |
 | Cadastro funcional | ✅ / ❌ | |

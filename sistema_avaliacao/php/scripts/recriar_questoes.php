@@ -1,6 +1,6 @@
 <?php
 /**
- * recriar_questoes.php — Recria o banco com 3000+ questões
+ * recriar_questoes.php — Recria o banco com 2.803 questões
  * 
  * Remove a tabela 'questoes' e a recria com distribuição variada
  * usando prefixos textuais para gerar variações.
@@ -14,7 +14,7 @@ require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../db.php';
 
 echo "========================================\n";
-echo "  🔄 RECRIAR QUESTÕES (3000+)\n";
+echo "  🔄 RECRIAR QUESTÕES (2.803)\n";
 echo "========================================\n\n";
 
 $db = getDB();

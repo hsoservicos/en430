@@ -20,6 +20,8 @@ real da instância Coolify (`servitec-local`, v4.3.14) capturada em novembro de 
 | **Health check** | `GET /` · HTTP 200 · intervalo 5s |
 | **Auto-deploy** | Habilitado (push na `master`) |
 | **Status** | `running:healthy` |
+| **Última publicação** | 2026-11-21 (branch `master`) |
+| **Materiais de estudo** | `/materiais/html/index_estudos.html` (HTML) e `/materiais/pdf/` |
 
 > `aprendizado_em_ia` **não é publicado**. O projeto e a aplicação que existiam no
 > Coolify foram removidos; o diretório permanece apenas como base de apoio local.
@@ -79,6 +81,18 @@ Sem esse volume, o banco é recriado a cada deploy. O `entrypoint.sh` executa
 - Intervalo: `5s` · timeout `5s` · retries `10` · start period `5s`
 
 O Dockerfile também declara um `HEALTHCHECK` próprio, que requisita `index.php`.
+
+---
+
+### 3.5. Navegação de estudo dentro do app
+
+| Origem | Ação |
+|--------|------|
+| Home `/` | Botão **📚 Materiais de Estudo** → `/materiais/html/index_estudos.html` |
+| Login `/login` | Botão **← Voltar ao início** (`/`) e link **📚 Materiais de estudo** |
+| Central de Estudos | Botão **📝 Ir para o Sistema de Avaliação** (`/`) |
+
+Os PDFs são servidos diretamente do diretório copiado no build; não dependem do banco.
 
 ---
 
@@ -178,3 +192,6 @@ O volume `/data` é a fonte de verdade; o host path fica sob
 | 2026-11 | Deploy oficial migrado para Docker + Coolify |
 | 2026-11 | Volume persistente `/data` para o SQLite |
 | 2026-11 | `aprendizado_em_ia` removido do Coolify — é base de apoio, não serviço publicado |
+| 2026-11 | Base directory alterada para `/` e Dockerfile movido para a raiz |
+| 2026-11 | Materiais de estudo incluídos no build e servidos em `/materiais/` |
+| 2026-11 | Botões de navegação estudo ↔ avaliação e retorno no login |

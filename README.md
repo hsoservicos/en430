@@ -31,6 +31,7 @@ en430/
 ├── .editorconfig / .gitattributes
 │
 ├── docs/                         # 📚 Documentação
+│   ├── ESTADO_ATUAL.md           #   Fonte de verdade do projeto
 │   ├── README.md                 #   Índice central + padrões do repositório
 │   ├── deploy/
 │   │   ├── COOLIFY.md            #   Deploy oficial (Docker + Coolify)
@@ -150,6 +151,7 @@ Portal: [`index.html`](index.html) · Central de estudos: [`materiais/html/index
 
 | Documento | Conteúdo |
 |-----------|----------|
+| [docs/ESTADO_ATUAL.md](docs/ESTADO_ATUAL.md) | **Estado atual:** deploy, estrutura, números e verificações |
 | [docs/README.md](docs/README.md) | Índice central e padrões do repositório |
 | [docs/deploy/COOLIFY.md](docs/deploy/COOLIFY.md) | Deploy oficial, variáveis, volume e rollback |
 | [docs/deploy/CHECKLIST.md](docs/deploy/CHECKLIST.md) | Checklist pós-deploy |

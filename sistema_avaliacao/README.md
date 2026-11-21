@@ -1,7 +1,7 @@
 # 📝 Sistema de Avaliação — Introdução à Enfermagem
 
-Sistema web para avaliação de múltipla escolha com **+2000 questões** 
-(2055 no banco) distribuídas pelos **10 módulos** da disciplina 
+Sistema web para avaliação de múltipla escolha com **2.803 questões**
+distribuídas pelos **10 módulos** da disciplina 
 **Introdução à Enfermagem (EN_430)**, com **3 níveis de dificuldade**: 
 🟢 Fácil, 🟡 Médio e 🔴 Difícil.
 
@@ -73,7 +73,7 @@ Visão consolidada com total de avaliações, média de acertos e melhor desempe
 # 1. Ir para o diretório PHP
 cd sistema_avaliacao/php
 
-# 2. Recriar banco de dados (2055 questões balanceadas)
+# 2. Recriar banco de dados (2.803 questões balanceadas)
 php scripts/recriar_questoes.php
 
 # 3. Iniciar servidor embutido
@@ -146,22 +146,22 @@ Não é necessário configurar servidor SMTP ou serviço de email.
 
 ## 📊 Distribuição das Questões
 
-| Módulo | Tema | Questões |
-|:------:|------|:--------:|
-| 1 | 🧩 Teoria das Necessidades Básicas (Wanda Horta) | 510 |
-| 2 | 🔄 SAE — Sistematização da Assistência de Enfermagem | 250 |
-| 3 | 📝 Anotação de Enfermagem + Terminologias | 250 |
-| 4 | 💊 Administração de Medicamentos — Vias Enterais | 155 |
-| 5 | 💉 Administração de Medicamentos — Vias Parenterais | 160 |
-| 6 | 🧼 Assepsia, Antissepsia e Higiene do Paciente | 165 |
-| 7 | 🩹 Curativos, Feridas e Coberturas | 165 |
-| 8 | 🫁 Oxigenoterapia + Cateterismos | 150 |
-| 9 | 📏 Exames, Coletas, Medidas, Crioterapia e Termoterapia | 150 |
-| 10 | 📋 Admissão, Alta, Contenção e Processo Pós-Morte | 100 |
-| | **Total** | **2055** |
+| Módulo | Tema | Fácil | Médio | Difícil | Total |
+|:------:|------|:-----:|:-----:|:-------:|:-----:|
+| 1 | 🧩 Teoria das Necessidades Básicas (Wanda Horta) | 240 | 120 | 150 | **510** |
+| 2 | 🔄 SAE — Sistematização da Assistência de Enfermagem | 150 | 50 | 50 | **250** |
+| 3 | 📝 Anotação de Enfermagem + Terminologias | 145 | 55 | 50 | **250** |
+| 4 | 💊 Administração de Medicamentos — Vias Enterais | 138 | 66 | 54 | **258** |
+| 5 | 💉 Administração de Medicamentos — Vias Parenterais | 126 | 78 | 54 | **258** |
+| 6 | 🧼 Assepsia, Antissepsia e Higiene do Paciente | 126 | 78 | 60 | **264** |
+| 7 | 🩹 Curativos, Feridas e Coberturas | 132 | 78 | 60 | **270** |
+| 8 | 🫁 Oxigenoterapia + Cateterismos | 108 | 66 | 66 | **240** |
+| 9 | 📏 Exames, Coletas, Medidas, Crioterapia e Termoterapia | 108 | 78 | 72 | **258** |
+| 10 | 📋 Admissão, Alta, Contenção e Processo Pós-Morte | 105 | 70 | 70 | **245** |
+| | **Total** | **1.378** | **739** | **686** | **2.803** |
 
-> **Níveis de dificuldade:** 🟢 Fácil (53,5%), 🟡 Médio (23,1%), 🔴 Difícil (23,4%).
-> As questões são multiplicadas por variações textuais para enriquecer o banco.
+> **Níveis de dificuldade:** 🟢 Fácil (49,2%), 🟡 Médio (26,4%), 🔴 Difícil (24,5%).
+> As 495 questões-base são multiplicadas por 5 a 7 variações textuais por módulo.
 
 ---
 

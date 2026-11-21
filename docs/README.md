@@ -5,6 +5,12 @@
 
 ---
 
+## 📍 Estado atual
+
+| Documento | Conteúdo |
+|-----------|----------|
+| [**ESTADO_ATUAL.md**](ESTADO_ATUAL.md) | **Fonte de verdade:** deploy, estrutura, números, navegação e verificações |
+
 ## 🚀 Deploy
 
 | Documento | Conteúdo |

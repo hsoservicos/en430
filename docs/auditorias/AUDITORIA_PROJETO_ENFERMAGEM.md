@@ -1,5 +1,19 @@
 # 📋 Artifício de Auditoria e Análise do Sistema de Avaliação EN_430
 
+> 🔄 **Atualização pós-sessão (2026-11-21).** Este documento registra a auditoria
+> inicial; parte das recomendações já foi tratada. Desde a auditoria:
+>
+> - Repositório reorganizado em `docs/`, `materiais/` e `scripts/`, com links corrigidos.
+> - Dockerfile movido para a raiz (contexto do repositório) e materiais servidos em `/materiais/`.
+> - `sistema_avaliacao/.env.example` disponível e cabeçalhos de segurança (CSP, X-Frame-Options,
+>   X-Content-Type-Options, Referrer-Policy, Permissions-Policy) ativos no `.htaccess`.
+> - Números conferidos na fonte: **2.803 questões** (1.378 Fácil / 739 Médio / 686 Difícil)
+>   e **158 casos de teste**.
+> - Deploy oficial documentado em [`../deploy/COOLIFY.md`](../deploy/COOLIFY.md).
+>
+> Para a condição atual completa, consulte [`../ESTADO_ATUAL.md`](../ESTADO_ATUAL.md).
+> Os itens de refatoração estrutural (extract, router, joins de progresso) continuam pendentes.
+
 ## 📅 Data da Auditoria: Novembro de 2026
 ## 🎯 Projeto: Sistema de Avaliação — Introdução à Enfermagem (EN_430)
 ## 👨‍💻 Avaliado por: Codebuff (Agente de Codificação Autônoma)
@@ -240,7 +254,7 @@ sistema_avaliacao/php/
 ### 8.2 Distribuição de Questões
 | Módulo | Fácil | Médio | Difícil | Total |
 |--------|-------|-------|---------|-------|
-| 1-10 | 1528 | 665 | 610 | **2803** |
+| 1-10 | 1.378 | 739 | 686 | **2.803** |
 
 ### 8.3 Observações ⚠️
 - **Campo `questoes_ids` na tabela avaliacoes**: Armazenado como JSON array — consulta flexível mas menos performática que tabela de relação Many-to-Many

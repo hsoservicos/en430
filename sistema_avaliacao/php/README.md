@@ -319,17 +319,17 @@ CREATE TABLE respostas (
 
 | Módulo | Tema | Fácil | Médio | Difícil | Total |
 |:------:|:-----|:----:|:-----:|:-------:|:-----:|
-| 1 | Fundamentos da Enfermagem | 240 | 120 | 150 | **510** |
+| 1 | Fundamentos — Teoria das Necessidades Básicas | 240 | 120 | 150 | **510** |
 | 2 | Processo de Enfermagem (SAE) | 150 | 50 | 50 | **250** |
 | 3 | Terminologias e Sinais Vitais | 145 | 55 | 50 | **250** |
-| 4 | Farmacologia | 148 | 55 | 55 | **258** |
-| 5 | Administração de Medicamentos | 148 | 60 | 50 | **258** |
-| 6 | Curativos e Coberturas | 149 | 65 | 50 | **264** |
-| 7 | Feridas e Lesões de Pele | 150 | 70 | 50 | **270** |
-| 8 | Cuidados com Queimaduras | 130 | 60 | 50 | **240** |
-| 9 | Emergência e Urgência | 138 | 70 | 50 | **258** |
-| 10 | Ética e Cuidados Paliativos | 130 | 60 | 55 | **245** |
-| | **Total** | **1.528** | **665** | **610** | **2.803** |
+| 4 | Administração de Medicamentos — Vias Enterais | 138 | 66 | 54 | **258** |
+| 5 | Administração de Medicamentos — Vias Parenterais | 126 | 78 | 54 | **258** |
+| 6 | Assepsia, Antissepsia e Higiene do Paciente | 126 | 78 | 60 | **264** |
+| 7 | Curativos, Feridas e Coberturas | 132 | 78 | 60 | **270** |
+| 8 | Oxigenoterapia e Cateterismos | 108 | 66 | 66 | **240** |
+| 9 | Exames, Coletas, Medidas, Crioterapia e Termoterapia | 108 | 78 | 72 | **258** |
+| 10 | Admissão, Alta, Contenção e Processo Pós-Morte | 105 | 70 | 70 | **245** |
+| | **Total** | **1.378** | **739** | **686** | **2.803** |
 
 ### 8.3. Recriar o banco
 

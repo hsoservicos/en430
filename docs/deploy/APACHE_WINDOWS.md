@@ -338,7 +338,7 @@ C:\xampp\htdocs\en430\                   # DocumentRoot para o projeto
         ├── functions.php                 # Funções (auth, CSRF, helpers)
         ├── router.php                    # Roteador para PHP built-in server
         ├── .htaccess                     # Regras de rewrite para Apache
-        ├── avaliacao.db                  # Banco SQLite (2475 questões)
+        ├── avaliacao.db                  # Banco SQLite (2803 questões)
         ├── README.md                     # Documentação do sistema
         ├── assets\
         │   ├── css\style.css             # Folha de estilos
@@ -542,7 +542,7 @@ php scripts\recriar_questoes.php
 
 :: Verificar o banco de dados
 php -r "$db = new SQLite3('avaliacao.db'); echo $db->querySingle('SELECT COUNT(*) FROM questoes') . ' questões\n';"
-:: Deve retornar: 2475 questões
+:: Deve retornar: 2803 questões
 ```
 
 ### 9.4. Testar o sistema de avaliação

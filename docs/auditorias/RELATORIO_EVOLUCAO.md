@@ -1,5 +1,10 @@
 # 📈 Relatório de Evolução — Sistema de Avaliação EN_430
 
+> 🗓️ **Documento histórico (julho/2026).** As métricas abaixo registram a evolução
+> da reformulação Python → PHP naquele período e foram parcialmente superadas.
+> Para a condição atual (2.803 questões, 158 casos de teste, Docker + Coolify),
+> consulte [`../ESTADO_ATUAL.md`](../ESTADO_ATUAL.md).
+
 > **Disciplina:** Introdução à Enfermagem (EN_430)  
 > **Curso:** Técnico em Enfermagem — EAD/Subsequente  
 > **Período:** Julho 2026  

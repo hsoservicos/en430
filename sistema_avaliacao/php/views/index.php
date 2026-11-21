@@ -9,10 +9,10 @@
 <body>
 <div class="hero">
   <h1>📝 Sistema de Avaliação</h1>
-  <p>Introdução à Enfermagem (EN_430) — +3000 questões de múltipla escolha</p>
+  <p>Introdução à Enfermagem (EN_430) — 2.803 questões de múltipla escolha</p>
   <div class="hero-info">
     <span>📚 10 módulos</span>
-    <span>❓ +3000 questões</span>
+    <span>❓ 2.803 questões</span>
     <span>🎲 20 questões por avaliação</span>
     <span>📊 Acompanhe seu progresso</span>
   </div>
@@ -25,7 +25,7 @@
     <p>
       Este sistema permite que você <strong>teste seus conhecimentos</strong> em Introdução à Enfermagem 
       com questões de múltipla escolha geradas <strong>aleatoriamente</strong> a partir de um banco 
-      com <strong>mais de 3000 questões</strong> distribuídas pelos 10 módulos da disciplina.
+      com <strong>2.803 questões</strong> distribuídas pelos 10 módulos da disciplina.
     </p>
     <div class="btn-group">
       <a href="<?= url('login') ?>" class="btn btn-primary">🔑 Fazer Login</a>
@@ -70,7 +70,7 @@
   </div>
 </div>
 <footer>
-  📚 Sistema de Avaliação • Introdução à Enfermagem (EN_430) • +3000 questões • Julho 2026
+  📚 Sistema de Avaliação • Introdução à Enfermagem (EN_430) • 2.803 questões • Julho 2026
 </footer>
 <script src="<?= url('assets/js/app.js') ?>"></script>
 </body>

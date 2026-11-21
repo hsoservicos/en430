@@ -10,15 +10,41 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ---
 
-## [Não lançado]
+## [2.2.0] — 2026-11-21
 
 ### 🗂️ Organização e profissionalização da estrutura
 
 - Reorganização do repositório em `docs/`, `materiais/` e `scripts/`, com links relativos atualizados.
 - Documentação de deploy migrada para `docs/deploy/` e novo guia oficial do Coolify.
-- Padrões de projeto: `.editorconfig`, `.gitattributes` e verificador de links (`scripts/verificar_links.py`).
-- `aprendizado_em_ia/` isolado como repositório independente e removido do Coolify (base de apoio, não publicada).
-- `APP_DB_PATH` documentado e `config.php` alinhado ao volume persistente `/data`.
+- Padrões de projeto: `.editorconfig`, `.gitattributes`, `.dockerignore` e verificador de links
+  (`scripts/verificar_links.py`).
+- Criação de [`docs/ESTADO_ATUAL.md`](docs/ESTADO_ATUAL.md) como fonte de verdade do projeto.
+- Correção do `.gitignore` (comentários inline invalidavam padrões) e remoção de 1.738 arquivos
+  gerados do versionamento (`vendor/`, `reports/`, `coverage-detail/`, caches).
+
+### 🐳 Build e deploy
+
+- `Dockerfile` movido para a raiz, com contexto do repositório e cópia dos materiais para `/materiais/`.
+- Base directory do Coolify alterada de `/sistema_avaliacao/php` para `/`.
+- `APP_DB_PATH` corrigido em `config.php`, `migrate.php` e `backup.sh` para o volume persistente `/data`.
+- Deploy documentado, publicado e validado em <https://en430.appservice.tec.br>.
+
+### 🎓 Materiais e navegação
+
+- Central de Estudos servida em `/materiais/html/index_estudos.html` (HTML + PDFs).
+- Botão **📚 Materiais de Estudo** na home e no login do sistema.
+- Botão **📝 Ir para o Sistema de Avaliação** na Central de Estudos.
+- Botão **← Voltar ao início** no login.
+
+### 🔢 Números conferidos na fonte
+
+- **2.803 questões** (1.378 Fácil / 739 Médio / 686 Difícil) em 10 módulos.
+- **158 casos de teste** (385 asserções documentadas).
+
+### 🧪 Base de apoio
+
+- `aprendizado_em_ia/` isolado como repositório independente.
+- Projeto e aplicação `aprendizado-em-ia` removidos do Coolify; a base não é publicada.
 
 ---
 
