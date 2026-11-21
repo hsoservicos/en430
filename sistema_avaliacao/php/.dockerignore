@@ -1,0 +1,13 @@
+.git
+.gitignore
+.phpunit.cache
+coverage-detail
+reports
+backups
+tests
+*.db
+*.db-shm
+*.db-wal
+*.log
+Dockerfile
+.dockerignore
