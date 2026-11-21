@@ -1,0 +1,31 @@
+# Repositório e ferramentas
+.git
+.gitignore
+.gitattributes
+.freebuff
+aprendizado_em_ia
+
+# Documentação e arquivos fora do runtime
+docs
+scripts
+README.md
+CHANGELOG.md
+index.html
+*.md
+*.7z
+
+# Testes e artefatos de cobertura do PHP
+sistema_avaliacao/php/tests
+sistema_avaliacao/php/vendor
+sistema_avaliacao/php/reports
+sistema_avaliacao/php/coverage-detail
+sistema_avaliacao/php/backups
+sistema_avaliacao/php/.phpunit.cache
+sistema_avaliacao/php/.phpunit.result.cache
+sistema_avaliacao/php/*.db
+sistema_avaliacao/php/*.db-shm
+sistema_avaliacao/php/*.db-wal
+
+# Dados locais
+data
+*.log

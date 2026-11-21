@@ -1,10 +1,23 @@
+# ─── Repositórios independentes ──────────────────────────────────
+# base de apoio (repo Git próprio, não publicado)
+/aprendizado_em_ia/
+
+# ─── Ferramentas locais ──────────────────────────────────────────
+.freebuff/
+
+# ─── Dados locais de container ───────────────────────────────────
+/data/
+sistema_avaliacao/php/backups/
+
 # ─── Credenciais e Configuração Sensível ────────────────────────
-.env                    # Variáveis de ambiente com senhas/API keys
+# Variáveis de ambiente com senhas/API keys
+.env
 *.env.local
 *.env.production
 
 # ─── Banco de Dados ─────────────────────────────────────────────
-avaliacao.db            # Banco SQLite (dados de estudantes)
+# Banco SQLite (dados de estudantes)
+avaliacao.db
 *.db
 *.sqlite
 *.sqlite3
@@ -41,14 +54,23 @@ Thumbs.db
 /var/
 
 # ─── PHP - Sistema de Avaliação ──────────────────────────────────
-sistema_avaliacao/php/vendor/           # Composer dependencies
-sistema_avaliacao/php/.phpunit.result.cache  # PHPUnit cache
-sistema_avaliacao/php/reports/          # Relatórios de code coverage (gerado)
-sistema_avaliacao/php/xdebug.so         # Xdebug baixado para coverage
-sistema_avaliacao/php/avaliacao_test.db # Banco de teste
-sistema_avaliacao/php/avaliacao_test_int.db  # Banco de teste integração
+# Composer dependencies
+sistema_avaliacao/php/vendor/
+# PHPUnit cache
+sistema_avaliacao/php/.phpunit.result.cache
+sistema_avaliacao/php/.phpunit.cache/
+# Relatórios de code coverage (gerado)
+sistema_avaliacao/php/reports/
+sistema_avaliacao/php/coverage-detail/
+# Xdebug baixado para coverage
+sistema_avaliacao/php/xdebug.so
+# Banco de teste
+sistema_avaliacao/php/avaliacao_test.db
+# Banco de teste integração
+sistema_avaliacao/php/avaliacao_test_int.db
 
 # ─── Arquivos Temporários ────────────────────────────────────────
 *.tmp
 *.bak
 *.orig
+*.exe

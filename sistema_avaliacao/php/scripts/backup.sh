@@ -20,7 +20,8 @@
 
 # Configurações
 BACKUP_DIR="$(dirname "$0")/../backups"
-DB_PATH="$(dirname "$0")/../avaliacao.db"
+# Permite apontar para o volume persistente (ex.: /data/avaliacao.db no Coolify)
+DB_PATH="${APP_DB_PATH:-$(dirname "$0")/../avaliacao.db}"
 DATE=$(date +%Y%m%d_%H%M%S)
 MAX_BACKUP_DAYS=30
 

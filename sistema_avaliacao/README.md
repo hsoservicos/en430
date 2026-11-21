@@ -93,13 +93,13 @@ php -S 127.0.0.1:8080 -t . router.php
 ### Opção 3: Usando o assistente de instalação
 
 ```bash
-# Linux
-bash instalar_publicar_linux.sh
+# Linux (a partir da raiz do repositório)
+bash scripts/instalar_publicar_linux.sh
 
 # Windows
-.\instalar_publicar_windows.ps1
+.\scripts\instalar_publicar_windows.ps1
 # ou
-instalar_publicar_windows.bat
+scripts\instalar_publicar_windows.bat
 ```
 
 ---
@@ -177,7 +177,7 @@ Não é necessário configurar servidor SMTP ou serviço de email.
 
 ## ✅ Testes Automatizados
 
-O sistema possui **61 testes PHPUnit** com **199 asserções**:
+O sistema possui **158 casos de teste PHPUnit**:
 
 ```bash
 cd sistema_avaliacao/php
@@ -187,11 +187,13 @@ composer install
 
 | Categoria | Arquivo | Testes |
 |-----------|---------|:------:|
-| Banco de Dados | `tests/DatabaseTest.php` | 11 |
-| Autenticação | `tests/AuthTest.php` | 20 |
-| Avaliações | `tests/AvaliacaoTest.php` | 16 |
-| Integração HTTP | `tests/IntegrationTest.php` | 14 |
-| **Total** | | **61 ✅** |
+| Banco de Dados | `tests/DatabaseTest.php` | 12 |
+| Autenticação | `tests/AuthTest.php` | 27 |
+| Avaliações | `tests/AvaliacaoTest.php` | 14 |
+| Funções utilitárias | `tests/FunctionsUtilTest.php` | 66 |
+| Front controller | `tests/FrontControllerTest.php` + `FrontControllerDatabaseTest.php` | 24 |
+| Integração HTTP | `tests/IntegrationTest.php` | 15 |
+| **Total** | | **158** |
 
 ---
 
@@ -238,14 +240,29 @@ sistema_avaliacao/php/
 
 ---
 
-## 🌐 Publicação Web (Apache)
+## 🌐 Publicação Web
 
-Para publicar o sistema para acesso dos estudantes via Apache, consulte:
+### Produção — Docker + Coolify (oficial)
 
-- **📄 `GUIA_PUBLICACAO_APACHE.md`** — Guia detalhado para servidores Linux
-- **📄 `GUIA_PUBLICACAO_APACHE_WINDOWS.md`** — Guia para servidores Windows
+O sistema roda em container (`Dockerfile` na raiz, PHP 8.4 + Apache, porta 80) publicado pelo **Coolify** em <https://en430.appservice.tec.br>, com
+volume persistente em `/data` e `APP_DB_PATH=/data/avaliacao.db`.
 
-### Configuração rápida Apache
+Instruções completas, variáveis e rollback: **[`docs/deploy/COOLIFY.md`](../docs/deploy/COOLIFY.md)**.
+
+```bash
+docker build -t en430 .   # a partir da raiz do repositório
+docker run -p 8080:80 -v "$PWD/data:/data" \
+  -e APP_DB_PATH=/data/avaliacao.db en430
+```
+
+### Alternativa legada — Apache
+
+Para instalações sem container, consulte:
+
+- **📄 [`docs/deploy/APACHE_LINUX.md`](../docs/deploy/APACHE_LINUX.md)** — servidores Linux
+- **📄 [`docs/deploy/APACHE_WINDOWS.md`](../docs/deploy/APACHE_WINDOWS.md)** — servidores Windows
+
+#### Configuração rápida Apache
 
 ```apache
 <VirtualHost *:80>
@@ -261,12 +278,12 @@ Para publicar o sistema para acesso dos estudantes via Apache, consulte:
 
 ## 📚 Materiais Relacionados
 
-Os materiais de estudo que complementam este sistema estão na raiz do projeto:
-- 📖 `guia_completo_estudos.html` — Guia completo de estudos
-- 🃏 `flashcards_enfermagem.html` — Flashcards interativos
-- 🧠 `mapa_mental_10_modulos.html` — Mapa mental
-- 🗺️ `index_estudos.html` — Central de Estudos
-- 📘 `plano_de_estudos_20h.html` — Plano de estudos 20h
+Os materiais de estudo que complementam este sistema estão em `materiais/`:
+- 🗺️ [`materiais/html/index_estudos.html`](../materiais/html/index_estudos.html) — Central de Estudos
+- 📖 [`materiais/html/guia_completo_estudos.html`](../materiais/html/guia_completo_estudos.html) — Guia completo de estudos
+- 🃏 [`materiais/html/flashcards_enfermagem.html`](../materiais/html/flashcards_enfermagem.html) — Flashcards interativos
+- 🧠 [`materiais/html/mapa_mental_10_modulos.html`](../materiais/html/mapa_mental_10_modulos.html) — Mapa mental
+- 📘 [`materiais/html/plano_de_estudos_20h.html`](../materiais/html/plano_de_estudos_20h.html) — Plano de estudos 20h
 
 ---
 

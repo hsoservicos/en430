@@ -30,6 +30,7 @@
     <div class="btn-group">
       <a href="<?= url('login') ?>" class="btn btn-primary">🔑 Fazer Login</a>
       <a href="<?= url('cadastro') ?>" class="btn btn-secondary">📝 Cadastre-se</a>
+      <a href="<?= url('materiais/html/index_estudos.html') ?>" class="btn btn-secondary">📚 Materiais de Estudo</a>
     </div>
   </div>
   

@@ -8,7 +8,8 @@
 
 // ─── Caminhos ───────────────────────────────────────────────
 define('BASE_PATH', __DIR__);
-define('DB_PATH', BASE_PATH . '/avaliacao.db');
+// APP_DB_PATH permite apontar para um volume persistente (ex.: /data no Coolify)
+define('DB_PATH', getenv('APP_DB_PATH') ?: BASE_PATH . '/avaliacao.db');
 define('VIEWS_PATH', BASE_PATH . '/views');
 define('ASSETS_PATH', BASE_PATH . '/assets');
 define('QUESTOES_POR_AVALIACAO', 20);

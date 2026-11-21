@@ -170,6 +170,7 @@ foreach (['Fácil', 'Médio', 'Difícil'] as $nivel) {
     $icon = ['Fácil' => '🟢', 'Médio' => '🟡', 'Difícil' => '🔴'][$nivel];
     echo "     {$icon} {$nivel}: {$qtd} ({$pct}%)\n";
 }
-echo "\n  📁 Banco: " . realpath(DB_PATH) . "\n";
+$dbFile = getenv('APP_DB_PATH') ?: DB_PATH;
+echo "\n  📁 Banco: " . (realpath($dbFile) ?: $dbFile) . "\n";
 echo "  ⏱️  Tempo: {$tempo}s\n\n";
 echo "  🚀 php -S 0.0.0.0:5000 -t .\n\n";

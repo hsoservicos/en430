@@ -1,0 +1,18 @@
+* text=auto eol=lf
+
+*.php   text
+*.md    text
+*.html  text
+*.css   text
+*.js    text
+*.sh    text eol=lf
+*.ps1   text eol=crlf
+*.bat   text eol=crlf
+
+*.pdf   binary
+*.7z    binary
+*.jpeg  binary
+*.jpg   binary
+*.png   binary
+*.ico   binary
+*.db    binary

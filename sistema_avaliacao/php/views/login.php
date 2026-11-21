@@ -29,6 +29,10 @@
     <a href="<?= url('recuperar-acesso') ?>" class="forgot-link">🔐 Esqueci minha senha</a>
     <span>Não tem conta? <a href="<?= url('cadastro') ?>">Cadastre-se</a></span>
   </div>
+  <div class="auth-links" style="margin-top:14px;">
+    <a href="<?= url('') ?>" class="btn btn-secondary btn-full">← Voltar ao início</a>
+    <a href="<?= url('materiais/html/index_estudos.html') ?>" class="forgot-link">📚 Materiais de estudo</a>
+  </div>
 </div>
 <script src="<?= url('assets/js/app.js') ?>"></script>
 </body>

@@ -10,6 +10,18 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ---
 
+## [Não lançado]
+
+### 🗂️ Organização e profissionalização da estrutura
+
+- Reorganização do repositório em `docs/`, `materiais/` e `scripts/`, com links relativos atualizados.
+- Documentação de deploy migrada para `docs/deploy/` e novo guia oficial do Coolify.
+- Padrões de projeto: `.editorconfig`, `.gitattributes` e verificador de links (`scripts/verificar_links.py`).
+- `aprendizado_em_ia/` isolado como repositório independente e removido do Coolify (base de apoio, não publicada).
+- `APP_DB_PATH` documentado e `config.php` alinhado ao volume persistente `/data`.
+
+---
+
 ## [2.1.0] — 2026-07-17
 
 ### 🚀 Finalização e Publicação

@@ -197,19 +197,27 @@ php -S 127.0.0.1:8080 -t . router.php
 
 ### 6.1. Linux — Apache + PHP 8
 
-Siga o guia completo: [`GUIA_PUBLICACAO_APACHE.md`](../../GUIA_PUBLICACAO_APACHE.md)
+Siga o guia completo: [`docs/deploy/APACHE_LINUX.md`](../../docs/deploy/APACHE_LINUX.md)
 
 ### 6.2. Windows — Apache + PHP 8
 
-Siga o guia completo: [`GUIA_PUBLICACAO_APACHE_WINDOWS.md`](../../GUIA_PUBLICACAO_APACHE_WINDOWS.md)
+Siga o guia completo: [`docs/deploy/APACHE_WINDOWS.md`](../../docs/deploy/APACHE_WINDOWS.md)
 
 ### 6.3. Scripts de instalação automatizada
 
-| Sistema | Script | Como usar |
+| Sistema | Script (na raiz do repositório) | Como usar |
 |---------|--------|-----------|
-| 🐧 Linux | `../../instalar_publicar_linux.sh` | `sudo ./instalar_publicar_linux.sh` |
-| 🪟 Windows | `../../instalar_publicar_windows.ps1` | PowerShell (Admin): `.\instalar_publicar_windows.ps1` |
-| 🪟 Windows | `../../instalar_publicar_windows.bat` | Clique duas vezes no arquivo |
+| 🐧 Linux | `scripts/instalar_publicar_linux.sh` | `sudo ./scripts/instalar_publicar_linux.sh` |
+| 🪟 Windows | `scripts/instalar_publicar_windows.ps1` | PowerShell (Admin): `.\scripts\instalar_publicar_windows.ps1` |
+| 🪟 Windows | `scripts/instalar_publicar_windows.bat` | Clique duas vezes no arquivo |
+
+### 6.4. Produção — Docker + Coolify
+
+O deploy oficial usa o `Dockerfile` na raiz do repositório (PHP 8.4 + Apache, porta 80).
+O Coolify monta um volume persistente em `/data` e injeta `APP_DB_PATH=/data/avaliacao.db`.
+
+Consulte [`docs/deploy/COOLIFY.md`](../../docs/deploy/COOLIFY.md) para build,
+variáveis de ambiente, health check e rollback.
 
 ---
 
@@ -506,7 +514,8 @@ php composer.phar install
 - **Linguagem:** PHP 8
 - **Banco:** SQLite
 - **Total de questões:** 2.803
-- **Guias de implantação:** Linux (`GUIA_PUBLICACAO_APACHE.md`) | Windows (`GUIA_PUBLICACAO_APACHE_WINDOWS.md`)
+- **Guias de implantação:** Linux (`docs/deploy/APACHE_LINUX.md`) | Windows (`docs/deploy/APACHE_WINDOWS.md`)
+- **Produção:** Docker + Coolify (`docs/deploy/COOLIFY.md`)
 
 ---
 
