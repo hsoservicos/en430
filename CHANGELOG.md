@@ -10,6 +10,19 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ---
 
+## [Não lançado]
+
+### 📚 Planejamento da expansão do curso
+
+- Adicionada a **ementa de referência** do curso Técnico em Enfermagem (`docs/ementa.md`):
+  1.200h teórico-práticas + 600h de estágio, 4 módulos e 17 componentes.
+- Criado o **plano de expansão** (`docs/planejamento/EXPANSAO_CURSO_TECNICO_ENFERMAGEM.md`)
+  com diagnóstico, arquitetura-alvo, matriz de cobertura, roadmap, esforço, KPIs e riscos.
+- Plano reconciliado com a ementa: 17 componentes, 600h de estágio, meta de 4.400 itens
+  únicos e priorização dos 6 componentes da fase 2.
+
+---
+
 ## [2.2.0] — 2026-11-21
 
 ### 🗂️ Organização e profissionalização da estrutura

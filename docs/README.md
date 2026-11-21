@@ -11,6 +11,13 @@
 |-----------|----------|
 | [**ESTADO_ATUAL.md**](ESTADO_ATUAL.md) | **Fonte de verdade:** deploy, estrutura, números, navegação e verificações |
 
+## 🎓 Planejamento e currículo
+
+| Documento | Conteúdo |
+|-----------|----------|
+| [**ementa.md**](ementa.md) | **Ementa de referência do curso:** 1.200h + 600h de estágio, 4 módulos e 17 componentes |
+| [**EXPANSAO_CURSO_TECNICO_ENFERMAGEM.md**](planejamento/EXPANSAO_CURSO_TECNICO_ENFERMAGEM.md) | **Plano de expansão:** diagnóstico, arquitetura-alvo, matriz de cobertura, roadmap e riscos |
+
 ## 🚀 Deploy
 
 | Documento | Conteúdo |
@@ -35,7 +42,8 @@
 
 | Caminho | Conteúdo |
 |---------|----------|
-| [referencias/anotacao-curso.txt](referencias/anotacao-curso.txt) | Ementa e anotações originais da disciplina |
+| [ementa.md](ementa.md) | Matriz curricular completa do curso Técnico em Enfermagem |
+| [referencias/anotacao-curso.txt](referencias/anotacao-curso.txt) | Anotações originais da disciplina EN_430 |
 | [arquivo/artefatos_python.7z](arquivo/artefatos_python.7z) | Versão original em Python/Flask (histórico) |
 | [arquivo/imagem-whatsapp-2026-07-15.jpeg](arquivo/imagem-whatsapp-2026-07-15.jpeg) | Imagem de referência do material |
 

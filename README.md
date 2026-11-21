@@ -32,6 +32,8 @@ en430/
 │
 ├── docs/                         # 📚 Documentação
 │   ├── ESTADO_ATUAL.md           #   Fonte de verdade do projeto
+│   ├── ementa.md                 #   Matriz curricular do curso Técnico em Enfermagem
+│   ├── planejamento/             #   Plano de expansão para todo o curso
 │   ├── README.md                 #   Índice central + padrões do repositório
 │   ├── deploy/
 │   │   ├── COOLIFY.md            #   Deploy oficial (Docker + Coolify)
@@ -152,6 +154,8 @@ Portal: [`index.html`](index.html) · Central de estudos: [`materiais/html/index
 | Documento | Conteúdo |
 |-----------|----------|
 | [docs/ESTADO_ATUAL.md](docs/ESTADO_ATUAL.md) | **Estado atual:** deploy, estrutura, números e verificações |
+| [docs/ementa.md](docs/ementa.md) | Matriz curricular do curso Técnico em Enfermagem |
+| [docs/planejamento/EXPANSAO_CURSO_TECNICO_ENFERMAGEM.md](docs/planejamento/EXPANSAO_CURSO_TECNICO_ENFERMAGEM.md) | **Plano de expansão** para todo o curso |
 | [docs/README.md](docs/README.md) | Índice central e padrões do repositório |
 | [docs/deploy/COOLIFY.md](docs/deploy/COOLIFY.md) | Deploy oficial, variáveis, volume e rollback |
 | [docs/deploy/CHECKLIST.md](docs/deploy/CHECKLIST.md) | Checklist pós-deploy |
