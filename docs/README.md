@@ -54,6 +54,7 @@
 |-----------|----------|
 | [AUDITORIA_PROJETO_ENFERMAGEM.md](auditorias/AUDITORIA_PROJETO_ENFERMAGEM.md) | Auditoria técnica: arquitetura, segurança, testes, banco |
 | [RELATORIO_EVOLUCAO.md](auditorias/RELATORIO_EVOLUCAO.md) | Evolução do projeto, métricas e cobertura |
+| [RELATORIO_SEGURANCA_STACK_2026-11-22.md](auditorias/RELATORIO_SEGURANCA_STACK_2026-11-22.md) | **Segurança do stack:** CVEs de PHP/Apache de nov/2026, hardening do runtime e riscos residuais |
 
 ## 🗂️ Referências e arquivo
 

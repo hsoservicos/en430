@@ -270,3 +270,16 @@ as rotas por HTTP antes do deploy.
 2. **`/scripts/*.php` era servido por HTTP** — o shebang aparecia como texto e o `403` do guarda de
    CLI não era aplicado. Adicionado `RewriteRule ^scripts/ - [F,L]` ao `.htaccess` e removido o
    shebang do script (executado como `php script.php`).
+
+### 8.4. Segurança do stack (2026-11-22)
+
+Relatório completo: [`docs/auditorias/RELATORIO_SEGURANCA_STACK_2026-11-22.md`](auditorias/RELATORIO_SEGURANCA_STACK_2026-11-22.md).
+
+| Item | Situação |
+|---|---|
+| PHP | **8.4.28** — release de segurança de 19/11/2026; cobre os 14 CVEs que afetam a linha 8.4 |
+| Apache | **2.4.71** — corrige o RCE crítico CVE-2026-119618 (`mod_http2`, que não está carregado) |
+| SAPI | `mod_php` — sem PHP-FPM/CGI, o que exclui CVE-2026-129289 e CVE-2026-129292 |
+| Hardening aplicado | `expose_php=Off`, `display_errors=Off` com log em stderr, sessão `HttpOnly` + `use_strict_mode`, `upload_progress=0`, `ServerTokens Prod`, bloqueio de `.xml/.ini/.sh/.sql` por HTTP |
+| Risco de prazo | **PHP 8.4 perde suporte de segurança em 31/12/2026** — suíte já passa em PHP 8.5 (180 testes), migração recomendada |
+| Deploy | a imagem em produção só recebe o 8.4.28 quando o rebuild do commit `55f8c9f` concluir |

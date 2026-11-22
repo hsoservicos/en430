@@ -19,6 +19,14 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - **`/scripts/*.php` bloqueado por HTTP** no `.htaccess` (antes a rotina de inativas respondia 200
   com o shebang impresso).
 
+### Segurança
+
+- **Verificação do stack** contra os CVEs de novembro/2026: PHP 8.4.28 e Apache 2.4.71 já contêm
+  as correções; relatório em `docs/auditorias/RELATORIO_SEGURANCA_STACK_2026-11-22.md`.
+- **Hardening do runtime:** `expose_php=Off`, `display_errors=Off` (log em stderr), sessão com
+  `HttpOnly` e `use_strict_mode`, `session.upload_progress=0`, `ServerTokens Prod` e bloqueio
+  HTTP de `.xml`, `.ini`, `.sh`, `.sql` e afins.
+
 ### Adicionado
 
 ### 🔬 Frente de pesquisas por matéria

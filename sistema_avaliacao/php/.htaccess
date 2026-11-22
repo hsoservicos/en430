@@ -2,7 +2,7 @@ RewriteEngine On
 
 # ─── SEGURANÇA ────────────────────────────────────────────
 # Bloquear acesso a arquivos sensíveis
-<FilesMatch "\.(db|sqlite|log|env|md|json|lock)$">
+<FilesMatch "\.(db|sqlite|log|env|md|json|lock|xml|ini|sh|sql|bak|dist|yml|yaml)$">
   Require all denied
 </FilesMatch>
 

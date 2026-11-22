@@ -11,7 +11,11 @@ FROM php:8.4-apache
 RUN a2enmod rewrite headers expires deflate
 
 # AllowOverride All para que o .htaccess (roteamento, headers, cache) tenha efeito
+# Endurecimento: sem versão/SO no header Server, sem assinatura em páginas de erro
 RUN printf '%s\n' \
+    'ServerTokens Prod' \
+    'ServerSignature Off' \
+    'TraceEnable Off' \
     '<Directory /var/www/html>' \
     '    Options -Indexes +FollowSymLinks' \
     '    AllowOverride All' \
@@ -19,6 +23,14 @@ RUN printf '%s\n' \
     '</Directory>' \
     > /etc/apache2/conf-available/en430.conf \
     && a2enconf en430
+
+# Hardening do PHP (expose_php, display_errors, sessão, upload_progress)
+COPY sistema_avaliacao/php/docker/php-security.ini /usr/local/etc/php/conf.d/zz-en430-security.ini
+
+# O security.conf do Debian é carregado depois do nosso conf e reativaria
+# ServerTokens OS / ServerSignature On — ajustar na origem.
+RUN sed -i 's/^ServerTokens OS/ServerTokens Prod/; s/^ServerSignature On/ServerSignature Off/' \
+    /etc/apache2/conf-available/security.conf
 
 WORKDIR /var/www/html
 
