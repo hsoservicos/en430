@@ -20,6 +20,17 @@
 | [**PRD_APOIO_FORMACAO_TECNICA_ENFERMAGEM.md**](planejamento/PRD_APOIO_FORMACAO_TECNICA_ENFERMAGEM.md) | **PRD:** visão de produto, limites legais, personas, requisitos, roadmap e critérios de aceite |
 | [**EXPANSAO_CURSO_TECNICO_ENFERMAGEM.md**](planejamento/EXPANSAO_CURSO_TECNICO_ENFERMAGEM.md) | **Plano de expansão:** diagnóstico, arquitetura-alvo, matriz de cobertura, roadmap e riscos |
 
+## ⚖️ Jurídico e conformidade
+
+| Documento | Conteúdo |
+|-----------|----------|
+| [**juridico/README.md**](juridico/README.md) | **Índice jurídico** e registro de emissão dos termos por colaborador |
+| [**TERMO_CONFIDENCIALIDADE_SIGILO.md**](juridico/TERMO_CONFIDENCIALIDADE_SIGILO.md) | **Termo de Confidencialidade e Sigilo (v1.0):** modelo preenchível — sigilo, LGPD, cessão de direitos e sanções |
+
+> Obrigatório para todo colaborador(a) que acesse conteúdo não publicado, código, dados de
+> estudantes ou informações comerciais do projeto. O exemplar assinado não é versionado neste
+> repositório público.
+
 ## 🚀 Deploy
 
 | Documento | Conteúdo |

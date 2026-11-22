@@ -23,6 +23,13 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
   com correções aplicadas e roteiro de pendências para validação por enfermeiro e educador.
 - Adicionado guia de colaboração para professores, revisores e gestão educacional.
 
+### ⚖️ Jurídico e conformidade
+
+- Adicionado o **Termo de Confidencialidade e Sigilo (v1.0)** em `docs/juridico/`: modelo
+  preenchível por colaborador, com sigilo, proteção de dados (LGPD), cessão de direitos autorais,
+  segurança da informação, sanções e anexos de escopo e de devolução.
+- Criado o **registro de emissão** dos termos por colaborador, com estados da RM-01.
+
 ### ⚖️ Governança do progresso
 
 - Criada a **RM-01 — Regra Máxima de Gestão, Controle e Auditoria do Progresso**
