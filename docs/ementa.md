@@ -2,6 +2,12 @@ O curso **Técnico em Enfermagem** no Brasil é regulamentado pelo **Ministério
 
 De acordo com o CNCT (MEC), o curso possui **carga horária mínima de 1.200 horas** de aulas teórico-práticas, acrescidas de, no mínimo, **600 horas de estágio curricular supervisionado** obrigatório (totalizando **1.800 horas**), distribuídas geralmente entre 18 e 24 meses.
 
+> **Nota de verificação (2026-11-21):** o CNCT fixa **1.200h mínimas**; a carga do estágio
+> é acrescida e definida pelo **PPC/sistema de ensino**. As **600h** adotadas nesta ementa
+> são **referência do projeto**, não exigência federal. O Parecer Normativo COFEN nº 001/2019
+> confirma que não há carga nacional obrigatória de estágio. O produto deve parametrizar
+> essa carga por versão de PPC.
+
 Abaixo está o detalhamento completo da matriz curricular, organizado por eixos temáticos e módulos progressivos, contemplando todas as matérias e assuntos desenvolvidos ao longo da formação.
 
 ---
