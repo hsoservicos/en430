@@ -24,6 +24,9 @@ Instrumentos jurídicos e declarações que condicionam a participação de cola
 
 ## Como emitir um termo
 
+0. **Candidatura:** o interessado se apresenta pelo formulário de colaboradores, que registra os
+   dados de triagem sem CPF/RG. O fluxo completo — campos, estados e geração automática do termo —
+   está no [planejamento do formulário de colaboradores](../planejamento/PLANEJAMENTO_FORMULARIO_COLABORADORES.md).
 1. Copie o modelo e preencha **somente** os campos entre colchetes (`[____]`).
 2. Preencha o **Anexo I** — é ele que delimita o que a pessoa pode conhecer e fazer.
 3. Colete assinaturas (duas vias ou assinatura eletrônica) e as duas testemunhas.

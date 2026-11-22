@@ -19,6 +19,7 @@
 | [**ementa.md**](ementa.md) | **Ementa de referência do curso:** 1.200h + 600h de estágio, 4 módulos e 17 componentes |
 | [**PRD_APOIO_FORMACAO_TECNICA_ENFERMAGEM.md**](planejamento/PRD_APOIO_FORMACAO_TECNICA_ENFERMAGEM.md) | **PRD:** visão de produto, limites legais, personas, requisitos, roadmap e critérios de aceite |
 | [**EXPANSAO_CURSO_TECNICO_ENFERMAGEM.md**](planejamento/EXPANSAO_CURSO_TECNICO_ENFERMAGEM.md) | **Plano de expansão:** diagnóstico, arquitetura-alvo, matriz de cobertura, roadmap e riscos |
+| [**PLANEJAMENTO_FORMULARIO_COLABORADORES.md**](planejamento/PLANEJAMENTO_FORMULARIO_COLABORADORES.md) | **Formulário de colaboradores:** campos, fluxo de triagem, geração do termo, modelo de dados e painel de conformidade |
 
 ## ⚖️ Jurídico e conformidade
 
