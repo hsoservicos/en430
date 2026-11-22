@@ -187,7 +187,77 @@ class FrontControllerDatabaseTest extends PHPUnit\Framework\TestCase
             'csrf_token' => 'test_token_123',
             'nome' => 'Novo Aluno', 'email' => 'aluno@teste.com',
             'senha' => '1234', 'confirmar_senha' => '1234',
+            'consentimento' => '1',
         ], ['csrf_token' => 'test_token_123']);
+        $pdo = new PDO("sqlite:" . $this->dbPath());
+        $this->assertEquals(1, (int)$pdo->query("SELECT COUNT(*) FROM estudantes")->fetchColumn());
+
+        // Consentimento registrado com data e versão (LGPD)
+        $registro = $pdo->query("SELECT consentimento_em, consentimento_versao FROM estudantes")->fetch();
+        $this->assertNotEmpty($registro['consentimento_em'], 'Data do consentimento deve ser gravada');
+        $this->assertEquals(CONSENTIMENTO_VERSAO, $registro['consentimento_versao']);
+        $pdo = null;
+    }
+
+    public function testCadastroSemConsentimentoNaoCriaConta(): void
+    {
+        $this->criarBancoTeste();
+        $output = $this->captureRouteOutput('cadastro', 'POST', [
+            'csrf_token' => 'test_token_123',
+            'nome' => 'Sem Aceite', 'email' => 'semaceite@teste.com',
+            'senha' => '1234', 'confirmar_senha' => '1234',
+        ], ['csrf_token' => 'test_token_123']);
+
+        $this->assertStringContainsString('Aviso de Tratamento de Dados', $output);
+        $pdo = new PDO("sqlite:" . $this->dbPath());
+        $this->assertEquals(0, (int)$pdo->query("SELECT COUNT(*) FROM estudantes")->fetchColumn());
+        $pdo = null;
+    }
+
+    public function testPoliticaPrivacidadePublica(): void
+    {
+        $this->criarBancoTeste();
+        $output = $this->captureRouteOutput('politica-de-privacidade');
+
+        $this->assertStringContainsString('Política de Privacidade', $output);
+        $this->assertStringContainsString('privacidade@en430.appservice.tec.br', $output);
+        $this->assertStringContainsString('<table>', $output, 'Tabelas do Markdown devem ser renderizadas');
+    }
+
+    public function testExcluirContaRemoveEstudanteEAvaliacoes(): void
+    {
+        $pdo = $this->criarBancoTeste();
+        $estudante = $this->criarEstudanteTeste($pdo);
+        $this->criarAvaliacaoTeste($pdo, (int)$estudante['id']);
+        $pdo = null;
+
+        $this->captureRouteOutput('excluir-conta', 'POST', [
+            'csrf_token' => 'test_token',
+            'senha' => '1234',
+            'confirmacao' => 'EXCLUIR',
+        ], ['estudante_id' => (int)$estudante['id'], 'csrf_token' => 'test_token']);
+
+        $pdo = new PDO("sqlite:" . $this->dbPath());
+        $this->assertEquals(0, (int)$pdo->query("SELECT COUNT(*) FROM estudantes")->fetchColumn());
+        $this->assertEquals(0, (int)$pdo->query("SELECT COUNT(*) FROM avaliacoes")->fetchColumn());
+        $log = $pdo->query("SELECT acao FROM admin_log ORDER BY id DESC LIMIT 1")->fetchColumn();
+        $this->assertEquals('exclusao_conta_titular', $log);
+        $pdo = null;
+    }
+
+    public function testExcluirContaSenhaErradaMantemConta(): void
+    {
+        $pdo = $this->criarBancoTeste();
+        $estudante = $this->criarEstudanteTeste($pdo);
+        $pdo = null;
+
+        $output = $this->captureRouteOutput('excluir-conta', 'POST', [
+            'csrf_token' => 'test_token',
+            'senha' => 'senha_errada',
+            'confirmacao' => 'EXCLUIR',
+        ], ['estudante_id' => (int)$estudante['id'], 'csrf_token' => 'test_token']);
+
+        $this->assertStringContainsString('Senha incorreta', $output);
         $pdo = new PDO("sqlite:" . $this->dbPath());
         $this->assertEquals(1, (int)$pdo->query("SELECT COUNT(*) FROM estudantes")->fetchColumn());
         $pdo = null;

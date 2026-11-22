@@ -28,6 +28,10 @@ COPY sistema_avaliacao/php/ /var/www/html/
 # Materiais de estudo servidos em /materiais/ (HTML + PDF)
 COPY materiais/ /var/www/html/materiais/
 
+# Política de Privacidade exibida em /politica-de-privacidade
+# (o .htaccess bloqueia .md; o arquivo é lido pelo PHP, não servido diretamente)
+COPY docs/juridico/POLITICA_DE_PRIVACIDADE.md /var/www/html/politica.md
+
 # SQLite persistente (montado como volume do Coolify em /data)
 ENV APP_DB_PATH=/data/avaliacao.db
 RUN mkdir -p /data /var/www/html/backups \

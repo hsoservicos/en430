@@ -43,6 +43,11 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
   rótulo do checkbox de consentimento e pendências de implementação.
 - Criado o **pacote de validação da matéria 01** (`pesquisas/.../01-.../validacao/`) para envio ao
   primeiro professor validador, com prazo de parecer definido.
+- O cadastro passou a exigir **checkbox de consentimento**, gravando data/hora e versão do aceite
+  (`consentimento_em`, `consentimento_versao`).
+- Publicada a política em **`/politica-de-privacidade`**, renderizada do documento canônico.
+- O estudante pode **excluir a própria conta** em `/excluir-conta`, com senha, confirmação textual
+  e registro de auditoria; bancos antigos recebem as colunas automaticamente.
 
 ### ⚖️ Governança do progresso
 

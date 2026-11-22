@@ -83,8 +83,8 @@ acesso, correção ou eliminação pelo canal do item 5.
 > se informados, data de nascimento e telefone) para criar e manter sua conta, corrigir avaliações e
 > exibir seu desempenho, nos termos da **LGPD** e da
 > [Política de Privacidade](https://en430.appservice.tec.br/politica-de-privacidade).
-> Você pode acessar, corrigir ou excluir seus dados a qualquer momento pelo e-mail
-> **privacidade@en430.appservice.tec.br**.
+> Você pode acessar, corrigir ou excluir seus dados a qualquer momento em **Excluir minha conta**
+> (no painel) ou pelo e-mail **privacidade@en430.appservice.tec.br**.
 
 **Rótulo do checkbox:**
 
@@ -97,14 +97,16 @@ acesso, correção ou eliminação pelo canal do item 5.
 
 > Registro interno, para acompanhamento conforme a [RM-01](../GOVERNANCA_PROGRESSO.md).
 
-- [ ] Incluir no formulário de cadastro (`sistema_avaliacao/php/views/cadastro.php`) o **checkbox de
-      aceite** e o link para o aviso — hoje o formulário não registra consentimento.
-- [ ] Publicar a política em rota pública (`/politica-de-privacidade`) para o link do item 9 funcionar.
-- [ ] Criar o alias `privacidade@en430.appservice.tec.br`.
-- [ ] Registrar no banco a **data e a versão do aceite** do consentimento, para fins de prova.
-- [ ] Definir a política de contas inativas (24 meses) no painel administrativo.
-- [ ] Implantar rotina de eliminação de conta pelo próprio titular (hoje a exclusão é feita pelo
-      administrador).
+- [x] Incluir no formulário de cadastro (`sistema_avaliacao/php/views/cadastro.php`) o **checkbox de
+      aceite** obrigatório, com link para a política (`/politica-de-privacidade`).
+- [x] Publicar a política em rota pública (`/politica-de-privacidade`), renderizada do documento
+      canônico `docs/juridico/POLITICA_DE_PRIVACIDADE.md`.
+- [x] Registrar no banco a **data e a versão do aceite** (`consentimento_em`, `consentimento_versao`).
+- [x] Implantar rotina de eliminação de conta pelo próprio titular (`/excluir-conta`), com auditoria.
+- [ ] Criar o alias `privacidade@en430.appservice.tec.br` — o canal ainda não existe; até lá, os
+      pedidos devem ser encaminhados ao mantenedor.
+- [ ] Definir a rotina de contas inativas (24 meses) no painel administrativo.
+- [ ] Coletar novo aceite quando a política mudar de versão (mecanismo de reconsentimento).
 
 ---
 

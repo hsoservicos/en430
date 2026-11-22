@@ -193,3 +193,28 @@ Sincronização no GitHub para acesso por professores, revisores e gestão educa
 > **Estado das matérias:** 0 concluídas, 1 em revisão (matéria 01), 16 com escopo proposto.
 > A validação técnica por enfermeiro e pedagógica é pré-requisito para publicar conteúdo
 > (RM-01, seção 6).
+
+---
+
+## 8. Consentimento, privacidade e exclusão de conta (2026-11-21)
+
+Implementação dos itens abertos da política de privacidade no sistema de avaliação.
+
+| Item | Implementação |
+|------|---------------|
+| **Checkbox de consentimento** | Obrigatório no cadastro (`views/cadastro.php`); sem ele a conta não é criada |
+| **Registro do aceite** | Colunas `estudantes.consentimento_em` e `estudantes.consentimento_versao`; versão em `CONSENTIMENTO_VERSAO` (`config.php` = 1.0) |
+| **Rota pública da política** | `/politica-de-privacidade` renderiza `docs/juridico/POLITICA_DE_PRIVACIDADE.md` (copiado para `politica.md` na imagem Docker) |
+| **Exclusão pelo titular** | `/excluir-conta`: senha + confirmação textual `EXCLUIR`; apaga conta e avaliações em transação e registra `exclusao_conta_titular` em `admin_log` |
+| **Bancos existentes** | `ensureSchemaUpgrades()` adiciona as colunas em tempo de conexão (o entrypoint só migra quando o banco não existe) |
+| **Navegação** | Links "Política de Privacidade" e "Excluir minha conta" no painel do estudante |
+
+| Verificação | Resultado |
+|-------------|-----------|
+| Sintaxe (`php -l`, PHP 8.4) | 12 arquivos alterados/criados, sem erro |
+| PHPUnit | **168 testes, 413 asserções, 0 falhas** (4 novos testes para consentimento, política e exclusão) |
+| Renderização da política | 14.109 bytes de Markdown → 13 tabelas, 37 parágrafos, HTML escapado |
+
+> **Pendências que seguem abertas:** criar os aliases de e-mail (`privacidade@`, `juridico@`,
+> `seguranca@`), definir a rotina de contas inativas (24 meses) e o reconsentimento quando a
+> política mudar de versão.

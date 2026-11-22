@@ -23,6 +23,7 @@ function handleCadastro(): void {
     $email = strtolower(trim($_POST['email'] ?? ''));
     $senha = $_POST['senha'] ?? '';
     $confirmar = $_POST['confirmar_senha'] ?? '';
+    $consentimento = ($_POST['consentimento'] ?? '') === '1';
     
     // Validações
     $erros = [];
@@ -30,6 +31,9 @@ function handleCadastro(): void {
     if (!validarEmail($email)) $erros[] = 'Email inválido.';
     if (!validarSenha($senha)) $erros[] = 'Senha deve ter no mínimo 4 caracteres.';
     if ($senha !== $confirmar) $erros[] = 'Senhas não conferem.';
+    if (!$consentimento) {
+        $erros[] = 'É necessário aceitar o Aviso de Tratamento de Dados e a Política de Privacidade para criar a conta.';
+    }
     
     if ($erros) {
         foreach ($erros as $e) flash('erro', $e);
@@ -39,8 +43,16 @@ function handleCadastro(): void {
     
     $db = getDB();
     try {
-        $stmt = $db->prepare("INSERT INTO estudantes (nome, data_nascimento, telefone, email, senha_hash) VALUES (?, ?, ?, ?, ?)");
-        $stmt->execute([$nome, $dataNascimento ?: null, $telefone ?: null, $email, hashSenha($senha)]);
+        $stmt = $db->prepare("INSERT INTO estudantes (nome, data_nascimento, telefone, email, senha_hash, consentimento_em, consentimento_versao) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([
+            $nome,
+            $dataNascimento ?: null,
+            $telefone ?: null,
+            $email,
+            hashSenha($senha),
+            date('Y-m-d H:i:s'),
+            CONSENTIMENTO_VERSAO,
+        ]);
         
         flash('sucesso', '✅ Cadastro realizado com sucesso! Faça login.');
         redirect('login');
@@ -648,6 +660,76 @@ function handleAdminExcluirEstudante(int $id): void {
     adminLog('excluir_estudante', ['id' => $id, 'nome' => $estudante['nome']]);
     flash('sucesso', "✅ Estudante '{$estudante['nome']}' e suas avaliações foram excluídos.");
     redirect('admin');
+}
+
+/**
+ * Estudante: EXCLUIR A PRÓPRIA CONTA (direito de eliminação — LGPD, art. 18, VI).
+ *
+ * Exige senha e confirmação textual. Remove conta e avaliações imediatamente,
+ * dentro do prazo de 30 dias previsto na Política de Privacidade (item 8).
+ */
+function handleExcluirConta(): void {
+    if (!estaLogado()) {
+        redirect('login');
+        return;
+    }
+
+    $id = getEstudanteId();
+    $senha = $_POST['senha'] ?? '';
+    $confirmacao = trim($_POST['confirmacao'] ?? '');
+
+    $db = getDB();
+    $stmt = $db->prepare("SELECT id, nome, email, senha_hash, consentimento_versao FROM estudantes WHERE id = ?");
+    $stmt->execute([$id]);
+    $estudante = $stmt->fetch();
+
+    if (!$estudante) {
+        $_SESSION = [];
+        flash('erro', '❌ Conta não encontrada. Faça login novamente.');
+        redirect('login');
+        return;
+    }
+
+    $erros = [];
+    if (strtoupper($confirmacao) !== 'EXCLUIR') {
+        $erros[] = 'Digite EXCLUIR no campo de confirmação.';
+    }
+    if ($senha === '' || !verificarSenha($senha, $estudante['senha_hash'])) {
+        $erros[] = 'Senha incorreta.';
+    }
+
+    if ($erros) {
+        foreach ($erros as $e) flash('erro', $e);
+        view('excluir_conta');
+        return;
+    }
+
+    try {
+        $db->beginTransaction();
+        $db->prepare("DELETE FROM avaliacoes WHERE estudante_id = ?")->execute([$id]);
+        $db->prepare("DELETE FROM estudantes WHERE id = ?")->execute([$id]);
+        $db->commit();
+    } catch (PDOException $e) {
+        if ($db->inTransaction()) {
+            $db->rollBack();
+        }
+        if (DEBUG) error_log('Erro ao excluir conta: ' . $e->getMessage());
+        flash('erro', '❌ Não foi possível excluir a conta. Tente novamente ou escreva para privacidade@en430.appservice.tec.br.');
+        view('excluir_conta');
+        return;
+    }
+
+    // Registro de auditoria: mantido 5 anos, conforme a política (item 8)
+    adminLog('exclusao_conta_titular', [
+        'id' => (int)$estudante['id'],
+        'email' => $estudante['email'],
+        'consentimento_versao' => $estudante['consentimento_versao'],
+        'origem' => 'autoatendimento',
+    ]);
+
+    unset($_SESSION['estudante_id'], $_SESSION['estudante_nome']);
+    flash('sucesso', '✅ Sua conta e suas avaliações foram excluídas. O acesso aos dados pessoais foi encerrado.');
+    redirect('');
 }
 
 /**

@@ -236,9 +236,23 @@ variáveis de ambiente, health check e rollback.
 | `/progresso` | Gráfico de progresso por módulo |
 | `/recuperar-acesso` | Recuperação de senha |
 | `/admin` | Painel administrativo |
+| `/politica-de-privacidade` | Política de Privacidade (pública, LGPD) |
+| `/excluir-conta` | Exclusão da própria conta pelo estudante (LGPD) |
 | `/logout` | Sair da sessão |
 
-### 7.2. Fluxo de uso
+### 7.2. Consentimento e privacidade (LGPD)
+
+- O cadastro exige **checkbox de aceite** do Aviso de Tratamento de Dados e da Política de
+  Privacidade; sem ele a conta não é criada.
+- A data/hora e a **versão** do aceite são gravadas em `estudantes.consentimento_em` e
+  `estudantes.consentimento_versao` (`CONSENTIMENTO_VERSAO` em `config.php`).
+- `/politica-de-privacidade` renderiza o documento canônico
+  `docs/juridico/POLITICA_DE_PRIVACIDADE.md`, copiado para `politica.md` na imagem Docker.
+- `/excluir-conta` apaga conta e avaliações mediante senha + confirmação textual, registrando
+  `exclusao_conta_titular` em `admin_log`.
+- Bancos criados antes desta versão recebem as colunas automaticamente em `ensureSchemaUpgrades()`.
+
+### 7.3. Fluxo de uso
 
 ```
 1. Cadastro → 2. Login → 3. Painel → 4. Nova Avaliação

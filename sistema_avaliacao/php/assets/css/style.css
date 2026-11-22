@@ -866,3 +866,163 @@ footer {
   .stats-row { grid-template-columns: repeat(2, 1fr); }
   .info-grid { grid-template-columns: 1fr; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+ * CONSENTIMENTO, PRIVACIDADE E EXCLUSÃO DE CONTA (LGPD)
+ * ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Checkbox de consentimento no cadastro ─────────────────── */
+.form-consent {
+  background: rgba(10, 61, 98, 0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+}
+.form-group .consent-label {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 0;
+  font-size: 0.82em;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-light);
+  cursor: pointer;
+}
+.form-group .consent-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+.form-group .consent-label a { font-weight: 600; text-decoration: underline; }
+
+/* ─── Exclusão de conta ─────────────────────────────────────── */
+.container-narrow { max-width: 720px; }
+.danger-card { border-top: 4px solid var(--danger); }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-danger:hover { background: #a01f1f; }
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-light);
+}
+.btn-ghost:hover { background: var(--bg); }
+.form-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+
+.tabela-simples {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85em;
+  margin: 12px 0 16px;
+}
+.tabela-simples th,
+.tabela-simples td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.tabela-simples th { color: var(--primary); font-weight: 600; }
+.texto-pequeno { font-size: 0.82em; color: var(--text-light); margin-bottom: 10px; }
+
+.privacy-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0 30px;
+  font-size: 0.82em;
+  color: var(--text-muted);
+}
+.link-danger { color: var(--danger); }
+
+/* ─── Página pública da Política de Privacidade ─────────────── */
+.doc-body { background: var(--bg); }
+.doc-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px 22px;
+  background: var(--primary);
+  color: #fff;
+}
+.doc-brand,
+.doc-back { color: #fff; font-size: 0.9em; font-weight: 600; }
+.doc-back { opacity: 0.85; }
+.doc-back:hover { opacity: 1; }
+.doc-page {
+  max-width: 900px;
+  margin: 24px auto 40px;
+  padding: 34px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+}
+.doc-page h1 { font-size: 1.55em; color: var(--primary); margin-bottom: 6px; }
+.doc-page h2 {
+  font-size: 1.15em;
+  color: var(--primary);
+  margin: 26px 0 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.doc-page h3 { font-size: 1em; color: var(--primary-dark); margin: 18px 0 8px; }
+.doc-page h4 { font-size: 0.95em; color: var(--primary-dark); margin: 14px 0 6px; }
+.doc-page p { font-size: 0.92em; margin-bottom: 10px; }
+.doc-page ul,
+.doc-page ol { margin: 0 0 12px 22px; }
+.doc-page li { font-size: 0.92em; margin-bottom: 6px; }
+.doc-page blockquote {
+  background: rgba(10, 61, 98, 0.05);
+  border-left: 4px solid var(--primary-light);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 12px 16px;
+  margin: 14px 0 18px;
+  color: var(--text-light);
+  font-size: 0.9em;
+}
+.doc-page blockquote p:last-child { margin-bottom: 0; }
+.doc-page hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+.doc-page code {
+  background: rgba(0, 0, 0, 0.06);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.88em;
+}
+.tabela-wrap { overflow-x: auto; margin: 12px 0 18px; }
+.tabela-wrap table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  font-size: 0.84em;
+}
+.tabela-wrap th,
+.tabela-wrap td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.tabela-wrap th { background: var(--bg); color: var(--primary); font-weight: 600; }
+.doc-footer {
+  margin-top: 30px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 0.8em;
+  color: var(--text-muted);
+}
+.doc-footer p { margin-bottom: 6px; font-size: 1em; }
+
+@media (max-width: 640px) {
+  .doc-page {
+    margin: 0;
+    padding: 20px;
+    border-radius: 0;
+  }
+}

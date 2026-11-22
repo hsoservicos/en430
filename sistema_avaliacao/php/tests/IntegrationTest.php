@@ -268,6 +268,7 @@ class IntegrationTest extends PHPUnit\Framework\TestCase
             'email' => 'integracao@teste.com',
             'senha' => '1234',
             'confirmar_senha' => '1234',
+            'consentimento' => '1',
         ]);
         $this->assertEquals(302, $res['code'], 'Cadastro deve redirecionar para login');
         $this->assertStringContainsString('login', $res['headers']);
@@ -378,6 +379,7 @@ class IntegrationTest extends PHPUnit\Framework\TestCase
             'email' => 'fluxo@teste.com',
             'senha' => '1234',
             'confirmar_senha' => '1234',
+            'consentimento' => '1',
         ]);
         
         $this->assertEquals(200, $res['code'], 'Email duplicado deve mostrar erro (não redirecionar)');
@@ -399,6 +401,7 @@ class IntegrationTest extends PHPUnit\Framework\TestCase
             'email' => 'recupera@teste.com',
             'senha' => '1234',
             'confirmar_senha' => '1234',
+            'consentimento' => '1',
         ]);
         
         // Buscar conta
@@ -481,6 +484,7 @@ class IntegrationTest extends PHPUnit\Framework\TestCase
             'email' => 'fluxo@teste.com',
             'senha' => '1234',
             'confirmar_senha' => '1234',
+            'consentimento' => '1',
         ]);
         
         // Login

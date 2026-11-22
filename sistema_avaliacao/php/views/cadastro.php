@@ -43,6 +43,20 @@
       <label for="confirmar_senha">Confirmar senha</label>
       <input type="password" id="confirmar_senha" name="confirmar_senha" required placeholder="Repita a senha">
     </div>
+    <div class="form-group form-consent">
+      <label class="consent-label" for="consentimento">
+        <input type="checkbox" id="consentimento" name="consentimento" value="1" required
+               <?= !empty($dados['consentimento']) ? 'checked' : '' ?>>
+        <span>
+          Li e concordo com o
+          <a href="<?= url('politica-de-privacidade') ?>" target="_blank" rel="noopener">Aviso de
+          Tratamento de Dados e a Política de Privacidade</a>, e autorizo o tratamento dos meus dados
+          (nome, e-mail, senha e, se informados, data de nascimento e telefone) para criar e manter
+          minha conta, corrigir avaliações e exibir meu desempenho.
+        </span>
+      </label>
+    </div>
+
     <button type="submit" class="btn btn-primary btn-full">📝 Criar Conta</button>
   </form>
   <div class="auth-links">

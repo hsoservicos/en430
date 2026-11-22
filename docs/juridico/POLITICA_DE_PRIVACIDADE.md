@@ -7,6 +7,7 @@
 | **Versão** | 1.0 |
 | **Vigência** | 21 de novembro de 2026 |
 | **Aplicação** | `https://en430.appservice.tec.br` (sistema de avaliação) e demais páginas do projeto sob esse domínio |
+| **Publicação** | `https://en430.appservice.tec.br/politica-de-privacidade` (renderizada a partir deste documento) |
 | **Controlador** | Humberto Santos de Oliveira — CPF 715.591.404-53 |
 | **Encarregado (DPO)** | O próprio controlador — contato: privacidade@en430.appservice.tec.br |
 
@@ -196,6 +197,11 @@ complexidade justificada (art. 19, II, da LGPD).
 **10.3.** A exclusão da conta remove seus dados de cadastro e suas avaliações, mantidos apenas os
 registros de acesso e de auditoria pelos prazos legais do item 8. A exclusão é **irreversível**.
 
+**10.4. Autoatendimento.** A exclusão pode ser feita pelo próprio titular em
+`/excluir-conta`, mediante senha e confirmação textual. É registrada em log de auditoria e produz
+efeito **imediato**, dentro do prazo de 30 dias do item 8. Pedidos por e-mail continuam aceitos para
+quem não conseguir acessar a conta.
+
 ---
 
 ## 11. Contato e encarregado
@@ -225,6 +231,9 @@ gov.br/anpd.
 redes sociais.
 
 **12.3.** O bloqueio do cookie essencial impede o login, porque a autenticação depende dele.
+
+**12.4.** O consentimento é coletado no cadastro por **checkbox obrigatório** e registrado no banco
+com **data e hora** e **versão** desta política (`consentimento_em` e `consentimento_versao`).
 
 ---
 

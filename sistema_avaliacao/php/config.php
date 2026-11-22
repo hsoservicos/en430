@@ -21,6 +21,13 @@ define('ADMIN_SECRET', getenv('ADMIN_SECRET') ?: 'admin_enfermagem_2026');
 // ─── Sessão ─────────────────────────────────────────────────
 define('SESSION_LIFETIME', 86400); // 24 horas
 
+// ─── Consentimento e privacidade ──────────────────────────
+// Versão do consentimento registrada no cadastro. Deve acompanhar a
+// versão da Política de Privacidade (docs/juridico/POLITICA_DE_PRIVACIDADE.md).
+define('CONSENTIMENTO_VERSAO', '1.0');
+// Arquivo Markdown exibido em /politica-de-privacidade (copiado no Dockerfile).
+define('POLITICA_MD_PATH', getenv('POLICY_MD_PATH') ?: __DIR__ . '/politica.md');
+
 // ─── Rate Limiting (Login) ───────────────────────────────────
 define('LOGIN_MAX_ATTEMPTS', 5);    // Máximo de tentativas antes do bloqueio
 define('LOGIN_TIMEOUT', 60);        // Tempo de bloqueio em segundos (1 minuto)

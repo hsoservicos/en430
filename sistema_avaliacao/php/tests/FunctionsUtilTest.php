@@ -477,7 +477,8 @@ class FunctionsUtilTest extends PHPUnit\Framework\TestCase
     public function testTodasViewsExistem(): void
     {
         $views = ['index', 'cadastro', 'login', 'painel', 'avaliacao',
-                  'resultado', 'progresso', 'recuperar_acesso', 'admin'];
+                  'resultado', 'progresso', 'recuperar_acesso', 'admin',
+                  'politica_privacidade', 'excluir_conta'];
 
         foreach ($views as $view) {
             $this->assertFileExists(
@@ -485,6 +486,54 @@ class FunctionsUtilTest extends PHPUnit\Framework\TestCase
                 "View {$view}.php deve existir"
             );
         }
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    // POLÍTICA DE PRIVACIDADE (MARKDOWN → HTML)
+    // ═══════════════════════════════════════════════════════════
+
+    public function testRenderMarkdownTitulosEParagrafos(): void
+    {
+        $html = renderMarkdownSimples("# Título\n\nParágrafo com **destaque**.");
+        $this->assertStringContainsString('<h1>Título</h1>', $html);
+        $this->assertStringContainsString('<strong>destaque</strong>', $html);
+    }
+
+    public function testRenderMarkdownTabela(): void
+    {
+        $markdown = "| Campo | Valor |\n|---|---|\n| Versão | 1.0 |";
+        $html = renderMarkdownSimples($markdown);
+        $this->assertStringContainsString('<th>Campo</th>', $html);
+        $this->assertStringContainsString('<td>1.0</td>', $html);
+        $this->assertStringNotContainsString('---', $html);
+    }
+
+    public function testRenderMarkdownEscapaHtml(): void
+    {
+        $html = renderMarkdownSimples('Texto com <script>alert(1)</script>');
+        $this->assertStringNotContainsString('<script>', $html);
+        $this->assertStringContainsString('&lt;script&gt;', $html);
+    }
+
+    public function testRenderMarkdownListasECitacao(): void
+    {
+        $html = renderMarkdownSimples("- item um\n- item dois\n\n> aviso importante");
+        $this->assertStringContainsString('<ul>', $html);
+        $this->assertStringContainsString('<li>item um</li>', $html);
+        $this->assertStringContainsString('<blockquote>', $html);
+    }
+
+    public function testGetPoliticaVersaoExtraiDoDocumento(): void
+    {
+        $this->assertEquals('1.3', getPoliticaVersao("| | |\n|---|---|\n| **Versão** | 1.3 |"));
+        $this->assertNull(getPoliticaVersao('documento sem versão'));
+    }
+
+    public function testPoliticaMarkdownDisponivelNoRepositorio(): void
+    {
+        $markdown = getPoliticaMarkdown();
+        $this->assertNotSame('', $markdown, 'Política deve ser localizável no repositório ou em politica.md');
+        $this->assertStringContainsString('POLÍTICA DE PRIVACIDADE', $markdown);
     }
 
     public function testAssetsExistem(): void

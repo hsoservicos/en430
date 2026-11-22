@@ -263,6 +263,189 @@ function view(string $view, array $data = []): void {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// POLÍTICA DE PRIVACIDADE (Markdown → HTML)
+// ═══════════════════════════════════════════════════════════════
+
+/**
+ * Localiza e lê o Markdown da Política de Privacidade.
+ *
+ * Ordem: POLICY_MD_PATH (produção, via Dockerfile), arquivo local na raiz da
+ * aplicação e, por fim, o documento canônico do repositório (dev/local).
+ */
+function getPoliticaMarkdown(): string {
+    $candidatos = [
+        POLITICA_MD_PATH,
+        __DIR__ . '/politica.md',
+        __DIR__ . '/../../docs/juridico/POLITICA_DE_PRIVACIDADE.md',
+    ];
+
+    foreach ($candidatos as $caminho) {
+        if ($caminho && is_readable($caminho)) {
+            $conteudo = file_get_contents($caminho);
+            if ($conteudo !== false && trim($conteudo) !== '') {
+                return $conteudo;
+            }
+        }
+    }
+
+    return '';
+}
+
+/**
+ * Extrai a versão declarada no documento (linha "| **Versão** | 1.0 |").
+ */
+function getPoliticaVersao(string $markdown): ?string {
+    if (preg_match('/\|\s*\*\*Versão\*\*\s*\|\s*([0-9.]+)\s*\|/u', $markdown, $m)) {
+        return $m[1];
+    }
+    return null;
+}
+
+/**
+ * Renderiza um subconjunto de Markdown usado nos documentos do projeto:
+ * títulos, parágrafos, listas, tabelas, citações, linhas horizontais e
+ * formatação inline (negrito, código e links).
+ */
+function renderMarkdownSimples(string $markdown): string {
+    $inline = static function (string $texto): string {
+        $texto = htmlspecialchars($texto, ENT_QUOTES, 'UTF-8');
+        $texto = preg_replace('/\*\*(.+?)\*\*/su', '<strong>$1</strong>', $texto);
+        $texto = preg_replace('/`([^`]+)`/u', '<code>$1</code>', $texto);
+        $texto = preg_replace('/\[([^\]]+)\]\(([^)\s]+)\)/u', '<a href="$2">$1</a>', $texto);
+        return $texto;
+    };
+
+    $linhas = preg_split('/\R/', $markdown) ?: [];
+    $total = count($linhas);
+    $html = '';
+    $i = 0;
+
+    while ($i < $total) {
+        $linha = rtrim($linhas[$i]);
+        $trim = trim($linha);
+
+        if ($trim === '') {
+            $i++;
+            continue;
+        }
+
+        // Títulos
+        if (preg_match('/^(#{1,4})\s+(.*)$/u', $linha, $m)) {
+            $nivel = strlen($m[1]);
+            $html .= "<h{$nivel}>" . $inline(trim($m[2])) . "</h{$nivel}>\n";
+            $i++;
+            continue;
+        }
+
+        // Linha horizontal
+        if (preg_match('/^-{3,}$/', $trim)) {
+            $html .= "<hr>\n";
+            $i++;
+            continue;
+        }
+
+        // Tabela
+        if (str_starts_with($trim, '|')) {
+            $bloco = [];
+            while ($i < $total && str_starts_with(trim($linhas[$i]), '|')) {
+                $bloco[] = trim($linhas[$i]);
+                $i++;
+            }
+            $html .= renderTabelaMarkdown($bloco, $inline);
+            continue;
+        }
+
+        // Citação
+        if (str_starts_with($trim, '>')) {
+            $citacao = [];
+            while ($i < $total && str_starts_with(trim($linhas[$i]), '>')) {
+                $citacao[] = trim(preg_replace('/^\s*>\s?/', '', $linhas[$i]));
+                $i++;
+            }
+            $texto = trim(implode(' ', array_filter($citacao, 'strlen')));
+            $html .= "<blockquote><p>" . $inline($texto) . "</p></blockquote>\n";
+            continue;
+        }
+
+        // Lista não ordenada
+        if (preg_match('/^\s*[-*]\s+(.*)$/u', $linha, $m)) {
+            $html .= "<ul>\n";
+            while ($i < $total && preg_match('/^\s*[-*]\s+(.*)$/u', $linhas[$i], $item)) {
+                $html .= '<li>' . $inline(trim($item[1])) . "</li>\n";
+                $i++;
+            }
+            $html .= "</ul>\n";
+            continue;
+        }
+
+        // Lista ordenada
+        if (preg_match('/^\s*\d+\.\s+(.*)$/u', $linha, $m)) {
+            $html .= "<ol>\n";
+            while ($i < $total && preg_match('/^\s*\d+\.\s+(.*)$/u', $linhas[$i], $item)) {
+                $html .= '<li>' . $inline(trim($item[1])) . "</li>\n";
+                $i++;
+            }
+            $html .= "</ol>\n";
+            continue;
+        }
+
+        // Parágrafo
+        $paragrafo = [$trim];
+        $i++;
+        while ($i < $total) {
+            $proxima = trim($linhas[$i]);
+            if ($proxima === '' || preg_match('/^(#{1,4}\s|>|\||-{3,}$|[-*]\s|\d+\.\s)/u', $proxima)) {
+                break;
+            }
+            $paragrafo[] = $proxima;
+            $i++;
+        }
+        $html .= '<p>' . $inline(implode(' ', $paragrafo)) . "</p>\n";
+    }
+
+    return $html;
+}
+
+/**
+ * Converte linhas de tabela Markdown em HTML.
+ */
+function renderTabelaMarkdown(array $linhas, callable $inline): string {
+    $linhasDados = [];
+
+    foreach ($linhas as $linha) {
+        $celulas = array_map('trim', explode('|', trim($linha, '|')));
+        $primeira = str_replace(' ', '', $celulas[0] ?? '');
+        // Linha separadora: |---|---|
+        if ($primeira !== '' && preg_match('/^:?-{2,}:?$/', $primeira)) {
+            continue;
+        }
+        $linhasDados[] = $celulas;
+    }
+
+    if (!$linhasDados) {
+        return '';
+    }
+
+    $cabecalho = array_shift($linhasDados);
+    $html = "<div class=\"tabela-wrap\"><table>\n<thead><tr>";
+    foreach ($cabecalho as $celula) {
+        $html .= '<th>' . $inline($celula) . '</th>';
+    }
+    $html .= "</tr></thead>\n<tbody>\n";
+
+    foreach ($linhasDados as $linha) {
+        $html .= '<tr>';
+        foreach ($linha as $celula) {
+            $html .= '<td>' . $inline($celula) . '</td>';
+        }
+        $html .= "</tr>\n";
+    }
+
+    $html .= "</tbody>\n</table></div>\n";
+    return $html;
+}
+
+// ═══════════════════════════════════════════════════════════════
 // VALIDAÇÃO
 // ═══════════════════════════════════════════════════════════════
 

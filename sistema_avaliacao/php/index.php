@@ -18,6 +18,8 @@
  *   /avaliacao/{id}/responder → Submeter respostas
  *   /avaliacao/{id}/resultado → Resultado
  *   /progresso            → Progresso do estudante
+ *   /politica-de-privacidade → Política de Privacidade (pública)
+ *   /excluir-conta        → Exclusão da própria conta (LGPD)
  *   /admin                → Painel administrativo
  *   /admin-login          → Login admin
  *   /admin/logout         → Logout admin
@@ -137,6 +139,34 @@ try {
         case 'progresso':
             requireLogin();
             handleProgresso();
+            break;
+
+        // ── Política de Privacidade (pública) ──
+        case 'politica-de-privacidade':
+            $markdown = getPoliticaMarkdown();
+            if ($markdown === '') {
+                if (DEBUG) {
+                    die('Política de Privacidade não encontrada em ' . htmlspecialchars(POLITICA_MD_PATH));
+                }
+                http_response_code(500);
+                view('erro', ['codigo' => 500]);
+                break;
+            }
+            view('politica_privacidade', [
+                'conteudo' => renderMarkdownSimples($markdown),
+                'versao' => getPoliticaVersao($markdown) ?? CONSENTIMENTO_VERSAO,
+            ]);
+            break;
+
+        // ── Exclusão da própria conta (LGPD) ──
+        case 'excluir-conta':
+            requireLogin();
+            if ($method === 'POST') {
+                requireCsrf();
+                handleExcluirConta();
+            } else {
+                view('excluir_conta');
+            }
             break;
 
         // ── Admin ──

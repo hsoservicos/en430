@@ -61,6 +61,8 @@ deve ser anotado no exemplar assinado.
 | Incidentes de segurança | seguranca@en430.appservice.tec.br (cópia para juridico@) | TCS, cláusula 15.2 |
 | Prazo de comunicação de incidente | 24 horas | TCS, cláusula 7.5 |
 | Privacidade e direitos do titular | privacidade@en430.appservice.tec.br | Política, item 11 |
+| Publicação da política | `/politica-de-privacidade` (renderizada do documento canônico) | Política, cabeçalho |
+| Versão do consentimento registrada no cadastro | `CONSENTIMENTO_VERSAO` = 1.0 | `sistema_avaliacao/php/config.php` |
 | Prazo de resposta ao titular | 15 dias | Política, item 10.2 |
 | Prazo do parecer de validação | 15 dias corridos | Adesão, cláusula 9 |
 | Alerta de risco grave ao paciente | 24 horas | Adesão, cláusula 9 |
@@ -74,9 +76,10 @@ deve ser anotado no exemplar assinado.
 - [ ] **Criar os aliases de e-mail** `juridico@`, `seguranca@` e `privacidade@` no domínio
       `en430.appservice.tec.br` — os prazos das cláusulas 7.5 e 15.2 e o canal do titular pressupõem
       caixa ativa.
-- [ ] Publicar a política em rota pública do sistema (`/politica-de-privacidade`).
-- [ ] Adicionar o **checkbox de aceite** e o link do aviso no formulário de cadastro — hoje nenhum
-      consentimento é registrado (ver `AVISO_DE_TRATAMENTO_DE_DADOS.md`, seção 10).
+- [x] Publicar a política em rota pública do sistema (`/politica-de-privacidade`).
+- [x] Adicionar o **checkbox de aceite** e registrar data e versão no cadastro.
+- [x] Implantar a exclusão de conta pelo próprio titular (`/excluir-conta`).
+- [ ] Coletar novo aceite quando a política mudar de versão (reconsentimento).
 - [ ] Revisão dos dois modelos por advogado(a) inscrito(a) na OAB antes da primeira assinatura.
 - [ ] Definir os valores de remuneração, quando houver colaboração remunerada (Anexo I).
 - [ ] Designar o primeiro(a) professor(a) validador(a) e emitir os dois termos na mesma ocasião.

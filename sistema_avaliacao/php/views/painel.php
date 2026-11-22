@@ -147,6 +147,12 @@
       <?php endif; ?>
     </div>
   </div>
+
+  <div class="privacy-bar">
+    <a href="<?= url('politica-de-privacidade') ?>">Política de Privacidade</a>
+    <span>·</span>
+    <a href="<?= url('excluir-conta') ?>" class="link-danger">Excluir minha conta</a>
+  </div>
 </div>
 <script src="<?= url('assets/js/app.js') ?>"></script>
 <script>
