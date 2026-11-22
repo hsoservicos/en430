@@ -2,7 +2,7 @@
 /**
  * FrontControllerTest — Testes unitários do front controller (index.php)
  *
- * Cada teste executa em processo separado (@runInSeparateProcess)
+ * Cada teste executa em processo separado (#[RunInSeparateProcess])
  * para evitar conflito de redefinição de funções.
  *
  * Cobre as rotas GET que renderizam views sem depender de banco de dados:
@@ -17,6 +17,9 @@
  * Rotas que acessam banco de dados (painel, progresso, etc.)
  * são cobertas pelo IntegrationTest via servidor HTTP real.
  */
+
+use PHPUnit\Framework\Attributes\PreserveGlobalState;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 
 class FrontControllerTest extends PHPUnit\Framework\TestCase
 {
@@ -91,10 +94,8 @@ class FrontControllerTest extends PHPUnit\Framework\TestCase
         return $output ?: '';
     }
 
-    /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function testRotaIndex(): void
     {
         $this->setUpEnvironment('');
@@ -105,10 +106,8 @@ class FrontControllerTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('Fazer Login', $output);
     }
 
-    /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function testRotaCadastro(): void
     {
         $this->setUpEnvironment('cadastro');
@@ -119,10 +118,8 @@ class FrontControllerTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('Criar Conta', $output);
     }
 
-    /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function testRotaLogin(): void
     {
         $this->setUpEnvironment('login');
@@ -134,10 +131,8 @@ class FrontControllerTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('Esqueci minha senha', $output);
     }
 
-    /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function testRotaRecuperarAcesso(): void
     {
         $this->setUpEnvironment('recuperar-acesso');
@@ -148,10 +143,8 @@ class FrontControllerTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('Buscar', $output);
     }
 
-    /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function testRotaAdminLogin(): void
     {
         $this->setUpEnvironment('admin-login');
@@ -161,10 +154,8 @@ class FrontControllerTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('csrf_token', $output);
     }
 
-    /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function testRotaAdminGetSemAuth(): void
     {
         // /admin via GET sem autenticação deve mostrar tela de login admin
@@ -175,10 +166,8 @@ class FrontControllerTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('csrf_token', $output);
     }
 
-    /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function testRota404(): void
     {
         $this->setUpEnvironment('rota-inexistente');
@@ -188,10 +177,8 @@ class FrontControllerTest extends PHPUnit\Framework\TestCase
         $this->assertEquals(404, http_response_code());
     }
 
-    /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function testRotaIndexLogada(): void
     {
         // Quando logado, a página inicial ainda deve renderizar
@@ -208,10 +195,8 @@ class FrontControllerTest extends PHPUnit\Framework\TestCase
     // ROTAS POST (sem acesso a BD)
     // ═══════════════════════════════════════════════════════
 
-    /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function testPostAdminLoginSenhaErrada(): void
     {
         $this->setUpPostEnvironment('admin-login', [
@@ -224,10 +209,8 @@ class FrontControllerTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('incorreta', $output);
     }
 
-    /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function testPostCadastroNomeVazio(): void
     {
         $this->setUpPostEnvironment('cadastro', [
@@ -243,10 +226,8 @@ class FrontControllerTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('obrigatório', $output);
     }
 
-    /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function testPostCadastroEmailInvalido(): void
     {
         $this->setUpPostEnvironment('cadastro', [
@@ -261,10 +242,8 @@ class FrontControllerTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('Email inválido', $output);
     }
 
-    /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function testPostCadastroSenhaCurta(): void
     {
         $this->setUpPostEnvironment('cadastro', [
@@ -278,10 +257,8 @@ class FrontControllerTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('Senha deve ter', $output);
     }
 
-    /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function testPostCadastroSenhasDiferentes(): void
     {
         $this->setUpPostEnvironment('cadastro', [
@@ -295,10 +272,8 @@ class FrontControllerTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('não conferem', $output);
     }
 
-    /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function testPostCadastroMultiplosErros(): void
     {
         // Nome vazio + email inválido = múltiplos erros

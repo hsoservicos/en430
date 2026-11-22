@@ -1,6 +1,6 @@
 # 📍 Estado Atual do Projeto — EN_430
 
-**Atualizado em:** 2026-11-21
+**Atualizado em:** 2026-11-22
 **Versão:** 2.2.0
 **Branch de produção:** `master`
 
@@ -112,8 +112,8 @@ expandido por `recriar_questoes.php` (ciclos de 5 a 7 por módulo).
 
 | Item | Valor |
 |------|-------|
-| Casos de teste | **158** |
-| Asserções documentadas | **385** |
+| Casos de teste | **180** |
+| Asserções documentadas | **461** |
 | Framework | PHPUnit 11.x |
 | Arquivos | `AuthTest`, `AvaliacaoTest`, `DatabaseTest`, `FunctionsUtilTest`, `FrontControllerTest`, `FrontControllerDatabaseTest`, `IntegrationTest` |
 
@@ -281,5 +281,34 @@ Relatório completo: [`docs/auditorias/RELATORIO_SEGURANCA_STACK_2026-11-22.md`]
 | Apache | **2.4.71** — corrige o RCE crítico CVE-2026-119618 (`mod_http2`, que não está carregado) |
 | SAPI | `mod_php` — sem PHP-FPM/CGI, o que exclui CVE-2026-129289 e CVE-2026-129292 |
 | Hardening aplicado | `expose_php=Off`, `display_errors=Off` com log em stderr, sessão `HttpOnly` + `use_strict_mode`, `upload_progress=0`, `ServerTokens Prod`, bloqueio de `.xml/.ini/.sh/.sql` por HTTP |
-| Compatibilidade | suíte completa em PHP 8.6.0: **180 testes, 461 asserções, 0 falhas**; `curl_close()` substituído em `tests/IntegrationTest.php` |
-| Deploy | a imagem em produção só recebe o 8.6 quando o rebuild do commit de migração concluir |
+| Compatibilidade | suíte completa em PHP 8.6.0: **180 testes, 461 asserções, 0 falhas e 0 depreciações**; metadados dos testes em attributes (`#[RunInSeparateProcess]`) e `curl_close()` removido |
+| Varredura de imagem | `.github/workflows/trivy.yml` — build + Trivy (HIGH/CRITICAL corrigíveis) em push/PR na `master` e semanalmente |
+| Deploy | **em produção ainda roda PHP 8.4.28** e sem as rotas novas; rebuild pendente (ver 8.5) |
+
+### 8.5. Verificação de produção, Coolify e Cloudflare (2026-11-22)
+
+Checagem dos serviços de publicação após o endurecimento e a migração para PHP 8.6.
+
+| Serviço / item | Verificação | Resultado |
+|---|---|---|
+| Coolify | `coolify app get 2iweyqxekxmminhiwgyv5bvk` | `running:healthy`; app `en430.git:master…`, build `dockerfile`, porta 80 |
+| Coolify | `coolify app deployments list` | último deploy `627a718` (21/11), **12 commits atrás da `master`** |
+| Coolify | `http://localhost:8000` | HTTP 302 (painel ativo) |
+| Produção | `X-Powered-By` | `PHP/8.4.28` — imagem anterior à migração |
+| Produção | rotas novas | `/politica-de-privacidade`, `/excluir-conta` e `/reconsentimento` em **404** |
+| Cloudflare | DNS (`en430.appservice.tec.br`) | A/AAAA da Cloudflare; NS `kallie`/`kirk.ns.cloudflare.com` |
+| Cloudflare | certificado de borda | Google Trust Services `WE1`, `CN=appservice.tec.br`, válido até 11/01/2027 |
+| Cloudflare Tunnel | `cloudflared` (systemd) | ativo; **4 conexões HA**, `ready`, borda GRU |
+| Cloudflare Tunnel | métricas `:20241` | 4 conexões ativas; erros recentes só para `cpainel` (regra 2), nenhum para `en430` |
+| Borda | cabeçalhos | CSP, `X-Frame-Options`, `nosniff` e `Referrer-Policy` presentes |
+| Borda | HTTPS | `http://` responde **200** (sem redirect) e **sem HSTS**; cookie de sessão sem `Secure` |
+
+**Conclusões e pendências:**
+
+1. **Deploy parado:** a `master` avançou 12 commits (LGPD, hardening e PHP 8.6) e o Coolify não publicou
+   nenhum deles; é preciso forçar o redeploy e conferir `php -v` e as rotas novas após o build.
+2. **HTTPS não forçado:** ativar *Always Use HTTPS* na Cloudflare e habilitar o HSTS no `.htaccess`;
+   como o túnel entrega HTTP ao Apache, avaliar `X-Forwarded-Proto` no `initSession()` para marcar o
+   cookie como `Secure`.
+3. **Cloudflare saudável:** DNS, certificado e túnel (4 conexões) operando; a falha registrada em
+   `localhost:8000` é da aplicação `cpainel`, não do EN_430.

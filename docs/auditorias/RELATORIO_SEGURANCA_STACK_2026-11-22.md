@@ -106,12 +106,13 @@ Smoke HTTP na imagem endurecida: `/`, `/cadastro`, `/politica-de-privacidade` (1
 | ID | Risco | Severidade | Encaminhamento |
 |:--:|---|:--:|---|
 | R1 | **PHP 8.4 sai do suporte de segurança em 31/12/2026** (a linha 8.2 sai na mesma data) | **Alto a partir de 2027** | ✅ **Resolvido em 22/11/2026**: migração para **PHP 8.6** (seção 8). A suíte passou 100% em `php:8.6` (180 testes, 461 asserções) |
-| R2 | A imagem em produção pode estar desatualizada até o deploy do `55f8c9f` concluir | Alto | Acompanhar o rebuild no Coolify e conferir `php -v` no container em produção |
+| R2 | A imagem em produção pode estar desatualizada até o deploy do `55f8c9f` concluir | Alto | ✅ **Confirmado em 22/11/2026**: produção em `PHP/8.4.28`, último deploy `627a718` (12 commits atrás) e `/politica-de-privacidade`, `/excluir-conta` e `/reconsentimento` em 404. Redeploy pendente |
 | R3 | Base image `php:8.6-apache` é móvel (`:8.6-apache`), não fixada por digest | Médio | Rebuild mensal programado; opcionalmente fixar digest e atualizar de forma revisada |
 | R4 | Painel administrativo usa **senha única compartilhada** (`ADMIN_SECRET`) | Alto (para dados de colaboradores) | Contas individuais com bcrypt + 2FA, já previstas na fase F4 do planejamento de colaboradores |
 | R5 | Sem WAF/proxy na frente do Apache e rate limit só no login | Médio | Coolify/Traefik com limite de requisições e monitoramento de 4xx/5xx |
-| R6 | Ausência de varredura contínua de imagem (Trivy/Scout) no pipeline | Médio | Adicionar `trivy image --severity HIGH,CRITICAL` no deploy |
+| R6 | Ausência de varredura contínua de imagem (Trivy/Scout) no pipeline | Médio | ✅ **Resolvido em 22/11/2026**: `.github/workflows/trivy.yml` constrói a imagem e roda Trivy (HIGH/CRITICAL) em push/PR e semanalmente |
 | R7 | Nenhum transporte real de e-mail; avisos de inatividade apenas registrados | Baixo (segurança), Médio (LGPD) | Configurar MTA/provedor antes de confiar na rotina |
+| R8 | HTTPS não é forçado: `http://en430...` responde 200 e não há HSTS; o cookie sai sem `Secure` porque a Cloudflare termina o TLS e o PHP recebe HTTP | Médio | Ativar *Always Use HTTPS* na Cloudflare, habilitar HSTS e considerar `X-Forwarded-Proto` no `initSession()` |
 
 ---
 

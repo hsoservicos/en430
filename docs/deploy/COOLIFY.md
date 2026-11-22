@@ -96,6 +96,27 @@ Os PDFs são servidos diretamente do diretório copiado no build; não dependem 
 
 ---
 
+### 3.6 Varredura de segurança da imagem (Trivy)
+
+O workflow [`.github/workflows/trivy.yml`](../../.github/workflows/trivy.yml) constrói a imagem a
+partir do `Dockerfile` e a escaneia com Trivy a cada push/PR na `master` e semanalmente
+(segunda-feira, 06:00 UTC). O pipeline falha quando há vulnerabilidade **HIGH** ou **CRITICAL**
+com correção disponível; as sem correção continuam no relatório, mas não bloqueiam.
+
+Para reproduzir localmente:
+
+```bash
+docker build -t en430:local .
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+  aquasecurity/trivy:latest image --severity HIGH,CRITICAL --ignore-unfixed en430:local
+```
+
+O Coolify continua publicando a imagem pelo próprio build; a varredura é o portão de qualidade
+do repositório. Se o workflow falhar, trate os achados (ou atualize a base) antes de considerar o
+deploy concluído.
+
+---
+
 ## 4. Primeiro deploy
 
 ### 4.1 Pela interface
@@ -218,3 +239,4 @@ data da última execução.
 | 2026-11 | Base directory alterada para `/` e Dockerfile movido para a raiz |
 | 2026-11 | Materiais de estudo incluídos no build e servidos em `/materiais/` |
 | 2026-11 | Botões de navegação estudo ↔ avaliação e retorno no login |
+| 2026-11 | Varredura Trivy da imagem no GitHub Actions (push/PR + semanal) |

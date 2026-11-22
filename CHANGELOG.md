@@ -21,11 +21,17 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ### Segurança
 
-- **Verificação do stack** contra os CVEs de novembro/2026: PHP 8.4.28 e Apache 2.4.71 já contêm
-  as correções; relatório em `docs/auditorias/RELATORIO_SEGURANCA_STACK_2026-11-22.md`.
+- **Verificação do stack** contra os CVEs de novembro/2026: Apache 2.4.71 já contém as correções e
+  a linha PHP foi migrada de 8.4.28 para **8.6.0**; relatório em
+  `docs/auditorias/RELATORIO_SEGURANCA_STACK_2026-11-22.md`.
+- **Verificação de produção:** Coolify saudável, mas último deploy em `627a718` (12 commits atrás) e
+  produção em PHP 8.4.28, sem `/politica-de-privacidade`; Cloudflare Tunnel com 4 conexões HA e
+  HTTPS não forçado (pendências registradas em `docs/ESTADO_ATUAL.md`, seção 8.5).
 - **Hardening do runtime:** `expose_php=Off`, `display_errors=Off` (log em stderr), sessão com
   `HttpOnly` e `use_strict_mode`, `session.upload_progress=0`, `ServerTokens Prod` e bloqueio
   HTTP de `.xml`, `.ini`, `.sh`, `.sql` e afins.
+- **Varredura de imagem com Trivy** em `.github/workflows/trivy.yml`: build + scan a cada
+  push/PR na `master` e semanalmente, falhando em HIGH/CRITICAL corrigíveis.
 
 ### Alterado
 
@@ -35,6 +41,9 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
   461 asserções, 0 falhas.
 - **`curl_close()` removido** de `tests/IntegrationTest.php` (sem efeito desde o PHP 8.0 e
   depreciado na 8.5+); o identificador é liberado com `unset()`.
+- **Metadados dos testes em attributes do PHPUnit 11**: `#[RunInSeparateProcess]` e
+  `#[PreserveGlobalState(false)]` substituem as anotações em doc-comment em
+  `tests/FrontControllerTest.php`, eliminando as 210 depreciações do runner.
 
 ### Adicionado
 

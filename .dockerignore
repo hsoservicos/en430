@@ -1,5 +1,6 @@
 # Repositório e ferramentas
 .git
+.github
 .gitignore
 .gitattributes
 .freebuff

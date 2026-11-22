@@ -1,0 +1,42 @@
+name: Segurança da imagem
+
+# Varredura Trivy da imagem Docker de produção (Dockerfile na raiz).
+# Roda a cada push/PR na master e semanalmente, para pegar CVEs novas na
+# base móvel (`php:8.6-apache`) mesmo sem mudanças no código.
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  schedule:
+    - cron: '0 6 * * 1' # segunda-feira, 06:00 UTC
+
+permissions:
+  contents: read
+
+concurrency:
+  group: trivy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  scan:
+    name: Build + Trivy
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Construir a imagem
+        run: docker build --tag "en430:${GITHUB_SHA}" .
+
+      - name: Escanear a imagem (HIGH/CRITICAL)
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: en430:${{ github.sha }}
+          format: table
+          severity: HIGH,CRITICAL
+          # Foca no que é corrigível: CVE sem correção disponível na base
+          # não deve bloquear o pipeline (mas continua visível no relatório).
+          ignore-unfixed: true
+          exit-code: '1'
