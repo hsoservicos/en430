@@ -113,7 +113,7 @@ expandido por `recriar_questoes.php` (ciclos de 5 a 7 por módulo).
 | Item | Valor |
 |------|-------|
 | Casos de teste | **180** |
-| Asserções documentadas | **466** |
+| Asserções documentadas | **469** |
 | Framework | PHPUnit 11.x |
 | Arquivos | `AuthTest`, `AvaliacaoTest`, `DatabaseTest`, `FunctionsUtilTest`, `FrontControllerTest`, `FrontControllerDatabaseTest`, `IntegrationTest` |
 
@@ -212,7 +212,7 @@ Implementação dos itens abertos da política de privacidade no sistema de aval
 | Verificação | Resultado |
 |-------------|-----------|
 | Sintaxe (`php -l`, PHP 8.4) | 12 arquivos alterados/criados, sem erro |
-| PHPUnit | **180 testes, 466 asserções, 0 falhas** (consentimento, política, exclusão, reconsentimento e inatividade) |
+| PHPUnit | **180 testes, 469 asserções, 0 falhas** (consentimento, política, exclusão, reconsentimento e inatividade) |
 | Renderização da política | 14.109 bytes de Markdown → 13 tabelas, 37 parágrafos, HTML escapado |
 
 ### 8.1. Reconsentimento na mudança de versão
@@ -260,7 +260,7 @@ as rotas por HTTP antes do deploy.
 | Rotina `rotina_inativas.php` no container | dry-run e execução: 1 candidata (25 meses), aviso `simulado`, 0 exclusões |
 | `GET /politica.md` · `/scripts/*.php` | 403 |
 | Healthcheck do container | `healthy` |
-| PHPUnit | 180 testes, 466 asserções, 0 falhas |
+| PHPUnit | 180 testes, 469 asserções, 0 falhas |
 
 **Defeitos encontrados e corrigidos nesta validação:**
 
@@ -281,7 +281,7 @@ Relatório completo: [`docs/auditorias/RELATORIO_SEGURANCA_STACK_2026-11-22.md`]
 | Apache | **2.4.71** — corrige o RCE crítico CVE-2026-119618 (`mod_http2`, que não está carregado) |
 | SAPI | `mod_php` — sem PHP-FPM/CGI, o que exclui CVE-2026-129289 e CVE-2026-129292 |
 | Hardening aplicado | `expose_php=Off`, `display_errors=Off` com log em stderr, sessão `HttpOnly` + `use_strict_mode`, `upload_progress=0`, `ServerTokens Prod`, bloqueio de `.xml/.ini/.sh/.sql` por HTTP |
-| Compatibilidade | suíte completa em PHP 8.6.0: **180 testes, 466 asserções, 0 falhas e 0 depreciações**; metadados dos testes em attributes (`#[RunInSeparateProcess]`) e `curl_close()` removido |
+| Compatibilidade | suíte completa em PHP 8.6.0: **180 testes, 469 asserções, 0 falhas e 0 depreciações**; metadados dos testes em attributes (`#[RunInSeparateProcess]`) e `curl_close()` removido |
 | Varredura de imagem | `.github/workflows/trivy.yml` — build + Trivy (HIGH/CRITICAL corrigíveis) em push/PR na `master` e semanalmente |
 | Deploy | **em produção roda PHP 8.6.0** desde o redeploy de 22/11/2026 (`0cf5ed2`); rotas novas publicadas (ver 8.5) |
 | HTTPS na aplicação | `.htaccess` envia HSTS; `requisicaoSegura()` lê `CF-Visitor`/`X-Forwarded-Proto` para marcar o cookie `Secure`. O redirect HTTP→HTTPS fica na borda (Cloudflare), porque o Apache recebe sempre HTTP do túnel |
@@ -302,7 +302,7 @@ Checagem dos serviços de publicação após o endurecimento e a migração para
 | Cloudflare Tunnel | `cloudflared` (systemd) | ativo; **4 conexões HA**, `ready`, borda GRU |
 | Cloudflare Tunnel | métricas `:20241` | 4 conexões ativas; erros recentes só para `cpainel` (regra 2), nenhum para `en430` |
 | Borda | cabeçalhos | CSP, `X-Frame-Options`, `nosniff` e `Referrer-Policy` presentes |
-| Borda | HTTPS | `http://` ainda responde **200** (sem redirect) e **sem HSTS**; o fix de `.htaccess`/cookie está no repositório local, aguardando publicação |
+| Borda | HTTPS | `https://` responde **200** com `Strict-Transport-Security: max-age=31536000; includeSubDomains` e cookie `PHPSESSID` com `secure`; `http://` ainda responde **200** sem redirect (toggle *Always Use HTTPS* pendente) |
 
 **Conclusões e pendências:**
 
