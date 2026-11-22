@@ -11,9 +11,21 @@ require_once __DIR__ . '/db.php';
 // SESSÃO
 // ═══════════════════════════════════════════════════════════════
 
+/**
+ * Indica se a requisição chegou por HTTPS, inclusive atrás de proxy/túnel
+ * (Cloudflare, Traefik) que sinaliza o protocolo em X-Forwarded-Proto.
+ */
+function requisicaoSegura(): bool {
+    if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+        return true;
+    }
+    $proto = $_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '';
+    return strtolower(trim(explode(',', $proto)[0])) === 'https';
+}
+
 function initSession(): void {
     if (session_status() === PHP_SESSION_NONE) {
-        $secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
+        $secure = requisicaoSegura();
         session_set_cookie_params([
             'lifetime' => SESSION_LIFETIME,
             'path' => '/',

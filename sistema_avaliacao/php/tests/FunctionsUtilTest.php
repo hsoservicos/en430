@@ -54,6 +54,22 @@ class FunctionsUtilTest extends PHPUnit\Framework\TestCase
         initSession();
         $this->assertEquals(PHP_SESSION_ACTIVE, session_status());
         session_write_close();
+
+        // Atrás do túnel Cloudflare/Traefik o HTTPS chega em X-Forwarded-Proto
+        $_SERVER = ['SCRIPT_NAME' => '/index.php', 'HTTP_X_FORWARDED_PROTO' => 'https'];
+        initSession();
+        $this->assertTrue(session_get_cookie_params()['secure']);
+        session_write_close();
+
+        $_SERVER = ['SCRIPT_NAME' => '/index.php'];
+        $this->assertFalse(requisicaoSegura());
+        $_SERVER['HTTPS'] = 'on';
+        $this->assertTrue(requisicaoSegura());
+        $_SERVER['HTTPS'] = 'off';
+        $_SERVER['HTTP_X_FORWARDED_PROTO'] = 'https';
+        $this->assertTrue(requisicaoSegura());
+        $_SERVER['HTTP_X_FORWARDED_PROTO'] = 'http';
+        $this->assertFalse(requisicaoSegura());
     }
 
     // ═══════════════════════════════════════════════════════════

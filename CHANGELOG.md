@@ -21,12 +21,16 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ### Segurança
 
+- **HTTPS na origem e cookie `Secure`:** `requisicaoSegura()` passa a considerar `X-Forwarded-Proto`
+  (túnel Cloudflare/Traefik), o `.htaccess` envia HSTS e redireciona HTTP→HTTPS sem criar loop atrás do
+  proxy, e o cookie de sessão é marcado `Secure` em requisições encaminhadas por HTTPS.
 - **Verificação do stack** contra os CVEs de novembro/2026: Apache 2.4.71 já contém as correções e
   a linha PHP foi migrada de 8.4.28 para **8.6.0**; relatório em
   `docs/auditorias/RELATORIO_SEGURANCA_STACK_2026-11-22.md`.
-- **Verificação de produção:** Coolify saudável, mas último deploy em `627a718` (12 commits atrás) e
-  produção em PHP 8.4.28, sem `/politica-de-privacidade`; Cloudflare Tunnel com 4 conexões HA e
-  HTTPS não forçado (pendências registradas em `docs/ESTADO_ATUAL.md`, seção 8.5).
+- **Verificação de produção e redeploy:** Coolify saudável; redeploy forçado publicou `0cf5ed2` e a
+  produção passou a responder em **PHP 8.6.0**, com `/politica-de-privacidade` em 200; Cloudflare Tunnel
+  com 4 conexões HA. O *Always Use HTTPS* do painel Cloudflare segue pendente (sem token de API) e o
+  `.htaccess` já cobre HSTS/redirect na origem (seção 8.5 de `docs/ESTADO_ATUAL.md`).
 - **Hardening do runtime:** `expose_php=Off`, `display_errors=Off` (log em stderr), sessão com
   `HttpOnly` e `use_strict_mode`, `session.upload_progress=0`, `ServerTokens Prod` e bloqueio
   HTTP de `.xml`, `.ini`, `.sh`, `.sql` e afins.
