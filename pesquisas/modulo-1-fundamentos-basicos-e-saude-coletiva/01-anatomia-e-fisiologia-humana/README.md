@@ -89,11 +89,14 @@ não anatomia descritiva exaustiva de nível superior.
 | 2026-11-21 | Pesquisa concluída | 6 artefatos produzidos; 300 itens especificados; 16 fontes registradas |
 | 2026-11-21 | Em revisão | Aguardando revisão técnica por enfermeiro e pedagógica |
 | 2026-11-21 | Pré-revisão assistida | 16 achados: 5 altos, 7 médios, 4 baixos; 15 corrigidos e 1 registrado como pendência |
+| 2026-11-21 | Correção de registro | A linha "Pesquisa concluída" registrou 16 fontes; o correto é **18** (F1–F18), conforme `fontes/README.md` |
+| 2026-11-21 | Pacote de validação | `validacao/README.md` preparado para envio ao professor validador; envio pendente de designação; prazo do parecer 2026-12-06 |
 
 ### Pendências abertas
 
 1. Validação técnica por enfermeiro com registro ativo (obrigatória pelo PRD, seção 11.2) — roteiro
-   na seção 8 de `artefatos/revisao_tecnica_pedagogica.md`.
+   na seção 8 de `artefatos/revisao_tecnica_pedagogica.md` e pacote de envio em
+   [`validacao/README.md`](validacao/README.md).
 2. Revisão pedagógica e de linguagem para nível médio.
 3. Fixar **uma fonte por parâmetro** para as faixas de referência de sinais vitais.
 4. Confirmar a escala de consciência adotada pela instituição (Glasgow ou outra).
@@ -101,3 +104,9 @@ não anatomia descritiva exaustiva de nível superior.
 6. Confirmar link vigente do Parecer Normativo COFEN nº 001/2019 (F3) e da Resolução CNE/CP
    nº 2/2024 (F17).
 7. Testar acessibilidade dos materiais M1 e M2 com leitor de tela.
+
+## 8. Pacote de validação
+
+O envio ao(à) professor(a) validador(a) está descrito em [`validacao/README.md`](validacao/README.md):
+artefatos incluídos (8 arquivos, 1.046 linhas), ordem de leitura, perguntas-chave, critério de
+conclusão e checklist de preparação. Enquanto o parecer não for registrado, a matéria permanece 🟪.

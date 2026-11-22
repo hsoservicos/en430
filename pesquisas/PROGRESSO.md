@@ -121,3 +121,4 @@ Após cada pesquisa (ou mudança de etapa):
 | 2026-11-21 | 01 | Pesquisa | 6 artefatos produzidos (ficha, mapa de unidades, matriz de competências, 300 itens especificados, 6 materiais, 16 fontes); status 🟪 em revisão |
 | 2026-11-21 | 01 | Pré-revisão | 16 achados (5 altos, 7 médios, 4 baixos): 15 corrigidos; 18 fontes registradas; 7 entregáveis |
 | 2026-11-21 | — | Governança | RM-01 publicada em `docs/GOVERNANCA_PROGRESSO.md` e vinculada a este painel; regra de registro passa a ser obrigatória |
+| 2026-11-21 | 01 | Pacote de validação | `validacao/README.md` criado (8 arquivos, 1.046 linhas): envio ao professor validador pendente de designação; prazo do parecer 2026-12-06; status segue 🟪 |

@@ -27,6 +27,8 @@
 | [**juridico/README.md**](juridico/README.md) | **Índice jurídico** e registro de emissão dos termos por colaborador |
 | [**TERMO_CONFIDENCIALIDADE_SIGILO.md**](juridico/TERMO_CONFIDENCIALIDADE_SIGILO.md) | **Termo de Confidencialidade e Sigilo (v1.0):** modelo preenchível — sigilo, LGPD, cessão de direitos e sanções |
 | [**TERMO_ADESAO_PROFESSOR_VALIDADOR.md**](juridico/TERMO_ADESAO_PROFESSOR_VALIDADOR.md) | **Termo de Adesão do Professor Validador (v1.0):** revisão técnica e pedagógica, parecer e responsabilidade |
+| [**POLITICA_DE_PRIVACIDADE.md**](juridico/POLITICA_DE_PRIVACIDADE.md) | **Política de Privacidade (v1.0):** dados dos estudantes, bases legais, retenção e direitos (LGPD) |
+| [**AVISO_DE_TRATAMENTO_DE_DADOS.md**](juridico/AVISO_DE_TRATAMENTO_DE_DADOS.md) | **Aviso de Tratamento de Dados (v1.0):** resumo para a tela de cadastro e textos prontos |
 
 > Obrigatório para todo colaborador(a) que acesse conteúdo não publicado, código, dados de
 > estudantes ou informações comerciais do projeto. O exemplar assinado não é versionado neste

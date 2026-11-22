@@ -34,6 +34,16 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - Fixados os parâmetros em aberto: multa de R$ 5.000,00 (dobro em caso agravado), canais
   `juridico@` e `seguranca@en430.appservice.tec.br`.
 
+### 🔒 Privacidade e proteção de dados
+
+- Adicionada a **Política de Privacidade (v1.0)** para os estudantes do sistema de avaliação, com
+  os dados efetivamente tratados pelo código, bases legais, retenção, segurança e direitos do
+  titular (LGPD).
+- Adicionado o **Aviso de Tratamento de Dados (v1.0)** para a tela de cadastro, com texto pronto,
+  rótulo do checkbox de consentimento e pendências de implementação.
+- Criado o **pacote de validação da matéria 01** (`pesquisas/.../01-.../validacao/`) para envio ao
+  primeiro professor validador, com prazo de parecer definido.
+
 ### ⚖️ Governança do progresso
 
 - Criada a **RM-01 — Regra Máxima de Gestão, Controle e Auditoria do Progresso**
