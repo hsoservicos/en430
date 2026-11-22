@@ -663,6 +663,39 @@ function handleAdminExcluirEstudante(int $id): void {
 }
 
 /**
+ * Estudante: ACEITE DA VERSÃO VIGENTE da Política de Privacidade.
+ *
+ * Chamado quando a versão do documento muda: o painel e as rotas de estudo
+ * ficam bloqueados até o novo aceite, que é registrado com data e versão.
+ */
+function handleReconsentimento(): void {
+    if (!estaLogado()) {
+        redirect('login');
+        return;
+    }
+
+    if (($_POST['consentimento'] ?? '') !== '1') {
+        flash('erro', '⚠️ Marque a caixa de aceite para continuar usando o sistema.');
+        view('reconsentimento', ['versao_anterior' => getConsentimentoVersaoEstudante()]);
+        return;
+    }
+
+    $versaoAnterior = getConsentimentoVersaoEstudante();
+    $stmt = getDB()->prepare("UPDATE estudantes SET consentimento_em = ?, consentimento_versao = ? WHERE id = ?");
+    $stmt->execute([date('Y-m-d H:i:s'), CONSENTIMENTO_VERSAO, getEstudanteId()]);
+
+    adminLog('consentimento_atualizado', [
+        'id' => getEstudanteId(),
+        'versao_anterior' => $versaoAnterior,
+        'versao' => CONSENTIMENTO_VERSAO,
+        'origem' => 'reconsentimento',
+    ]);
+
+    flash('sucesso', '✅ Consentimento atualizado para a versão ' . CONSENTIMENTO_VERSAO . ' da Política de Privacidade.');
+    redirect('painel');
+}
+
+/**
  * Estudante: EXCLUIR A PRÓPRIA CONTA (direito de eliminação — LGPD, art. 18, VI).
  *
  * Exige senha e confirmação textual. Remove conta e avaliações imediatamente,

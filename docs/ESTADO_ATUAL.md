@@ -212,9 +212,18 @@ Implementação dos itens abertos da política de privacidade no sistema de aval
 | Verificação | Resultado |
 |-------------|-----------|
 | Sintaxe (`php -l`, PHP 8.4) | 12 arquivos alterados/criados, sem erro |
-| PHPUnit | **168 testes, 413 asserções, 0 falhas** (4 novos testes para consentimento, política e exclusão) |
+| PHPUnit | **171 testes, 421 asserções, 0 falhas** (consentimento, política, exclusão e reconsentimento) |
 | Renderização da política | 14.109 bytes de Markdown → 13 tabelas, 37 parágrafos, HTML escapado |
 
+### 8.1. Reconsentimento na mudança de versão
+
+| Item | Implementação |
+|------|---------------|
+| **Detecção** | `precisaReconsentimento()` compara `consentimento_versao` com `CONSENTIMENTO_VERSAO`; contas sem versão (anteriores ao registro) também reconsentem |
+| **Bloqueio** | `/painel`, `/progresso`, `/nova-avaliacao` e `/avaliacao` redirecionam para `/reconsentimento` até o aceite |
+| **Aceite** | `/reconsentimento` mostra versão anterior × vigente, exige o checkbox e regrava data + versão |
+| **Auditoria** | `consentimento_atualizado` em `admin_log`, com `versao_anterior` e `versao` |
+| **Direitos preservados** | `/excluir-conta`, `/politica-de-privacidade` e `/logout` continuam acessíveis sem o aceite |
+
 > **Pendências que seguem abertas:** criar os aliases de e-mail (`privacidade@`, `juridico@`,
-> `seguranca@`), definir a rotina de contas inativas (24 meses) e o reconsentimento quando a
-> política mudar de versão.
+> `seguranca@`) e definir a rotina de contas inativas (24 meses).

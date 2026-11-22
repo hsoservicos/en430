@@ -79,7 +79,8 @@ deve ser anotado no exemplar assinado.
 - [x] Publicar a política em rota pública do sistema (`/politica-de-privacidade`).
 - [x] Adicionar o **checkbox de aceite** e registrar data e versão no cadastro.
 - [x] Implantar a exclusão de conta pelo próprio titular (`/excluir-conta`).
-- [ ] Coletar novo aceite quando a política mudar de versão (reconsentimento).
+- [x] Coletar novo aceite quando a política mudar de versão: `/reconsentimento` bloqueia painel e
+      avaliações até o aceite da versão vigente, com registro e auditoria.
 - [ ] Revisão dos dois modelos por advogado(a) inscrito(a) na OAB antes da primeira assinatura.
 - [ ] Definir os valores de remuneração, quando houver colaboração remunerada (Anexo I).
 - [ ] Designar o primeiro(a) professor(a) validador(a) e emitir os dois termos na mesma ocasião.

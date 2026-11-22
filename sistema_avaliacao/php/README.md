@@ -238,6 +238,7 @@ variáveis de ambiente, health check e rollback.
 | `/admin` | Painel administrativo |
 | `/politica-de-privacidade` | Política de Privacidade (pública, LGPD) |
 | `/excluir-conta` | Exclusão da própria conta pelo estudante (LGPD) |
+| `/reconsentimento` | Aceite da versão vigente da política (bloqueia painel/avaliações) |
 | `/logout` | Sair da sessão |
 
 ### 7.2. Consentimento e privacidade (LGPD)
@@ -251,6 +252,10 @@ variáveis de ambiente, health check e rollback.
 - `/excluir-conta` apaga conta e avaliações mediante senha + confirmação textual, registrando
   `exclusao_conta_titular` em `admin_log`.
 - Bancos criados antes desta versão recebem as colunas automaticamente em `ensureSchemaUpgrades()`.
+- **Reconsentimento:** quando `CONSENTIMENTO_VERSAO` muda (ou a conta não tem versão registrada),
+  `/painel`, `/progresso`, `/nova-avaliacao` e `/avaliacao` redirecionam para `/reconsentimento`
+  até o novo aceite. O aceite atualiza data + versão e é auditado como `consentimento_atualizado`
+  em `admin_log`. A exclusão de conta continua acessível sem o aceite.
 
 ### 7.3. Fluxo de uso
 

@@ -274,6 +274,10 @@ quando houver canal disponível.
 **15.3.** O uso do sistema após a vigência da nova versão implica ciência, sem prejuízo da
 possibilidade de revogar o consentimento.
 
+**15.4.** Quando a versão desta política mudar, o acesso ao painel e às avaliações fica suspenso
+até o registro de novo aceite, com a nova versão identificada. O histórico do estudante é
+preservado nesse intervalo e a exclusão da conta permanece disponível a qualquer momento.
+
 ---
 
 ## 16. Legislação e foro

@@ -96,11 +96,24 @@ class FrontControllerDatabaseTest extends PHPUnit\Framework\TestCase
     /**
      * Cria um estudante de teste e retorna seus dados
      */
-    private function criarEstudanteTeste(PDO $pdo): array
+    private function criarEstudanteTeste(PDO $pdo, ?string $versaoConsentimento = CONSENTIMENTO_VERSAO): array
     {
         $hash = password_hash('1234', PASSWORD_BCRYPT, ['cost' => 12]);
-        $pdo->prepare("INSERT INTO estudantes (nome, telefone, email, senha_hash) VALUES (?,?,?,?)")
-            ->execute(['Maria Teste', '11999999999', 'maria@teste.com', $hash]);
+
+        // O schema de teste é criado sem as colunas de consentimento (banco legado);
+        // a rota as adiciona via ensureSchemaUpgrades(), mas o INSERT direto precisa delas.
+        $colunas = array_column($pdo->query("PRAGMA table_info(estudantes)")->fetchAll(PDO::FETCH_ASSOC), 'name');
+        if (!in_array('consentimento_versao', $colunas, true)) {
+            $pdo->exec("ALTER TABLE estudantes ADD COLUMN consentimento_em TIMESTAMP");
+            $pdo->exec("ALTER TABLE estudantes ADD COLUMN consentimento_versao TEXT");
+        }
+
+        $pdo->prepare("INSERT INTO estudantes (nome, telefone, email, senha_hash, consentimento_em, consentimento_versao) VALUES (?,?,?,?,?,?)")
+            ->execute([
+                'Maria Teste', '11999999999', 'maria@teste.com', $hash,
+                $versaoConsentimento === null ? null : date('Y-m-d H:i:s'),
+                $versaoConsentimento,
+            ]);
         $stmt = $pdo->query("SELECT * FROM estudantes WHERE email='maria@teste.com'");
         return $stmt->fetch();
     }
@@ -295,6 +308,70 @@ class FrontControllerDatabaseTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('Maria Teste', $output);
         $this->assertStringContainsString('Avaliações Realizadas', $output);
         $this->assertStringContainsString('Histórico', $output);
+    }
+
+    public function testPainelBloqueadoQuandoConsentimentoEstaDesatualizado(): void
+    {
+        $pdo = $this->criarBancoTeste();
+        $estudante = $this->criarEstudanteTeste($pdo, '0.9');
+        $pdo = null;
+
+        $output = $this->captureRouteOutput('painel', 'GET', [], [
+            'estudante_id' => (int)$estudante['id'],
+            'estudante_nome' => $estudante['nome'],
+        ]);
+
+        $this->assertEmpty($output, 'Painel deve redirecionar para o reconsentimento');
+        $flashes = $_SESSION['_flash'] ?? [];
+        $this->assertStringContainsString('Atualizamos a Política de Privacidade', $flashes[0]['mensagem'] ?? '');
+    }
+
+    public function testReconsentimentoRegistraVersaoVigente(): void
+    {
+        $pdo = $this->criarBancoTeste();
+        $estudante = $this->criarEstudanteTeste($pdo, null);
+        $pdo = null;
+
+        $output = $this->captureRouteOutput('reconsentimento', 'GET', [], [
+            'estudante_id' => (int)$estudante['id'],
+        ]);
+        $this->assertStringContainsString('não registrada', $output);
+
+        $this->captureRouteOutput('reconsentimento', 'POST', [
+            'csrf_token' => 'test_token', 'consentimento' => '1',
+        ], [
+            'estudante_id' => (int)$estudante['id'],
+            'csrf_token' => 'test_token',
+        ]);
+
+        $pdo = new PDO("sqlite:" . $this->dbPath());
+        $row = $pdo->query("SELECT consentimento_em, consentimento_versao FROM estudantes WHERE id = " . (int)$estudante['id'])->fetch(PDO::FETCH_ASSOC);
+        $this->assertEquals(CONSENTIMENTO_VERSAO, $row['consentimento_versao']);
+        $this->assertNotEmpty($row['consentimento_em']);
+        $log = $pdo->query("SELECT acao FROM admin_log ORDER BY id DESC LIMIT 1")->fetchColumn();
+        $this->assertEquals('consentimento_atualizado', $log);
+        $pdo = null;
+    }
+
+    public function testPainelLiberadoAposReconsentimento(): void
+    {
+        $pdo = $this->criarBancoTeste();
+        $estudante = $this->criarEstudanteTeste($pdo, '0.9');
+        $pdo = null;
+
+        $this->captureRouteOutput('reconsentimento', 'POST', [
+            'csrf_token' => 'test_token', 'consentimento' => '1',
+        ], [
+            'estudante_id' => (int)$estudante['id'],
+            'csrf_token' => 'test_token',
+        ]);
+
+        $output = $this->captureRouteOutput('painel', 'GET', [], [
+            'estudante_id' => (int)$estudante['id'],
+            'estudante_nome' => $estudante['nome'],
+        ]);
+
+        $this->assertStringContainsString('Avaliações Realizadas', $output);
     }
 
     public function testProgressoLogado(): void

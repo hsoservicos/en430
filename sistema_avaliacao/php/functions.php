@@ -193,6 +193,63 @@ function getEstudanteNome(): string {
     return $_SESSION['estudante_nome'] ?? '';
 }
 
+/**
+ * Versão do consentimento aceita pelo estudante.
+ *
+ * Retorna null para contas anteriores ao registro do aceite (sem versão).
+ */
+function getConsentimentoVersaoEstudante(?int $estudanteId = null): ?string {
+    $estudanteId = $estudanteId ?? getEstudanteId();
+    if (!$estudanteId) {
+        return null;
+    }
+
+    $stmt = getDB()->prepare("SELECT consentimento_versao FROM estudantes WHERE id = ?");
+    $stmt->execute([$estudanteId]);
+    $versao = $stmt->fetchColumn();
+    $versao = is_string($versao) ? trim($versao) : '';
+
+    return $versao === '' ? null : $versao;
+}
+
+/**
+ * O estudante logado precisa aceitar a versão vigente da política?
+ *
+ * Contas sem versão registrada também precisam reconsentir — foi a mudança
+ * que introduziu o registro do aceite.
+ */
+function precisaReconsentimento(?array $estudante = null): bool {
+    if (!estaLogado()) {
+        return false;
+    }
+
+    if ($estudante !== null) {
+        $versao = isset($estudante['consentimento_versao'])
+            ? trim((string)$estudante['consentimento_versao'])
+            : '';
+    } else {
+        $versao = (string)getConsentimentoVersaoEstudante();
+    }
+
+    return $versao === '' || $versao !== CONSENTIMENTO_VERSAO;
+}
+
+/**
+ * Bloqueia rotas de estudo até o aceite da versão vigente.
+ *
+ * Retorna false quando já redirecionou para /reconsentimento.
+ */
+function exigirConsentimentoAtual(): bool {
+    if (!precisaReconsentimento()) {
+        return true;
+    }
+
+    flash('info', '📄 Atualizamos a Política de Privacidade. Leia e aceite a versão ' . CONSENTIMENTO_VERSAO . ' para continuar.');
+    redirect('reconsentimento');
+
+    return false;
+}
+
 // ═══════════════════════════════════════════════════════════════
 // REDIRECT E URL
 // ═══════════════════════════════════════════════════════════════

@@ -106,7 +106,8 @@ acesso, correção ou eliminação pelo canal do item 5.
 - [ ] Criar o alias `privacidade@en430.appservice.tec.br` — o canal ainda não existe; até lá, os
       pedidos devem ser encaminhados ao mantenedor.
 - [ ] Definir a rotina de contas inativas (24 meses) no painel administrativo.
-- [ ] Coletar novo aceite quando a política mudar de versão (mecanismo de reconsentimento).
+- [x] Coletar novo aceite quando a política mudar de versão: `/reconsentimento` bloqueia o painel
+      e as avaliações até o aceite, que é registrado com data e versão.
 
 ---
 

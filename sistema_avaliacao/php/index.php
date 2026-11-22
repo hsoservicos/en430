@@ -20,6 +20,7 @@
  *   /progresso            → Progresso do estudante
  *   /politica-de-privacidade → Política de Privacidade (pública)
  *   /excluir-conta        → Exclusão da própria conta (LGPD)
+ *   /reconsentimento      → Aceite da versão vigente da política
  *   /admin                → Painel administrativo
  *   /admin-login          → Login admin
  *   /admin/logout         → Logout admin
@@ -98,15 +99,34 @@ try {
             }
             break;
 
+        // ── Reconsentimento (política em nova versão) ──
+        case 'reconsentimento':
+            requireLogin();
+            if ($method === 'POST') {
+                requireCsrf();
+                handleReconsentimento();
+            } elseif (!precisaReconsentimento()) {
+                redirect('painel');
+            } else {
+                view('reconsentimento', ['versao_anterior' => getConsentimentoVersaoEstudante()]);
+            }
+            break;
+
         // ── Painel ──
         case 'painel':
             requireLogin();
+            if (!exigirConsentimentoAtual()) {
+                break;
+            }
             handlePainel();
             break;
 
         // ── Nova Avaliação ──
         case 'nova-avaliacao':
             requireLogin();
+            if (!exigirConsentimentoAtual()) {
+                break;
+            }
             if ($method === 'POST') {
                 requireCsrf();
                 handleNovaAvaliacao();
@@ -118,6 +138,9 @@ try {
         // ── Avaliação ──
         case 'avaliacao':
             requireLogin();
+            if (!exigirConsentimentoAtual()) {
+                break;
+            }
             $avaliacaoId = (int)($urlParts[1] ?? 0);
             $subRota = $urlParts[2] ?? '';
             
@@ -138,6 +161,9 @@ try {
         // ── Progresso ──
         case 'progresso':
             requireLogin();
+            if (!exigirConsentimentoAtual()) {
+                break;
+            }
             handleProgresso();
             break;
 

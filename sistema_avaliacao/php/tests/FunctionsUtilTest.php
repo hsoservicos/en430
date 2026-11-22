@@ -478,7 +478,7 @@ class FunctionsUtilTest extends PHPUnit\Framework\TestCase
     {
         $views = ['index', 'cadastro', 'login', 'painel', 'avaliacao',
                   'resultado', 'progresso', 'recuperar_acesso', 'admin',
-                  'politica_privacidade', 'excluir_conta'];
+                  'politica_privacidade', 'excluir_conta', 'reconsentimento'];
 
         foreach ($views as $view) {
             $this->assertFileExists(

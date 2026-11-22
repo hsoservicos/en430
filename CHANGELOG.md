@@ -48,6 +48,8 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - Publicada a política em **`/politica-de-privacidade`**, renderizada do documento canônico.
 - O estudante pode **excluir a própria conta** em `/excluir-conta`, com senha, confirmação textual
   e registro de auditoria; bancos antigos recebem as colunas automaticamente.
+- Implantado o **reconsentimento**: quando a versão da política muda, painel e avaliações ficam
+  bloqueados até o aceite em `/reconsentimento`, registrado com data, versão e auditoria.
 
 ### ⚖️ Governança do progresso
 
