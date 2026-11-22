@@ -159,3 +159,32 @@ expandido por `recriar_questoes.php` (ciclos de 5 a 7 por módulo).
 > instalado; a sintaxe foi validada com `php -l` em container e o build/teste
 > funcional da aplicação foi concluído. O número de casos (158) é a contagem
 > dos métodos de teste versionados.
+
+---
+
+## 7. Publicação da frente de conteúdo e governança (2026-11-21)
+
+Sincronização no GitHub para acesso por professores, revisores e gestão educacional.
+
+| Commit | Conteúdo |
+|--------|----------|
+| `3886720` | Correção da base normativa do CNCT (CNE/CEB nº 2/2020) e da natureza da carga de estágio |
+| `018887e` | Frente de pesquisas: 4 módulos, 17 fichas de matéria, 4 campos de estágio e os 7 entregáveis da matéria 01 (🟪 em revisão) |
+| `9783094` | RM-01 — regra máxima de gestão, controle e auditoria do progresso |
+
+**Novos artefatos publicados:**
+
+- `pesquisas/` — 76 arquivos (fichas, registros de fontes e artefatos).
+- `docs/GOVERNANCA_PROGRESSO.md` — regra RM-01, vinculada a este documento, ao `README.md`,
+  ao `docs/README.md` e ao `pesquisas/PROGRESSO.md`.
+- Guia de colaboração para validação em `pesquisas/README.md`, seção 6.
+
+| Verificação | Resultado |
+|-------------|-----------|
+| `scripts/verificar_links.py` | 845 arquivos, 785 links locais, 0 quebrados |
+| `git status` | árvore limpa após os commits |
+| `git push origin master` | `607b6a1..9783094` aceito |
+
+> **Estado das matérias:** 0 concluídas, 1 em revisão (matéria 01), 16 com escopo proposto.
+> A validação técnica por enfermeiro e pedagógica é pré-requisito para publicar conteúdo
+> (RM-01, seção 6).
