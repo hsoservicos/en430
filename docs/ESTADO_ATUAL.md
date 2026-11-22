@@ -7,6 +7,10 @@
 Este documento é a fonte de verdade sobre a condição atual do repositório.
 Substitui métricas e procedimentos de documentos históricos (auditorias e guias antigos).
 
+> **Governança:** a medição, o registro e a auditoria de todo progresso seguem a regra máxima
+> [**RM-01 — Governança de Progresso**](GOVERNANCA_PROGRESSO.md), que prevalece sobre este e
+> qualquer outro documento em matéria de método. Nenhum número aqui vale sem fonte e data.
+
 ---
 
 ## 1. Produto publicado

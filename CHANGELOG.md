@@ -12,6 +12,26 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Não lançado]
 
+### 🔬 Frente de pesquisas por matéria
+
+- Criada a estrutura completa de `pesquisas/`: 4 módulos, 17 fichas de matéria, 4 fichas de
+  campo de estágio, com `fontes/` e `artefatos/` por matéria.
+- Concluída a pesquisa da **matéria 01 — Anatomia e Fisiologia Humana**: ficha, mapa de
+  12 unidades, matriz de competências, 300 itens especificados, 6 materiais e 18 fontes
+  registradas com licença.
+- Produzida a **pré-revisão técnica e pedagógica** (16 achados: 5 altos, 7 médios, 4 baixos),
+  com correções aplicadas e roteiro de pendências para validação por enfermeiro e educador.
+- Adicionado guia de colaboração para professores, revisores e gestão educacional.
+
+### ⚖️ Governança do progresso
+
+- Criada a **RM-01 — Regra Máxima de Gestão, Controle e Auditoria do Progresso**
+  (`docs/GOVERNANCA_PROGRESSO.md`), com precedência sobre os demais documentos em matéria de
+  método: evidência obrigatória, fonte de verdade única por domínio, atualização no mesmo commit,
+  vocabulário fechado de status, histórico append-only, regras de contagem e auditoria mensal.
+- Regra vinculada em `README.md`, `docs/README.md`, `docs/ESTADO_ATUAL.md`,
+  `pesquisas/README.md` e `pesquisas/PROGRESSO.md`.
+
 ### 📚 Planejamento da expansão do curso
 
 - Adicionada a **ementa de referência** do curso Técnico em Enfermagem (`docs/ementa.md`):

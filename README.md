@@ -153,6 +153,7 @@ Portal: [`index.html`](index.html) · Central de estudos: [`materiais/html/index
 
 | Documento | Conteúdo |
 |-----------|----------|
+| [docs/GOVERNANCA_PROGRESSO.md](docs/GOVERNANCA_PROGRESSO.md) | **Regra máxima (RM-01):** gestão, controle, auditoria e acompanhamento de todo progresso |
 | [docs/ESTADO_ATUAL.md](docs/ESTADO_ATUAL.md) | **Estado atual:** deploy, estrutura, números e verificações |
 | [docs/ementa.md](docs/ementa.md) | Matriz curricular do curso Técnico em Enfermagem |
 | [docs/planejamento/PRD_APOIO_FORMACAO_TECNICA_ENFERMAGEM.md](docs/planejamento/PRD_APOIO_FORMACAO_TECNICA_ENFERMAGEM.md) | **PRD do programa de apoio** à formação técnica |

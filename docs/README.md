@@ -10,6 +10,7 @@
 | Documento | Conteúdo |
 |-----------|----------|
 | [**ESTADO_ATUAL.md**](ESTADO_ATUAL.md) | **Fonte de verdade:** deploy, estrutura, números, navegação e verificações |
+| [**GOVERNANCA_PROGRESSO.md**](GOVERNANCA_PROGRESSO.md) | **Regra máxima (RM-01):** como todo progresso é medido, registrado e auditado — prevalece sobre os demais documentos |
 
 ## 🎓 Planejamento e currículo
 
@@ -61,6 +62,7 @@
 | **Deploy** | Dockerfile por produto; produção via Coolify; segredos apenas em variáveis de ambiente |
 | **Versionamento** | `master` com commits convencionais (`feat:`, `fix:`, `docs:`, `chore:`) |
 | **Qualidade** | PHPUnit em `sistema_avaliacao/php/tests`; verificação de links com `scripts/verificar_links.py` |
+| **Progresso** | Toda declaração de avanço segue a [RM-01](GOVERNANCA_PROGRESSO.md): evidência, fonte de verdade por domínio, registro no mesmo commit e histórico imutável |
 
 ### Repositórios independentes
 
