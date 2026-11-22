@@ -6,6 +6,8 @@ Instrumentos jurídicos e declarações que condicionam a participação de cola
 |-----------|----------|
 | [**TERMO_CONFIDENCIALIDADE_SIGILO.md**](TERMO_CONFIDENCIALIDADE_SIGILO.md) | **Termo de Confidencialidade e Sigilo (v1.0):** modelo preenchível por colaborador — sigilo, LGPD, cessão de direitos, sanções e Anexos I e II |
 | [**TERMO_ADESAO_PROFESSOR_VALIDADOR.md**](TERMO_ADESAO_PROFESSOR_VALIDADOR.md) | **Termo de Adesão do Professor Validador (v1.0):** revisão técnica e pedagógica, parecer, prazos e responsabilidade — complementar ao TCS |
+| [**POLITICA_DE_PRIVACIDADE.md**](POLITICA_DE_PRIVACIDADE.md) | **Política de Privacidade (v1.0):** dados tratados pelo sistema de avaliação, bases legais, retenção, segurança e direitos do titular |
+| [**AVISO_DE_TRATAMENTO_DE_DADOS.md**](AVISO_DE_TRATAMENTO_DE_DADOS.md) | **Aviso de Tratamento de Dados (v1.0):** resumo para a tela de cadastro, texto pronto e pendências de implementação |
 
 ---
 
@@ -58,6 +60,8 @@ deve ser anotado no exemplar assinado.
 | Notificações contratuais | juridico@en430.appservice.tec.br | TCS, itens 1.1 e 15.1 |
 | Incidentes de segurança | seguranca@en430.appservice.tec.br (cópia para juridico@) | TCS, cláusula 15.2 |
 | Prazo de comunicação de incidente | 24 horas | TCS, cláusula 7.5 |
+| Privacidade e direitos do titular | privacidade@en430.appservice.tec.br | Política, item 11 |
+| Prazo de resposta ao titular | 15 dias | Política, item 10.2 |
 | Prazo do parecer de validação | 15 dias corridos | Adesão, cláusula 9 |
 | Alerta de risco grave ao paciente | 24 horas | Adesão, cláusula 9 |
 | Não aliciamento | 12 meses | TCS, cláusula 11.2 |
@@ -67,8 +71,12 @@ deve ser anotado no exemplar assinado.
 
 ## Pendências
 
-- [ ] **Criar os aliases de e-mail** `juridico@` e `seguranca@` no domínio `en430.appservice.tec.br`
-      — os prazos das cláusulas 7.5 e 15.2 pressupõem caixa ativa.
+- [ ] **Criar os aliases de e-mail** `juridico@`, `seguranca@` e `privacidade@` no domínio
+      `en430.appservice.tec.br` — os prazos das cláusulas 7.5 e 15.2 e o canal do titular pressupõem
+      caixa ativa.
+- [ ] Publicar a política em rota pública do sistema (`/politica-de-privacidade`).
+- [ ] Adicionar o **checkbox de aceite** e o link do aviso no formulário de cadastro — hoje nenhum
+      consentimento é registrado (ver `AVISO_DE_TRATAMENTO_DE_DADOS.md`, seção 10).
 - [ ] Revisão dos dois modelos por advogado(a) inscrito(a) na OAB antes da primeira assinatura.
 - [ ] Definir os valores de remuneração, quando houver colaboração remunerada (Anexo I).
 - [ ] Designar o primeiro(a) professor(a) validador(a) e emitir os dois termos na mesma ocasião.
