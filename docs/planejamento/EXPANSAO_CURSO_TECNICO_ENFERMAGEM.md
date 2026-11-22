@@ -45,7 +45,7 @@ questões de aplicação/análise e fim da inflação por variações textuais.
 
 | Referência | O que define |
 |------------|--------------|
-| **CNCT — Catálogo Nacional de Cursos Técnicos (4ª edição, Resolução CNE/CP nº 2/2020)** | Técnico em Enfermagem no eixo **Ambiente e Saúde**, carga mínima **1.200h**, perfil profissional, infraestrutura e legislação |
+| **CNCT — Catálogo Nacional de Cursos Técnicos (4ª edição, Resolução CNE/CEB nº 2/2020)** | Técnico em Enfermagem no eixo **Ambiente e Saúde**, carga mínima **1.200h**, perfil profissional, infraestrutura e legislação |
 | **Resolução CNE/CP nº 1/2021** | Diretrizes Curriculares Nacionais gerais da Educação Profissional e Tecnológica; organização por competências e itinerários |
 | **Lei nº 7.498/1986 e Decreto nº 94.406/1987** | Regulamentação do exercício da enfermagem e atribuições do técnico, sob supervisão do enfermeiro |
 | **Ementa do curso (`docs/ementa.md`)** | Matriz de referência do projeto: 4 módulos, 17 componentes, 1.200h + 600h de estágio |
@@ -373,8 +373,8 @@ preceptor. O estágio **não** é avaliado por múltipla escolha.
 
 - **Fundamentos e Semiotécnica** é o único componente majoritariamente pronto; ainda precisa
   de deduplicação dos 2.803 registros para ~495 itens únicos e revisão pedagógica.
-- **Anatomia, Biossegurança, Ética e Saúde do Idoso** têm conteúdo parcial reaproveitável
-  dos módulos atuais (3, 6, 10 e 9).
+- **Anatomia, Biossegurança, Ética, Farmacologia e Saúde do Idoso** têm conteúdo parcial
+  reaproveitável dos módulos atuais (3, 6, 10, 4–5 e 9), totalizando **5 componentes parciais**.
 - **11 dos 17 componentes** não têm conteúdo nem banco: Microbiologia, SUS, Psicologia,
   Nutrição, Clínica Médica, Cirúrgica/CME, Saúde da Mulher, Criança/Neonato, Urgência,
   UTI e Saúde Mental.
@@ -588,7 +588,7 @@ pessoa-mês e separar o custo autoral (o mais alto e o mais crítico).
 
 ## 14. Referências
 
-- **Resolução CNE/CP nº 2/2020** — Catálogo Nacional de Cursos Técnicos (4ª edição):
+- **Resolução CNE/CEB nº 2/2020** — Catálogo Nacional de Cursos Técnicos (4ª edição):
   <https://www.in.gov.br/en/web/dou/-/resolucao-n-2-de-15-de-dezembro-de-2020-294347656>
 - **Resolução CNE/CP nº 1/2021** — Diretrizes Curriculares Nacionais da EPT:
   <https://www.in.gov.br/en/web/dou/-/resolucao-cne/cp-n-1-de-5-de-janeiro-de-2021-297767578>

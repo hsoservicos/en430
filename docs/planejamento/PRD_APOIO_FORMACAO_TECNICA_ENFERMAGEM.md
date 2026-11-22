@@ -42,13 +42,14 @@ reconhecimento da formação. A proposta é:
 - **Prática e estágio:** checklists, OSCE, horas e portfólio — sem substituir a supervisão do enfermeiro.
 - **Acesso:** PWA mobile-first, offline, acessível (WCAG 2.2 AA) e em português claro.
 - **Governança:** papéis de aluno, professor, revisor, preceptor, coordenação e admin; auditoria e LGPD.
-- **Sustentabilidade:** evoluir o monólito PHP + PostgreSQL existente, sem reescrever do zero.
+- **Sustentabilidade:** evoluir o monólito PHP atual (SQLite) para PostgreSQL, sem reescrever do zero.
 
 **Meta de produto:** ser o companheiro de estudo de referência do estudante técnico em
 Enfermagem, com conteúdo alinhado ao PPC e às normas oficiais, sem jamais se apresentar como
 curso ou certificação.
 
-**Prazo de referência:** ~11 meses, em 4 fases (Fundação, MVP, R1, R2), com o **conteúdo
+**Prazo de referência:** ~11 meses, em 4 fases (Fundação, MVP, R1, R2) mais operação
+contínua, com o **conteúdo
 autoral como caminho crítico**.
 
 ---
