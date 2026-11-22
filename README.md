@@ -155,6 +155,7 @@ Portal: [`index.html`](index.html) · Central de estudos: [`materiais/html/index
 |-----------|----------|
 | [docs/ESTADO_ATUAL.md](docs/ESTADO_ATUAL.md) | **Estado atual:** deploy, estrutura, números e verificações |
 | [docs/ementa.md](docs/ementa.md) | Matriz curricular do curso Técnico em Enfermagem |
+| [docs/planejamento/PRD_APOIO_FORMACAO_TECNICA_ENFERMAGEM.md](docs/planejamento/PRD_APOIO_FORMACAO_TECNICA_ENFERMAGEM.md) | **PRD do programa de apoio** à formação técnica |
 | [docs/planejamento/EXPANSAO_CURSO_TECNICO_ENFERMAGEM.md](docs/planejamento/EXPANSAO_CURSO_TECNICO_ENFERMAGEM.md) | **Plano de expansão** para todo o curso |
 | [docs/README.md](docs/README.md) | Índice central e padrões do repositório |
 | [docs/deploy/COOLIFY.md](docs/deploy/COOLIFY.md) | Deploy oficial, variáveis, volume e rollback |

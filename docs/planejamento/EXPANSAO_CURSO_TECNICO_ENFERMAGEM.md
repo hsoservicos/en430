@@ -8,6 +8,8 @@
 
 > Este documento é um **plano**, não uma implementação. As decisões de matriz curricular,
 > stack e orçamento dependem de aprovação do PPC institucional e da coordenação do curso.
+> O detalhamento de produto, requisitos e limites legais está no
+> [PRD de apoio à formação técnica](PRD_APOIO_FORMACAO_TECNICA_ENFERMAGEM.md).
 
 ---
 

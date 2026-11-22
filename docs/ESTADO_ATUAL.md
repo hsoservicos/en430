@@ -65,6 +65,8 @@ en430/
 ├── docs/
 │   ├── ESTADO_ATUAL.md         # Este documento
 │   ├── README.md               # Índice da documentação e padrões
+│   ├── ementa.md               # Matriz curricular do curso técnico
+│   ├── planejamento/           # Plano de expansão e PRD do programa de apoio
 │   ├── deploy/                 # COOLIFY.md (oficial) + guias legados Apache/XAMPP
 │   ├── auditorias/             # Auditoria e relatório de evolução (históricos)
 │   ├── referencias/            # Ementa e anotações da disciplina
@@ -118,7 +120,7 @@ expandido por `recriar_questoes.php` (ciclos de 5 a 7 por módulo).
 | Questões por avaliação | 20 (aleatórias, sem repetição) |
 | Módulos | 10 |
 | Materiais HTML / PDF | 12 / 16 |
-| Links locais verificados | 663 (0 quebrados em 2026-11-21) |
+| Links locais verificados | 676 (0 quebrados em 2026-11-21) |
 
 ---
 

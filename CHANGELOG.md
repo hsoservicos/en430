@@ -19,7 +19,11 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - Criado o **plano de expansão** (`docs/planejamento/EXPANSAO_CURSO_TECNICO_ENFERMAGEM.md`)
   com diagnóstico, arquitetura-alvo, matriz de cobertura, roadmap, esforço, KPIs e riscos.
 - Plano reconciliado com a ementa: 17 componentes, 600h de estágio, meta de 4.400 itens
-  únicos e priorização dos 6 componentes da fase 2.
+  únicos e priorização dos componentes da fase 2.
+- Criado o **PRD do programa de apoio** (`docs/planejamento/PRD_APOIO_FORMACAO_TECNICA_ENFERMAGEM.md`)
+  com limites legais, personas, requisitos funcionais/não funcionais, dependências, roadmap,
+  riscos e critérios de aceite. Verificação normativa: CNCT fixa 1.200h, mas **não** fixa
+  600h de estágio em nível federal; o PRD adota 600h como referência parametrizável por PPC.
 
 ---
 
