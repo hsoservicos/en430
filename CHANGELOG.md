@@ -21,9 +21,10 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ### Segurança
 
-- **HTTPS na origem e cookie `Secure`:** `requisicaoSegura()` passa a considerar `X-Forwarded-Proto`
-  (túnel Cloudflare/Traefik), o `.htaccess` envia HSTS e redireciona HTTP→HTTPS sem criar loop atrás do
-  proxy, e o cookie de sessão é marcado `Secure` em requisições encaminhadas por HTTPS.
+- **HSTS e cookie `Secure`:** o `.htaccess` passa a enviar HSTS e `requisicaoSegura()` lê
+  `CF-Visitor`/`X-Forwarded-Proto` para marcar o cookie de sessão como `Secure`. O redirect HTTP→HTTPS
+  fica na Cloudflare (*Always Use HTTPS*), pois o Apache recebe HTTP do túnel e redirecionar na origem
+  criava loop.
 - **Verificação do stack** contra os CVEs de novembro/2026: Apache 2.4.71 já contém as correções e
   a linha PHP foi migrada de 8.4.28 para **8.6.0**; relatório em
   `docs/auditorias/RELATORIO_SEGURANCA_STACK_2026-11-22.md`.

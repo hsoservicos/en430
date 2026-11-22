@@ -70,6 +70,15 @@ class FunctionsUtilTest extends PHPUnit\Framework\TestCase
         $this->assertTrue(requisicaoSegura());
         $_SERVER['HTTP_X_FORWARDED_PROTO'] = 'http';
         $this->assertFalse(requisicaoSegura());
+
+        // A Cloudflare sinaliza o esquema do visitante em CF-Visitor
+        $_SERVER = ['SCRIPT_NAME' => '/index.php', 'HTTP_CF_VISITOR' => '{"scheme":"https"}'];
+        $this->assertTrue(requisicaoSegura());
+        initSession();
+        $this->assertTrue(session_get_cookie_params()['secure']);
+        session_write_close();
+        $_SERVER['HTTP_CF_VISITOR'] = '{"scheme":"http"}';
+        $this->assertFalse(requisicaoSegura());
     }
 
     // ═══════════════════════════════════════════════════════════

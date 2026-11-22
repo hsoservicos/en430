@@ -284,7 +284,7 @@ Relatório completo: [`docs/auditorias/RELATORIO_SEGURANCA_STACK_2026-11-22.md`]
 | Compatibilidade | suíte completa em PHP 8.6.0: **180 testes, 466 asserções, 0 falhas e 0 depreciações**; metadados dos testes em attributes (`#[RunInSeparateProcess]`) e `curl_close()` removido |
 | Varredura de imagem | `.github/workflows/trivy.yml` — build + Trivy (HIGH/CRITICAL corrigíveis) em push/PR na `master` e semanalmente |
 | Deploy | **em produção roda PHP 8.6.0** desde o redeploy de 22/11/2026 (`0cf5ed2`); rotas novas publicadas (ver 8.5) |
-| HTTPS na aplicação | `requisicaoSegura()` considera `X-Forwarded-Proto` para marcar o cookie `Secure`; `.htaccess` com HSTS e redirect HTTP→HTTPS para quando a origem recebe HTTP do túnel |
+| HTTPS na aplicação | `.htaccess` envia HSTS; `requisicaoSegura()` lê `CF-Visitor`/`X-Forwarded-Proto` para marcar o cookie `Secure`. O redirect HTTP→HTTPS fica na borda (Cloudflare), porque o Apache recebe sempre HTTP do túnel |
 
 ### 8.5. Verificação de produção, Coolify e Cloudflare (2026-11-22)
 
@@ -308,9 +308,10 @@ Checagem dos serviços de publicação após o endurecimento e a migração para
 
 1. **Deploy resolvido:** o redeploy forçado publicou o commit `0cf5ed2`; produção confirmada em PHP 8.6.0
    e com as rotas de LGPD no ar (política 200; exclusão/reconsentimento 302 para login sem sessão).
-2. **HTTPS não forçado:** o HSTS e o redirect HTTP→HTTPS foram adicionados ao `.htaccess`, e o cookie de
-   sessão passa a usar `Secure` quando `X-Forwarded-Proto: https` chega do túnel. Falta apenas publicar
-   esse commit (push para a `master`) e, no painel da Cloudflare, ativar *Always Use HTTPS* — a API não
-   foi usada por falta de token.
+2. **HTTPS parcialmente forçado:** o HSTS é enviado pelo `.htaccess` e o cookie de sessão usa `Secure`
+   quando `CF-Visitor`/`X-Forwarded-Proto` indicam HTTPS. O redirect HTTP→HTTPS **não** pode ser feito
+   no Apache: atrás do túnel ele recebe HTTP mesmo para visitantes em HTTPS e o redirect gera loop
+   (constatado em 22/11 e revertido). Falta ativar *Always Use HTTPS* no painel da Cloudflare — a API
+   não foi usada por falta de token.
 3. **Cloudflare saudável:** DNS, certificado e túnel (4 conexões) operando; a falha registrada em
    `localhost:8000` é da aplicação `cpainel`, não do EN_430.

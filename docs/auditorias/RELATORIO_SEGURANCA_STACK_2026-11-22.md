@@ -112,7 +112,7 @@ Smoke HTTP na imagem endurecida: `/`, `/cadastro`, `/politica-de-privacidade` (1
 | R5 | Sem WAF/proxy na frente do Apache e rate limit só no login | Médio | Coolify/Traefik com limite de requisições e monitoramento de 4xx/5xx |
 | R6 | Ausência de varredura contínua de imagem (Trivy/Scout) no pipeline | Médio | ✅ **Resolvido em 22/11/2026**: `.github/workflows/trivy.yml` constrói a imagem e roda Trivy (HIGH/CRITICAL) em push/PR e semanalmente |
 | R7 | Nenhum transporte real de e-mail; avisos de inatividade apenas registrados | Baixo (segurança), Médio (LGPD) | Configurar MTA/provedor antes de confiar na rotina |
-| R8 | HTTPS não é forçado: `http://en430...` responde 200 e não há HSTS; o cookie saía sem `Secure` porque a Cloudflare termina o TLS e o PHP recebe HTTP | Médio | **Mitigado no código:** HSTS + redirect no `.htaccess` (ciente de `X-Forwarded-Proto`) e cookie `Secure` via `requisicaoSegura()`; falta publicar o commit e ativar *Always Use HTTPS* no painel Cloudflare |
+| R8 | HTTPS não é forçado: `http://en430...` responde 200; o cookie saía sem `Secure` porque a Cloudflare termina o TLS e o PHP recebe HTTP | Médio | **Mitigado no código:** HSTS no `.htaccess` e cookie `Secure` via `requisicaoSegura()` (`CF-Visitor`/`X-Forwarded-Proto`). O redirect HTTP→HTTPS deve ser ativado na Cloudflare (*Always Use HTTPS*): na origem ele gera loop, pois o Apache recebe HTTP do túnel |
 
 ---
 

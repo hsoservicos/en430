@@ -12,15 +12,20 @@ require_once __DIR__ . '/db.php';
 // ═══════════════════════════════════════════════════════════════
 
 /**
- * Indica se a requisição chegou por HTTPS, inclusive atrás de proxy/túnel
- * (Cloudflare, Traefik) que sinaliza o protocolo em X-Forwarded-Proto.
+ * Indica se a requisição chegou por HTTPS, inclusive atrás de proxy/túnel.
+ * A Cloudflare sinaliza o esquema do visitante em CF-Visitor; proxies
+ * genéricos usam X-Forwarded-Proto.
  */
 function requisicaoSegura(): bool {
     if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
         return true;
     }
     $proto = $_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '';
-    return strtolower(trim(explode(',', $proto)[0])) === 'https';
+    if (strtolower(trim(explode(',', $proto)[0])) === 'https') {
+        return true;
+    }
+    $cfVisitor = json_decode($_SERVER['HTTP_CF_VISITOR'] ?? '', true);
+    return is_array($cfVisitor) && strtolower($cfVisitor['scheme'] ?? '') === 'https';
 }
 
 function initSession(): void {
