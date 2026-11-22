@@ -55,6 +55,9 @@ RewriteEngine On
 </IfModule>
 
 # ─── ROTEAMENTO ───────────────────────────────────────────
+# Scripts de linha de comando (rotina de inatividade, backup, migração) não são rotas
+RewriteRule ^scripts/ - [F,L]
+
 # Permitir acesso direto a assets existentes
 RewriteCond %{REQUEST_URI} ^/php/assets/ [OR]
 RewriteCond %{REQUEST_URI} ^/php/scripts/

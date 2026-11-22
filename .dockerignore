@@ -6,7 +6,10 @@
 aprendizado_em_ia
 
 # Documentação e arquivos fora do runtime
-docs
+# (exceção abaixo: a política é copiada para a imagem pelo Dockerfile)
+docs/**
+!docs/juridico
+!docs/juridico/POLITICA_DE_PRIVACIDADE.md
 scripts
 README.md
 CHANGELOG.md

@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 /**
  * rotina_inativas.php — Retenção de contas inativas (LGPD, Política item 8.2)

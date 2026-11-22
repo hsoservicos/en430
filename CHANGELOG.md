@@ -12,6 +12,15 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Não lançado]
 
+### Corrigido
+
+- **Build da imagem Docker** voltou a funcionar: o `.dockerignore` excluía `docs/` e o `COPY` da
+  política quebrava o build; adicionada exceção para o arquivo canônico.
+- **`/scripts/*.php` bloqueado por HTTP** no `.htaccess` (antes a rotina de inativas respondia 200
+  com o shebang impresso).
+
+### Adicionado
+
 ### 🔬 Frente de pesquisas por matéria
 
 - Criada a estrutura completa de `pesquisas/`: 4 módulos, 17 fichas de matéria, 4 fichas de

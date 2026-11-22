@@ -240,3 +240,33 @@ Implementação dos itens abertos da política de privacidade no sistema de aval
 > **Pendências que seguem abertas:** criar os aliases de e-mail (`privacidade@`, `juridico@`,
 > `seguranca@`) e configurar um transporte real de e-mail (`MAIL_TRANSPORT=mail` ou provedor)
 > para que os avisos de inatividade sejam entregues.
+
+### 8.3. Imagem Docker validada (2026-11-22)
+
+Build local e execução em container (`en430:teste`, 768 MB), com volume `/data` novo, exercitando
+as rotas por HTTP antes do deploy.
+
+| Rota / verificação | Resultado |
+|---|---|
+| `GET /` · `/cadastro` · `/login` · `/admin-login` | 200 |
+| `GET /politica-de-privacidade` | 200 · 19,8 KB · 13 tabelas renderizadas |
+| `POST /cadastro` sem aceite | 200 com erro de consentimento; conta não criada |
+| `POST /cadastro` com aceite | 302 → `/login`; `consentimento_versao=1.0` e `consentimento_em` gravados |
+| `GET /painel` · `/progresso` · `/excluir-conta` | 200 (logado) |
+| `GET /painel` com versão `0.9` | 302 → `/reconsentimento` |
+| `POST /reconsentimento` | 302 → `/painel`; banco em `1.0`; log `consentimento_atualizado` |
+| `POST /excluir-conta` | 302 → `/`; conta removida; log `exclusao_conta_titular` |
+| `GET /admin` | 200 com seção "Retenção de contas inativas (24 meses)" |
+| Rotina `rotina_inativas.php` no container | dry-run e execução: 1 candidata (25 meses), aviso `simulado`, 0 exclusões |
+| `GET /politica.md` · `/scripts/*.php` | 403 |
+| Healthcheck do container | `healthy` |
+| PHPUnit | 180 testes, 461 asserções, 0 falhas |
+
+**Defeitos encontrados e corrigidos nesta validação:**
+
+1. **O build da imagem falhava** — `.dockerignore` excluía `docs/`, e o `COPY` da política derrubava o
+   build. Corrigido com exceção explícita (`docs/**` + `!docs/juridico/POLITICA_DE_PRIVACIDADE.md`).
+   Toda publicação desde a criação da rota `/politica-de-privacidade` estava sem imagem nova.
+2. **`/scripts/*.php` era servido por HTTP** — o shebang aparecia como texto e o `403` do guarda de
+   CLI não era aplicado. Adicionado `RewriteRule ^scripts/ - [F,L]` ao `.htaccess` e removido o
+   shebang do script (executado como `php script.php`).
