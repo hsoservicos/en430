@@ -116,7 +116,7 @@ gráficos de progresso, além de painel administrativo.
 | Questões | 2.803 distribuídas em 10 módulos (Fácil/Médio/Difícil) |
 | Segurança | bcrypt (cost 12), CSRF, rate limiting, session fixation, CSP e headers |
 | Testes | 158 casos PHPUnit em `sistema_avaliacao/php/tests` |
-| Container | `Dockerfile` na raiz (PHP 8.4 + Apache) |
+| Container | `Dockerfile` na raiz (PHP 8.6 + Apache) |
 
 ```bash
 cd sistema_avaliacao/php

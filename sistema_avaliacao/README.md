@@ -244,7 +244,7 @@ sistema_avaliacao/php/
 
 ### Produção — Docker + Coolify (oficial)
 
-O sistema roda em container (`Dockerfile` na raiz, PHP 8.4 + Apache, porta 80) publicado pelo **Coolify** em <https://en430.appservice.tec.br>, com
+O sistema roda em container (`Dockerfile` na raiz, PHP 8.6 + Apache, porta 80) publicado pelo **Coolify** em <https://en430.appservice.tec.br>, com
 volume persistente em `/data` e `APP_DB_PATH=/data/avaliacao.db`.
 
 Instruções completas, variáveis e rollback: **[`docs/deploy/COOLIFY.md`](../docs/deploy/COOLIFY.md)**.

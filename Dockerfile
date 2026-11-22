@@ -1,11 +1,17 @@
 # syntax=docker/dockerfile:1
 
 # Sistema de Avaliação — Introdução à Enfermagem (EN_430)
-# PHP 8.4 + Apache (mod_rewrite/.htaccess) + SQLite via PDO
+# PHP 8.6 + Apache (mod_rewrite/.htaccess) + SQLite via PDO
 #
 # Contexto de build: a RAIZ do repositório.
 #   docker build -t en430 .
-FROM php:8.4-apache
+FROM php:8.6-apache
+
+# mbstring não vem compilado na imagem oficial 8.6 (exigido pelo composer/PHPUnit)
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libonig-dev \
+    && docker-php-ext-install mbstring \
+    && rm -rf /var/lib/apt/lists/*
 
 # Módulos do Apache necessários para o .htaccess do front controller
 RUN a2enmod rewrite headers expires deflate

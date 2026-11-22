@@ -105,9 +105,9 @@ Smoke HTTP na imagem endurecida: `/`, `/cadastro`, `/politica-de-privacidade` (1
 
 | ID | Risco | Severidade | Encaminhamento |
 |:--:|---|:--:|---|
-| R1 | **PHP 8.4 sai do suporte de segurança em 31/12/2026** (a linha 8.2 sai na mesma data) | **Alto a partir de 2027** | Migrar para **PHP 8.5**. Teste já executado: a suíte passa 100% em `php:8.5-cli` (180 testes, 461 asserções), com apenas uma depreciação em `tests/IntegrationTest.php` (`curl_close`) |
+| R1 | **PHP 8.4 sai do suporte de segurança em 31/12/2026** (a linha 8.2 sai na mesma data) | **Alto a partir de 2027** | ✅ **Resolvido em 22/11/2026**: migração para **PHP 8.6** (seção 8). A suíte passou 100% em `php:8.6` (180 testes, 461 asserções) |
 | R2 | A imagem em produção pode estar desatualizada até o deploy do `55f8c9f` concluir | Alto | Acompanhar o rebuild no Coolify e conferir `php -v` no container em produção |
-| R3 | Base image `php:8.4-apache` é móvel (`:8.4-apache`), não fixada por digest | Médio | Rebuild mensal programado; opcionalmente fixar digest e atualizar de forma revisada |
+| R3 | Base image `php:8.6-apache` é móvel (`:8.6-apache`), não fixada por digest | Médio | Rebuild mensal programado; opcionalmente fixar digest e atualizar de forma revisada |
 | R4 | Painel administrativo usa **senha única compartilhada** (`ADMIN_SECRET`) | Alto (para dados de colaboradores) | Contas individuais com bcrypt + 2FA, já previstas na fase F4 do planejamento de colaboradores |
 | R5 | Sem WAF/proxy na frente do Apache e rate limit só no login | Médio | Coolify/Traefik com limite de requisições e monitoramento de 4xx/5xx |
 | R6 | Ausência de varredura contínua de imagem (Trivy/Scout) no pipeline | Médio | Adicionar `trivy image --severity HIGH,CRITICAL` no deploy |
@@ -122,7 +122,8 @@ Smoke HTTP na imagem endurecida: `/`, `/cadastro`, `/politica-de-privacidade` (1
 2. **Reconstruir a imagem** ao menos uma vez por mês e sempre que houver release de segurança —
    `docker build` já puxa a última patch da linha.
 3. **Conferir no container em produção**: `php -v`, `apache2 -v` e os headers `Server`/`X-Powered-By`.
-4. **Planejar a migração para 8.5** antes de 31/12/2026, com a suíte como critério de aceite.
+4. **Manter a linha 8.6** atualizada (a 8.4 perde o suporte em 31/12/2026) e repetir a suíte a cada
+   troca de base.
 5. **Escanear** a imagem (`trivy image en430:latest`) e tratar HIGH/CRITICAL.
 
 ---
@@ -136,6 +137,26 @@ Smoke HTTP na imagem endurecida: `/`, `/cadastro`, `/politica-de-privacidade` (1
 - Vulnerabilidades do Apache 2.4: <https://httpd.apache.org/security/vulnerabilities_24.html>
 - CVE-2026-119618 (mod_http2): <https://threatdefence.com/article/apache-http-server-cve-2026-119618-http2-rce-patching-hunting>
 - Fim de suporte das linhas PHP: <https://php.watch/versions/8.4/releases/8.4.28>
+
+---
+
+## 8. Atualização posterior (mesmo dia) — migração para PHP 8.6
+
+O risco R1 foi tratado na sequência da verificação. A base passou de `php:8.4-apache` para
+**`php:8.6-apache`** e o runtime foi revalidado:
+
+| Verificação | Resultado |
+|---|---|
+| `php -v` no container | **PHP 8.6.0** (build de 19/11/2026, ZTS) |
+| Apache | **2.4.71** (inalterado) |
+| `mbstring` | não vem compilado na imagem oficial 8.6; passou a ser instalado no `Dockerfile` (`libonig-dev` + `docker-php-ext-install mbstring`) |
+| `composer.json` / `composer.lock` | exigem `php >=8.6`; lock regenerado (`platform` e `content-hash`) |
+| Suíte completa em `php:8.6` | **180 testes, 461 asserções, 0 falhas** |
+| Depreciação do PHP | `curl_close()` removido de `tests/IntegrationTest.php` (sem efeito desde a 8.0) |
+| Build da imagem | `docker build` concluiu com a base 8.6 e o container executou a migração inicial do banco |
+
+O hardening da seção 4 permanece aplicado: o `php-security.ini` é copiado para a nova base e os
+módulos do Apache são reabilitados no build.
 
 ---
 

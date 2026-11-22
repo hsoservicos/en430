@@ -88,7 +88,8 @@ class IntegrationTest extends PHPUnit\Framework\TestCase
             curl_setopt($ch, CURLOPT_TIMEOUT, 2);
             curl_exec($ch);
             $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            curl_close($ch);
+            // curl_close() não tem efeito desde o PHP 8.0 e é depreciada na 8.5+
+            unset($ch);
             
             if ($httpCode === 200) {
                 return;
@@ -127,7 +128,7 @@ class IntegrationTest extends PHPUnit\Framework\TestCase
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-        curl_close($ch);
+        unset($ch);
         
         $headers = substr($response, 0, $headerSize);
         $body = substr($response, $headerSize);
@@ -156,7 +157,7 @@ class IntegrationTest extends PHPUnit\Framework\TestCase
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-        curl_close($ch);
+        unset($ch);
         
         $headers = substr($response, 0, $headerSize);
         $body = substr($response, $headerSize);

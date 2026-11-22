@@ -46,7 +46,7 @@ real da instância Coolify (`servitec-local`, v4.3.14) capturada em novembro de 
 | Dockerfile | `/Dockerfile` (contexto = raiz do repositório) |
 | Base directory | `/` |
 | Porta | `80` |
-| Imagem base | `php:8.4-apache` |
+| Imagem base | `php:8.6-apache` (suporte de segurança até 31/12/2030) |
 
 O Dockerfile já habilita `rewrite`, `headers`, `expires` e `deflate`, configura
 `AllowOverride All` para o `.htaccess`, copia a aplicação e os materiais (`/materiais/`)

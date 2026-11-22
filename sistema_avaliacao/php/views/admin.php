@@ -283,7 +283,7 @@
     <div class="admin-card-body hidden">
       <div class="info-grid">
         <div class="info-item"><div class="info-label">Disciplina</div><div class="info-value">Introdução à Enfermagem (EN_430)</div></div>
-        <div class="info-item"><div class="info-label">Framework</div><div class="info-value">PHP 8.4+ (PDO SQLite) + JavaScript</div></div>
+        <div class="info-item"><div class="info-label">Framework</div><div class="info-value">PHP 8.6 (PDO SQLite) + JavaScript</div></div>
         <div class="info-item"><div class="info-label">Hash de Senhas</div><div class="info-value">bcrypt (password_hash, cost 12)</div></div>
         <div class="info-item"><div class="info-label">CSRF</div><div class="info-value">Tokens de sessão (SHA-256)</div></div>
         <div class="info-item"><div class="info-label">Versão</div><div class="info-value">2.0 (PHP + JS)</div></div>

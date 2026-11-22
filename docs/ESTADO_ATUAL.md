@@ -20,7 +20,7 @@ Substitui métricas e procedimentos de documentos históricos (auditorias e guia
 | **URL** | <https://en430.appservice.tec.br> |
 | **Plataforma** | Docker + Coolify (projeto `en430`) |
 | **Build** | `Dockerfile` na raiz, contexto = repositório completo |
-| **Porta** | 80 (Apache + PHP 8.4) |
+| **Porta** | 80 (Apache + PHP 8.6) |
 | **Banco** | SQLite em volume persistente `/data/avaliacao.db` |
 | **Health check** | `GET /` → 200 |
 | **Status** | `running:healthy` |
@@ -277,9 +277,9 @@ Relatório completo: [`docs/auditorias/RELATORIO_SEGURANCA_STACK_2026-11-22.md`]
 
 | Item | Situação |
 |---|---|
-| PHP | **8.4.28** — release de segurança de 19/11/2026; cobre os 14 CVEs que afetam a linha 8.4 |
+| PHP | **8.6.0** — migração concluída em 22/11/2026 (antes: 8.4.28); suporte de segurança até 31/12/2030 |
 | Apache | **2.4.71** — corrige o RCE crítico CVE-2026-119618 (`mod_http2`, que não está carregado) |
 | SAPI | `mod_php` — sem PHP-FPM/CGI, o que exclui CVE-2026-129289 e CVE-2026-129292 |
 | Hardening aplicado | `expose_php=Off`, `display_errors=Off` com log em stderr, sessão `HttpOnly` + `use_strict_mode`, `upload_progress=0`, `ServerTokens Prod`, bloqueio de `.xml/.ini/.sh/.sql` por HTTP |
-| Risco de prazo | **PHP 8.4 perde suporte de segurança em 31/12/2026** — suíte já passa em PHP 8.5 (180 testes), migração recomendada |
-| Deploy | a imagem em produção só recebe o 8.4.28 quando o rebuild do commit `55f8c9f` concluir |
+| Compatibilidade | suíte completa em PHP 8.6.0: **180 testes, 461 asserções, 0 falhas**; `curl_close()` substituído em `tests/IntegrationTest.php` |
+| Deploy | a imagem em produção só recebe o 8.6 quando o rebuild do commit de migração concluir |

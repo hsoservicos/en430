@@ -213,7 +213,7 @@ Siga o guia completo: [`docs/deploy/APACHE_WINDOWS.md`](../../docs/deploy/APACHE
 
 ### 6.4. Produção — Docker + Coolify
 
-O deploy oficial usa o `Dockerfile` na raiz do repositório (PHP 8.4 + Apache, porta 80).
+O deploy oficial usa o `Dockerfile` na raiz do repositório (PHP 8.6 + Apache, porta 80).
 O Coolify monta um volume persistente em `/data` e injeta `APP_DB_PATH=/data/avaliacao.db`.
 
 Consulte [`docs/deploy/COOLIFY.md`](../../docs/deploy/COOLIFY.md) para build,

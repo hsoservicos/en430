@@ -27,6 +27,15 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
   `HttpOnly` e `use_strict_mode`, `session.upload_progress=0`, `ServerTokens Prod` e bloqueio
   HTTP de `.xml`, `.ini`, `.sh`, `.sql` e afins.
 
+### Alterado
+
+- **Migração para PHP 8.6** (`php:8.6-apache`, suporte de segurança até 31/12/2030): a linha 8.4
+  perde o suporte em 31/12/2026. A imagem passou a compilar `mbstring` (ausente na base 8.6) e o
+  `composer.json`/`composer.lock` exigem `php >=8.6`. Suíte validada na nova versão: 180 testes,
+  461 asserções, 0 falhas.
+- **`curl_close()` removido** de `tests/IntegrationTest.php` (sem efeito desde o PHP 8.0 e
+  depreciado na 8.5+); o identificador é liberado com `unset()`.
+
 ### Adicionado
 
 ### 🔬 Frente de pesquisas por matéria
