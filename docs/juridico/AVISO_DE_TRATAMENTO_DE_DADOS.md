@@ -105,7 +105,9 @@ acesso, correção ou eliminação pelo canal do item 5.
 - [x] Implantar rotina de eliminação de conta pelo próprio titular (`/excluir-conta`), com auditoria.
 - [ ] Criar o alias `privacidade@en430.appservice.tec.br` — o canal ainda não existe; até lá, os
       pedidos devem ser encaminhados ao mantenedor.
-- [ ] Definir a rotina de contas inativas (24 meses) no painel administrativo.
+- [x] Rotina de contas inativas (24 meses): aviso por e-mail, carência de 30 dias e exclusão
+      automática, com painel de acompanhamento no admin e execução agendada
+      (`php scripts/rotina_inativas.php`).
 - [x] Coletar novo aceite quando a política mudar de versão: `/reconsentimento` bloqueia o painel
       e as avaliações até o aceite, que é registrado com data e versão.
 

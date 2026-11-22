@@ -212,7 +212,7 @@ Implementação dos itens abertos da política de privacidade no sistema de aval
 | Verificação | Resultado |
 |-------------|-----------|
 | Sintaxe (`php -l`, PHP 8.4) | 12 arquivos alterados/criados, sem erro |
-| PHPUnit | **171 testes, 421 asserções, 0 falhas** (consentimento, política, exclusão e reconsentimento) |
+| PHPUnit | **180 testes, 461 asserções, 0 falhas** (consentimento, política, exclusão, reconsentimento e inatividade) |
 | Renderização da política | 14.109 bytes de Markdown → 13 tabelas, 37 parágrafos, HTML escapado |
 
 ### 8.1. Reconsentimento na mudança de versão
@@ -225,5 +225,18 @@ Implementação dos itens abertos da política de privacidade no sistema de aval
 | **Auditoria** | `consentimento_atualizado` em `admin_log`, com `versao_anterior` e `versao` |
 | **Direitos preservados** | `/excluir-conta`, `/politica-de-privacidade` e `/logout` continuam acessíveis sem o aceite |
 
+### 8.2. Retenção de contas inativas (Política, item 8.2)
+
+| Item | Implementação |
+|------|---------------|
+| **Detecção** | `ultimo_acesso_em` (gravado no login) ou `data_cadastro`, sem acesso há `INATIVIDADE_MESES` = 24 |
+| **Aviso** | E-mail com prazo, link de acesso e canal de privacidade; registro em `notificacoes_email` e em `estudantes.inatividade_aviso_em` |
+| **Carência** | `INATIVIDADE_GRACA_DIAS` = 30; novo acesso no período cancela o aviso e mantém a conta |
+| **Exclusão** | Conta + avaliações, em transação, auditada como `exclusao_conta_inativa` em `admin_log` |
+| **Execução** | `php scripts/rotina_inativas.php [--dry-run]`, para cron/Coolify |
+| **Painel** | Seção "Retenção de contas inativas" no admin: a avisar, em carência, elegíveis, última execução e últimos avisos |
+| **Segurança** | Com `MAIL_TRANSPORT=log` (padrão) nada é entregue e **nenhuma conta é excluída**, porque a exclusão exige `inatividade_aviso_em` gravado |
+
 > **Pendências que seguem abertas:** criar os aliases de e-mail (`privacidade@`, `juridico@`,
-> `seguranca@`) e definir a rotina de contas inativas (24 meses).
+> `seguranca@`) e configurar um transporte real de e-mail (`MAIL_TRANSPORT=mail` ou provedor)
+> para que os avisos de inatividade sejam entregues.

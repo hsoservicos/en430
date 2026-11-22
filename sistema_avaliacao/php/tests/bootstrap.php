@@ -15,6 +15,7 @@ $baseDir = dirname(__DIR__);
 require_once $baseDir . '/config.php';
 require_once $baseDir . '/db.php';
 require_once $baseDir . '/functions.php';
+require_once $baseDir . '/inatividade.php';
 
 // ─── Configurar banco de teste ──────────────────────────────
 $testDbPath = $baseDir . '/avaliacao_test.db';

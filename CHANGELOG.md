@@ -50,6 +50,9 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
   e registro de auditoria; bancos antigos recebem as colunas automaticamente.
 - Implantado o **reconsentimento**: quando a versão da política muda, painel e avaliações ficam
   bloqueados até o aceite em `/reconsentimento`, registrado com data, versão e auditoria.
+- Criada a **retenção de contas inativas**: sem acesso há 24 meses, a conta recebe aviso por e-mail
+  e, após 30 dias sem retorno, é excluída com as avaliações; execução por
+  `scripts/rotina_inativas.php` e acompanhamento no painel administrativo.
 
 ### ⚖️ Governança do progresso
 

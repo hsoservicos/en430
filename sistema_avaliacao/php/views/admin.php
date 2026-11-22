@@ -235,6 +235,46 @@
     </div>
   </div>
 
+  <!-- RETENÇÃO DE CONTAS INATIVAS -->
+  <div class="admin-card">
+    <div class="admin-card-header" onclick="toggleCard(this)">
+      <span>⏳</span><h2>Retenção de contas inativas (<?= (int)INATIVIDADE_MESES ?> meses)</h2><span class="toggle">▶</span>
+    </div>
+    <div class="admin-card-body hidden">
+      <p class="texto-pequeno">
+        Conta sem acesso por <?= (int)INATIVIDADE_MESES ?> meses recebe aviso por e-mail e é excluída
+        após <?= (int)INATIVIDADE_GRACA_DIAS ?> dias sem retorno (Política de Privacidade, item 8.2).
+        A rotina roda por linha de comando:
+        <code>php scripts/rotina_inativas.php</code>.
+      </p>
+      <div class="info-grid">
+        <div class="info-item"><div class="info-label">A avisar</div><div class="info-value"><?= (int)($inatividade['a_avisar'] ?? 0) ?></div></div>
+        <div class="info-item"><div class="info-label">Em carência</div><div class="info-value"><?= (int)($inatividade['em_carencia'] ?? 0) ?></div></div>
+        <div class="info-item"><div class="info-label">Elegíveis a exclusão</div><div class="info-value"><?= (int)($inatividade['elegiveis'] ?? 0) ?></div></div>
+        <div class="info-item"><div class="info-label">Última execução</div><div class="info-value"><?= !empty($inatividade['ultima_execucao']) ? date('d/m/Y H:i', strtotime($inatividade['ultima_execucao'])) : 'nunca' ?></div></div>
+      </div>
+      <?php if (!empty($inatividade['ultimos_avisos'])): ?>
+      <div class="section-title">📧 Últimos avisos</div>
+      <table>
+        <tr><th>Destinatário</th><th>Situação</th><th>Data</th></tr>
+        <?php foreach ($inatividade['ultimos_avisos'] as $aviso): ?>
+        <tr>
+          <td><?= htmlspecialchars($aviso['destinatario']) ?></td>
+          <td><span class="tag <?= $aviso['status'] === 'enviado' ? 'pass' : ($aviso['status'] === 'erro' ? 'warn' : 'info') ?>"><?= htmlspecialchars($aviso['status']) ?></span></td>
+          <td><?= date('d/m/Y H:i', strtotime($aviso['criado_em'])) ?></td>
+        </tr>
+        <?php endforeach; ?>
+      </table>
+      <?php endif; ?>
+      <?php if (MAIL_TRANSPORT !== 'mail'): ?>
+      <p class="texto-pequeno">
+        ⚠️ Transporte de e-mail atual: <strong><?= htmlspecialchars(MAIL_TRANSPORT) ?></strong> — os avisos são
+        registrados, não entregues, e nenhuma conta é excluída enquanto não houver aviso real.
+      </p>
+      <?php endif; ?>
+    </div>
+  </div>
+
   <!-- INFORMAÇÕES DO SISTEMA -->
   <div class="admin-card">
     <div class="admin-card-header" onclick="toggleCard(this)">

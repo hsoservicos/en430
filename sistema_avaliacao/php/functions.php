@@ -189,6 +189,22 @@ function getEstudanteId(): int {
     return (int)($_SESSION['estudante_id'] ?? 0);
 }
 
+/**
+ * REGISTRA LOG DE AUDITORIA
+ * Cria a tabela automaticamente se não existir.
+ */
+function adminLog(string $acao, array $detalhes = []): void {
+    $db = getDB();
+    $db->exec("CREATE TABLE IF NOT EXISTS admin_log (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        acao TEXT NOT NULL,
+        detalhes TEXT,
+        data TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )");
+    $stmt = $db->prepare("INSERT INTO admin_log (acao, detalhes) VALUES (?, ?)");
+    $stmt->execute([$acao, json_encode($detalhes)]);
+}
+
 function getEstudanteNome(): string {
     return $_SESSION['estudante_nome'] ?? '';
 }

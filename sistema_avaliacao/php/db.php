@@ -66,6 +66,12 @@ function ensureSchemaUpgrades(PDO $pdo): void {
         if (!in_array('consentimento_versao', $nomes, true)) {
             $pdo->exec("ALTER TABLE estudantes ADD COLUMN consentimento_versao TEXT");
         }
+        if (!in_array('ultimo_acesso_em', $nomes, true)) {
+            $pdo->exec("ALTER TABLE estudantes ADD COLUMN ultimo_acesso_em TIMESTAMP");
+        }
+        if (!in_array('inatividade_aviso_em', $nomes, true)) {
+            $pdo->exec("ALTER TABLE estudantes ADD COLUMN inatividade_aviso_em TIMESTAMP");
+        }
     } catch (PDOException $e) {
         if (defined('DEBUG') && DEBUG) {
             error_log('Falha ao aplicar ajustes de schema: ' . $e->getMessage());

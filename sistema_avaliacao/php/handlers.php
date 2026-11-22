@@ -9,6 +9,8 @@
  * Depende de config.php e functions.php (já carregados pelo index.php).
  */
 
+require_once __DIR__ . '/inatividade.php';
+
 // ═══════════════════════════════════════════════════════════════
 // HANDLERS
 // ═══════════════════════════════════════════════════════════════
@@ -92,6 +94,7 @@ function handleLogin(): void {
         recordLoginAttempt(true); // Resetar tentativas
         $_SESSION['estudante_id'] = (int)$estudante['id'];
         $_SESSION['estudante_nome'] = $estudante['nome'];
+        registrarAcesso((int)$estudante['id']);
         regenerateSessionId();
         flash('sucesso', "👋 Bem-vindo(a), {$estudante['nome']}!");
         redirect('painel');
@@ -628,22 +631,6 @@ function renderAdminPainel(): void {
 }
 
 /**
- * REGISTRA LOG DE AUDITORIA ADMIN
- * Cria a tabela automaticamente se não existir.
- */
-function adminLog(string $acao, array $detalhes = []): void {
-    $db = getDB();
-    $db->exec("CREATE TABLE IF NOT EXISTS admin_log (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        acao TEXT NOT NULL,
-        detalhes TEXT,
-        data TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )");
-    $stmt = $db->prepare("INSERT INTO admin_log (acao, detalhes) VALUES (?, ?)");
-    $stmt->execute([$acao, json_encode($detalhes)]);
-}
-
-/**
  * Admin: EXCLUIR estudante com todas as avaliações
  */
 function handleAdminExcluirEstudante(int $id): void {
@@ -918,6 +905,7 @@ function renderAdminPainelComEstudantes(array $estudantes, array $statsAv, int $
         'total_estudantes' => $totalEstudantes,
         'logs' => adminLogBuscar(),
         'focus_log' => !empty($_GET['focus']) && $_GET['focus'] === 'log',
+        'inatividade' => resumoInatividade(),
     ]);
 }
 

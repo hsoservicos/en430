@@ -257,7 +257,34 @@ variáveis de ambiente, health check e rollback.
   até o novo aceite. O aceite atualiza data + versão e é auditado como `consentimento_atualizado`
   em `admin_log`. A exclusão de conta continua acessível sem o aceite.
 
-### 7.3. Fluxo de uso
+### 7.3. Retenção de contas inativas (LGPD)
+
+Contas sem acesso por **24 meses** recebem aviso por e-mail e, após **30 dias** sem retorno, são
+excluídas com as avaliações (Política de Privacidade, item 8.2).
+
+```bash
+# Simulação (não envia, não altera, não exclui)
+php scripts/rotina_inativas.php --dry-run
+
+# Execução real (agendar 1x/dia no host ou no Coolify)
+php scripts/rotina_inativas.php
+```
+
+| Variável | Padrão | Efeito |
+|---|---|---|
+| `INACTIVITY_MONTHS` | `24` | Meses sem acesso até o aviso |
+| `INACTIVITY_GRACE_DAYS` | `30` | Dias de carência entre aviso e exclusão |
+| `MAIL_TRANSPORT` | `log` | `log` registra sem enviar; `mail` usa `mail()` do PHP |
+| `MAIL_FROM` | `privacidade@…` | Remetente das notificações |
+| `APP_URL` | `https://en430.appservice.tec.br` | Link usado no e-mail |
+
+- O último acesso é gravado em `estudantes.ultimo_acesso_em` no login; o aviso, em
+  `inatividade_aviso_em`. Quem acessa depois do aviso tem o aviso cancelado.
+- Histórico de envios em `notificacoes_email` (status `enviado`, `simulado` ou `erro`).
+- **Com `log`, nenhuma conta é excluída**: a exclusão exige aviso efetivamente entregue.
+- O painel `/admin` mostra a seção "Retenção de contas inativas" com os números e a última execução.
+
+### 7.4. Fluxo de uso
 
 ```
 1. Cadastro → 2. Login → 3. Painel → 4. Nova Avaliação

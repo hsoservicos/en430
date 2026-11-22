@@ -28,6 +28,16 @@ define('CONSENTIMENTO_VERSAO', '1.0');
 // Arquivo Markdown exibido em /politica-de-privacidade (copiado no Dockerfile).
 define('POLITICA_MD_PATH', getenv('POLICY_MD_PATH') ?: __DIR__ . '/politica.md');
 
+// ─── Retenção de contas inativas (Política, item 8.2) ─────
+// Meses sem acesso até o aviso por e-mail e dias de carência até a exclusão.
+define('INATIVIDADE_MESES', max(1, (int)(getenv('INACTIVITY_MONTHS') ?: 24)));
+define('INATIVIDADE_GRACA_DIAS', max(1, (int)(getenv('INACTIVITY_GRACE_DAYS') ?: 30)));
+// URL pública usada nos e-mails (sem barra final).
+define('APP_URL', rtrim(getenv('APP_URL') ?: 'https://en430.appservice.tec.br', '/'));
+// Transporte de e-mail: 'log' registra sem enviar; 'mail' usa mail() do PHP.
+define('MAIL_TRANSPORT', getenv('MAIL_TRANSPORT') ?: 'log');
+define('MAIL_FROM', getenv('MAIL_FROM') ?: 'privacidade@en430.appservice.tec.br');
+
 // ─── Rate Limiting (Login) ───────────────────────────────────
 define('LOGIN_MAX_ATTEMPTS', 5);    // Máximo de tentativas antes do bloqueio
 define('LOGIN_TIMEOUT', 60);        // Tempo de bloqueio em segundos (1 minuto)

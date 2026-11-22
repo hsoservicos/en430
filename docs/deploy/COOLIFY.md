@@ -160,6 +160,29 @@ docker cp <container>:/data/avaliacao.db backup_$(date +%Y%m%d).db
 O volume `/data` é a fonte de verdade; o host path fica sob
 `/var/lib/docker/volumes/2iweyqxekxmminhiwgyv5bvk-en430-data/_data`.
 
+### Rotina de contas inativas (agendamento)
+
+A retenção de contas inativas (Política de Privacidade, item 8.2) roda por linha de comando e deve
+ser agendada uma vez por dia — no **Coolify → Scheduled Tasks** ou no cron do host:
+
+```bash
+# Coolify: container = en430, frequência diária
+docker exec <container> php /var/www/html/scripts/rotina_inativas.php
+```
+
+Antes de habilitar, rode em modo de simulação e confira o resultado:
+
+```bash
+docker exec <container> php /var/www/html/scripts/rotina_inativas.php --dry-run
+```
+
+> **Entrega de e-mail:** o padrão é `MAIL_TRANSPORT=log`, que apenas registra os avisos e **não**
+> exclui nenhuma conta. Para que o aviso seja realmente enviado, defina `MAIL_TRANSPORT=mail`
+> (exige MTA no container) e confirme um envio de teste antes de confiar na rotina.
+
+O painel `/admin` exibe a seção "Retenção de contas inativas" com pendentes, carência, elegíveis e a
+data da última execução.
+
 ---
 
 ## 6. Procedimento de rollback

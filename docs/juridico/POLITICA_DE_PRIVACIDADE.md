@@ -148,7 +148,10 @@ regular de direitos ou pelos prazos acima, hipóteses em que o dado permanece bl
 o término do prazo.
 
 **8.2.** Contas inativas por mais de **24 (vinte e quatro) meses** podem ser eliminadas, com aviso
-prévio ao e-mail cadastrado, quando tecnicamente possível.
+prévio ao e-mail cadastrado, quando tecnicamente possível. O aviso antecede a eliminação em, no
+mínimo, **30 (trinta) dias**, e qualquer acesso ao sistema nesse intervalo mantém a conta ativa. A
+eliminação abrange a conta e as avaliações vinculadas, mantendo-se apenas os registros de auditoria
+previstos no item 8.
 
 ---
 
