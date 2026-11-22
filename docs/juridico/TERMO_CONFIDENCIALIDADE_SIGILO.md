@@ -34,7 +34,7 @@
 | **CPF** | 715.591.404-53 |
 | **Endereço** | Rua Amoirinópolis, 86 - A, Nossa Senhora Ó, Paulista - PE |
 | **Qualificação** | Analista, Desenvolvedor e Mantenedor do Projeto |
-| **E-mail para notificações** | [________________________] |
+| **E-mail para notificações** | juridico@en430.appservice.tec.br |
 
 ### 1.2 OUTORGADO(A) — COLABORADOR(A) (parte recebedora)
 
@@ -320,9 +320,11 @@ Anexo I em caso de colaboração remunerada.
 
 **14.1.** O descumprimento de qualquer cláusula sujeita o(a) COLABORADOR(A) a:
 
-a) **multa compensatória** de R$ [________] por infração, corrigida pelo IPCA desde a assinatura,
-   sem prejuízo da apuração de perdas e danos que a excedam (Código Civil, arts. 402 a 404 e 408 a
-   416);
+a) **multa compensatória** de **R$ 5.000,00 (cinco mil reais)** por infração, elevada ao **dobro —
+   R$ 10.000,00 (dez mil reais) —** quando a violação envolver Dados Pessoais Sensíveis, divulgação
+   pública da Informação Confidencial ou uso comercial por terceiro, corrigida pelo IPCA desde a
+   assinatura, sem prejuízo da apuração de perdas e danos que a excedam (Código Civil, arts. 402 a
+   404 e 408 a 416);
 b) **obrigação de cessar** imediatamente a conduta e de eliminar o material irregular;
 c) **perdas e danos** comprovados, incluindo lucros cessantes, custo de remediação, despesas com
    notificação de titulares e com medidas de contenção;
@@ -347,7 +349,12 @@ infração ética perante o conselho profissional do(a) colaborador(a).
 1, e consideram-se recebidas no dia útil seguinte ao envio, com confirmação de recebimento.
 
 **15.2.** Comunicação de Incidente de Segurança deve ser imediata, em até **24 (vinte e quatro)
-horas**, pelo canal: [________________________].
+horas**, para o canal oficial **seguranca@en430.appservice.tec.br**, com cópia para
+**juridico@en430.appservice.tec.br**. Se o envio por e-mail estiver indisponível, a comunicação será
+feita por contato telefônico direto com o OUTORGANTE, seguida de e-mail em até 24 horas.
+
+**15.2.1.** O canal de segurança destina-se **exclusivamente** a relatos de incidente, suspeita de
+vazamento e vulnerabilidade; não deve ser usado para dúvidas de conteúdo ou de rotina.
 
 **15.3.** Alteração de endereço ou e-mail deve ser comunicada em até 5 (cinco) dias.
 

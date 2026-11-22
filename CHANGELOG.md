@@ -29,6 +29,10 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
   preenchível por colaborador, com sigilo, proteção de dados (LGPD), cessão de direitos autorais,
   segurança da informação, sanções e anexos de escopo e de devolução.
 - Criado o **registro de emissão** dos termos por colaborador, com estados da RM-01.
+- Adicionado o **Termo de Adesão do Professor Validador (v1.0):** revisão técnica e pedagógica,
+  parecer com achados classificados, prazos de resposta, impedimentos e responsabilidade.
+- Fixados os parâmetros em aberto: multa de R$ 5.000,00 (dobro em caso agravado), canais
+  `juridico@` e `seguranca@en430.appservice.tec.br`.
 
 ### ⚖️ Governança do progresso
 

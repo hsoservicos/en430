@@ -178,8 +178,8 @@ Sincronização no GitHub para acesso por professores, revisores e gestão educa
 - `docs/GOVERNANCA_PROGRESSO.md` — regra RM-01, vinculada a este documento, ao `README.md`,
   ao `docs/README.md` e ao `pesquisas/PROGRESSO.md`.
 - Guia de colaboração para validação em `pesquisas/README.md`, seção 6.
-- `docs/juridico/` — Termo de Confidencialidade e Sigilo (v1.0), modelo preenchível por
-  colaborador, e registro de emissão dos termos.
+- `docs/juridico/` — Termo de Confidencialidade e Sigilo (v1.0) e Termo de Adesão do Professor
+  Validador (v1.0), com registro de emissão e parâmetros fixados (multa, canais, prazos).
 
 | Verificação | Resultado |
 |-------------|-----------|
