@@ -146,6 +146,27 @@
   .bp{font-size:.85rem}
   .bp li{margin-bottom:.3rem}
 
+  /* imagens em contexto */
+  .split{display:grid;grid-template-columns:1.05fr .95fr;gap:1.4rem;align-items:center}
+  .hero-img{margin:0;border-radius:var(--raio);overflow:hidden;border:1px solid var(--linha);box-shadow:var(--sombra);background:#fff}
+  .hero-img img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+  .thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+  .thumb{background:#fff;border:1px solid var(--linha);border-radius:var(--raio);overflow:hidden;box-shadow:var(--sombra-sm);display:flex;flex-direction:column}
+  .thumb img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--areia)}
+  .thumb .body{padding:.8rem .9rem 1rem}
+  .thumb .body h3{font-size:.98rem;margin:0 0 .25rem}
+  .thumb .body p{font-size:.84rem;color:var(--tinta-2);margin:0}
+  .figure{margin:0;max-width:720px}
+  .figure img{display:block;width:100%;border:1px solid var(--linha);border-radius:var(--raio-sm);background:#fff}
+  .figure figcaption{font-size:.82rem;color:var(--tinta-2);padding-top:.5rem}
+  .proporcoes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+  .proporcoes figure{margin:0}
+  .proporcoes img{display:block;width:100%;object-fit:cover;border:1px solid var(--linha);border-radius:var(--raio-sm);background:var(--areia)}
+  .r169 img{aspect-ratio:16/9} .r43 img{aspect-ratio:4/3} .r11 img{aspect-ratio:1/1}
+  .proporcoes figcaption{font-size:.78rem;color:var(--tinta-2);padding-top:.35rem}
+  .credito{font-size:.78rem;color:var(--tinta-2);margin:.55rem 0 0}
+  .credito a{color:var(--verde-2)}
+
   /* registro */
   .registro td{height:44px}
   .registro td:empty{background:repeating-linear-gradient(135deg,#fff,#fff 6px,#f4f7f5 6px,#f4f7f5 12px)}
@@ -161,8 +182,13 @@
     .demo .col{display:none}
     .demo .col:nth-child(-n+4){display:grid}
   }
+  @media (max-width:900px){
+    .split{grid-template-columns:1fr}
+    .thumbs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
   @media (max-width:680px){
     .g2,.g3{grid-template-columns:1fr}
+    .thumbs,.proporcoes{grid-template-columns:1fr}
     section{padding:2rem 0}
     .nav ul{gap:.75rem;font-size:.85rem}
   }
@@ -184,6 +210,7 @@ destino: <strong>https://enfermagem.appservice.tec.br/design-system/</strong> ·
         <li><a href="#tokens">Tokens</a></li>
         <li><a href="#componentes">Componentes</a></li>
         <li><a href="#layout">Layout</a></li>
+        <li><a href="#imagens">Imagens</a></li>
         <li><a href="#acessibilidade">Acessibilidade</a></li>
         <li><a href="#registro">Registro</a></li>
       </ul>
@@ -459,9 +486,103 @@ destino: <strong>https://enfermagem.appservice.tec.br/design-system/</strong> ·
     </div>
   </section>
 
+  <section id="imagens">
+    <div class="wrap">
+      <h2>6. Imagens em contexto</h2>
+      <p class="lead">A imagem é conteúdo do curso, não decoração. Aqui ela é observada nas
+        disposições em que vai aparecer de verdade: abertura, cartão, figura no texto e recorte por
+        proporção. Todas as imagens desta seção têm licença registrada e crédito visível.</p>
+
+      <h3 style="margin-top:1.6rem">6.1 Abertura com imagem de apoio</h3>
+      <div class="card split">
+        <div>
+          <span class="pill">Disposição A</span>
+          <h3 style="font-size:1.35rem;margin:.6rem 0 .4rem">Território e vínculo: o cuidado que começa em casa</h3>
+          <p style="font-size:.94rem;color:var(--tinta-2);margin:0 0 .8rem">Texto à esquerda e imagem
+            à direita, em 16:10. No celular a imagem desce e o texto vem primeiro: quem lê no
+            telefone começa pela informação, não pela foto.</p>
+          <div class="linha-btn" style="margin-bottom:0">
+            <button class="btn primary" type="button">Abrir a unidade</button>
+            <button class="btn ghost" type="button">Ver o mapa</button>
+          </div>
+        </div>
+        <figure class="hero-img">
+          <img src="img/acs_visita_domiciliar.jpg" width="1200" height="800" loading="lazy"
+               alt="Agente Comunitário de Saúde de costas, com colete de identificação, em visita domiciliar a um paciente acamado.">
+        </figure>
+      </div>
+      <p class="credito">Foto: Paulo H. Carvalho / Agência Brasília — CC BY 2.0, via Wikimedia Commons.</p>
+
+      <h3 style="margin-top:2rem">6.2 Cartão com miniatura</h3>
+      <p style="font-size:.92rem;color:var(--tinta-2)">Miniatura sempre em 4:3, recortada por
+        <code>object-fit: cover</code>. O texto nunca é cortado porque a imagem tem altura fixa e a
+        legenda fica fora dela.</p>
+      <div class="thumbs" style="margin-top:.9rem">
+        <article class="thumb">
+          <img src="img/ubs.jpg" width="1200" height="900" loading="lazy"
+               alt="Fachada de uma Unidade Básica de Saúde de um pavimento, com pátio pavimentado.">
+          <div class="body"><h3>Unidade Básica de Saúde</h3>
+            <p>Porta de entrada preferencial · foto de contexto brasileiro</p></div>
+        </article>
+        <article class="thumb">
+          <img src="img/sistema_esqueletico.png" width="600" height="1158" loading="lazy"
+               alt="Desenho de esqueleto humano visto de frente, com os ossos nomeados.">
+          <div class="body"><h3>Sistema esquelético</h3>
+            <p>Diagrama com rótulos · domínio público</p></div>
+        </article>
+        <article class="thumb">
+          <img src="img/fig_principios_sus.svg" width="1040" height="660" loading="lazy"
+               alt="Diagrama com princípios doutrinários e organizativos do SUS em seis cartões.">
+          <div class="body"><h3>Princípios do SUS</h3>
+            <p>Figura própria do projeto · vetorial</p></div>
+        </article>
+      </div>
+      <p class="credito">Fotos e diagramas: Túllio F (CC BY-SA 4.0) · Mariana Ruiz (domínio público) ·
+        figura própria EN_430.</p>
+
+      <h3 style="margin-top:2rem">6.3 Figura no corpo do texto</h3>
+      <p style="font-size:.92rem;color:var(--tinta-2)">Largura máxima de 720 px, legenda abaixo e
+        crédito na mesma linha. Quando a imagem tem texto próprio, a legenda <b>traduz e explica</b> —
+        a figura não substitui a informação escrita.</p>
+      <figure class="figure" style="margin-top:.9rem">
+        <img src="img/higienizacao_das_maos.png" width="1200" height="848" loading="lazy"
+             alt="Cartaz com seis etapas de fricção antisséptica das mãos, ampulheta de 30 segundos e dois alertas sobre anéis e relógio.">
+        <figcaption><b>Figura 1.</b> Fricção antisséptica em seis etapas, ≥ 30 s, sem anéis ou
+          relógio. Cartaz original em inglês; a legenda traduz as etapas. Imagem: Guido4/Hegasy,
+          CC BY-SA 4.0.</figcaption>
+      </figure>
+
+      <h3 style="margin-top:2rem">6.4 Proporção e recorte</h3>
+      <p style="font-size:.92rem;color:var(--tinta-2)">A mesma foto em três proporções. O recorte
+        muda o enquadramento, não a proporção da tela — e nunca distorce a imagem.</p>
+      <div class="proporcoes" style="margin-top:.9rem">
+        <figure class="r169">
+          <img src="img/ubs.jpg" width="1200" height="675" loading="lazy"
+               alt="Fachada de UBS recortada em proporção 16:9.">
+          <figcaption>16:9 — abertura e banner</figcaption>
+        </figure>
+        <figure class="r43">
+          <img src="img/ubs.jpg" width="1200" height="900" loading="lazy"
+               alt="Fachada de UBS recortada em proporção 4:3.">
+          <figcaption>4:3 — cartão e miniatura</figcaption>
+        </figure>
+        <figure class="r11">
+          <img src="img/ubs.jpg" width="900" height="900" loading="lazy"
+               alt="Fachada de UBS recortada em proporção quadrada.">
+          <figcaption>1:1 — avatar e lista</figcaption>
+        </figure>
+      </div>
+
+      <div class="note" style="margin-top:1.6rem"><b>Regras da imagem (RM-03 M6 · RM-04):</b>
+        toda imagem tem <code>alt</code> descritivo e crédito; texto essencial nunca fica só dentro da
+        imagem; <code>width</code>/<code>height</code> declarados para não haver salto de layout;
+        <code>loading="lazy"</code> fora da primeira dobra; nenhuma imagem sem licença registrada.</div>
+    </div>
+  </section>
+
   <section id="registro">
     <div class="wrap">
-      <h2>6. Registro de observação</h2>
+      <h2>7. Registro de observação</h2>
       <p class="lead">A página só cumpre o papel quando a observação vira decisão escrita. Cada
         linha é uma decisão sobre um componente.</p>
       <div class="tabela-scroll" style="margin-top:1rem">
@@ -478,6 +599,10 @@ destino: <strong>https://enfermagem.appservice.tec.br/design-system/</strong> ·
             <tr><td>Cartão de componente</td><td></td><td></td><td></td></tr>
             <tr><td>Tabela de desempenho</td><td></td><td></td><td></td></tr>
             <tr><td>Navegação no celular</td><td></td><td></td><td></td></tr>
+            <tr><td>Abertura com imagem (6.1)</td><td></td><td></td><td></td></tr>
+            <tr><td>Cartão com miniatura (6.2)</td><td></td><td></td><td></td></tr>
+            <tr><td>Figura com legenda e crédito (6.3)</td><td></td><td></td><td></td></tr>
+            <tr><td>Recorte por proporção (6.4)</td><td></td><td></td><td></td></tr>
           </tbody>
         </table>
       </div>
