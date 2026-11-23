@@ -11,12 +11,17 @@
 |-----------|----------|
 | [**ESTADO_ATUAL.md**](ESTADO_ATUAL.md) | **Fonte de verdade:** deploy, estrutura, números, navegação e verificações |
 | [**GOVERNANCA_PROGRESSO.md**](GOVERNANCA_PROGRESSO.md) | **Regra máxima (RM-01):** como todo progresso é medido, registrado e auditado — prevalece sobre os demais documentos |
+| [**RM-02_PRECISAO_DIDATICA_E_VERACIDADE.md**](RM-02_PRECISAO_DIDATICA_E_VERACIDADE.md) | **Regra de base imutável (RM-02):** precisão e didática obrigatórias; nenhum material é elaborado sem verificação de veracidade registrada |
+| [**RM-03_RESPONSIVIDADE.md**](RM-03_RESPONSIVIDADE.md) | **Regra de base imutável (RM-03):** responsividade como máxima garantia operacional — layout, texto e imagem se ajustam ao tamanho da tela |
+| [**RM-04_ILUSTRACAO_E_RECURSOS_VISUAIS.md**](RM-04_ILUSTRACAO_E_RECURSOS_VISUAIS.md) | **Regra de base imutável (RM-04):** ilustração obrigatória — toda matéria é elaborada com banco de imagens licenciadas, com legenda, `alt` e crédito |
 
 ## 🎓 Planejamento e currículo
 
 | Documento | Conteúdo |
 |-----------|----------|
 | [**ementa.md**](ementa.md) | **Ementa de referência do curso:** 1.200h + 600h de estágio, 4 módulos e 17 componentes |
+| [**PROGRESSO_PLANEJAMENTO.md**](planejamento/PROGRESSO_PLANEJAMENTO.md) | **Fonte de verdade do planejamento:** gates, questões abertas, plano de ação e checklist do G0-C |
+| [**INFRAESTRUTURA_NOVO_PROJETO.md**](planejamento/INFRAESTRUTURA_NOVO_PROJETO.md) | **Infraestrutura isolada do novo projeto:** ADR-001, arquitetura-alvo, provisionamento, backup e critérios do G0-C |
 | [**PRD_APOIO_FORMACAO_TECNICA_ENFERMAGEM.md**](planejamento/PRD_APOIO_FORMACAO_TECNICA_ENFERMAGEM.md) | **PRD:** visão de produto, limites legais, personas, requisitos, roadmap e critérios de aceite |
 | [**EXPANSAO_CURSO_TECNICO_ENFERMAGEM.md**](planejamento/EXPANSAO_CURSO_TECNICO_ENFERMAGEM.md) | **Plano de expansão:** diagnóstico, arquitetura-alvo, matriz de cobertura, roadmap e riscos |
 | [**PLANEJAMENTO_FORMULARIO_COLABORADORES.md**](planejamento/PLANEJAMENTO_FORMULARIO_COLABORADORES.md) | **Formulário de colaboradores:** campos, fluxo de triagem, geração do termo, modelo de dados e painel de conformidade |
@@ -55,6 +60,7 @@
 | [AUDITORIA_PROJETO_ENFERMAGEM.md](auditorias/AUDITORIA_PROJETO_ENFERMAGEM.md) | Auditoria técnica: arquitetura, segurança, testes, banco |
 | [RELATORIO_EVOLUCAO.md](auditorias/RELATORIO_EVOLUCAO.md) | Evolução do projeto, métricas e cobertura |
 | [RELATORIO_SEGURANCA_STACK_2026-11-22.md](auditorias/RELATORIO_SEGURANCA_STACK_2026-11-22.md) | **Segurança do stack:** CVEs de PHP/Apache de nov/2026, hardening do runtime e riscos residuais |
+| [AUDITORIA_ARTEFATOS_PESQUISA_2026-11-23.md](auditorias/AUDITORIA_ARTEFATOS_PESQUISA_2026-11-23.md) | **Artefatos de pesquisa:** 21 fichas verificadas, 7 achados e 1 correção |
 
 ## 🗂️ Referências e arquivo
 
@@ -79,6 +85,9 @@
 | **Versionamento** | `master` com commits convencionais (`feat:`, `fix:`, `docs:`, `chore:`) |
 | **Qualidade** | PHPUnit em `sistema_avaliacao/php/tests`; verificação de links com `scripts/verificar_links.py` |
 | **Progresso** | Toda declaração de avanço segue a [RM-01](GOVERNANCA_PROGRESSO.md): evidência, fonte de verdade por domínio, registro no mesmo commit e histórico imutável |
+| **Conteúdo didático** | Todo material segue a [RM-02](RM-02_PRECISAO_DIDATICA_E_VERACIDADE.md): fonte primária conferida e datada, didática verificável e revisão humana antes de publicar |
+| **Interface** | Toda tela segue a [RM-03](RM-03_RESPONSIVIDADE.md): responsiva nas 8 larguras de teste, sem rolagem horizontal e com evidência registrada |
+| **Ilustração** | Toda matéria segue a [RM-04](RM-04_ILUSTRACAO_E_RECURSOS_VISUAIS.md): banco de imagens licenciadas, legenda didática e `alt`, sem hotlink e sem figura sem licença |
 
 ### Repositórios independentes
 

@@ -1,8 +1,8 @@
 # 📘 PRD — Programa de Apoio à Formação Técnica em Enfermagem
 
 **Status:** draft para aprovação da direção
-**Versão:** 1.0
-**Data:** 2026-11-21
+**Versão:** 1.1
+**Data:** 2026-11-21 · **Revisão:** 2026-11-23
 **Owner:** Direção do projeto
 **Produto:** plataforma de estudo, prática e evidências para apoio ao curso Técnico em Enfermagem
 **Documentos relacionados:** [`ementa.md`](../ementa.md) · [`EXPANSAO_CURSO_TECNICO_ENFERMAGEM.md`](EXPANSAO_CURSO_TECNICO_ENFERMAGEM.md)
@@ -19,6 +19,7 @@
 | Versão | Data | Autor | Alteração |
 |:------:|------|-------|-----------|
 | 1.0 | 2026-11-21 | Direção do projeto | Primeira versão consolidada, com verificação de fontes oficiais |
+| 1.1 | 2026-11-23 | Direção + tech lead | Roadmap reconciliado com o plano de expansão (A3): fonte única em `PROGRESSO_PLANEJAMENTO.md` §6; KPI de confiabilidade corrigido para ômega de McDonald (D1) |
 
 **Aprovações necessárias:** Direção · Coordenação pedagógica · Enfermeiro responsável técnico · DPO/ Jurídico · Tech lead.
 
@@ -874,23 +875,26 @@ qualidade, logs, revisão por amostragem, opt-out e contrato com o provedor.
 
 ## 18. Roadmap e releases
 
+> **Fonte única de escopo e prazo:** [`PROGRESSO_PLANEJAMENTO.md`](PROGRESSO_PLANEJAMENTO.md) §6.
+> Esta seção detalha o escopo do PRD e aponta para a tabela canônica; não mantém prazos próprios
+> divergentes. O plano de expansão é a fonte da arquitetura.
+
 ### 18.1 Fases
 
 | Fase | Duração | Escopo | Critério de saída |
 |------|:-------:|--------|-------------------|
 | **0. Fundação** | 4 semanas | Governança, PPC, jurídico, taxonomia, padrões, baseline, ADR | Matriz e disclaimers aprovados; donos nomeados |
 | **MVP** | 12 semanas | Fundamentos, Farmacologia, Biossegurança, Ética; 1.100 itens; diagnóstico/formativa; PWA; autoria; LGPD/ACESS. básica | 4 componentes publicados; 100% itens revisados; WCAG nas telas críticas |
-| **R1** | 12 semanas | + Anatomia, SUS, Clínica Médica; 2.000 itens; somativa/simulados; checklists de estágio (piloto); analytics; SSO | 7 componentes; KR-20 ≥ 0,70 no piloto; 2 campos de estágio |
+| **R1** | 12 semanas | + Anatomia, SUS, Clínica Médica; 2.000 itens; somativa/simulados; checklists de estágio (piloto); analytics; SSO | 7 componentes; confiabilidade (ômega de McDonald) ≥ 0,70 no piloto; 2 campos de estágio |
 | **R2** | 16 semanas | + 10 componentes; 4.400 itens; OSCE/portfólio; adaptativo; IA beta; Libras; relatórios completos | 17/17 componentes; 4.400 itens; auditoria de acessibilidade |
 | **R3. Operação** | contínuo | Norm watch, psicometria, revisões, suporte, expansão | Revisão semestral e SLA |
 
 **Total:** ~44 semanas (~11 meses), com conteúdo como caminho crítico.
 
-> **Relação com o plano técnico:** este PRD refina o recorte de releases. O plano mantém a
-> arquitetura, a matriz e o roadmap macro; aqui o MVP é reduzido a 4 componentes para validar
-> pedagogia e o R1 incorpora Clínica Médica (7 no total). Se a direção preferir o recorte
-> original de 6 componentes, basta mover Clínica Médica para o R2 — o modelo de dados e o
-> produto não mudam.
+> **Relação com o plano técnico (reconciliada em 2026-11-23):** o MVP tem **4 componentes** para
+> validar a pedagogia; o R1 incorpora Clínica Médica e chega a 7. O recorte de 6 componentes e as
+> 46 semanas do plano anterior foram substituídos pela tabela única de `PROGRESSO_PLANEJAMENTO.md`
+> §6 (44 semanas). O plano mantém a arquitetura e a matriz, não um roadmap paralelo.
 
 ### 18.2 Entregas por release
 
@@ -947,7 +951,7 @@ O conteúdo é o maior e mais crítico custo.
 
 - **G0:** PPC/ementa e disclaimers aprovados; base legal revisada.
 - **G1:** MVP com 4 componentes e 1.100 itens revisados; teste com 1 turma.
-- **G2:** R1 com 7 componentes e 2.000 itens; KR-20 ≥ 0,70; 2 campos de estágio.
+- **G2:** R1 com 7 componentes e 2.000 itens; confiabilidade (ômega de McDonald) ≥ 0,70; 2 campos de estágio.
 - **G3:** R2 com 17 componentes e 4.400 itens; auditoria de acessibilidade; plano de sustentação.
 
 ---

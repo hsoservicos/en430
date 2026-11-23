@@ -8,7 +8,7 @@
 | Prioridade | Alta |
 | Cobertura atual no projeto | 🟡 parcial (conteúdo do módulo 6 do banco atual) |
 | Pré-requisitos | 02 (Microbiologia, em paralelo) |
-| Status | ⬜ Não iniciado |
+| Status | 🟪 Em revisão (artefatos produzidos; validação humana pendente) |
 
 ## 1. Escopo na ementa
 
@@ -53,26 +53,33 @@ edição e data. Reaproveita Fundamentos e alimenta CME, UTI e todos os estágio
 
 ## 5. Entregáveis
 
-- [ ] `fontes/README.md` — normas com número, órgão, data e link.
-- [ ] `artefatos/ficha_materia.md`
-- [ ] `artefatos/mapa_unidades.md`
-- [ ] `artefatos/matriz_competencias.md`
-- [ ] `artefatos/proposta_itens.md` — 200 itens, com peso alto para normas.
-- [ ] `artefatos/proposta_materiais.md` — checklists de paramentação e higiene de mãos.
+- [x] `fontes/README.md` — 20 fontes com órgão, data, **status de vigência** e link (consulta 2026-11-23).
+- [x] `artefatos/ficha_materia.md`
+- [x] `artefatos/mapa_unidades.md`
+- [x] `artefatos/matriz_competencias.md`
+- [x] `artefatos/proposta_itens.md` — 200 itens especificados (37% aplicação/análise).
+- [x] `artefatos/proposta_materiais.md` — checklists de paramentação e higiene de mãos.
+- [x] `validacao/README.md` — pacote de revisão técnica e pedagógica (7 arquivos, 782 linhas).
+- [x] `imagens/README.md` — banco de imagens com 6 imagens (6 imagens; contexto internacional declarado); licenças, legendas, `alt` e lacunas (RM-04).
 
 ## 6. Critérios de conclusão
 
-- [ ] 10 unidades mapeadas e ampliadas.
-- [ ] Toda afirmação normativa citada com número, órgão e data.
-- [ ] Objetivos observáveis por unidade.
-- [ ] Competências e pré-requisitos declarados.
-- [ ] 200 itens-alvo especificados.
-- [ ] Materiais e recursos indicados.
-- [ ] Riscos de desatualização anotados (norm watch).
-- [ ] Registro e `PROGRESSO.md` atualizados.
+- [x] 10 unidades mapeadas e ampliadas.
+- [x] Toda afirmação normativa citada com número, órgão, data e status de vigência.
+- [x] Objetivos observáveis por unidade.
+- [x] Competências e pré-requisitos declarados.
+- [x] 200 itens-alvo especificados.
+- [x] Materiais e recursos indicados.
+- [x] Riscos de desatualização anotados (norm watch).
+- [x] Registro e `PROGRESSO.md` atualizados.
+- [x] Banco de imagens criado e licenciado (RM-04).
+- [ ] Validação por enfermeiro e educador (pendente — RM-01 §6).
 
 ## 7. Registro de execução
 
 | Data | Etapa | Resultado |
 |------|-------|-----------|
 | 2026-11-21 | Ficha criada | Escopo proposto; aguardando confirmação para iniciar a pesquisa |
+| 2026-11-23 | Pesquisa | 6 entregáveis produzidos (fontes + 5 artefatos); 20 fontes registradas com status de vigência (consulta 2026-11-23); status 🟪 |
+| 2026-11-23 | Norm watch | Portaria 2.616/1998 em revisão (CP 1.371/2025); RDC 15/2012 em revisão (CP 1.420/2026 e 1.422/2026); NR-32 em ARR (2026) — nenhuma revogada até a data |
+| 2026-11-23 | Ilustração | Banco de imagens criado com 6 imagens (6 imagens; contexto internacional declarado); manifesto com inventário, uso pedagógico, restrições e lacunas (RM-04) |

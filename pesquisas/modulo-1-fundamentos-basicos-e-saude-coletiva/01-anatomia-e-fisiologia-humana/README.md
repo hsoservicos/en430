@@ -67,6 +67,7 @@ não anatomia descritiva exaustiva de nível superior.
 - [x] `artefatos/proposta_itens.md` — 300 itens por unidade, tipo, Bloom e dificuldade.
 - [x] `artefatos/proposta_materiais.md` — 6 materiais especificados.
 - [x] `artefatos/revisao_tecnica_pedagogica.md` — 16 achados, 15 corrigidos, 1 registrado.
+- [x] `imagens/README.md` — banco de imagens com 8 imagens (8 imagens de acervo licenciado; rótulos em inglês traduzidos na legenda); licenças, legendas, `alt` e lacunas (RM-04).
 
 ## 6. Critérios de conclusão
 
@@ -79,6 +80,7 @@ não anatomia descritiva exaustiva de nível superior.
 - [x] Riscos de desatualização anotados.
 - [x] Registro e `PROGRESSO.md` atualizados.
 - [x] Pré-revisão assistida (técnica e pedagógica) concluída.
+- [x] Banco de imagens criado e licenciado (RM-04).
 - [ ] Validação final por enfermeiro com registro ativo e por educador — bloqueia o status ✅.
 
 ## 7. Registro de execução
@@ -91,6 +93,7 @@ não anatomia descritiva exaustiva de nível superior.
 | 2026-11-21 | Pré-revisão assistida | 16 achados: 5 altos, 7 médios, 4 baixos; 15 corrigidos e 1 registrado como pendência |
 | 2026-11-21 | Correção de registro | A linha "Pesquisa concluída" registrou 16 fontes; o correto é **18** (F1–F18), conforme `fontes/README.md` |
 | 2026-11-21 | Pacote de validação | `validacao/README.md` preparado para envio ao professor validador; envio pendente de designação; prazo do parecer 2026-12-06 |
+| 2026-11-23 | Ilustração | Banco de imagens criado com 8 imagens (8 imagens de acervo licenciado; rótulos em inglês traduzidos na legenda); manifesto com inventário, uso pedagógico, restrições e lacunas (RM-04) |
 
 ### Pendências abertas
 

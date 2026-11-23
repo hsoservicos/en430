@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 620" role="img" aria-labelledby="t d" width="1040" height="620">
+  <title id="t">Os cinco momentos da higiene das mãos</title>
+  <desc id="d">Cinco situações em que a higiene das mãos é obrigatória, numeradas de 1 a 5, com a indicação de antes e depois do contato com o paciente.</desc>
+  <rect width="1040" height="620" fill="#f8fafc"/>
+  <text x="520" y="46" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="27" font-weight="700" fill="#0f172a">Os cinco momentos da higiene das mãos</text>
+  <text x="520" y="74" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#475569">Figura própria do projeto · base: diretriz OMS/ANVISA · RM-04</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="40" y="120" width="180" height="230" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+    <circle cx="130" cy="170" r="26" fill="#0d4f45"/>
+    <text x="130" y="179" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">1</text>
+    <text x="130" y="222" text-anchor="middle" font-size="15" font-weight="700" fill="#16211f">Antes de</text>
+    <text x="130" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#16211f">tocar</text>
+    <text x="130" y="262" text-anchor="middle" font-size="15" font-weight="700" fill="#16211f">o paciente</text>
+    <text x="130" y="296" text-anchor="middle" font-size="12" fill="#475569">ex.: cumprimentar,</text>
+    <text x="130" y="314" text-anchor="middle" font-size="12" fill="#475569">posicionar, examinar</text>
+
+    <rect x="235" y="120" width="180" height="230" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+    <circle cx="325" cy="170" r="26" fill="#0d4f45"/>
+    <text x="325" y="179" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">2</text>
+    <text x="325" y="222" text-anchor="middle" font-size="15" font-weight="700" fill="#16211f">Antes de</text>
+    <text x="325" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#16211f">procedimento</text>
+    <text x="325" y="262" text-anchor="middle" font-size="15" font-weight="700" fill="#16211f">asséptico</text>
+    <text x="325" y="296" text-anchor="middle" font-size="12" fill="#475569">ex.: acesso, curativo,</text>
+    <text x="325" y="314" text-anchor="middle" font-size="12" fill="#475569">medicação, cateter</text>
+
+    <rect x="430" y="120" width="180" height="230" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+    <circle cx="520" cy="170" r="26" fill="#b45309"/>
+    <text x="520" y="179" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">3</text>
+    <text x="520" y="222" text-anchor="middle" font-size="15" font-weight="700" fill="#16211f">Após risco de</text>
+    <text x="520" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#16211f">exposição a</text>
+    <text x="520" y="262" text-anchor="middle" font-size="15" font-weight="700" fill="#16211f">fluidos</text>
+    <text x="520" y="296" text-anchor="middle" font-size="12" fill="#475569">ex.: sangue, urina,</text>
+    <text x="520" y="314" text-anchor="middle" font-size="12" fill="#475569">secreção, vômito</text>
+
+    <rect x="625" y="120" width="180" height="230" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+    <circle cx="715" cy="170" r="26" fill="#0d4f45"/>
+    <text x="715" y="179" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">4</text>
+    <text x="715" y="222" text-anchor="middle" font-size="15" font-weight="700" fill="#16211f">Após tocar</text>
+    <text x="715" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#16211f">o paciente</text>
+    <text x="715" y="296" text-anchor="middle" font-size="12" fill="#475569">ex.: ao sair do</text>
+    <text x="715" y="314" text-anchor="middle" font-size="12" fill="#475569">leito ou da cadeira</text>
+
+    <rect x="820" y="120" width="180" height="230" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+    <circle cx="910" cy="170" r="26" fill="#0d4f45"/>
+    <text x="910" y="179" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">5</text>
+    <text x="910" y="222" text-anchor="middle" font-size="15" font-weight="700" fill="#16211f">Após tocar</text>
+    <text x="910" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#16211f">superfícies</text>
+    <text x="910" y="262" text-anchor="middle" font-size="15" font-weight="700" fill="#16211f">próximas</text>
+    <text x="910" y="296" text-anchor="middle" font-size="12" fill="#475569">ex.: grade, mesa,</text>
+    <text x="910" y="314" text-anchor="middle" font-size="12" fill="#475569">bomba, prontuário</text>
+  </g>
+
+  <g stroke="#94a3b8" stroke-width="2" fill="none">
+    <path d="M220 235 H235"/><path d="M415 235 H430"/><path d="M610 235 H625"/><path d="M805 235 H820"/>
+  </g>
+
+  <rect x="40" y="392" width="960" height="150" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+  <rect x="40" y="392" width="8" height="150" rx="4" fill="#0d4f45"/>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <text x="70" y="424" font-size="17" font-weight="700" fill="#0f172a">A regra é simples: os momentos 1 e 4 são o par do contato; 2 e 3, o par do procedimento.</text>
+    <text x="70" y="454" font-size="14" fill="#334155">• Os cinco momentos valem para <tspan font-weight="700">fricção com preparação alcoólica</tspan> (mãos visivelmente limpas) e para água e sabão.</text>
+    <text x="70" y="478" font-size="14" fill="#334155">• Antes do momento 2, a preparação alcoólica substitui a água e sabão; se houver sujidade visível, lave com água e sabão.</text>
+    <text x="70" y="502" font-size="14" fill="#334155">• Retire anéis, relógio e pulseiras; unhas curtas, sem esmalte ou unha postiça. Duração da fricção: <tspan font-weight="700">≥ 30 segundos</tspan>.</text>
+    <text x="70" y="526" font-size="13" fill="#b45309" font-weight="600">Figura didática: ilustra a sequência. A norma aplicável é a diretriz vigente da OMS/ANVISA e o protocolo da instituição.</text>
+  </g>
+</svg>

@@ -8,7 +8,7 @@
 | Prioridade | Alta |
 | Cobertura atual no projeto | 🟡 parcial (conteúdo do módulo 10 do banco atual) |
 | Pré-requisitos | Nenhum |
-| Status | ⬜ Não iniciado |
+| Status | 🟪 Em revisão (artefatos produzidos; validação humana pendente) |
 
 ## 1. Escopo na ementa
 
@@ -54,26 +54,32 @@ publicação. Todo o conteúdo precisa indicar versão e data.
 
 ## 5. Entregáveis
 
-- [ ] `fontes/README.md` — normas com versão, data e link.
-- [ ] `artefatos/ficha_materia.md`
-- [ ] `artefatos/mapa_unidades.md`
-- [ ] `artefatos/matriz_competencias.md`
-- [ ] `artefatos/proposta_itens.md` — 200 itens, com casos éticos fictícios.
-- [ ] `artefatos/proposta_materiais.md`
+- [x] `fontes/README.md` — 22 fontes com órgão, versão, **status de vigência** e link (consulta 2026-11-23).
+- [x] `artefatos/ficha_materia.md`
+- [x] `artefatos/mapa_unidades.md`
+- [x] `artefatos/matriz_competencias.md`
+- [x] `artefatos/proposta_itens.md` — 200 itens especificados (37,5% aplicação/análise).
+- [x] `artefatos/proposta_materiais.md` — matriz de atribuições e roteiro de recusa ética.
+- [x] `imagens/README.md` — banco de imagens com 4 imagens (3 de acervo licenciado + 1 figura própria); licenças, legendas, `alt` e lacunas (RM-04).
 
 ## 6. Critérios de conclusão
 
-- [ ] 10 unidades mapeadas e ampliadas.
-- [ ] Código de Ética citado com versão e data de consulta.
-- [ ] Objetivos observáveis por unidade.
-- [ ] Competências e pré-requisitos declarados.
-- [ ] 200 itens-alvo especificados.
-- [ ] Materiais e recursos indicados.
-- [ ] Riscos de desatualização anotados (transição do CEPE).
-- [ ] Registro e `PROGRESSO.md` atualizados.
+- [x] 10 unidades mapeadas e ampliadas.
+- [x] Código de Ética citado com versão e data de consulta.
+- [x] Objetivos observáveis por unidade.
+- [x] Competências e pré-requisitos declarados.
+- [x] 200 itens-alvo especificados.
+- [x] Materiais e recursos indicados.
+- [x] Riscos de desatualização anotados (transição do CEPE).
+- [x] Registro e `PROGRESSO.md` atualizados.
+- [x] Banco de imagens criado e licenciado (RM-04).
+- [ ] Validação por enfermeiro e educador (pendente — RM-01 §6).
 
 ## 7. Registro de execução
 
 | Data | Etapa | Resultado |
 |------|-------|-----------|
 | 2026-11-21 | Ficha criada | Escopo proposto; aguardando confirmação para iniciar a pesquisa |
+| 2026-11-23 | Pesquisa | 6 entregáveis produzidos (fontes + 5 artefatos); 22 fontes com status de vigência (consulta 2026-11-23); status 🟪 |
+| 2026-11-23 | Norm watch | CEPE 564/2017 vigente; minuta do novo Código aprovada em 19/03/2026, com vacatio de 120 dias após publicação no DOU — publicação não localizada até esta data |
+| 2026-11-23 | Ilustração | Banco de imagens criado com 4 imagens (3 de acervo licenciado + 1 figura própria); manifesto com inventário, uso pedagógico, restrições e lacunas (RM-04) |

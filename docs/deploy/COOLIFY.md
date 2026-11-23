@@ -18,7 +18,7 @@ real da instância Coolify (`servitec-local`, v4.3.14) capturada em novembro de 
 | **Domínio** | `https://en430.appservice.tec.br` (HTTPS forçado) |
 | **Materiais** | `https://en430.appservice.tec.br/materiais/html/index_estudos.html` |
 | **Health check** | `GET /` · HTTP 200 · intervalo 5s |
-| **Auto-deploy** | Habilitado (push na `master`) |
+| **Auto-deploy** | **Desabilitado desde 2026-11-23** — EN_430 estacionado; publicação só por deploy manual |
 | **Status** | `running:healthy` |
 | **Última publicação** | 2026-11-21 (branch `master`) |
 | **Materiais de estudo** | `/materiais/html/index_estudos.html` (HTML) e `/materiais/pdf/` |
@@ -225,7 +225,7 @@ data da última execução.
 | 404 em rotas | `mod_rewrite`/`.htaccess` inativo | Confirme `a2enmod rewrite` e `AllowOverride All` |
 | Login quebrado após deploy | `SECRET_KEY` alterada | Mantenha a mesma chave entre deploys |
 | `admin` inacessível | `ADMIN_SECRET` padrão | Defina a variável e redeploy |
-| Imagem não atualiza | Auto-deploy desligado | `coolify deploy uuid <uuid>` |
+| Imagem não atualiza | Auto-deploy desligado (esperado desde 2026-11-23) | Publicação consciente: `coolify deploy uuid 2iweyqxekxmminhiwgyv5bvk` |
 
 ---
 
@@ -240,3 +240,4 @@ data da última execução.
 | 2026-11 | Materiais de estudo incluídos no build e servidos em `/materiais/` |
 | 2026-11 | Botões de navegação estudo ↔ avaliação e retorno no login |
 | 2026-11 | Varredura Trivy da imagem no GitHub Actions (push/PR + semanal) |
+| 2026-11-23 | Auto-deploy desabilitado no app `2iweyqxekxmminhiwgyv5bvk`; EN_430 fica estacionado, sem deploy automático, e segue `running:healthy` |

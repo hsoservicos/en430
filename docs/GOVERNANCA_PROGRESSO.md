@@ -1,6 +1,6 @@
 # ⚖️ RM-01 — Regra Máxima de Gestão, Controle e Auditoria do Progresso
 
-**Status:** vigente · **Versão:** 1.0 · **Vigência:** imediata a partir de **2026-11-21**
+**Status:** vigente · **Versão:** 1.1 · **Vigência:** imediata a partir de **2026-11-21** (emenda de **2026-11-23**)
 **Aprovação:** decisão da direção do projeto
 **Abrangência:** todo o repositório — código, conteúdo, documentação, pesquisa, deploy e operação
 
@@ -50,6 +50,7 @@ abrir item de auditoria.
 |---------|----------------------|----------------|---------------------------|
 | **Produto, repositório, deploy, números do sistema** | [`docs/ESTADO_ATUAL.md`](ESTADO_ATUAL.md) | URLs, versão publicada, estrutura, contagens verificadas, verificações executadas | Tech lead |
 | **Pesquisa e conteúdo curricular** | [`pesquisas/PROGRESSO.md`](../pesquisas/PROGRESSO.md) | Status por matéria/campo, artefatos, pendências, histórico | Responsável de conteúdo |
+| **Planejamento da reformulação** | [`docs/planejamento/PROGRESSO_PLANEJAMENTO.md`](planejamento/PROGRESSO_PLANEJAMENTO.md) | Gates, questões abertas, plano de ação, checklist de infraestrutura, histórico | Tech lead |
 | **Matéria individual** | `pesquisas/<módulo>/<matéria>/README.md` | Escopo, entregáveis, critérios e registro de execução | Autor da pesquisa |
 | **Histórico de versões do produto** | [`CHANGELOG.md`](../CHANGELOG.md) | Mudanças notáveis por versão, no padrão Keep a Changelog | Tech lead |
 | **Regras de trabalho e padrões** | [`docs/README.md`](README.md) | Índice, padrões do repositório e convenções | Direção |
@@ -236,6 +237,7 @@ Na data de vigência, esta regra já se aplica a:
 
 - `docs/ESTADO_ATUAL.md` — estado do produto e números do sistema;
 - `pesquisas/PROGRESSO.md` — 17 matérias + 4 campos de estágio;
+- `docs/planejamento/PROGRESSO_PLANEJAMENTO.md` — gates, questões abertas e plano de ação;
 - fichas de matéria em `pesquisas/**/README.md`;
 - `CHANGELOG.md` — histórico de versões.
 
@@ -248,3 +250,4 @@ Na data de vigência, esta regra já se aplica a:
 | Versão | Data | Autor | Alteração |
 |:------:|------|-------|-----------|
 | 1.0 | 2026-11-21 | Direção do projeto | Criação da regra máxima de progresso (RM-01) |
+| 1.1 | 2026-11-23 | Direção do projeto | Emenda A1 da auditoria do planejamento: domínio "planejamento" incluído em §3 e §15, com fonte de verdade em `PROGRESSO_PLANEJAMENTO.md` |

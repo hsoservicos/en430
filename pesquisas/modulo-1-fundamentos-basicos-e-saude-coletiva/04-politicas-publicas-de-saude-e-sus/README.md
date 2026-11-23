@@ -8,7 +8,7 @@
 | Prioridade | Alta |
 | Cobertura atual no projeto | 🔴 inexistente |
 | Pré-requisitos | Nenhum |
-| Status | ⬜ Não iniciado |
+| Status | 🟪 Em revisão (artefatos produzidos; validação humana pendente) |
 
 ## 1. Escopo na ementa
 
@@ -52,26 +52,33 @@ portarias, programas e financiamento) e simplificação que distorça o texto le
 
 ## 5. Entregáveis
 
-- [ ] `fontes/README.md` — legislação com data de consulta e link oficial.
-- [ ] `artefatos/ficha_materia.md`
-- [ ] `artefatos/mapa_unidades.md`
-- [ ] `artefatos/matriz_competencias.md`
-- [ ] `artefatos/proposta_itens.md` — 250 itens, com casos de aplicação do SUS.
-- [ ] `artefatos/proposta_materiais.md` — linha do tempo e mapa das redes.
+- [x] `fontes/README.md` — 24 fontes com órgão, data, **status de vigência** e link (consulta 2026-11-23).
+- [x] `artefatos/ficha_materia.md`
+- [x] `artefatos/mapa_unidades.md`
+- [x] `artefatos/matriz_competencias.md`
+- [x] `artefatos/proposta_itens.md` — 250 itens especificados (38% aplicação/análise).
+- [x] `artefatos/proposta_materiais.md` — linha do tempo, mapa das redes e checklist de notificação.
+- [x] `validacao/README.md` — pacote de revisão técnica e pedagógica (7 arquivos, 844 linhas).
+- [x] `imagens/README.md` — banco de imagens com 5 imagens (5 fotos de contexto brasileiro); licenças, legendas, `alt` e lacunas (RM-04).
 
 ## 6. Critérios de conclusão
 
-- [ ] 10 unidades mapeadas e ampliadas.
-- [ ] Legislação citada com data de consulta e fonte oficial.
-- [ ] Objetivos observáveis por unidade.
-- [ ] Competências e pré-requisitos declarados.
-- [ ] 250 itens-alvo especificados.
-- [ ] Materiais e recursos indicados.
-- [ ] Riscos de desatualização anotados (norm watch).
-- [ ] Registro e `PROGRESSO.md` atualizados.
+- [x] 10 unidades mapeadas e ampliadas.
+- [x] Legislação citada com data de consulta, fonte oficial e status de vigência.
+- [x] Objetivos observáveis por unidade.
+- [x] Competências e pré-requisitos declarados.
+- [x] 250 itens-alvo especificados.
+- [x] Materiais e recursos indicados.
+- [x] Riscos de desatualização anotados (norm watch).
+- [x] Registro e `PROGRESSO.md` atualizados.
+- [x] Banco de imagens criado e licenciado (RM-04).
+- [ ] Validação por enfermeiro e educador (pendente — RM-01 §6).
 
 ## 7. Registro de execução
 
 | Data | Etapa | Resultado |
 |------|-------|-----------|
 | 2026-11-21 | Ficha criada | Escopo proposto; aguardando confirmação para iniciar a pesquisa |
+| 2026-11-23 | Pesquisa | 6 entregáveis produzidos (fontes + 5 artefatos); 24 fontes com status de vigência (consulta 2026-11-23); status 🟪 |
+| 2026-11-23 | Norm watch | Previne Brasil substituído pela Portaria 3.493/2024 (alterada pela 7.799/2025; transição pela 10.994/2026); PNAB 2017 vigente com nova PNAB em debate; lista de notificação atualizada até a Portaria 12.508/2026 |
+| 2026-11-23 | Ilustração | Banco de imagens criado com 5 imagens (5 fotos de contexto brasileiro); manifesto com inventário, uso pedagógico, restrições e lacunas (RM-04) |

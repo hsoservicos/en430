@@ -107,6 +107,7 @@ para montar a agenda.
 
 - [ ] Todo material tem fonte e data de revisão.
 - [ ] Toda figura tem licença registrada e `alt`.
+- [ ] Banco `imagens/` usado, creditado e sem figura fora do manifesto (RM-04).
 - [ ] Nenhum material usa dados reais de paciente.
 - [ ] Linguagem verificada para leitura por estudante de nível médio.
 - [ ] Versão acessível (HTML) além do PDF.

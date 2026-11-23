@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 660" role="img" aria-labelledby="t d" width="1040" height="660">
+  <title id="t">Princípios do SUS: doutrinários e organizativos</title>
+  <desc id="d">Três princípios doutrinários — universalidade, integralidade e equidade — e três organizativos — descentralização, regionalização e hierarquização, participação social — com uma pergunta de verificação para cada um.</desc>
+  <rect width="1040" height="660" fill="#f8fafc"/>
+  <text x="520" y="46" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="27" font-weight="700" fill="#0f172a">Princípios do SUS</text>
+  <text x="520" y="74" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#475569">Leitura didática a partir da Lei 8.080/1990, art. 7º · figura própria do projeto · RM-04</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <!-- doutrinarios -->
+    <rect x="40" y="100" width="960" height="34" rx="8" fill="#0d4f45"/>
+    <text x="60" y="123" font-size="15" font-weight="700" fill="#ffffff">DOUTRINÁRIOS — o que o SUS deve garantir a cada pessoa</text>
+
+    <rect x="40" y="146" width="306" height="190" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect x="40" y="146" width="8" height="190" rx="4" fill="#0d4f45"/>
+    <text x="66" y="178" font-size="18" font-weight="700" fill="#0f172a">Universalidade</text>
+    <text x="66" y="204" font-size="13" fill="#334155">Saúde é direito de todos e dever do Estado.</text>
+    <text x="66" y="232" font-size="13" font-weight="700" fill="#0d4f45">Pergunta de verificação:</text>
+    <text x="66" y="252" font-size="13" fill="#334155">quem fica de fora? Se alguém fica,</text>
+    <text x="66" y="270" font-size="13" fill="#334155">não é universal.</text>
+    <text x="66" y="306" font-size="12" fill="#64748b">Exemplo: não exigir pagamento,</text>
+    <text x="66" y="322" font-size="12" fill="#64748b">plano ou comprovante de residência.</text>
+
+    <rect x="367" y="146" width="306" height="190" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect x="367" y="146" width="8" height="190" rx="4" fill="#0d4f45"/>
+    <text x="393" y="178" font-size="18" font-weight="700" fill="#0f172a">Integralidade</text>
+    <text x="393" y="204" font-size="13" fill="#334155">Cuidado do começo ao fim: promoção,</text>
+    <text x="393" y="222" font-size="13" fill="#334155">prevenção, tratamento e reabilitação.</text>
+    <text x="393" y="250" font-size="13" font-weight="700" fill="#0d4f45">Pergunta de verificação:</text>
+    <text x="393" y="270" font-size="13" fill="#334155">o cuidado para no meio do caminho?</text>
+    <text x="393" y="306" font-size="12" fill="#64748b">Exemplo: quem trata também</text>
+    <text x="393" y="322" font-size="12" fill="#64748b">acompanha e encaminha com retorno.</text>
+
+    <rect x="694" y="146" width="306" height="190" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect x="694" y="146" width="8" height="190" rx="4" fill="#0d4f45"/>
+    <text x="720" y="178" font-size="18" font-weight="700" fill="#0f172a">Equidade</text>
+    <text x="720" y="204" font-size="13" fill="#334155">Tratar diferente quem tem</text>
+    <text x="720" y="222" font-size="13" fill="#334155">necessidades diferentes.</text>
+    <text x="720" y="250" font-size="13" font-weight="700" fill="#0d4f45">Pergunta de verificação:</text>
+    <text x="720" y="270" font-size="13" fill="#334155">a oferta alcança quem mais precisa?</text>
+    <text x="720" y="306" font-size="12" fill="#64748b">Exemplo: horário e transporte</text>
+    <text x="720" y="322" font-size="12" fill="#64748b">pensados para quem trabalha.</text>
+
+    <!-- organizativos -->
+    <rect x="40" y="368" width="960" height="34" rx="8" fill="#11695b"/>
+    <text x="60" y="391" font-size="15" font-weight="700" fill="#ffffff">ORGANIZATIVOS — como o sistema se organiza para cumprir os princípios</text>
+
+    <rect x="40" y="414" width="306" height="166" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect x="40" y="414" width="8" height="166" rx="4" fill="#11695b"/>
+    <text x="66" y="446" font-size="16" font-weight="700" fill="#0f172a">Descentralização</text>
+    <text x="66" y="472" font-size="13" fill="#334155">Gestão mais perto do cidadão, com</text>
+    <text x="66" y="490" font-size="13" fill="#334155">direção única em cada esfera.</text>
+    <text x="66" y="522" font-size="12" fill="#64748b">Município executa; estado e União</text>
+    <text x="66" y="540" font-size="12" fill="#64748b">coordenam e financiam.</text>
+
+    <rect x="367" y="414" width="306" height="166" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect x="367" y="414" width="8" height="166" rx="4" fill="#11695b"/>
+    <text x="393" y="446" font-size="15" font-weight="700" fill="#0f172a">Regionalização e hierarquização</text>
+    <text x="393" y="472" font-size="13" fill="#334155">Serviços organizados por região e</text>
+    <text x="393" y="490" font-size="13" fill="#334155">por complexidade crescente.</text>
+    <text x="393" y="522" font-size="12" fill="#64748b">APS coordena o caminho até a</text>
+    <text x="393" y="540" font-size="12" fill="#64748b">média e a alta complexidade.</text>
+
+    <rect x="694" y="414" width="306" height="166" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect x="694" y="414" width="8" height="166" rx="4" fill="#11695b"/>
+    <text x="720" y="446" font-size="16" font-weight="700" fill="#0f172a">Participação social</text>
+    <text x="720" y="472" font-size="13" fill="#334155">Conselhos e conferências com</text>
+    <text x="720" y="490" font-size="13" fill="#334155">poder de deliberar e fiscalizar.</text>
+    <text x="720" y="522" font-size="12" fill="#64748b">Metade dos membros: usuários</text>
+    <text x="720" y="540" font-size="12" fill="#64748b">(Lei 8.142/1990).</text>
+
+    <rect x="40" y="600" width="960" height="44" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect x="40" y="600" width="8" height="44" rx="4" fill="#b45309"/>
+    <text x="66" y="627" font-size="13" fill="#334155">Os princípios não competem entre si: a decisão concreta precisa atender aos três doutrinários <tspan font-weight="700">e</tspan> usar os organizativos como meio.</text>
+  </g>
+</svg>

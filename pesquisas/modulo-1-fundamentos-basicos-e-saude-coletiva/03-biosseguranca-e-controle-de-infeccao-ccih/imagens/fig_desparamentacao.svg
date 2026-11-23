@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 640" role="img" aria-labelledby="t d" width="1040" height="640">
+  <title id="t">Sequência de desparamentação (retirada do EPI)</title>
+  <desc id="d">Quatro etapas na ordem correta de retirada do equipamento de proteção individual — luvas, avental, proteção ocular e máscara — com higienização das mãos antes, após as luvas e ao final.</desc>
+  <rect width="1040" height="640" fill="#f8fafc"/>
+  <text x="520" y="46" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="27" font-weight="700" fill="#0f172a">Desparamentação: a ordem que evita contaminação</text>
+  <text x="520" y="74" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#475569">Figura própria do projeto · sequência de retirada · RM-04</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="40" y="104" width="960" height="60" rx="12" fill="#d9efe6" stroke="#bcd9cf"/>
+    <text x="66" y="130" font-size="14" font-weight="700" fill="#0d4f45">ANTES DE COMEÇAR</text>
+    <text x="66" y="151" font-size="13" fill="#334155">Higienize as mãos ainda com as luvas. Retire tudo devagar, longe do rosto, e descarte em resíduo infectante.</text>
+
+    <!-- etapa 1 -->
+    <rect x="40" y="186" width="960" height="84" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect x="40" y="186" width="8" height="84" rx="4" fill="#b45309"/>
+    <circle cx="100" cy="228" r="24" fill="#b45309"/>
+    <text x="100" y="236" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">1</text>
+    <text x="142" y="216" font-size="17" font-weight="700" fill="#16211f">Luvas — primeiro, sempre</text>
+    <text x="142" y="240" font-size="13" fill="#334155">Puxe pela borda externa, dobrando para dentro. A luva é a peça mais contaminada.</text>
+    <text x="142" y="259" font-size="12" fill="#64748b">Nunca toque na pele do punho com a luva suja.</text>
+
+    <!-- higiene -->
+    <rect x="40" y="282" width="960" height="40" rx="10" fill="#eef6f3" stroke="#bcd9cf"/>
+    <text x="66" y="308" font-size="13" font-weight="700" fill="#0d4f45">HIGIENIZE AS MÃOS AGORA — antes de tocar no avental</text>
+
+    <!-- etapa 2 -->
+    <rect x="40" y="334" width="960" height="84" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect x="40" y="334" width="8" height="84" rx="4" fill="#0d4f45"/>
+    <circle cx="100" cy="376" r="24" fill="#0d4f45"/>
+    <text x="100" y="384" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">2</text>
+    <text x="142" y="364" font-size="17" font-weight="700" fill="#16211f">Avental — de fora para dentro</text>
+    <text x="142" y="388" font-size="13" fill="#334155">Solte as ataduras da frente e do pescoço; puxe pelos ombros, virando a parte externa para dentro.</text>
+    <text x="142" y="407" font-size="12" fill="#64748b">Enrole sem sacudir: sacudir espalha partículas.</text>
+
+    <!-- etapa 3 -->
+    <rect x="40" y="430" width="960" height="84" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect x="40" y="430" width="8" height="84" rx="4" fill="#0d4f45"/>
+    <circle cx="100" cy="472" r="24" fill="#0d4f45"/>
+    <text x="100" y="480" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">3</text>
+    <text x="142" y="460" font-size="17" font-weight="700" fill="#16211f">Proteção ocular e facial</text>
+    <text x="142" y="484" font-size="13" fill="#334155">Retire pela haste traseira ou pela tira, sem tocar na lente ou na viseira.</text>
+    <text x="142" y="503" font-size="12" fill="#64748b">Se descartável, descarte; se reutilizável, siga o protocolo de limpeza da instituição.</text>
+
+    <!-- etapa 4 -->
+    <rect x="40" y="526" width="960" height="84" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect x="40" y="526" width="8" height="84" rx="4" fill="#b45309"/>
+    <circle cx="100" cy="568" r="24" fill="#b45309"/>
+    <text x="100" y="576" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">4</text>
+    <text x="142" y="556" font-size="17" font-weight="700" fill="#16211f">Máscara ou respirador — por último</text>
+    <text x="142" y="580" font-size="13" fill="#334155">Retire pela tira de trás; nunca pela frente. Descarte segurando só pelas tiras.</text>
+    <text x="142" y="599" font-size="12" fill="#64748b">Depois da máscara: higienize as mãos. É a última ação da desparamentação.</text>
+  </g>
+</svg>

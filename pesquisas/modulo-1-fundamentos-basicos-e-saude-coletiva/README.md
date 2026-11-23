@@ -13,10 +13,10 @@ II a IV: sem esses conceitos, procedimentos e condutas ficam sem fundamento.
 
 | Ordem | # | Matéria | CH | Itens | Prior. | Status |
 |:-----:|:-:|---------|:--:|:-----:|:------:|--------|
-| 1 | 01 | [Anatomia e Fisiologia Humana](01-anatomia-e-fisiologia-humana/) | 60h | 300 | Alta | ⬜ |
-| 2 | 03 | [Biossegurança e Controle de Infecção (CCIH)](03-biosseguranca-e-controle-de-infeccao-ccih/) | 45h | 200 | Alta | ⬜ |
-| 3 | 04 | [Políticas Públicas de Saúde e SUS](04-politicas-publicas-de-saude-e-sus/) | 50h | 250 | Alta | ⬜ |
-| 4 | 05 | [Ética, Bioética e Legislação em Enfermagem](05-etica-bioetica-e-legislacao-em-enfermagem/) | 50h | 200 | Alta | ⬜ |
+| 1 | 01 | [Anatomia e Fisiologia Humana](01-anatomia-e-fisiologia-humana/) | 60h | 300 | Alta | 🟪 |
+| 2 | 03 | [Biossegurança e Controle de Infecção (CCIH)](03-biosseguranca-e-controle-de-infeccao-ccih/) | 45h | 200 | Alta | 🟪 |
+| 3 | 04 | [Políticas Públicas de Saúde e SUS](04-politicas-publicas-de-saude-e-sus/) | 50h | 250 | Alta | 🟪 |
+| 4 | 05 | [Ética, Bioética e Legislação em Enfermagem](05-etica-bioetica-e-legislacao-em-enfermagem/) | 50h | 200 | Alta | 🟪 |
 | 5 | 02 | [Microbiologia e Parasitologia](02-microbiologia-e-parasitologia/) | 45h | 200 | Média | ⬜ |
 | 6 | 06 | [Psicologia Aplicada à Saúde e Humanização](06-psicologia-aplicada-a-saude-e-humanizacao/) | 50h | 200 | Média | ⬜ |
 

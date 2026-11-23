@@ -1,10 +1,12 @@
 # 🧭 Plano de Expansão — Curso Técnico em Enfermagem
 
 **Status:** draft para aprovação
-**Data:** 2026-11-21
-**Versão:** 1.0
+**Data:** 2026-11-21 · **Revisão:** 2026-11-23
+**Versão:** 1.2
 **Base atual:** EN_430 — Introdução à Enfermagem (120h, 10 módulos, 2.803 questões)
 **Objetivo:** planejar a reformulação total do projeto de estudos, avaliação e cobertura do curso Técnico em Enfermagem.
+**Controle de progresso:** [`PROGRESSO_PLANEJAMENTO.md`](PROGRESSO_PLANEJAMENTO.md) ·
+**Auditoria:** [`AUDITORIA_PLANEJAMENTO_REFORMULACAO_2026-11-23.md`](../auditorias/AUDITORIA_PLANEJAMENTO_REFORMULACAO_2026-11-23.md)
 
 > Este documento é um **plano**, não uma implementação. As decisões de matriz curricular,
 > stack e orçamento dependem de aprovação do PPC institucional e da coordenação do curso.
@@ -20,15 +22,15 @@ O projeto atual cobre **uma disciplina de 120h** do curso Técnico em Enfermagem
 - 10 módulos de conteúdo;
 - 2.803 registros de questões (495 enunciados únicos multiplicados por 5–7 variações textuais);
 - 12 materiais HTML e 16 PDFs;
-- aplicação PHP 8 + SQLite publicada em Docker/Coolify;
-- 158 casos de teste PHPUnit.
+- aplicação PHP 8.6 + SQLite publicada em Docker/Coolify;
+- 180 testes PHPUnit com 469 asserções.
 
 O curso completo, conforme [`docs/ementa.md`](../ementa.md), tem **1.200h teórico-práticas + 600h de estágio = 1.800h**, organizado em **4 módulos e 17 componentes curriculares**. Expandir por duplicação do EN_430 seria
 caro e frágil: o modelo atual tem módulo fixo (1–10), banco único, apenas múltipla escolha,
 um único administrador e conteúdo sem pipeline de autoria.
 
 **Recomendação central:** evoluir o produto atual para um **monólito modular multi-componente**
-(PHP 8.4 + PostgreSQL 18), preservando histórico e investimento, com banco de questões
+(PHP 8.6 + PostgreSQL 18), preservando histórico e investimento, com banco de questões
 versionado, avaliação por blueprint, papéis de professor/coordenação, avaliações práticas
 (OSCE/checklists), analytics e PWA. **Não reescrever do zero** nem migrar para outra stack
 neste momento.
@@ -77,7 +79,7 @@ questões de aplicação/análise e fim da inflação por variações textuais.
 | Banco de 2.803 questões | 495 enunciados únicos + variações | Base inicial de Fundamentos; exige deduplicação e revisão |
 | 10 módulos do EN_430 | Conteúdo de Fundamentos/Semiotécnica | Núcleo do componente "Fundamentos de Enfermagem" |
 | 12 HTML + 16 PDF | Materiais didáticos maduros | Migrar para pipeline único e reutilizar |
-| App PHP + SQLite | Estável, Docker/Coolify, 158 testes | Evoluir, não descartar |
+| App PHP + SQLite | Estável, Docker/Coolify, 180 testes / 469 asserções | Evoluir, não descartar |
 | Design system e UX | Paleta, componentes, fluxo de avaliação | Estender para múltiplos componentes |
 | Deploy e observabilidade | Health check, volume, HTTPS | Manter e ampliar |
 
@@ -94,10 +96,10 @@ questões de aplicação/análise e fim da inflação por variações textuais.
 | **Papéis** | Aluno + admin com senha mestra | Sem professor, preceptor, coordenação ou turmas |
 | **Conteúdo** | HTML/PDF editados manualmente, sem fonte única | 17 componentes × 5 materiais = manutenção inviável |
 | **Dados** | `questoes_ids`, `respostas` e `resultado` em JSON; SQLite | Consultas analíticas e integridade limitadas |
-| **Privacidade** | Nome, nascimento, telefone e e-mail sem política de retenção/consentimento | Risco LGPD |
+| **Privacidade** | Política v1.0, consentimento e retenção de inativas implementados; falta política por papel e regra de menores (F2, F5) | Risco LGPD no novo escopo |
 | **Acessibilidade** | Sem auditoria WCAG; vídeos sem legenda | Barreira legal e pedagógica |
 | **Operação** | Backup manual; sem staging; sem métricas de aplicação | Risco de perda e dificuldade de evolução |
-| **Testes** | 158 casos, cobertura fraca em handlers/views, sem E2E | Refatorações grandes ficam arriscadas |
+| **Testes** | 180 testes / 469 asserções, cobertura fraca em handlers/views, sem E2E | Refatorações grandes ficam arriscadas |
 
 ### 3.3 O que **não** escalar
 
@@ -421,35 +423,27 @@ Distribuição-alvo por prova: 40% recordação/compreensão, 40% aplicação, 2
 
 ### 7.1 Visão por fases
 
-| Fase | Duração | Entregas | Critério de saída |
-|------|:-------:|----------|-------------------|
-| **0. Fundação** | 4 semanas | PPC validado, taxonomia, ADR de stack, baseline, backlog, templates de conteúdo | Matriz aprovada e donos por componente |
-| **1. Núcleo multi-componente** | 10 semanas | PostgreSQL, migrations, modelo de domínio, papéis, migração do EN_430, blueprints, CI/CD | Dados migrados e reconciliação 100% |
-| **2. Conteúdo prioritário** | 12 semanas | 6 componentes prioritários (Anatomia, Biossegurança, SUS, Ética, Fundamentos, Farmacologia), 1.800 itens, autoria/revisão, analytics MVP, PWA MVP | 6 componentes com conteúdo + banco revisado |
-| **3. Cobertura e prática** | 12 semanas | 11 componentes restantes, OSCE/estágio de 600h, repetição espaçada, acessibilidade, LGPD | 100% da matriz coberta |
-| **4. Piloto e rollout** | 8 semanas | Piloto em 2 turmas, tuning, treinamento, migração definitiva | Aprovação da coordenação |
+> **Escopo e prazos de release:** fonte única em
+> [`PROGRESSO_PLANEJAMENTO.md`](PROGRESSO_PLANEJAMENTO.md) §6 (44 semanas, MVP de 4 componentes).
+> Esta seção descreve o **trabalho de engenharia** de cada release, não um roadmap paralelo.
 
-**Duração total:** ~11 meses. Com 4 desenvolvedores em paralelo e time autoral completo,
-pode reduzir para 7–8 meses; com 1 desenvolvedor, ultrapassa 18 meses.
+| Release | Trabalho de engenharia | Critério técnico |
+|:-------:|------------------------|------------------|
+| **Fundação** | ADR de stack, baseline, hardening, CI, taxonomia técnica e templates | Pipeline e ADR aprovados |
+| **MVP** | PostgreSQL, migrations, modelo de domínio, papéis, migração do EN_430, blueprints, CI/CD | Dados migrados e reconciliação 100% |
+| **R1** | Checklists de estágio, analytics, SSO opcional e psicometria inicial | 2 campos de estágio operando |
+| **R2** | OSCE/portfólio, repetição adaptativa, IA com guardrails, Libras e relatórios completos | 17 componentes cobertos |
+| **Operação** | Norm watch, revisão de schemas, escala e sustentação | Revisão semestral registrada |
+
+**Duração total:** 4 + 12 + 12 + 16 = **44 semanas (~11 meses)**, conforme a tabela única.
+Com 4 desenvolvedores em paralelo e time autoral completo, pode reduzir para 7–8 meses; com
+1 desenvolvedor, ultrapassa 18 meses.
 
 ### 7.2 Cronograma
 
-```mermaid
-gantt
-  title Expansão do projeto — Técnico em Enfermagem
-  dateFormat  YYYY-MM-DD
-  axisFormat  %b
-  section Fundação
-  PPC, taxonomia e ADR           :f0, 2026-12-01, 30d
-  section Núcleo
-  Modelo, migração e papéis      :f1, 2027-01-01, 70d
-  section Conteúdo
-  6 componentes prioritários     :f2, 2027-03-01, 90d
-  section Cobertura
-  Demais componentes + prática   :f3, 2027-06-01, 90d
-  section Piloto
-  Piloto, ajustes e rollout      :f4, 2027-09-01, 60d
-```
+As janelas de cada release são as da tabela única (`PROGRESSO_PLANEJAMENTO.md` §6), derivadas do
+G0 assinado. O Gantt anterior, que iniciava em 2026-12-01 sem G0 aprovado, foi removido para não
+criar um segundo cronograma (achados A3 e H4).
 
 ### 7.3 Equipe e esforço
 
@@ -606,3 +600,13 @@ pessoa-mês e separar o custo autoral (o mais alto e o mais crítico).
 ---
 
 *Documento de planejamento gerado em 2026-11-21. Não substitui o PPC institucional.*
+
+---
+
+## 15. Controle do documento
+
+| Versão | Data | Autor | Alteração |
+|:------:|------|-------|-----------|
+| 1.0 | 2026-11-21 | Direção do projeto | Criação do plano de expansão do curso Técnico em Enfermagem |
+| 1.1 | 2026-11-23 | Tech lead | Correção factual do estado (A2): PHP 8.6, 180 testes e 469 asserções; vínculo com o controle de progresso e com a auditoria; bloco de controle adicionado |
+| 1.2 | 2026-11-23 | Tech lead | Roadmap reconciliado (A3): fases substituídas por workstreams de engenharia; escopo e prazos passam à tabela única; Gantt antecipado removido (H4) |

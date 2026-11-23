@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660" role="img" aria-labelledby="titulo descricao" width="1000" height="660">
+  <title id="titulo">Princípios da bioética aplicados à decisão de cuidado</title>
+  <desc id="descricao">Quatro princípios — autonomia, beneficência, não maleficência e justiça — dispostos ao redor de uma decisão de cuidado no centro, cada um com uma pergunta de verificação.</desc>
+
+  <rect width="1000" height="660" fill="#f8fafc"/>
+  <text x="500" y="52" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#0f172a">Princípios da bioética na decisão de cuidado</text>
+  <text x="500" y="84" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#475569">Figura própria do projeto · RM-04 · uso livre com crédito</text>
+
+  <!-- centro -->
+  <circle cx="500" cy="360" r="92" fill="#0f766e"/>
+  <text x="500" y="348" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff">Decisão</text>
+  <text x="500" y="375" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff">de cuidado</text>
+  <text x="500" y="400" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#ccfbf1">os 4 princípios juntos</text>
+
+  <!-- caixas -->
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="60" y="150" width="330" height="130" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect x="60" y="150" width="8" height="130" rx="4" fill="#1d4ed8"/>
+    <text x="86" y="184" font-size="21" font-weight="700" fill="#1e3a8a">Autonomia</text>
+    <text x="86" y="212" font-size="15" fill="#334155">A pessoa decide sobre si, informada.</text>
+    <text x="86" y="238" font-size="15" fill="#334155">Pergunta: ela entendeu e consentiu?</text>
+    <text x="86" y="264" font-size="14" fill="#64748b">Consentimento · recusa · sigilo</text>
+
+    <rect x="610" y="150" width="330" height="130" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect x="932" y="150" width="8" height="130" rx="4" fill="#15803d"/>
+    <text x="636" y="184" font-size="21" font-weight="700" fill="#14532d">Beneficência</text>
+    <text x="636" y="212" font-size="15" fill="#334155">Agir no melhor interesse da pessoa.</text>
+    <text x="636" y="238" font-size="15" fill="#334155">Pergunta: isso faz bem a ela?</text>
+    <text x="636" y="264" font-size="14" fill="#64748b">Cuidado · conforto · continuidade</text>
+
+    <rect x="60" y="440" width="330" height="130" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect x="60" y="440" width="8" height="130" rx="4" fill="#b45309"/>
+    <text x="86" y="474" font-size="21" font-weight="700" fill="#7c2d12">Não maleficência</text>
+    <text x="86" y="502" font-size="15" fill="#334155">Antes de tudo, não causar dano.</text>
+    <text x="86" y="528" font-size="15" fill="#334155">Pergunta: isso pode machucar?</text>
+    <text x="86" y="554" font-size="14" fill="#64748b">Prevenção · checagem · notificação</text>
+
+    <rect x="610" y="440" width="330" height="130" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect x="932" y="440" width="8" height="130" rx="4" fill="#6d28d9"/>
+    <text x="636" y="474" font-size="21" font-weight="700" fill="#4c1d95">Justiça</text>
+    <text x="636" y="502" font-size="15" fill="#334155">Tratar igual o igual, sem discriminar.</text>
+    <text x="636" y="528" font-size="15" fill="#334155">Pergunta: todos teriam o mesmo acesso?</text>
+    <text x="636" y="554" font-size="14" fill="#64748b">Equidade · fila · recurso escasso</text>
+  </g>
+
+  <!-- conectores -->
+  <g stroke="#94a3b8" stroke-width="2.5" fill="none">
+    <path d="M390 215 L425 300"/>
+    <path d="M610 215 L575 300"/>
+    <path d="M390 505 L425 420"/>
+    <path d="M610 505 L575 420"/>
+  </g>
+
+  <text x="500" y="628" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#475569">Nenhum princípio decide sozinho: o conflito entre eles é o que se discute e se registra.</text>
+</svg>

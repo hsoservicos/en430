@@ -8,7 +8,7 @@
 | Prioridade | Alta |
 | Cobertura atual no projeto | 🟢 reaproveitável (base do EN_430, 10 módulos) |
 | Pré-requisitos | 01, 03, 05 |
-| Status | ⬜ Não iniciado |
+| Status | 🟪 Em revisão (artefatos produzidos; fontes novas a conferir e validação humana pendente) |
 
 ## 1. Escopo na ementa
 
@@ -56,27 +56,32 @@ classificar por unidade e Bloom, corrigir erros e completar lacunas (ex.: LPP, r
 
 ## 5. Entregáveis
 
-- [ ] `fontes/README.md`
-- [ ] `artefatos/ficha_materia.md`
-- [ ] `artefatos/mapa_unidades.md`
-- [ ] `artefatos/matriz_competencias.md`
-- [ ] `artefatos/proposta_itens.md` — 400 itens, com mapa de origem no banco atual.
-- [ ] `artefatos/proposta_materiais.md` — checklists de procedimentos.
-- [ ] `artefatos/relatorio_deduplicacao.md` — 2.803 registros → enunciados únicos.
+- [x] `fontes/README.md` — 21 fontes com status de verificação declarado (núcleo 🟢 herdado de 01/03/04/05; semiotécnica ⚪ a abrir).
+- [x] `artefatos/ficha_materia.md` — competência, 13 objetivos, 12 unidades, limite de escopo.
+- [x] `artefatos/mapa_unidades.md` — 12 unidades com assuntos, objetivo, aplicação e erro comum.
+- [x] `artefatos/matriz_competencias.md` — competências, Bloom, evidências e instrumentos.
+- [x] `artefatos/proposta_itens.md` — 400 itens (distribuição, Bloom, dificuldade, tipos e exemplares).
+- [x] `artefatos/proposta_materiais.md` — 7 materiais e 3 checklists com itens eliminatórios.
+- [x] `imagens/README.md` — 7 imagens licenciadas com legenda, `alt` e lacunas (RM-04).
+- [ ] `artefatos/relatorio_deduplicacao.md` — **bloqueado**: exige acesso ao banco atual (2.803 registros).
 
 ## 6. Critérios de conclusão
 
-- [ ] 12 unidades mapeadas e ampliadas.
-- [ ] Deduplicação dos 2.803 registros concluída e revisada.
-- [ ] Objetivos observáveis por unidade.
-- [ ] Competências e pré-requisitos declarados.
-- [ ] 400 itens-alvo especificados.
-- [ ] Materiais e recursos indicados.
-- [ ] Riscos de desatualização anotados.
-- [ ] Registro e `PROGRESSO.md` atualizados.
+- [x] 12 unidades mapeadas e ampliadas.
+- [ ] Deduplicação dos 2.803 registros concluída e revisada — **bloqueada** (sem acesso ao banco).
+- [x] Objetivos observáveis por unidade.
+- [x] Competências e pré-requisitos declarados.
+- [x] 400 itens-alvo especificados (distribuição e exemplares).
+- [x] Materiais e recursos indicados.
+- [x] Banco de imagens licenciadas criado (RM-04).
+- [x] Riscos de desatualização anotados.
+- [x] Registro e `PROGRESSO.md` atualizados.
+- [ ] Validação por enfermeiro e educador (pendente — RM-01 §6).
 
 ## 7. Registro de execução
 
 | Data | Etapa | Resultado |
 |------|-------|-----------|
 | 2026-11-21 | Ficha criada | Escopo proposto; aguardando confirmação para iniciar a pesquisa |
+| 2026-11-23 | Pesquisa | 6 entregáveis produzidos (fontes + 5 artefatos) e banco de imagens com 7 ativos; 400 itens especificados; status 🟪 |
+| 2026-11-23 | Fontes | Núcleo normativo herdado e declarado 🟢 (01/03/04/05); fontes novas de semiotécnica marcadas ⚪ até abertura e conferência; deduplicação bloqueada por falta de acesso ao banco |

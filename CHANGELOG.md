@@ -12,6 +12,55 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Não lançado]
 
+### Adicionado
+
+- **RM-02 — Precisão, Didática e Veracidade:** regra de base imutável do conteúdo; nenhum
+  material é elaborado sem fonte primária aberta, datada e conferida quanto à vigência
+  (`docs/RM-02_PRECISAO_DIDATICA_E_VERACIDADE.md`).
+- **RM-03 — Responsividade:** regra de base imutável do novo projeto; responsividade tratada
+  como máxima garantia operacional, com matriz de 8 larguras e evidência obrigatória
+  (`docs/RM-03_RESPONSIVIDADE.md`).
+- **Pesquisa da matéria 07 (Fundamentos e Semiotécnica):** 6 entregáveis e banco de imagens com
+  7 ativos licenciados; 400 itens especificados, 12 unidades em 120h, limite de escopo por unidade
+  e checklists com itens eliminatórios. Fontes novas de semiotécnica ficam marcadas ⚪ até
+  conferência; a deduplicação dos 2.803 registros está bloqueada por falta de acesso ao banco.
+- **Mock de Design System e layout** em `/design-system/`: página estática de observação e
+  validação com princípios, tokens (cor, tipografia, espaço, forma), componentes com estados,
+  grade e pontos de quebra, acessibilidade verificável e tabela de registro de decisões; ligada ao
+  rodapé do mock de apresentação (`mockups/design-system/index.html`).
+- **RM-04 — Ilustração Obrigatória e Recursos Visuais:** regra de base imutável da imagem;
+  toda matéria é elaborada com banco de imagens licenciadas, com legenda didática, `alt`, hash e
+  lacunas registradas (`docs/RM-04_ILUSTRACAO_E_RECURSOS_VISUAIS.md`).
+- **Bancos de imagens das matérias 01, 03, 04 e 05:** 23 imagens (22 de acervo licenciado e 1
+  figura própria), com inventário, uso pedagógico por unidade, restrições de contexto e créditos
+  (`pesquisas/<matéria>/imagens/`); catálogo em `pesquisas/RECURSOS_VISUAIS.md`.
+- **Auditoria dos artefatos de pesquisa:** 21 fichas verificadas, 7 achados e 1 correção
+  (`docs/auditorias/AUDITORIA_ARTEFATOS_PESQUISA_2026-11-23.md`).
+- **Pesquisa da matéria 03 (Biossegurança/CCIH):** 7 entregáveis e 20 fontes com status de
+  vigência (RDC 222/2018, RDC 15/2012, RDC 36/2013, NR-32, Portaria 2.616/1998).
+- **Pesquisa da matéria 04 (Políticas Públicas de Saúde e SUS):** 6 entregáveis, 250 itens
+  especificados e 24 fontes com vigência; corrige o erro de material antigo que ainda trata o
+  Previne Brasil como modelo vigente (substituído pela Portaria 3.493/2024).
+- **Política de Privacidade do novo domínio** em `/politica-de-privacidade/`, com escopo do site
+  de apresentação; o link do rodapé do mock deixou de responder 404.
+- **Roadmap único** em `PROGRESSO_PLANEJAMENTO.md` §6: 44 semanas, MVP de 4 componentes; PRD e
+  plano de expansão passam a referenciá-lo (achado A3).
+- **Pesquisa da matéria 05 (Ética, Bioética e Legislação):** 6 entregáveis, 200 itens
+  especificados e 22 fontes; registra que o CEPE 564/2017 segue vigente e que a minuta do novo
+  Código foi aprovada em 19/03/2026, com vacatio de 120 dias após o DOU.
+- **Pacotes de revisão das matérias 03 e 04:** envelopes com artefatos, ordem de leitura,
+  perguntas para enfermeiro e educador e critério de parecer (7 arquivos cada; 782 e 844 linhas).
+
+### Infraestrutura
+
+- **EN_430 estacionado:** auto-deploy desabilitado no app `2iweyqxekxmminhiwgyv5bvk`
+  (`is_auto_deploy_enabled=false`) em 2026-11-23; o app permanece `running:healthy` e
+  `https://en430.appservice.tec.br/` responde 200. Publicação passa a ser manual e consciente.
+- **Mock do novo projeto publicado** em <https://enfermagem.appservice.tec.br/>: projeto Coolify
+  `enfermagem` (`d7ldx6uqgsvdeal3u0kjk3lq`) e app `enfermagem-web` (`ey4wpwwencsnvj9xluoxnyjj`),
+  build `static` a partir de `/mockups` na branch `mock/landing-enfermagem`. Isolado do projeto
+  `en430`, que continua em sua URL e sem deploy cruzado.
+
 ### Corrigido
 
 - **Build da imagem Docker** voltou a funcionar: o `.dockerignore` excluía `docs/` e o `COPY` da
@@ -102,6 +151,13 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
   vocabulário fechado de status, histórico append-only, regras de contagem e auditoria mensal.
 - Regra vinculada em `README.md`, `docs/README.md`, `docs/ESTADO_ATUAL.md`,
   `pesquisas/README.md` e `pesquisas/PROGRESSO.md`.
+- Criada a **fonte de verdade do planejamento**
+  (`docs/planejamento/PROGRESSO_PLANEJAMENTO.md`): 6 gates, Q1–Q8, plano de ação de 15 dias e
+  checklist do G0-C, com histórico append-only — fecha o achado A1 da auditoria.
+- **RM-01 v1.1:** emenda que inclui o domínio "planejamento" na tabela de fontes de verdade (§3)
+  e na aplicação imediata (§15).
+- **Plano de expansão v1.1:** correção factual do estado para PHP 8.6, 180 testes e 469 asserções,
+  com vínculo ao controle de progresso e bloco de controle do documento (achado A2).
 
 ### 📚 Planejamento da expansão do curso
 
