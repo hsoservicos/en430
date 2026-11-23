@@ -167,6 +167,21 @@
   .credito{font-size:.78rem;color:var(--tinta-2);margin:.55rem 0 0}
   .credito a{color:var(--verde-2)}
 
+  /* formularios responsivos */
+  .form-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+  .form-grid .full{grid-column:1/-1}
+  .form-grid .campo{max-width:none;margin:0}
+  .campo textarea{font:inherit;font-size:1rem;padding:.7rem .75rem;border:1px solid #b9cbc6;
+       border-radius:var(--raio-sm);background:#fff;min-height:96px;resize:vertical;color:var(--tinta)}
+  .campo textarea:focus{outline:3px solid rgba(17,105,91,.35);outline-offset:1px;border-color:var(--verde)}
+  .campo input,.campo select{font-size:1rem}
+  .form-acoes{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+  .form-acoes .btn{flex:0 1 auto}
+  .regra-lista{margin:0;padding-left:1.1rem;font-size:.9rem;color:var(--tinta-2)}
+  .regra-lista li{margin-bottom:.35rem}
+  @media (min-width:900px){.form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:520px){.form-acoes .btn{width:100%}}
+
   /* registro */
   .registro td{height:44px}
   .registro td:empty{background:repeating-linear-gradient(135deg,#fff,#fff 6px,#f4f7f5 6px,#f4f7f5 12px)}
@@ -211,6 +226,7 @@ destino: <strong>https://enfermagem.appservice.tec.br/design-system/</strong> ·
         <li><a href="#componentes">Componentes</a></li>
         <li><a href="#layout">Layout</a></li>
         <li><a href="#imagens">Imagens</a></li>
+        <li><a href="#formularios">Formulários</a></li>
         <li><a href="#acessibilidade">Acessibilidade</a></li>
         <li><a href="#registro">Registro</a></li>
       </ul>
@@ -507,7 +523,10 @@ destino: <strong>https://enfermagem.appservice.tec.br/design-system/</strong> ·
           </div>
         </div>
         <figure class="hero-img">
-          <img src="img/acs_visita_domiciliar.jpg" width="1200" height="800" loading="lazy"
+          <img src="img/acs_visita_domiciliar.jpg"
+               srcset="img/acs_visita_domiciliar-480.jpg 480w, img/acs_visita_domiciliar-800.jpg 800w, img/acs_visita_domiciliar-1200.jpg 1200w"
+               sizes="(max-width: 900px) 100vw, 46vw"
+               width="1200" height="800" loading="lazy" decoding="async"
                alt="Agente Comunitário de Saúde de costas, com colete de identificação, em visita domiciliar a um paciente acamado.">
         </figure>
       </div>
@@ -519,13 +538,19 @@ destino: <strong>https://enfermagem.appservice.tec.br/design-system/</strong> ·
         legenda fica fora dela.</p>
       <div class="thumbs" style="margin-top:.9rem">
         <article class="thumb">
-          <img src="img/ubs.jpg" width="1200" height="900" loading="lazy"
+          <img src="img/ubs.jpg"
+               srcset="img/ubs-480.jpg 480w, img/ubs-800.jpg 800w, img/ubs-1200.jpg 1200w"
+               sizes="(max-width: 680px) 100vw, (max-width: 900px) 50vw, 33vw"
+               width="1200" height="900" loading="lazy" decoding="async"
                alt="Fachada de uma Unidade Básica de Saúde de um pavimento, com pátio pavimentado.">
           <div class="body"><h3>Unidade Básica de Saúde</h3>
             <p>Porta de entrada preferencial · foto de contexto brasileiro</p></div>
         </article>
         <article class="thumb">
-          <img src="img/sistema_esqueletico.png" width="600" height="1158" loading="lazy"
+          <img src="img/sistema_esqueletico.png"
+               srcset="img/sistema_esqueletico-480.png 480w, img/sistema_esqueletico.png 1280w"
+               sizes="(max-width: 680px) 100vw, (max-width: 900px) 50vw, 33vw"
+               width="480" height="928" loading="lazy" decoding="async"
                alt="Desenho de esqueleto humano visto de frente, com os ossos nomeados.">
           <div class="body"><h3>Sistema esquelético</h3>
             <p>Diagrama com rótulos · domínio público</p></div>
@@ -545,7 +570,10 @@ destino: <strong>https://enfermagem.appservice.tec.br/design-system/</strong> ·
         crédito na mesma linha. Quando a imagem tem texto próprio, a legenda <b>traduz e explica</b> —
         a figura não substitui a informação escrita.</p>
       <figure class="figure" style="margin-top:.9rem">
-        <img src="img/higienizacao_das_maos.png" width="1200" height="848" loading="lazy"
+        <img src="img/higienizacao_das_maos.png"
+             srcset="img/higienizacao_das_maos-480.png 480w, img/higienizacao_das_maos-800.png 800w, img/higienizacao_das_maos-1200.png 1200w"
+             sizes="(max-width: 760px) 100vw, 720px"
+             width="1200" height="848" loading="lazy" decoding="async"
              alt="Cartaz com seis etapas de fricção antisséptica das mãos, ampulheta de 30 segundos e dois alertas sobre anéis e relógio.">
         <figcaption><b>Figura 1.</b> Fricção antisséptica em seis etapas, ≥ 30 s, sem anéis ou
           relógio. Cartaz original em inglês; a legenda traduz as etapas. Imagem: Guido4/Hegasy,
@@ -557,17 +585,26 @@ destino: <strong>https://enfermagem.appservice.tec.br/design-system/</strong> ·
         muda o enquadramento, não a proporção da tela — e nunca distorce a imagem.</p>
       <div class="proporcoes" style="margin-top:.9rem">
         <figure class="r169">
-          <img src="img/ubs.jpg" width="1200" height="675" loading="lazy"
+          <img src="img/ubs.jpg"
+               srcset="img/ubs-480.jpg 480w, img/ubs-800.jpg 800w, img/ubs-1200.jpg 1200w"
+               sizes="(max-width: 680px) 100vw, 33vw"
+               width="1200" height="675" loading="lazy" decoding="async"
                alt="Fachada de UBS recortada em proporção 16:9.">
           <figcaption>16:9 — abertura e banner</figcaption>
         </figure>
         <figure class="r43">
-          <img src="img/ubs.jpg" width="1200" height="900" loading="lazy"
+          <img src="img/ubs.jpg"
+               srcset="img/ubs-480.jpg 480w, img/ubs-800.jpg 800w, img/ubs-1200.jpg 1200w"
+               sizes="(max-width: 680px) 100vw, 33vw"
+               width="1200" height="900" loading="lazy" decoding="async"
                alt="Fachada de UBS recortada em proporção 4:3.">
           <figcaption>4:3 — cartão e miniatura</figcaption>
         </figure>
         <figure class="r11">
-          <img src="img/ubs.jpg" width="900" height="900" loading="lazy"
+          <img src="img/ubs.jpg"
+               srcset="img/ubs-480.jpg 480w, img/ubs-800.jpg 800w, img/ubs-1200.jpg 1200w"
+               sizes="(max-width: 680px) 100vw, 33vw"
+               width="900" height="900" loading="lazy" decoding="async"
                alt="Fachada de UBS recortada em proporção quadrada.">
           <figcaption>1:1 — avatar e lista</figcaption>
         </figure>
@@ -580,9 +617,101 @@ destino: <strong>https://enfermagem.appservice.tec.br/design-system/</strong> ·
     </div>
   </section>
 
+  <section id="formularios">
+    <div class="wrap">
+      <h2>7. Formulários e telas de acesso</h2>
+      <p class="lead">O formulário é o ponto onde o layout mais quebra: rótulo que some, campo
+        estreito, teclado que cobre o botão, zoom automático no celular. Aqui ele é testado nas
+        larguras reais de uso.</p>
+
+      <h3 style="margin-top:1.6rem">7.1 Formulário de exemplo</h3>
+      <div class="grid g2">
+        <form class="card" onsubmit="return false" aria-labelledby="form-titulo">
+          <h3 id="form-titulo">Identificação do estudante</h3>
+          <div class="form-grid">
+            <div class="campo full">
+              <label for="f-nome">Nome completo</label>
+              <input id="f-nome" name="nome" type="text" autocomplete="name" placeholder="Como no documento">
+            </div>
+            <div class="campo">
+              <label for="f-email">E-mail</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="nome@dominio">
+              <span class="ajuda">Usado para o acesso ao material.</span>
+            </div>
+            <div class="campo">
+              <label for="f-tel">Telefone</label>
+              <input id="f-tel" name="telefone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(00) 00000-0000">
+            </div>
+            <div class="campo">
+              <label for="f-modulo">Módulo</label>
+              <select id="f-modulo" name="modulo">
+                <option>Módulo I — Fundamentos</option>
+                <option>Módulo II — Bases técnicas</option>
+                <option>Módulo III — Ciclos de vida</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="f-turma">Turma</label>
+              <input id="f-turma" name="turma" type="text" placeholder="Ex.: 2027-A">
+            </div>
+            <div class="campo full">
+              <label for="f-obs">Observação</label>
+              <textarea id="f-obs" name="obs" rows="3" placeholder="Opcional"></textarea>
+            </div>
+            <label class="check full" for="f-aceite">
+              <input id="f-aceite" type="checkbox">
+              <span>Li a <a href="../politica-de-privacidade/">política de privacidade</a> e
+                concordo com o uso dos dados para acesso ao material.</span>
+            </label>
+            <div class="form-acoes full">
+              <button class="btn primary" type="submit">Salvar cadastro</button>
+              <button class="btn secondary" type="reset">Limpar</button>
+            </div>
+          </div>
+        </form>
+
+        <div class="card">
+          <h3>7.2 Regras do formulário</h3>
+          <ul class="regra-lista">
+            <li><b>Uma coluna</b> no celular; <b>duas</b> a partir de 900 px. Nunca três campos lado a lado em tela pequena.</li>
+            <li><b>Fonte de 16 px</b> no campo: abaixo disso o iOS dá zoom sozinho ao focar.</li>
+            <li><b>Rótulo sempre visível</b> acima do campo; <i>placeholder</i> nunca substitui rótulo.</li>
+            <li><b>Alvo de 44 px</b> e espaço de 12 px entre campos, inclusive no celular.</li>
+            <li><b>Teclado correto:</b> <code>type="email"</code>, <code>type="tel"</code>,
+              <code>inputmode="numeric"</code> para número, e <code>autocomplete</code> nos campos de identidade.</li>
+            <li><b>Erro junto do campo</b>, com <code>aria-invalid</code> e <code>aria-describedby</code> — e texto que diga o que fazer.</li>
+            <li><b>Ação principal visível</b>: no celular, botão ocupa a largura toda e não fica sob o teclado.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="margin-top:2rem">7.3 Matriz de telas</h3>
+      <p style="font-size:.92rem;color:var(--tinta-2)">O que muda em cada faixa de largura, do
+        celular pequeno ao monitor 4K. Testar em todas antes de aprovar.</p>
+      <div class="tabela-scroll" style="margin-top:.9rem">
+        <table class="tabela">
+          <caption>Comportamento por faixa de tela</caption>
+          <thead><tr><th scope="col">Faixa</th><th scope="col">Aparelho típico</th><th scope="col">Grade</th><th scope="col">Imagem</th><th scope="col">Formulário</th></tr></thead>
+          <tbody>
+            <tr><td>320–479 px</td><td>Celular pequeno</td><td>1 coluna</td><td>100% com recorte 4:3</td><td>1 coluna; botão full</td></tr>
+            <tr><td>480–767 px</td><td>Celular grande, paisagem</td><td>1 coluna</td><td>100%; variante 480 px</td><td>1 coluna; alvo 44 px</td></tr>
+            <tr><td>768–1023 px</td><td>Tablet retrato</td><td>2 colunas</td><td>50% no cartão</td><td>1 coluna larga</td></tr>
+            <tr><td>1024–1439 px</td><td>Notebook</td><td>3 colunas</td><td>variante 800 px</td><td>2 colunas</td></tr>
+            <tr><td>1440–1919 px</td><td>Desktop</td><td>3 colunas + contêiner</td><td>variante 1200 px</td><td>2 colunas</td></tr>
+            <tr><td>1920–2559 px</td><td>Full HD</td><td>contêiner 1120 central</td><td>máx. 1200 px</td><td>2 colunas, largura fixa</td></tr>
+            <tr><td>≥ 2560 px</td><td>QHD / 4K / ultrawide</td><td>contêiner 1120 central, sem esticar</td><td>máx. 1200 px</td><td>largura fixa; nunca full-bleed</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note" style="margin-top:1rem"><b>Além da largura:</b> testar em paisagem,
+        com teclado aberto, a 200% de zoom, com fonte do sistema aumentada e com toque (sem hover).
+        Em telas de toque, nenhuma ação depende de <code>:hover</code>.</div>
+    </div>
+  </section>
+
   <section id="registro">
     <div class="wrap">
-      <h2>7. Registro de observação</h2>
+      <h2>8. Registro de observação</h2>
       <p class="lead">A página só cumpre o papel quando a observação vira decisão escrita. Cada
         linha é uma decisão sobre um componente.</p>
       <div class="tabela-scroll" style="margin-top:1rem">
@@ -603,6 +732,9 @@ destino: <strong>https://enfermagem.appservice.tec.br/design-system/</strong> ·
             <tr><td>Cartão com miniatura (6.2)</td><td></td><td></td><td></td></tr>
             <tr><td>Figura com legenda e crédito (6.3)</td><td></td><td></td><td></td></tr>
             <tr><td>Recorte por proporção (6.4)</td><td></td><td></td><td></td></tr>
+            <tr><td>Formulário — celular (7.1)</td><td></td><td></td><td></td></tr>
+            <tr><td>Formulário — tablet/desktop (7.1)</td><td></td><td></td><td></td></tr>
+            <tr><td>Matriz de telas (7.3)</td><td></td><td></td><td></td></tr>
           </tbody>
         </table>
       </div>
