@@ -23,7 +23,7 @@ parafraseado**, nunca copiado integralmente ([RM-02](../../../../docs/RM-02_PREC
 |:-:|-------|-------|------|--------|-----|
 | F1 | Lei nº 7.498/1986 — regulamenta o exercício da enfermagem | Presidência da República | 25/06/1986 | 🟢 vigente (verificada na matéria 05) | Citação livre |
 | F2 | Decreto nº 94.406/1987 — regulamenta a Lei 7.498/1986 | Presidência da República | 08/06/1987 | 🟢 vigente (verificada na matéria 05) | Citação livre |
-| F3 | Resolução COFEN nº 736/2024 — Processo de Enfermagem (substitui a Res. 358/2009) | COFEN | 2024 | ⚪ conferir texto e vigência no portal COFEN | Citação e paráfrase |
+| F3 | Resolução COFEN nº 736/2024 — Processo de Enfermagem (revoga a Res. 358/2009) | COFEN | 17/01/2024; DOU 23/01/2024 | 🟢 **conferida em 2026-11-23** no portal COFEN e no DOU | Citação e paráfrase |
 | F4 | Resolução COFEN nº 564/2017 — Código de Ética dos Profissionais de Enfermagem | COFEN | 2017 | 🟢 vigente em 2026-11-23 (matéria 05; novo Código em vacatio) | Citação e paráfrase |
 
 ## 2. Segurança do paciente e prevenção de dano
@@ -41,9 +41,9 @@ parafraseado**, nunca copiado integralmente ([RM-02](../../../../docs/RM-02_PREC
 
 | # | Fonte | Órgão/autor | Data | Status | Uso |
 |:-:|-------|-------------|------|--------|-----|
-| F11 | Diretriz de hipertensão arterial — técnica de medida da PA | Sociedade Brasileira de Cardiologia | vigente | ⚪ abrir diretriz e conferir a edição | Parâmetro → fonte declarada |
+| F11 | Diretrizes Brasileiras de Hipertensão Arterial — 2020 (Quadros 3.1 e 3.2: manguito por circunferência e condições da medida) | Sociedade Brasileira de Cardiologia | 2020 | 🟢 **conferida em 2026-11-23**; verificar edição mais nova na revisão semestral | Parâmetro → fonte declarada |
 | F12 | Manual de sinais vitais / semiologia — referência de ensino | Literatura de enfermagem | — | 🔵 apoio (não normativo) | Síntese e comparação |
-| F13 | Diretriz internacional de prevenção e tratamento de lesão por pressão (EPUAP/NPIAP/PPPIA) | EPUAP/NPIAP/PPPIA | 2019 | ⚪ conferir edição e tradução | Classificação e prevenção |
+| F13 | Prevenção e Tratamento de Úlceras/Lesões por Pressão — Guia de Referência Rápida (3ª edição; tradução PT-BR) | EPUAP/NPIAP/PPPIA | 2019 (edição); guia PT-BR 2020 | 🟢 **conferida em 2026-11-23**: estágios 1–4, não classificável e lesão tissular profunda | Classificação e prevenção |
 | F14 | Escalas de risco validas (Braden, Norton, Waterlow) — revisão | Literatura científica | — | 🔵 apoio | Comparação crítica das escalas |
 
 ## 4. Procedimentos e cuidados
@@ -51,9 +51,9 @@ parafraseado**, nunca copiado integralmente ([RM-02](../../../../docs/RM-02_PREC
 | # | Fonte | Órgão | Data | Status | Uso |
 |:-:|-------|-------|------|--------|-----|
 | F15 | Manual de higienização das mãos / precauções | ANVISA | — | 🟢 núcleo verificado na matéria 03 | Citação |
-| F16 | Protocolo de cateterismo vesical e cuidados com sonda | ANVISA/MS | — | ⚪ abrir o protocolo vigente | Técnica e complicações |
+| F16 | Protocolo 3 — Prevenção de infecção do trato urinário relacionada a cateter vesical de demora (ITU-AC), v. 1 | ANVISA (GVIMS/GGTES) | 2025; Nota Técnica 11/2025 | 🟢 **conferido em 2026-11-23**: sistema fechado, bolsa abaixo da bexiga, troca do sistema em desconexão ou quebra de técnica | Técnica e complicações |
 | F17 | Diretriz de terapia compressiva e coberturas | Sociedade científica | — | ⚪ conferir edição | Escolha de cobertura |
-| F18 | Manual de coleta de material biológico | MS/instituição | — | ⚪ conferir versão local | Técnica e segurança |
+| F18 | Manual de coleta, acondicionamento e transporte do **laboratório de referência da instituição** (não há manual nacional único) | Instituição / laboratório local | a definir | ⚪ **depende de Q1**: os exemplos encontrados são municipais (Campinas v03/2026, Curitiba 2024, Ceará 2024) e não valem como norma do curso | Técnica e segurança |
 | F19 | Resolução COFEN sobre administração de medicamentos e checagem | COFEN | — | ⚪ conferir número e vigência | Limite de escopo |
 
 ## 5. Marco legal do SUS (contexto do cuidado)
@@ -65,15 +65,30 @@ parafraseado**, nunca copiado integralmente ([RM-02](../../../../docs/RM-02_PREC
 
 ---
 
+## Links conferidos em 2026-11-23
+
+| # | Documento | Link |
+|:-:|-----------|------|
+| F3 | Res. COFEN 736/2024 (publicação no DOU) | <https://www.in.gov.br/web/dou/-/resolucao-cofen-n-736-de-17-de-janeiro-de-2024-539060363> |
+| F3 | Res. COFEN 736/2024 (PDF no portal COFEN) | <https://www.cofen.gov.br/wp-content/uploads/2024/01/Resolucao-736-2024.pdf> |
+| F11 | Diretrizes Brasileiras de Hipertensão Arterial — 2020 | <https://pmc.ncbi.nlm.nih.gov/articles/PMC9949730> |
+| F13 | Guia de Referência Rápida em português — LPP 2019 | <https://epuap.org/wp-content/uploads/sites/17/2023/10/QRG-2020-Brazilian-Portuguese.pdf> |
+| F16 | Protocolo 3 — Prevenção de ITU-AC (ANVISA, 2025) | <https://www.gov.br/anvisa/pt-br/centraisdeconteudo/publicacoes/servicosdesaude/publicacoes/Protocolo3PrevenodeITUFINAL.pdf> |
+| F16 | Nota Técnica GVIMS/GGTES/DIRE3/ANVISA nº 11/2025 | <https://www.gov.br/anvisa/pt-br/centraisdeconteudo/publicacoes/servicosdesaude/notas-tecnicas/notas-tecnicas-vigentes/nota-tecnica-11_2025-implementacao-protocolos-de-iras-gvims.pdf> |
+
+---
+
 ## Pendências de verificação (bloqueiam publicação, não a pesquisa)
 
 | Item | O que falta | Prazo sugerido |
 |------|-------------|----------------|
-| F3 | Abrir a Res. COFEN 736/2024 e confirmar o que cabe ao técnico no registro | 2026-12-06 |
+| ~~F3~~ | **Resolvido em 2026-11-23.** Cinco etapas: Avaliação, Diagnóstico, Planejamento, Implementação e Evolução. Técnico checa prescrição e anota intercorrências; a Evolução é privativa do enfermeiro | — |
+| ~~F11~~ | **Resolvido em 2026-11-23.** Diretriz SBC 2020: manguito 22–26 cm (adulto pequeno), 27–34 cm (adulto), 35–44 cm (adulto grande); 5 min sentado, braço na altura do coração | — |
+| ~~F13~~ | **Resolvido em 2026-11-23.** Guia PT-BR 2019/2020: estágios 1 a 4, não classificável e lesão tissular profunda | — |
+| ~~F16~~ | **Resolvido em 2026-11-23.** Protocolo ANVISA 2025 (ITU-AC, v. 1) | — |
 | F7 | Escolher e abrir os protocolos do MS realmente usados nas unidades | 2026-12-06 |
-| F11 | Fixar **uma** diretriz de PA e registrar a edição | 2026-12-08 |
-| F13 | Confirmar edição/tradução da diretriz de LPP | 2026-12-08 |
-| F16–F19 | Abrir protocolos de sonda, cobertura, coleta e medicação | 2026-12-08 |
+| F17, F19 | Abrir diretriz de coberturas e resolução de medicação/checagem | 2026-12-08 |
+| F18 | Definir o laboratório de referência (Q1) e adotar o manual dele | com Q1 |
 
 **Regra de uso:** item de avaliação que dependa de F3, F7, F11, F13 ou F16–F19 **não** vai para
 produção antes da conferência. Até lá, o artefato é 🟪 e não ✅.

@@ -21,8 +21,9 @@ F2). O limite de escopo é conteúdo avaliado, não nota de rodapé.
 
 Ao final, o estudante deve ser capaz de:
 
-1. **Descrever** as etapas do Processo de Enfermagem e **registrar** o que executa, no formato
-   exigido (F3), sem invadir a etapa privativa do enfermeiro.
+1. **Descrever** as cinco etapas do Processo de Enfermagem (Avaliação, Diagnóstico, Planejamento,
+   Implementação e Evolução) e **registrar** o que executa por checagem e anotação, sem invadir a
+   Evolução, que é privativa do enfermeiro (F3).
 2. **Medir** temperatura, pulso, respiração, pressão arterial e saturação com a técnica correta e
    **registrar** valor, unidade, horário e condição de medida (F11, F12).
 3. **Reconhecer** valor fora da faixa de referência e **comunicar** imediatamente ao enfermeiro,
@@ -89,8 +90,8 @@ curta porque é transversal — entra em toda unidade, não como bloco isolado.
 
 | Risco | Impacto | Mitigação |
 |-------|---------|-----------|
-| Res. COFEN 736/2024 ainda não aberta nesta pesquisa (F3) | Registro pode ser ensinado em formato antigo | Conferência antes de qualquer item de U1 |
-| Diretriz de LPP com edição não confirmada (F13) | Estadiamento desatualizado | Fixar edição na revisão; citar ano no material |
+| ~~Res. COFEN 736/2024 não conferida~~ | **Resolvido em 2026-11-23**: texto conferido no portal COFEN e no DOU | Itens de U1 já podem citar as cinco etapas |
+| ~~Diretriz de LPP não confirmada~~ | **Resolvido em 2026-11-23**: guia EPUAP/NPIAP/PPPIA 2019, tradução PT-BR | Citar ano e edição no material |
 | Valores de referência de SSVV variam por fonte e contexto | Item com "valor certo" ambíguo | Uma fonte adotada por parâmetro (RM-02 P3) |
 | Procedimentos privativos confundidos com rotina do técnico | Erro de escopo e risco legal | Quadro §4 em toda unidade e no feedback |
 | Novo Código de Ética em vacatio (matéria 05) | Trecho citado pode mudar | Norm watch trimestral até a publicação no DOU |
@@ -106,3 +107,4 @@ curta porque é transversal — entra em toda unidade, não como bloco isolado.
 - [x] Riscos e norm watch anotados.
 - [ ] Deduplicação dos 2.803 registros do banco atual — **bloqueada**: exige acesso ao banco.
 - [ ] Validação por enfermeiro e educador.
+| 2026-11-23 | Fontes | F3, F11, F13 e F16 abertas e conferidas (COFEN 736/2024, Diretriz SBC 2020, guia LPP 2019, Protocolo ANVISA 2025); F18 depende do laboratório de referência (Q1) |

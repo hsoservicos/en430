@@ -14,6 +14,13 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ### Adicionado
 
+- **Pesquisa da matéria 08 (Farmacologia e Cálculo de Medicamentos):** 7 entregáveis e banco de
+  imagens com 4 ativos licenciados; 11 unidades em 70h, 300 itens especificados (114 de cálculo) e
+  9 exemplares com gabarito conferido por cálculo próprio. Cinco unidades ficam marcadas como
+  **bloqueadas** até fontes institucionais (lista de "certos", alta vigilância, diluição).
+- **Fontes da matéria 07 conferidas:** Res. COFEN 736/2024 (cinco etapas do Processo de
+  Enfermagem), Diretriz SBC de HAS 2020 (manguito por circunferência), guia EPUAP/NPIAP/PPPIA 2019
+  e Protocolo ANVISA nº 3/2025 (ITU-AC), com links e data de consulta registrados.
 - **RM-02 — Precisão, Didática e Veracidade:** regra de base imutável do conteúdo; nenhum
   material é elaborado sem fonte primária aberta, datada e conferida quanto à vigência
   (`docs/RM-02_PRECISAO_DIDATICA_E_VERACIDADE.md`).

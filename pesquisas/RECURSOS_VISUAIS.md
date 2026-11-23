@@ -18,7 +18,8 @@
 | 04 | Políticas Públicas de Saúde e SUS | 6 | 5 | 1 | U4, U5, U6, U7, U8 | [imagens/README.md](modulo-1-fundamentos-basicos-e-saude-coletiva/04-politicas-publicas-de-saude-e-sus/imagens/README.md) |
 | 05 | Ética, Bioética e Legislação em Enfermagem | 4 | 3 | 1 | U1, U6, U10 | [imagens/README.md](modulo-1-fundamentos-basicos-e-saude-coletiva/05-etica-bioetica-e-legislacao-em-enfermagem/imagens/README.md) |
 | 07 | Fundamentos e Semiotécnica de Enfermagem | 7 | 7 | 0 | U2, U6, U7, U9 | [imagens/README.md](modulo-2-bases-tecnicas-e-assistencia-clinica-geral/07-fundamentos-e-semiotecnica-de-enfermagem/imagens/README.md) |
-| — | **Total** | **33** | **29** | **4** | 25 pares matéria-unidade | — |
+| 08 | Farmacologia e Cálculo de Medicamentos | 4 | 4 | 0 | U3, U7, U11 | [imagens/README.md](modulo-2-bases-tecnicas-e-assistencia-clinica-geral/08-farmacologia-e-calculo-de-medicamentos/imagens/README.md) |
+| — | **Total** | **37** | **33** | **4** | 28 pares matéria-unidade | — |
 
 **Nenhuma imagem é embutida por link externo:** todos os arquivos estão versionados em
 `<matéria>/imagens/`. O link da fonte serve para crédito e conferência, não para carregar a imagem.

@@ -10,11 +10,13 @@ o estudante sabe medir e reconhecer o normal.
 
 ## U1 — Processo de Enfermagem e registros · 10h · 34 itens
 
-**Assuntos:** histórico, exame, diagnóstico, prescrição e evolução (as cinco etapas); SAE; anotação
-de enfermagem; evolução; prontuário; registro do que o técnico executou; sigilo e identificação.
+**Assuntos:** as cinco etapas do Processo de Enfermagem — **Avaliação, Diagnóstico, Planejamento,
+Implementação e Evolução** (Res. COFEN 736/2024, F3); distinção entre SAE e PE; anotação de
+enfermagem; evolução (privativa do enfermeiro); checagem da prescrição pelo técnico; prontuário;
+sigilo e identificação.
 
-**Objetivo:** registrar a execução com dados objetivos (o que, quando, como, quanto, intercorrência),
-sem formular diagnóstico ou prescrição (F3).
+**Objetivo:** registrar a execução com dados objetivos (o que, quando, como, quanto, intercorrência)
+e anotar intercorrências, sem formular diagnóstico, prescrição ou evolução (F3).
 
 **Aplicação:** anotar uma medida de PA com valor alterado e o horário da comunicação ao enfermeiro.
 
@@ -29,7 +31,8 @@ saturação periférica; dor como 5º sinal; faixas de referência por idade; fa
 **Objetivo:** medir cada sinal com técnica padronizada, registrar unidade e condição, e comunicar
 alteração sem iniciar conduta.
 
-**Aplicação:** medir PA em dois membros, comparar e registrar a diferença.
+**Aplicação:** medir PA em dois membros, escolher o manguito pela circunferência (22–26, 27–34,
+35–44 cm — F11) e registrar a diferença.
 
 **Erro comum:** medir PA com o braço abaixo do coração ou com manguito de tamanho errado.
 
@@ -112,7 +115,8 @@ comunicar piora respiratória.
 complicações); sonda vesical de demora e de alívio (técnica asséptica, fixação, balão, débito,
 cuidados diários); registro do débito e do aspecto.
 
-**Objetivo:** auxiliar no procedimento com técnica e reconhecer sinais de complicação.
+**Objetivo:** auxiliar no procedimento com técnica asséptica e sistema fechado, manter a bolsa abaixo
+da bexiga e reconhecer sinais de complicação (F16).
 
 **Aplicação:** conferir fixação e débito de sonda vesical e registrar aspecto e volume.
 

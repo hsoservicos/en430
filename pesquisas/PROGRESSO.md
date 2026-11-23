@@ -18,15 +18,18 @@
 | Campos de estágio mapeados | 4 |
 | Fichas de pesquisa criadas | 21 |
 | Pesquisas concluídas (✅) | 0 |
-| Pesquisas em revisão (🟪) | 5 |
+| Pesquisas em revisão (🟪) | 6 |
 | Pesquisas em andamento (🟦) | 0 |
 | Pesquisas aguardando confirmação (🟨) | 0 |
 | **Avanço concluído** | **0 / 17 (0%)** |
-| **Avanço com artefatos produzidos** | **5 / 17 (29,4%)** |
-| Bancos de imagens criados (RM-04) | 5 (33 imagens) |
+| **Avanço com artefatos produzidos** | **6 / 17 (35,3%)** |
+| Bancos de imagens criados (RM-04) | 6 (37 imagens) |
 
-**Próxima matéria sugerida:** `08 — Farmacologia e Cálculo de Medicamentos` (Módulo II, prioridade
-Alta) — 01, 03, 04, 05 e 07 estão em revisão. Nenhuma pesquisa é iniciada sem confirmação explícita.
+**Próxima matéria sugerida:** `09 — Nutrição e Dietética` (Módulo II, prioridade Média) — 01, 03,
+04, 05, 07 e 08 estão em revisão. Nenhuma pesquisa é iniciada sem confirmação explícita.
+
+**Bloqueio novo:** a 08 depende de fontes institucionais (lista de "certos", medicamentos de alta
+vigilância, protocolo de diluição). Cinco unidades estão marcadas como bloqueadas.
 
 ---
 
@@ -61,7 +64,7 @@ Alta) — 01, 03, 04, 05 e 07 estão em revisão. Nenhuma pesquisa é iniciada s
 | # | Matéria | Prior. | Status | Confirmada em | Atualizado em | Artefatos | Pendência |
 |:-:|---------|:------:|:------:|:-------------:|:-------------:|:---------:|-----------|
 | 07 | [Fundamentos e Semiotécnica de Enfermagem](modulo-2-bases-tecnicas-e-assistencia-clinica-geral/07-fundamentos-e-semiotecnica-de-enfermagem/) | Alta | 🟪 | 2026-11-23 | 2026-11-23 | 6 | Validação humana; fontes ⚪ a abrir; deduplicação bloqueada |
-| 08 | [Farmacologia e Cálculo de Medicamentos](modulo-2-bases-tecnicas-e-assistencia-clinica-geral/08-farmacologia-e-calculo-de-medicamentos/) | Alta | ⬜ | — | — | 0 | — |
+| 08 | [Farmacologia e Cálculo de Medicamentos](modulo-2-bases-tecnicas-e-assistencia-clinica-geral/08-farmacologia-e-calculo-de-medicamentos/) | Alta | 🟪 | 2026-11-23 | 2026-11-23 | 7 | F5, F8, F12, F13, F15 e F16 (institucionais); validação humana |
 | 09 | [Nutrição e Dietética](modulo-2-bases-tecnicas-e-assistencia-clinica-geral/09-nutricao-e-dietetica/) | Média | ⬜ | — | — | 0 | — |
 | 10 | [Enfermagem em Clínica Médica](modulo-2-bases-tecnicas-e-assistencia-clinica-geral/10-enfermagem-em-clinica-medica/) | Alta | ⬜ | — | — | 0 | — |
 
@@ -144,3 +147,5 @@ artefatos — é medido à parte (nº de imagens, licenças e unidades cobertas)
 | 2026-11-23 | 04 | Ilustração | Figura própria dos princípios do SUS (doutrinários × organizativos, U5); banco com 6 imagens |
 | 2026-11-23 | 07 | Pesquisa | 6 entregáveis produzidos e banco de imagens com 7 ativos; 400 itens especificados; status 🟪 |
 | 2026-11-23 | — | Ilustração | Banco da 07 criado (7 imagens: U2, U6, U7, U9); total do acervo em 33 imagens |
+| 2026-11-23 | 07 | Fontes | F3, F11, F13 e F16 conferidas e registradas (COFEN 736/2024, Diretriz SBC 2020, guia LPP 2019, Protocolo ANVISA 2025); F18 remanejada para o laboratório de referência |
+| 2026-11-23 | 08 | Pesquisa | 7 entregáveis produzidos (11 unidades, 70h, 300 itens especificados) e banco com 4 imagens; status 🟪 com 5 unidades bloqueadas |
